@@ -1,6 +1,7 @@
 -- database name: faceless_pro
 -- drop table commands are in order
 -- create table commands are in order
+-- username === email
 
 DROP TABLE "message";
 DROP TABLE "application";
@@ -15,9 +16,9 @@ DROP TABLE "user";
 
 CREATE TABLE "user" (
 	"id" serial PRIMARY KEY,
-	"email" VARCHAR (80) UNIQUE NOT NULL,
+	"username" VARCHAR (80) UNIQUE NOT NULL,
 	"password" VARCHAR (1000) NOT NULL,
-	"user_type" VARCHAR(255) NOT NULL
+	"user_type" VARCHAR(255)
 );
 	
 CREATE TABLE "employer" (
