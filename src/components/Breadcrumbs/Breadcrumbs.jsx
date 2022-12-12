@@ -12,13 +12,16 @@ import {
       <nav>
         <ol>
           <li>
-            <Link to={`${match.url}/Education`}>Education</Link>
+            <Link to={`${match.url}Education`}>Education</Link>
           </li>
           <li>
-            <Link to={`${match.url}/Experience`}>Experience</Link>
+            <Link to={`${match.url}Experience`}>Experience</Link>
           </li>
           <li>
-            <Link to={`${match.url}/Skills`}>Skills</Link>
+            <Link to={`${match.url}Skills`}>Skills</Link>
+          </li>
+          <li>
+            <Link to={`${match.url}VoluntaryIdentification`}>Voluntary</Link>
           </li>
         </ol>
       </nav>

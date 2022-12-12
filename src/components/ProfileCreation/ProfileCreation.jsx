@@ -14,6 +14,7 @@ import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
         <Route path="/Education" exact component={Education} />
         <Route path="/Experience" component={Experience} />
         <Route path="/Skills" component={Skills} />
+        <Route path="/VoluntaryIdentification" component={Voluntary} />
       </Router>
     );
   }
