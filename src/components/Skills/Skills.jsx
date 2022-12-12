@@ -14,10 +14,10 @@ function Skills() {
     const getSkills = (evt) => {
         evt.preventDefault();
         console.log('inside Skills', skills)
-        dispatch({
-            type: 'GET_SKILLS',
-            payload: skills
-        })
+        // dispatch({
+        //     type: 'GET_SKILLS',
+        //     payload: skills
+        // })
         history.push('/VoluntaryIdentification');
     }
   class MyForm extends React.Component {
@@ -32,6 +32,7 @@ function Skills() {
     render() {
       return (
         <div>
+            <h1>INSIDE SKILLS</h1>
           {
             this.state.isFormOpen
               ? <form>
