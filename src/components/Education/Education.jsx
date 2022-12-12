@@ -45,6 +45,7 @@ function Education() {
               )
               : <button onClick={this.handleFormOpen}>+ Add Education</button>
           }
+
                 <button onClick={getEducation}>Save and Continue</button>
         </div>
 
