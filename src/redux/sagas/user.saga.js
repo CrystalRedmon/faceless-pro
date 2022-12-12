@@ -24,8 +24,16 @@ function* fetchUser() {
   }
 }
 
+function* updateUser(action) {
+
+  const response = yield axios.put('/api/user', action.payload);
+  console.log(response.data); // Created
+  yield put({ type: 'FETCH_USER' });
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('UPDATE_USER_TYPE', updateUser);
 }
 
 export default userSaga;

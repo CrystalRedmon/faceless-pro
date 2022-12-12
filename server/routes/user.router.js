@@ -47,4 +47,22 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+router.put('/', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `UPDATE "user" SET "user_type" = $1 WHERE id = $2;`;
+  const sqlParams = [req.body.userType, req.user.id];
+
+  pool.query(queryText, sqlParams)
+    .then(dbRes => {
+
+      res.sendStatus(201);
+    })
+    .catch(err => {
+      console.error('PUT error', err);
+      res.sendStatus(500);
+    })
+});
+
 module.exports = router;
+
