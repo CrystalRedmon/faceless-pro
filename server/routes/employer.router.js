@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   const sqlTxt = ` SELECT *
                     FROM "job_post"
-                    WHERE "title" % 'cool';`;
+                    WHERE "employer_id" = 2;`;
 
     pool.query(sqlTxt)
     .then(dbRes=>{
