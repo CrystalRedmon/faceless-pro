@@ -47,6 +47,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
 router.put('/', rejectUnauthenticated, (req, res) => {
 
   const queryText = `UPDATE "user" SET "user_type" = $1 WHERE id = $2;`;
@@ -64,3 +65,4 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 });
 
 module.exports = router;
+

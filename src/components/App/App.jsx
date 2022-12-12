@@ -19,9 +19,20 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+
+import ProfileCreation from '../ProfileCreation/ProfileCreation';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import Education from '../Education/Education';
+import Experience from '../Experience/Experience';
+import Skills from '../Skills/Skills';
+import CandidateProfile from '../CandidateProfile/CandidateProfile';
+import Voluntary from '../Voluntary/Voluntary';
+
+
 import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import FounderPage from '../FounderPage/FounderPage';
+
 import './App.css';
 
 
@@ -77,11 +88,40 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/CandidateProfile"
+          >
+            <CandidateProfile />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ProfileCreation"
+          >
+            <ProfileCreation />
+          </ProtectedRoute>
+          <Router>
+        <Breadcrumbs />
+        <Route path="/Education" exact component={Education} />
+        <Route path="/Experience" component={Experience} />
+        <Route path="/Skills" component={Skills} />
+        <Route path="/VoluntaryIdentification" component={Voluntary} />
+      </Router>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+          >
+            <Breadcrumbs />
           </ProtectedRoute>
 
           <Route
