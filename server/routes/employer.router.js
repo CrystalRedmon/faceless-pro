@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
                   ON "job_post".employer_id = "employer".id
                   JOIN "user"
                   ON "employer".user_id = "user".id
-                  WHERE "user".id = 2;`;
+                  WHERE "user".id = $1;`;
     //   🛑 🛑 WHERE "user".id = 2 will need to be changed to WHERE "user".id = $1
     //        AND
     //        pool.query will need to include [req.user.id] .  🛑🛑

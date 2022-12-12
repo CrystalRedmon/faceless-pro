@@ -8,9 +8,9 @@ function* postJob(action){
         yield axios.post('/api/employer', action.payload);
 
         //reset redux and rerender after store is updated
-        // yield put({
-        //     type: 'FETCH_ALL_REQUESTS',
-        // });
+        yield put({
+            type: 'FETCH_JOBS',
+        });
 
     } catch (err) {
         console.error('postJob SAGA error:', err);
