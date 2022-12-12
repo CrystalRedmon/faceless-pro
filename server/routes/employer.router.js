@@ -4,14 +4,14 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-
+  console.log('humbled ', req.user.id )
   const sqlTxt = ` SELECT "employer".company_name, "job_post".title, "job_post".description
                   FROM "job_post"
                   JOIN "employer"
                   ON "job_post".employer_id = "employer".id
                   JOIN "user"
                   ON "employer".user_id = "user".id
-                  WHERE "user".id = 7;`;
+                  WHERE "user".id = 2;`;
     //   🛑 🛑 WHERE "user".id = 2 will need to be changed to WHERE "user".id = $1
     //        AND
     //        pool.query will need to include [req.user.id] .  🛑🛑

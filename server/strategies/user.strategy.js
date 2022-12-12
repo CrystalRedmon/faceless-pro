@@ -8,6 +8,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
+  
   // if user.user_type === employer ...
   pool
     .query('SELECT * FROM "user" WHERE id = $1', [id])
