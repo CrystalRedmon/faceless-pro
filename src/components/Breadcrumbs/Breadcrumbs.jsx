@@ -4,13 +4,16 @@ import {
     Link,
     useRouteMatch
   } from "react-router-dom";
+
+  import './Breadcrumbs.css'
   
   function Breadcrumbs() {
     let match = useRouteMatch();
   
     return (
+
       <nav>
-        <ol>
+        <ul class="breadcrumb">
           <li>
             <Link to={`${match.url}Education`}>Education</Link>
           </li>
@@ -23,8 +26,11 @@ import {
           <li>
             <Link to={`${match.url}VoluntaryIdentification`}>Voluntary</Link>
           </li>
-        </ol>
+        </ul>
+        <h1>Welcome To Faceless Pro!</h1>
+        <p></p>
       </nav>
+
     );
   }
   export default Breadcrumbs;
