@@ -2,13 +2,18 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+
 router.get('/', (req, res) => {
-  const sqlTxt = ` SELECT *
-                    FROM "job_post"
-                    WHERE "employer_id" = 2;`;
+
+  const sqlTxt = ` SELECT "employer".company_name, "job_post".title, "job_post".description
+                  FROM "job_post"
+                  JOIN "employer"
+                  ON "job_post".employer_id = "employer".id
+                  JOIN "user"
+                  ON "employer".user_id = "user".id
+                  WHERE "user".id = 2;`;
+
+
 
     pool.query(sqlTxt)
     .then(dbRes=>{
