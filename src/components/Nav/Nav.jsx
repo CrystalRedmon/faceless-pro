@@ -55,6 +55,10 @@ function Nav() {
               Info Page
             </Link>
 
+            <Link className="navLink" to="/job">
+              Post Job
+            </Link>
+
             <LogOutButton className="navLink" />
           </>
         )}
