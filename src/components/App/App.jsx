@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
 import './App.css';
 
@@ -68,7 +69,21 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ProfileCreation"
+          >
+            <ProfileCreation />
+          </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+          >
+            <Breadcrumbs />
+          </ProtectedRoute>
 
           <Route
             exact
