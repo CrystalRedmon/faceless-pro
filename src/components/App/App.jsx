@@ -19,6 +19,11 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import FounderPage from '../FounderPage/FounderPage';
+import OurStoryPage from '../OurStoryPage/OurStoryPage';
+import ContactUsPage from '../ContactUsPage/ContactUsPage';
+import PostJob from '../PostJob/PostJob';
+
 
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
@@ -29,9 +34,6 @@ import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
 
 
-import ContactUsPage from '../ContactUsPage/ContactUsPage';
-import OurStoryPage from '../OurStoryPage/OurStoryPage';
-import FounderPage from '../FounderPage/FounderPage';
 
 import './App.css';
 
@@ -84,7 +86,11 @@ function App() {
             exact
             path="/user"
           >
+            {user.user_type === "employer"?
+            <FounderPage />
+            :
             <UserPage />
+            }     
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -122,6 +128,14 @@ function App() {
             path="/Breadcrumbs"
           >
             <Breadcrumbs />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job"
+          >
+            <PostJob />
           </ProtectedRoute>
 
           <Route
