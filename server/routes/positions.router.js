@@ -6,8 +6,25 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const sqlTxt = ` SELECT *
+                    FROM "job_post"
+                    WHERE "title" % 'cool';`;
+
+    pool.query(sqlTxt)
+    .then(dbRes=>{
+        res.send(dbRes.rows);
+        console.log(dbRes.rows);
+    })
+    .catch(error=>{
+        res.sendStatus(500);
+        console.log('GET positions failed: ', error);
+    })
 });
+
+
+
+
+
 
 /**
  * POST route template
