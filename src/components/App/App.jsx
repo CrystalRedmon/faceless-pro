@@ -42,7 +42,7 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-        
+
           <Route
             exact
             path="/founder"
@@ -54,19 +54,14 @@ function App() {
             exact
             path="/story"
           >
-            <OurStoryPage/>
-            </Route>
-            
+            <OurStoryPage />
+          </Route>
 
-
-              
-              
-              
-              <Route
+          <Route
             exact
             path="/contact"
           >
-            <ContactUsPage/>
+            <ContactUsPage />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
