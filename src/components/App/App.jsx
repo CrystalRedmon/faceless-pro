@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import ProfileCreation from '../ProfileCreation/ProfileCreation';
 
 import './App.css';
 
@@ -67,6 +68,7 @@ function App() {
           >
             <InfoPage />
           </ProtectedRoute>
+
 
           <Route
             exact
