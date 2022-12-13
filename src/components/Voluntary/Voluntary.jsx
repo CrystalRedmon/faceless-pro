@@ -1,8 +1,8 @@
-function Voluntary(){
+function Voluntary() {
 
-    return(
+    return (
         <>
-        <>This is where voluntary identification questions go. </>
+            <>This is where voluntary identification questions go. </>
         </>
     )
 }
