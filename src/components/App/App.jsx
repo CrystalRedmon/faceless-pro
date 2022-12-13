@@ -33,6 +33,7 @@ import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
+import CandidateLandingPage from '../Candidate/Candidate';
 
 
 
@@ -77,6 +78,7 @@ function App() {
           >
             <ContactUsPage />
           </Route>
+          
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -90,9 +92,21 @@ function App() {
             {user.user_type === null ?
             <UserTypeChoice />
             :
+            <></>
+            }
+            {user.user_type === 'candidate' ?
+            <CandidateLandingPage />
+            :
+            <></>
+            }
+            {user.user_type === 'employer' ?
             <UserPage />
-            }     
+            :
+            <></>
+            }
+                 
           </ProtectedRoute>
+          
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
