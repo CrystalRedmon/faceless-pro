@@ -23,9 +23,9 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       {user.user_type === null ?
-            <UserTypeChoice />
-            :
-            <></>}
+        <UserTypeChoice />
+        :
+        <></>}
             {/* {jobs.map(job => {
           return (
       <table key={job.id} className='styled-table '>
