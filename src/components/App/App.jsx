@@ -34,6 +34,8 @@ import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 
+import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
+import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 
 
 import './App.css';
@@ -90,8 +92,19 @@ function App() {
             {user.user_type === null ?
               <UserTypeChoice />
               :
-              <UserPage />
+              <></>
             }
+            {user.user_type === 'candidate' ?
+              <CandidateLandingPage />
+              :
+              <></>
+            }
+            {user.user_type === 'employer' ?
+              <EmployerLandingPage />
+              :
+              <></>
+            }
+
           </ProtectedRoute>
 
           <ProtectedRoute
