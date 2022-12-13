@@ -34,10 +34,10 @@ function* FetchJobs() {
         console.error('fetchJob SAGA error:', err);
     };
 }
-function* postJobSaga() {
+function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
     yield takeEvery('FETCH_JOBS', FetchJobs)
 }
 
 
-export default employerSaga;
+export default JobSaga;
