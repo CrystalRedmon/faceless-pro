@@ -11,9 +11,9 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
       {user.user_type === null ?
-            <UserTypeChoice />
-            :
-            <h2>all good patient has user type</h2>}
+        <UserTypeChoice />
+        :
+        <h2>all good patient has user type</h2>}
       <LogOutButton className="btn" />
     </div>
   );
