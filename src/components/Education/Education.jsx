@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Education() {
-    const [education, setEducation] = useState('');
-    const dispatch = useDispatch();
-    const history = useHistory();
+  const [education, setEducation] = useState('');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const getEducation = (evt) => {
-        evt.preventDefault();
-        console.log('inside Education', education)
-        // dispatch({
-        //     type: 'GET_EDUCATION',
-        //     payload: education
-        // })
-        history.push('/Experience');
-    } 
+  const getEducation = (evt) => {
+    evt.preventDefault();
+    console.log('inside Education', education)
+    // dispatch({
+    //     type: 'GET_EDUCATION',
+    //     payload: education
+    // })
+    history.push('/Experience');
+  }
   class MyForm extends React.Component {
     state = {
       isFormOpen: false
@@ -25,13 +25,13 @@ function Education() {
 
     handleFormOpen = () => {
       this.setState({ isFormOpen: true });
-    }
+    };
 
     render() {
       return (
-    
+
         <div>
-                <h1>INSIDE EDUCATION</h1>
+          <h1>INSIDE EDUCATION</h1>
           {
             this.state.isFormOpen
               ? (
@@ -46,7 +46,9 @@ function Education() {
               : <button onClick={this.handleFormOpen}>+ Add Education</button>
           }
 
+
                 <button onClick={getEducation}>Save and Continue</button>
+
         </div>
 
       );

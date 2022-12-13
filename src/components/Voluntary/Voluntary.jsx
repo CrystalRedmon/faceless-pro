@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 class Voluntary extends Component{
@@ -33,7 +34,7 @@ render(){
         {this.state.showForm ? this.showForm() : null}
         </div>
     );
-}
+    }
 
 }
 export default Voluntary;

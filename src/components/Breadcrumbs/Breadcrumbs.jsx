@@ -1,10 +1,11 @@
 import {
-    BrowserRouter as Router,
-    Route,
-    Link,
-    useRouteMatch
-  } from "react-router-dom";
+  BrowserRouter as Router,
+  Route,
+  Link,
+  useRouteMatch
+} from "react-router-dom";
 
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -55,9 +56,36 @@ import {useSelector} from 'react-redux';
 
       </nav>
       
+=======
+import './Breadcrumbs.css'
 
-    );
-  }
-  export default Breadcrumbs;
+function Breadcrumbs() {
+  let match = useRouteMatch();
+>>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
+
+  return (
+
+    <nav>
+      <ul className="breadcrumb">
+        <li>
+          <Link to={`${match.url}Education`}>Education</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}Experience`}>Experience</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}Skills`}>Skills</Link>
+        </li>
+        <li>
+          <Link to={`${match.url}VoluntaryIdentification`}>Voluntary</Link>
+        </li>
+      </ul>
+      <h1>Welcome To Faceless Pro!</h1>
+      <p></p>
+    </nav>
+
+  );
+}
+export default Breadcrumbs;
 
   //this is rendering as a list view currently

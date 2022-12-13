@@ -1,8 +1,17 @@
 import { useState } from "react";
 import "./Skills.css";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
 
 function Skills() {
   const [serviceList, setServiceList] = useState([{ service: "" }]);
+
+
+
 
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
@@ -10,6 +19,7 @@ function Skills() {
     list[index][name] = value;
     setServiceList(list);
   };
+
 
   const handleServiceRemove = (index) => {
     const list = [...serviceList];

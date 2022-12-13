@@ -32,7 +32,9 @@ import Experience from '../Experience/Experience';
 import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
-
+import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
+import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
+import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 
 
 
@@ -77,6 +79,7 @@ function App() {
           >
             <ContactUsPage />
           </Route>
+          
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -87,12 +90,24 @@ function App() {
             exact
             path="/user"
           >
-            {user.user_type === "employer"?
-            <FounderPage />
-            :
-            <UserPage />
-            }     
+            {user.user_type === null ?
+              <UserTypeChoice />
+              :
+              <></>
+            }
+            {user.user_type === 'candidate' ?
+              <CandidateLandingPage />
+              :
+              <></>
+            }
+            {user.user_type === 'employer' ?
+              <EmployerLandingPage />
+              :
+              <></>
+            }
+
           </ProtectedRoute>
+          
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
@@ -118,20 +133,30 @@ function App() {
           </ProtectedRoute>
 
 
+<<<<<<< HEAD
           {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/Breadcrumbs"
-          >
-            <Breadcrumbs /> */}
-          {/* </ProtectedRoute> */}
+=======
 
           <ProtectedRoute
+>>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job"
           >
+<<<<<<< HEAD
+            <Breadcrumbs /> */}
+          {/* </ProtectedRoute> */}
+=======
             <PostJob />
+          </ProtectedRoute>
+>>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+          >
+            <Breadcrumbs />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -190,6 +215,14 @@ function App() {
         <Route path="/Skills" component={Skills} />
         <Route path="/VoluntaryIdentification" component={Voluntary} />
       </ProtectedRoute>
+
+          <ProtectedRoute >
+            <Breadcrumbs />
+            <Route exact path="/Education" component={Education} />
+            <Route exact path="/Experience" component={Experience} />
+            <Route exact path="/Skills" component={Skills} />
+            <Route exact path="/VoluntaryIdentification" component={Voluntary} />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

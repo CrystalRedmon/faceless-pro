@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
-function CandidateProfile(){
+function CandidateProfile() {
     const [profile, setProfile] = useState('');
     const dispatch = useDispatch();
     const history = useHistory();
@@ -21,15 +21,14 @@ function CandidateProfile(){
         history.push('/StartProfile');
     }
 
-    return(
+    return (
         <>
-        <h2>Welcome to your profile!</h2>
+            <h2>Welcome to your profile!</h2>
 
-        <p>Click here to complete your profile</p>
+            <p>Click here to complete your profile</p>
 
-        <button onClick={getProfile}>Complete Profile</button>
-
-        
+            <button onClick={getProfile}>Complete Profile</button>
+            
         </>
     )
 }
