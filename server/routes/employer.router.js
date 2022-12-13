@@ -4,20 +4,13 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-  console.log('humbled ', req.user.id )
-  const sqlTxt = `SELECT "employer".company_name, "job_post".title, "job_post".description
+
+  const sqlTxt = `SELECT "job_post".title, "job_post".description
                   FROM "job_post"
-                  JOIN "employer"
-                  ON "job_post".employer_id = "employer".id
-                  JOIN "user"
-                  ON "employer".user_id = "user".id
-                  WHERE "user".id = $1;`;
-    //   🛑 🛑 WHERE "user".id = 2 will need to be changed to WHERE "user".id = $1
-    //        AND
-    //        pool.query will need to include [req.user.id] .  🛑🛑
-
-
-    pool.query(sqlTxt)
+                  WHERE "job_post"."employer_id" = $1;`;              
+                  
+               
+    pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
     .then(dbRes=>{
         res.send(dbRes.rows);
         console.log(dbRes.rows);
@@ -30,14 +23,35 @@ router.get('/', (req, res) => {
 
 
 
-
-
-
-/**
- * POST route template
- */
 router.post('/', (req, res) => {
-  // POST route code here
+ 
+const sqlTxt = `INSERT INTO "job_post" ("employer_id", "title", "description")
+                VALUES ($1, $2, $3);`
+
+const sqlParams = [
+  req.user.user_info.id,
+  req.body.title,
+  req.body.description
+]
+
+     pool.query(sqlTxt, sqlParams )
+     .then(dbRes=>{
+      res.sendStatus(200);
+      console.log('Post job successful: ', dbRes);
+     })      
+     .catch(error=>{
+      res.sendStatus(500);
+      console.log('Post job failed: ', error);
+     })
+
 });
+
+
+
+
+
+
+
+
 
 module.exports = router;

@@ -26,7 +26,7 @@ passport.deserializeUser((id, done) => {
         pool
           .query('SELECT * FROM "user" JOIN "employer" ON "user".id = "employer".user_id WHERE "user".id = $1', [id])
           .then((result) => {
-            console.log(result.rows);
+          
           })
       if (user) {
         // user found
@@ -39,11 +39,6 @@ passport.deserializeUser((id, done) => {
         // this will result in the server returning a 401 status code
         done(null, null);
       }
-
-      console.log("user type: ", user)
-
-
-
 
       console.log('The only console', user)
     })
