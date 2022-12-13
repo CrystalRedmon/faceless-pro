@@ -97,6 +97,35 @@ router.delete('/:id', (req, res) => {
 
 })
 
+// UPDATE JOB POST BY ID
+router.put('/:id', (req, res)=>{
+
+  const sqlTxt = ` UPDATE "job_post"
+                    SET "title" = $1,
+                    "description" = $2,
+                    WHERE "id" = $3;`;
+
+  const sqlParams =[
+    req.body.title,
+    req.body.description,
+    req.user.user_info.id
+  ]
+
+  pool.query(sqlTxt, sqlParams)
+  .then(dbRes => {
+    res.sendStatus(200);
+    console.log('Update job successful: ', dbRes);
+  })
+  .catch(error => {
+    res.sendStatus(500);
+    console.log('Update job failed: ', error);
+  })
+
+})
+
+
+
+
 
 
 
