@@ -13,7 +13,7 @@ import {
     return (
 
       <nav>
-        <ul class="breadcrumb">
+        <ul className="breadcrumb">
           <li>
             <Link to={`${match.url}Education`}>Education</Link>
           </li>

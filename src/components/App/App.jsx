@@ -32,6 +32,7 @@ import Experience from '../Experience/Experience';
 import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
+import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 
 
 
@@ -86,8 +87,8 @@ function App() {
             exact
             path="/user"
           >
-            {user.user_type === "employer"?
-            <FounderPage />
+            {user.user_type === null ?
+            <UserTypeChoice />
             :
             <UserPage />
             }     
@@ -115,27 +116,23 @@ function App() {
           >
             <ProfileCreation />
           </ProtectedRoute>
-          <Router>
-        <Breadcrumbs />
-        <Route path="/Education" exact component={Education} />
-        <Route path="/Experience" component={Experience} />
-        <Route path="/Skills" component={Skills} />
-        <Route path="/VoluntaryIdentification" component={Voluntary} />
-      </Router>
+
+        
+
+      <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job"
+          >
+            <PostJob />
+          </ProtectedRoute>
+
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/Breadcrumbs"
           >
             <Breadcrumbs />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/job"
-          >
-            <PostJob />
           </ProtectedRoute>
 
           <Route
@@ -179,6 +176,14 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <ProtectedRoute >
+        <Breadcrumbs />
+        <Route exact path="/Education" component={Education} />
+        <Route exact path="/Experience" component={Experience} />
+        <Route exact path="/Skills" component={Skills} />
+        <Route exact path="/VoluntaryIdentification" component={Voluntary} />
+        </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
