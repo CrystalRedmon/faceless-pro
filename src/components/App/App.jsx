@@ -19,9 +19,22 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import ContactUsPage from '../ContactUsPage/ContactUsPage';
-import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import FounderPage from '../FounderPage/FounderPage';
+import OurStoryPage from '../OurStoryPage/OurStoryPage';
+import ContactUsPage from '../ContactUsPage/ContactUsPage';
+import PostJob from '../PostJob/PostJob';
+
+
+import ProfileCreation from '../ProfileCreation/ProfileCreation';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import Education from '../Education/Education';
+import Experience from '../Experience/Experience';
+import Skills from '../Skills/Skills';
+import CandidateProfile from '../CandidateProfile/CandidateProfile';
+import Voluntary from '../Voluntary/Voluntary';
+
+
+
 import './App.css';
 
 
@@ -42,7 +55,7 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-        
+
           <Route
             exact
             path="/founder"
@@ -54,19 +67,14 @@ function App() {
             exact
             path="/story"
           >
-            <OurStoryPage/>
-            </Route>
-            
+            <OurStoryPage />
+          </Route>
 
-
-              
-              
-              
-              <Route
+          <Route
             exact
             path="/contact"
           >
-            <ContactUsPage/>
+            <ContactUsPage />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -78,7 +86,19 @@ function App() {
             exact
             path="/user"
           >
+            {user.user_type === "employer"?
+            <FounderPage />
+            :
             <UserPage />
+            }     
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/CandidateProfile"
+          >
+            <CandidateProfile />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -87,6 +107,35 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/ProfileCreation"
+          >
+            <ProfileCreation />
+          </ProtectedRoute>
+          <Router>
+        <Breadcrumbs />
+        <Route path="/Education" exact component={Education} />
+        <Route path="/Experience" component={Experience} />
+        <Route path="/Skills" component={Skills} />
+        <Route path="/VoluntaryIdentification" component={Voluntary} />
+      </Router>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+          >
+            <Breadcrumbs />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job"
+          >
+            <PostJob />
           </ProtectedRoute>
 
           <Route
