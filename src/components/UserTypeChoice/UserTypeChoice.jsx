@@ -15,7 +15,7 @@ function UserTypeChoice() {
     function handleCandidateChoice() {
         dispatch({
             type: 'UPDATE_USER_TYPE',
-            payload: { userType: 'candidate'}
+            payload: { userType: 'candidate' }
         })
     }
 
@@ -27,7 +27,7 @@ function UserTypeChoice() {
     }
 
     return (
-        <Box sx={{display: "flex"}}>
+        <Box sx={{ display: "flex" }}>
 
             <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea onClick={handleCandidateChoice}>

@@ -131,9 +131,9 @@ function App() {
             <ProfileCreation />
           </ProtectedRoute>
 
-        
 
-      <ProtectedRoute
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job"
@@ -192,12 +192,12 @@ function App() {
           </Route>
 
           <ProtectedRoute >
-        <Breadcrumbs />
-        <Route exact path="/Education" component={Education} />
-        <Route exact path="/Experience" component={Experience} />
-        <Route exact path="/Skills" component={Skills} />
-        <Route exact path="/VoluntaryIdentification" component={Voluntary} />
-        </ProtectedRoute>
+            <Breadcrumbs />
+            <Route exact path="/Education" component={Education} />
+            <Route exact path="/Experience" component={Experience} />
+            <Route exact path="/Skills" component={Skills} />
+            <Route exact path="/VoluntaryIdentification" component={Voluntary} />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

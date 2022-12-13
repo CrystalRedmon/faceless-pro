@@ -1,9 +1,9 @@
 import axios from "axios";
 import { put, takeEvery } from 'redux-saga/effects';
 
-function* postJob(action){
-    console.log('posting job',action.payload)
-    try{
+function* postJob(action) {
+    console.log('posting job', action.payload)
+    try {
         //send new item to server then to DB at server
         yield axios.post('/api/employer', action.payload);
 
@@ -18,26 +18,26 @@ function* postJob(action){
 
 }
 
-function* FetchJobs(){
-    try{
-        const request = yield axios.get('/api/employer');
-        console.log('fetch job data',request.data);
+function* FetchJobs() {
+    try {
+        const requests = yield axios.get('/api/employer');
+        console.log('request.data', requests.data);
         //send to redux
         yield put({
             type: 'SET_JOBS',
             payload: request.data
         })
 
-    } 
-    catch (err){
+    }
+    catch (err) {
         //on error
         console.error('fetchJob SAGA error:', err);
     };
 }
-function* employerSaga(){
+function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
-    yield takeEvery('FETCH_JOBS',FetchJobs)
+    yield takeEvery('FETCH_JOBS', FetchJobs)
 }
 
 
-export default employerSaga;
+export default JobSaga;
