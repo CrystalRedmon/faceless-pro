@@ -25,7 +25,7 @@ function* FetchJobs() {
         //send to redux
         yield put({
             type: 'SET_JOBS',
-            payload: requests.data
+            payload: request.data
         })
 
     }
@@ -40,4 +40,4 @@ function* postJobSaga() {
 }
 
 
-export default postJobSaga;
+export default employerSaga;
