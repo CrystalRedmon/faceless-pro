@@ -20,12 +20,12 @@ function* postJob(action){
 
 function* FetchJobs(){
     try{
-        const requests = yield axios.get('/api/employer');
-        console.log('request.data',requests.data);
+        const request = yield axios.get('/api/employer');
+        console.log('fetch job data',request.data);
         //send to redux
         yield put({
             type: 'SET_JOBS',
-            payload: requests.data
+            payload: request.data
         })
 
     } 
@@ -34,10 +34,10 @@ function* FetchJobs(){
         console.error('fetchJob SAGA error:', err);
     };
 }
-function* postJobSaga(){
+function* employerSaga(){
     yield takeEvery('POST_JOB', postJob);
     yield takeEvery('FETCH_JOBS',FetchJobs)
 }
 
 
-export default postJobSaga;
+export default employerSaga;
