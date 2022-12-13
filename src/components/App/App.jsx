@@ -133,7 +133,7 @@ function App() {
           </ProtectedRoute>
 
 
-<<<<<<< HEAD
+
           {/* <ProtectedRoute
 =======
 
@@ -146,17 +146,23 @@ function App() {
 <<<<<<< HEAD
             <Breadcrumbs /> */}
           {/* </ProtectedRoute> */}
-=======
-            <PostJob />
-          </ProtectedRoute>
->>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
 
-          <ProtectedRoute
+
+
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/Breadcrumbs"
           >
             <Breadcrumbs />
+          </ProtectedRoute> */}
+
+<ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job"
+          >
+            <PostJob />
           </ProtectedRoute>
 
           <ProtectedRoute
