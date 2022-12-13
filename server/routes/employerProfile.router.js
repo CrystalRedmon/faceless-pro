@@ -29,20 +29,13 @@ const router = express.Router();
  */
 router.post('/', (req, res) => {
   // POST route code here
-  const sqlText = `INSERT INTO "employer" 
+  const sqlText = `
+  INSERT INTO "employer" 
   (user_id, company_name, company_address, company_phone, logo_path, company_description, company_link) 
-  VALUES ($1, $2, $3, $4, $5, $6, $7)
-  `;
+  VALUES ($1, $2, $3, $4, $5, $6, $7)`;
 
   pool
-  .query(sqlText, 
-    [req.body.user_id, 
-      req.body.company_name, 
-      req.body.company_address, 
-      req.body.company_phone, 
-      req.body.logo_path, 
-      req.body.company_description, 
-      req.body.company_link])
+  .query(sqlText, [req.body.user_id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.logo_path, req.body.company_description, req.body.company_link])
   .then((queryResponse) => res.send(queryResponse))
   .catch((err) => {
     console.log('Employer Post info failed ', err);

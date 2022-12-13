@@ -33,8 +33,8 @@ import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
-import CandidateLandingPage from '../Candidate/Candidate';
-
+import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
+import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 
 
 import './App.css';
@@ -90,21 +90,21 @@ function App() {
             path="/user"
           >
             {user.user_type === null ?
-            <UserTypeChoice />
-            :
-            <></>
+              <UserTypeChoice />
+              :
+              <></>
             }
             {user.user_type === 'candidate' ?
-            <CandidateLandingPage />
-            :
-            <></>
+              <CandidateLandingPage />
+              :
+              <></>
             }
             {user.user_type === 'employer' ?
-            <UserPage />
-            :
-            <></>
+              <EmployerLandingPage />
+              :
+              <></>
             }
-                 
+
           </ProtectedRoute>
           
 
