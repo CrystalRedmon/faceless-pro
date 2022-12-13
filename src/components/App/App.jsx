@@ -23,6 +23,7 @@ import FounderPage from '../FounderPage/FounderPage';
 import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import PostJob from '../PostJob/PostJob';
+import EmployerJobList from '../EmployerJobList/EmployerJobList';
 
 
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
