@@ -25,8 +25,8 @@ function UserPage() {
       {user.user_type === null ?
         <UserTypeChoice />
         :
-        <></>}
-            {/* {jobs.map(job => {
+       
+            jobs.map(job => {
           return (
       <table key={job.id} className='styled-table '>
               <thead>
@@ -46,7 +46,7 @@ function UserPage() {
               </tbody>
             </table>
               );
-            })} */}
+            })}
 
             
       <LogOutButton className="btn" />
