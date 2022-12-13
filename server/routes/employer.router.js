@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
   console.log('humbled ', req.user.id )
-  const sqlTxt = ` SELECT "employer".company_name, "job_post".title, "job_post".description
+  const sqlTxt = `SELECT "employer".company_name, "job_post".title, "job_post".description
                   FROM "job_post"
                   JOIN "employer"
                   ON "job_post".employer_id = "employer".id

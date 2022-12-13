@@ -8,14 +8,21 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  
-  // if user.user_type === employer ...
   pool
-    .query('SELECT * FROM "user" WHERE id = $1', [id])
+    // GETS INFO FROM USER TABLE. ONCE WE HAVE INFO FROM USER TABLE WE CAN GET USER_TYPE 
+    // THEN ATTACH APPROPRIATE INFO TO REQ.USER OBJ
+
+    .query('SELECT * FROM "user" WHERE "user".id = $1', [id])
     .then((result) => {
       // Handle Errors
-      const user = result && result.rows && result.rows[0];
-
+      let user = result && result.rows && result.rows[0];
+      
+      if (user.user_type === "employer")
+        pool
+          .query('SELECT * FROM "user" JOIN "employer" ON "user".id = "employer".user_id WHERE "user".id = $1', [id])
+          .then((result) => {
+            console.log(result.rows);
+          })
       if (user) {
         // user found
         delete user.password; // remove password so it doesn't get sent
@@ -27,6 +34,13 @@ passport.deserializeUser((id, done) => {
         // this will result in the server returning a 401 status code
         done(null, null);
       }
+
+      console.log("user type: ", user)
+
+
+
+
+      console.log('The only console', user)
     })
     .catch((error) => {
       console.log('Error with query during deserializing user ', error);
