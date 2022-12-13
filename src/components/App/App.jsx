@@ -24,7 +24,7 @@ import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import PostJob from '../PostJob/PostJob';
 
-
+import StartProfile from '../StartProfile/StartProfile';
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Education from '../Education/Education';
@@ -32,6 +32,7 @@ import Experience from '../Experience/Experience';
 import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
 import Voluntary from '../Voluntary/Voluntary';
+
 
 
 
@@ -115,20 +116,15 @@ function App() {
           >
             <ProfileCreation />
           </ProtectedRoute>
-          <Router>
-        <Breadcrumbs />
-        <Route path="/Education" exact component={Education} />
-        <Route path="/Experience" component={Experience} />
-        <Route path="/Skills" component={Skills} />
-        <Route path="/VoluntaryIdentification" component={Voluntary} />
-      </Router>
-          <ProtectedRoute
+
+
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/Breadcrumbs"
           >
-            <Breadcrumbs />
-          </ProtectedRoute>
+            <Breadcrumbs /> */}
+          {/* </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -136,6 +132,14 @@ function App() {
             path="/job"
           >
             <PostJob />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/StartProfile"
+          >
+            <StartProfile />
           </ProtectedRoute>
 
           <Route
@@ -179,6 +183,13 @@ function App() {
               <LandingPage />
             }
           </Route>
+          <ProtectedRoute>
+        <Breadcrumbs />
+        <Route path="/Education" exact component={Education} />
+        <Route path="/Experience" component={Experience} />
+        <Route path="/Skills" component={Skills} />
+        <Route path="/VoluntaryIdentification" component={Voluntary} />
+      </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
