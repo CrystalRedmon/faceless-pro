@@ -25,7 +25,7 @@ function* FetchJobs() {
         //send to redux
         yield put({
             type: 'SET_JOBS',
-            payload: requests.data
+            payload: request.data
         })
 
     }
@@ -34,10 +34,10 @@ function* FetchJobs() {
         console.error('fetchJob SAGA error:', err);
     };
 }
-function* postJobSaga() {
+function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
     yield takeEvery('FETCH_JOBS', FetchJobs)
 }
 
 
-export default postJobSaga;
+export default JobSaga;
