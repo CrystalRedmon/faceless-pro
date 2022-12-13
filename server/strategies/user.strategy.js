@@ -9,10 +9,15 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
   pool
-    // GETS INFO FROM USER TABLE. ONCE WE HAVE INFO FROM USER TABLE WE CAN GET USER_TYPE 
-    // THEN ATTACH APPROPRIATE INFO TO REQ.USER OBJ
-
-    .query('SELECT * FROM "user" WHERE "user".id = $1', [id])
+    .query(`SELECT 
+              "user".id,
+              "user".username,
+              "user".user_type,
+              (CASE WHEN user_type = 'candidate' THEN to_json(candidate) ELSE to_json(employer) END) as user_info
+            FROM "user"
+            LEFT JOIN candidate ON "user".id = "candidate".user_id
+            LEFT JOIN employer ON "user".id = "employer".user_id
+            WHERE "user".id = $1;`, [id])
     .then((result) => {
       // Handle Errors
       let user = result && result.rows && result.rows[0];
@@ -25,7 +30,7 @@ passport.deserializeUser((id, done) => {
           })
       if (user) {
         // user found
-        delete user.password; // remove password so it doesn't get sent
+        delete user.password; // remove password so it doesn't get sent Daniel - THIS IS EXTRA! 😀
         // done takes an error (null in this case) and a user
         done(null, user);
       } else {
