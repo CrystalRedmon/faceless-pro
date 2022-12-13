@@ -25,7 +25,7 @@ function* FetchJobs() {
         //send to redux
         yield put({
             type: 'SET_JOBS',
-            payload: request.data
+            payload: requests.data
         })
 
     }
