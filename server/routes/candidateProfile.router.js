@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
       })
       .catch(error => {
         res.sendStatus(500);
-        console.log('GET positions failed: ', error);
+        console.log('GET positions for home pagefailed: ', error);
       })
   });
 
@@ -45,7 +45,41 @@ router.get('/', (req, res) => {
       })
       .catch(error => {
         res.sendStatus(500);
-        console.log('GET positions failed: ', error);
+        console.log('GET job details failed: ', error);
+      })
+  });
+
+  router.post('/:id', (req, res) => {
+    // POST route code here
+
+    const sqlTxt =`  INSERT INTO saved_jobs ("candidate_id", "job_post_id") 
+    VALUES($1,$2);`;
+
+    pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
+      .then(dbRes => {
+        res.send(dbRes.rows);
+        console.log(dbRes.rows);
+      })
+      .catch(error => {
+        res.sendStatus(500);
+        console.log('POST Saved jobs failed: ', error);
+      })
+  });
+
+   // Delete Candidate Saved Jobs
+  router.delete('/:id', (req, res) => {
+ 
+
+    const sqlTxt =`DELETE FROM saved_jobs WHERE "candidate_id" = $1 AND "job_post_id" = $2;`;
+
+    pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
+      .then(dbRes => {
+        res.send(dbRes.rows);
+        console.log(dbRes.rows);
+      })
+      .catch(error => {
+        res.sendStatus(500);
+        console.log('Delete Saved Jobs Failed: ', error);
       })
   });
 
