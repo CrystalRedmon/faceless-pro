@@ -56,8 +56,6 @@ function UserPage() {
 
 
        <EmployerJobList/>
-
-       }
     
       <LogOutButton className="btn" />
     </div>
