@@ -39,6 +39,7 @@ function* FetchJobs() {
 function* fetchCurrentJobPost(action){
     try{
         const currentJobPost = yield axios.get(`/api/employer/${action.payload}`);
+        console.log('currentJobPost successful: ', currentJobPost.data)
         yield put({type: 'SET_CURRENT_JOB_POST', payload: currentJobPost.data })
     }
     catch(err) {

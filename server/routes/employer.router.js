@@ -37,8 +37,8 @@ router.get('/:id', (req, res) => {
 
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
-      res.send(dbRes.rows);
-      console.log(dbRes.rows);
+      res.send(dbRes.rows[0]);
+      console.log(dbRes.rows[0]);
     })
     .catch(error => {
       res.sendStatus(500);
