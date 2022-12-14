@@ -28,7 +28,7 @@ function EmployerJobItem({ job }) {
     
 
     return <>
-
+    
         <tr>
             <td>{job.title}</td>
             <td>
