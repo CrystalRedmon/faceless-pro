@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-
 import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
-
-
-
 
 function EmployerJobList() {
 
@@ -24,7 +20,7 @@ function EmployerJobList() {
                     {invites.map(invite =>
                         <InviteItem key={invite.id} invite={invite} />
                     )}
-</List> */}
+            </List> */}
         <table>
             <thead>
                 <tr>
@@ -33,15 +29,11 @@ function EmployerJobList() {
                 </tr>
             </thead>
             <tbody>
-                {jobs.map(job => 
-                            <EmployerJobItem key={job.id.toString()} job={job} />
-                        
+                {jobs.map(job =>
+                    <EmployerJobItem key={job.id.toString()} job={job} />
                 )}
             </tbody>
         </table>
-
-
-
     </>
 }
 

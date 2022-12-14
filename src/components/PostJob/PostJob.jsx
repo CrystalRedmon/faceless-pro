@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import EmployerJobList from "../EmployerJobList/EmployerJobList";
+
 function PostJob() {
     const dispatch = useDispatch();
     const history = useHistory()
@@ -14,7 +16,9 @@ function PostJob() {
             type: "POST_JOB",
             payload: form
         })
-        history.push('/')
+        // history.push('/')
+        setTitle('');
+        setDescription('');
     }
     const form = {
         employeeId,
@@ -38,6 +42,7 @@ function PostJob() {
             <textarea type="text" value={description} onChange={handleDescription} />
             <button onClick={submitPost}>Submit</button>
 
+            <EmployerJobList />
         </>
     )
 }
