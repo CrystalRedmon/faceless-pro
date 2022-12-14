@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
+import EmployerJobList from '../EmployerJobList/EmployerJobList';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -13,8 +14,11 @@ function UserPage() {
   }, []);
 
   const user = useSelector((store) => store.user);
-  const jobs = useSelector((store) => store.setJobs);
+  // const jobs = useSelector((store) => store.setJobs);
 
+
+
+  const jobs = useSelector((store) => store.jobs.allJobs);
 
 
   console.log('jobs', jobs);
@@ -25,6 +29,7 @@ function UserPage() {
       {user.user_type === null ?
         <UserTypeChoice />
         :
+
         <></>}
       
       {/* {jobs.map(job => {
@@ -49,6 +54,11 @@ function UserPage() {
         );
       })} */}
 
+
+       <EmployerJobList/>
+
+       }
+    
       <LogOutButton className="btn" />
     </div>
   );

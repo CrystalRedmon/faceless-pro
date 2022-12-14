@@ -34,9 +34,26 @@ function* FetchJobs() {
         console.error('fetchJob SAGA error:', err);
     };
 }
+
+
+function* fetchCurrentJobPost(action){
+    try{
+        const currentJobPost = yield axios.get(`/api/employer/${action.payload}`);
+        console.log('currentJobPost successful: ', currentJobPost.data)
+        yield put({type: 'SET_CURRENT_JOB_POST', payload: currentJobPost.data })
+    }
+    catch(err) {
+        console.error('fetCurrentJobPost failed: ', err);
+    }
+}
+
+
+
+
 function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
-    yield takeEvery('FETCH_JOBS', FetchJobs)
+    yield takeEvery('FETCH_JOBS', FetchJobs);
+    yield takeEvery('FETCH_CURRENT_JOB_POST', fetchCurrentJobPost);
 }
 
 
