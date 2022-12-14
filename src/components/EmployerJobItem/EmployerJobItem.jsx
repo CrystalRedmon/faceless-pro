@@ -1,4 +1,4 @@
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import TableCell from '@mui/material/TableCell';
 import { useEffect } from 'react'
@@ -8,7 +8,7 @@ import { PanoramaSharp } from '@mui/icons-material';
 function EmployerJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const params = useParams();
 
 
 
@@ -16,12 +16,16 @@ function EmployerJobItem({ job }) {
         history.push(`/details/${job.id}`)
     }
 
-    const handleDeleteItem =({
+
+    console.log(job.id)
+    const handleDeleteItem =()=>{
         dispatch({
             type: 'DELETE_JOB_POST',
-            payload: `${params.id}`
+            payload: job.id
         })
-    })
+    }
+    
+    
 
     return <>
 
@@ -29,7 +33,7 @@ function EmployerJobItem({ job }) {
             <td>{job.title}</td>
             <td>
                 <button onClick={handleView}>View</button>
-                <button onClick={handleDeleteItem}>Delete</button>  
+                <button onClick={handleDeleteItem}>Delete</button>
             </td>
         </tr>
     </>

@@ -43,7 +43,17 @@ function* fetchCurrentJobPost(action){
         yield put({type: 'SET_CURRENT_JOB_POST', payload: currentJobPost.data })
     }
     catch(err) {
-        console.error('fetCurrentJobPost failed: ', err);
+        console.error('fetchCurrentJobPost failed: ', err);
+    }
+}
+
+function* deleteJobPost(action){
+    try{
+        yield axios.delete(`/api/employer/${action.payload}`);
+        yield put({type: 'FETCH_JOBS'});
+    }
+    catch{
+        console.error('deleteJobPost failed ', err);
     }
 }
 
@@ -54,6 +64,7 @@ function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
     yield takeEvery('FETCH_JOBS', FetchJobs);
     yield takeEvery('FETCH_CURRENT_JOB_POST', fetchCurrentJobPost);
+    yield takeEvery( 'DELETE_JOB_POST', deleteJobPost);
 }
 
 
