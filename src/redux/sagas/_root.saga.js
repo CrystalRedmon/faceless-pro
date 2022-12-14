@@ -4,7 +4,7 @@ import JobSaga from './job.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import employerSaga from './employer.saga';
-import CandidateSaga from './candidate.saga';
+import candidateSaga from './candidate.saga';
 
 
 // rootSaga is the primary saga.
@@ -21,6 +21,6 @@ export default function* rootSaga() {
     userSaga(),
     JobSaga(),
     employerSaga(),
-    CandidateSaga(),
+    candidateSaga(),
   ]);
 }
