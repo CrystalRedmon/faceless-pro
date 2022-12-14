@@ -3,6 +3,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
+import EmployerJobList from '../EmployerJobList/EmployerJobList';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -13,9 +14,7 @@ function UserPage() {
   }, []);
 
   const user = useSelector((store) => store.user);
-  const jobs = useSelector((store) => store.setJobs);
-
- 
+  const jobs = useSelector((store) => store.jobs.allJobs);
 
   console.log('jobs', jobs);
   return (
@@ -25,30 +24,10 @@ function UserPage() {
       {user.user_type === null ?
         <UserTypeChoice />
         :
-        <></>}
-            {/* {jobs.map(job => {
-          return (
-      <table key={job.id} className='styled-table '>
-              <thead>
-                <tr>
-                  <th scope="col">COMPANY</th>
-                  <th scope="col">TITLE</th>
-                  <th scope="col">DESCRIPTION</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td scope="row">{job.company_name}</td>
-                  <td>{job.title}</td>
-                  <td>{job.description}</td>
-                  
-                </tr>
-              </tbody>
-            </table>
-              );
-            })} */}
+       <EmployerJobList/>
 
-            
+       }
+    
       <LogOutButton className="btn" />
     </div>
   );
