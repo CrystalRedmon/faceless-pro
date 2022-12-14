@@ -37,7 +37,8 @@ import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
-
+import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
+import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
 
 import './App.css';
 
@@ -132,6 +133,7 @@ function App() {
           >
             <ProfileCreation />
           </ProtectedRoute>
+
           <ProtectedRoute
             // logged in shows supplies details based on supplies.id
             exact
@@ -140,13 +142,27 @@ function App() {
             <EmployerJobDetails />
           </ProtectedRoute>
 
-
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job"
           >
             <PostJob />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+            exact
+            path="/savedjobs"
+          >
+            <SavedJobsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/appliedtojobs"
+          >
+            <AppliedToJobsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
