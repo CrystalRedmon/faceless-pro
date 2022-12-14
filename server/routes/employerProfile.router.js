@@ -15,7 +15,7 @@ const router = express.Router();
   .then((result) =>{
    // console.log('result is:',result.rows)
    res.send(result.rows[0]) 
-   console.log(result.rows);
+  //  console.log(result.rows);
   })
   .catch((error) =>{
    console.log('error fetching items', error)
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
   VALUES ($1, $2, $3, $4, $5, $6, $7)`;
 
   pool
-  .query(sqlText, [req.body.user_id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.logo_path, req.body.company_description, req.body.company_link])
+  .query(sqlText, [req.user.id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.logo_path, req.body.company_description, req.body.company_link])
   .then((queryResponse) => res.send(queryResponse))
   .catch((err) => {
     console.log('Employer Post info failed ', err);
