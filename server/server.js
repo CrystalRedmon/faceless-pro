@@ -11,6 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const employerRouter =require('./routes/employer.router');
 const employerProfileRouter = require('./routes/employerProfile.router')
+const candidateProfileRouter = require('./routes/candidateProfile.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -27,6 +28,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/employer', employerRouter);
 app.use('/api/employerProfile', employerProfileRouter);
+app.use('/api/candidateProfile', candidateProfileRouter);
 
 // Serve static files
 app.use(express.static('build'));
