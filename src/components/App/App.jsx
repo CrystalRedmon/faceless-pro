@@ -152,6 +152,15 @@ function App() {
 
 
           <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job/:id/edit"
+          >
+            <PostJob />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
             exact
             path="/savedjobs"
           >

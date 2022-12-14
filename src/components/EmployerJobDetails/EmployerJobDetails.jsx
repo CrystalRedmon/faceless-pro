@@ -23,14 +23,18 @@ function EmployerJobDetails() {
     }, [])
 
 
-    const handleClick = () => {
+    const handleBack = () => {
         history.push('/');
     }
 
+    const handleEdit = () =>{
+        history.push(`/job/${params.id}/edit`)
+    }
 
     return <>
 
-        <button onClick={handleClick}>Back</button>
+        <button onClick={handleBack}>Back</button>
+        <button onClick={handleEdit}>Edit</button>
         <h2>Title: {job.title}</h2>
         <p>Description:{job.description}</p>
 
