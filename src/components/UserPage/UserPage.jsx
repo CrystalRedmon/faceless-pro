@@ -15,7 +15,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const jobs = useSelector((store) => store.setJobs);
 
- 
+
 
   console.log('jobs', jobs);
   return (
@@ -26,29 +26,29 @@ function UserPage() {
         <UserTypeChoice />
         :
         <></>}
-            {/* {jobs.map(job => {
-          return (
-      <table key={job.id} className='styled-table '>
-              <thead>
-                <tr>
-                  <th scope="col">COMPANY</th>
-                  <th scope="col">TITLE</th>
-                  <th scope="col">DESCRIPTION</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td scope="row">{job.company_name}</td>
-                  <td>{job.title}</td>
-                  <td>{job.description}</td>
-                  
-                </tr>
-              </tbody>
-            </table>
-              );
-            })} */}
+      
+      {/* {jobs.map(job => {
+        return (
+          <table key={job.id} className='styled-table '>
+            <thead>
+              <tr>
+                <th scope="col">COMPANY</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">DESCRIPTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td scope="row">{job.company_name}</td>
+                <td>{job.title}</td>
+                <td>{job.description}</td>
 
-            
+              </tr>
+            </tbody>
+          </table>
+        );
+      })} */}
+
       <LogOutButton className="btn" />
     </div>
   );

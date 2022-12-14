@@ -1,6 +1,6 @@
 function CandidateLandingPage() {
     return (
-        <h1>CandidateLandingPage</h1>
+        <h1>Candidate Search for Jobs HERE</h1>
     );
 }
 
