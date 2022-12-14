@@ -40,7 +40,7 @@ passport.deserializeUser((id, done) => {
         done(null, null);
       }
 
-      console.log('The only console', user)
+      // console.log('The only console', user);
     })
     .catch((error) => {
       console.log('Error with query during deserializing user ', error);

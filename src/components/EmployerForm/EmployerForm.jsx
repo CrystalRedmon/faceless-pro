@@ -23,12 +23,12 @@ function EmployerForm() {
         dispatch({
             type: 'ADD_EMPLOYER_INFO',
             payload: {
-                companyName: companyName,
-                companyAddress: companyAddress,
-                companyPhone: companyPhone,
-                companyLink: companyLink,
-                companyLogoPath: companyLogoPath,
-                companyDescription: companyDescription
+                company_name: companyName,
+                company_address: companyAddress,
+                company_phone: companyPhone,
+                logo_path: companyLogoPath,
+                company_description: companyDescription,
+                company_link: companyLink,
             }
         })
 
