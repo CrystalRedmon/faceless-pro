@@ -20,7 +20,11 @@ function EmployerJobList() {
     console.log('all of the jobs', jobs);
     return <>
         <h1>Open Job Posts</h1>
-
+        {/* <List>
+                    {invites.map(invite =>
+                        <InviteItem key={invite.id} invite={invite} />
+                    )}
+</List> */}
         <table>
             <thead>
                 <tr>
@@ -29,13 +33,11 @@ function EmployerJobList() {
                 </tr>
             </thead>
             <tbody>
-                {jobs.map(job=>{
-                   return(
-                   <tr key={job.id.toString()}>
-                   <EmployerJobItem key={job.id.toString()} job={job} />
-                   </tr>)
-                })}
-              </tbody>
+                {jobs.map(job => 
+                            <EmployerJobItem key={job.id.toString()} job={job} />
+                        
+                )}
+            </tbody>
         </table>
 
 

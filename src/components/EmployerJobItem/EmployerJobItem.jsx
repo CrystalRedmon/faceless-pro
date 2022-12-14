@@ -17,12 +17,13 @@ function EmployerJobItem({ job }) {
 
     return <>
 
-
-        <td>{job.title}</td>
-        <td>
-            <button onClick={handleClick}>View</button>
-            {/* <button onClick={handleDeleteItem}>Delete</button>  DELETE SAGA NEEDED */}
-        </td>
+        <tr>
+            <td>{job.title}</td>
+            <td>
+                <button onClick={handleClick}>View</button>
+                {/* <button onClick={handleDeleteItem}>Delete</button>  DELETE SAGA NEEDED */}
+            </td>
+        </tr>
     </>
 }
 

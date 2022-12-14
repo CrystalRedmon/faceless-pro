@@ -3,7 +3,7 @@
 
 
 
-const setJobs = (state = [], action) => {
+const jobs = (state = [], action) => {
     switch (action.type) {
         case 'SET_JOBS':
             return action.payload
@@ -11,4 +11,9 @@ const setJobs = (state = [], action) => {
     return state;
 }
 
-export default setJobs;
+
+
+
+
+
+export default jobs;
