@@ -11,7 +11,7 @@ import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
 function EmployerJobList() {
 
     const dispatch = useDispatch();
-    const jobs = useSelector((store) => store.setJobs);
+    const jobs = useSelector((store) => store.jobs.allJobs);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_JOBS' });

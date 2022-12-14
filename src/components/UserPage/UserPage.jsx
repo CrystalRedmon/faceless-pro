@@ -14,7 +14,7 @@ function UserPage() {
   }, []);
 
   const user = useSelector((store) => store.user);
-  const jobs = useSelector((store) => store.setJobs);
+  const jobs = useSelector((store) => store.jobs.allJobs);
 
   console.log('jobs', jobs);
   return (

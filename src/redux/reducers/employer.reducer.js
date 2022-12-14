@@ -1,9 +1,9 @@
+import { combineReducers } from 'redux';
 
 
 
 
-
-const jobs = (state = [], action) => {
+const allJobs = (state = [], action) => {
     switch (action.type) {
         case 'SET_JOBS':
             return action.payload
@@ -16,4 +16,7 @@ const jobs = (state = [], action) => {
 
 
 
-export default jobs;
+export default combineReducers({
+    allJobs,
+
+})
