@@ -4,11 +4,11 @@ import EmployerJobList from "../EmployerJobList/EmployerJobList";
 function EmployerLandingPage() {
     return (
         <>
-        <h1>EmployerLandingPage</h1>
+            <h1>Employer Profile</h1>
+            <EmployerJobList />
+        </>
 
-        <EmployerJobList/>
-        
-    </>);
+    );
 }
 
 export default EmployerLandingPage
