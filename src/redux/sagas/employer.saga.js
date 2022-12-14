@@ -5,6 +5,7 @@ function* addEmployerInfo(action) {
     console.log('in addEmployerInfo with action.payload', action.payload);
     try {
         yield axios.post('/api/employerProfile', action.payload);
+        yield put({ type: 'FETCH_USER' });
 
     } catch (error) {
         console.log('error in adding to employer table', error);
