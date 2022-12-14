@@ -6,7 +6,7 @@ const router = express.Router();
 // GET ALL JOB POSTS BY EMPLOYER ID/[req.user.user_info.id] 
 router.get('/', (req, res) => {
 
-  const sqlTxt = `SELECT "job_post".title, "job_post".description
+  const sqlTxt = `SELECT *
                   FROM "job_post"
                   WHERE "job_post"."employer_id" = $1;`;
 

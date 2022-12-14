@@ -24,6 +24,7 @@ import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import PostJob from '../PostJob/PostJob';
 import EmployerJobList from '../EmployerJobList/EmployerJobList';
+import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 
 
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
@@ -117,7 +118,13 @@ function App() {
           >
             <ProfileCreation />
           </ProtectedRoute>
-
+          <ProtectedRoute
+            // logged in shows supplies details based on supplies.id
+            exact
+            path="/details/:id"
+          >
+            <EmployerJobDetails />
+          </ProtectedRoute>
 
 
           <ProtectedRoute

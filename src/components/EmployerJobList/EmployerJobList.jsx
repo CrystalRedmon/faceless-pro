@@ -29,10 +29,10 @@ function EmployerJobList() {
                 </tr>
             </thead>
             <tbody>
-                {jobs.map((job, i)=>{
+                {jobs.map(job=>{
                    return(
-                   <tr>
-                   <EmployerJobItem key={i} job={job} />
+                   <tr key={job.id.toString()}>
+                   <EmployerJobItem key={job.id.toString()} job={job} />
                    </tr>)
                 })}
               </tbody>
