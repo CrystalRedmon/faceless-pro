@@ -21,9 +21,6 @@ function PostJob() {
         title,
         description
     }
-    const handleId = (evt) => {
-        setEmployeeId(evt.target.value);
-    }
     const handleTitle = (evt) => {
         setTitle(evt.target.value);
     }
@@ -35,8 +32,6 @@ function PostJob() {
     return (
         <>
             <h2>Post New Job</h2>
-            <label htmlFor="id">Emp Id</label>
-            <input type="text" value={employeeId} onChange={handleId} />
             <label htmlFor="">Title</label>
             <input type="text" value={title} onChange={handleTitle} />
             <label htmlFor="">Description</label>
