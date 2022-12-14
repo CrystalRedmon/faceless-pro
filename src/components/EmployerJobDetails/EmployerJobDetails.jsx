@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from 'react-redux';
 function EmployerJobDetails(){
     const params = useParams();
     const dispatch = useDispatch();
-    const job = useSelector(store=>store.currentJob);
+    const job = useSelector(store=>store.jobs.currentJob);
     console.log('current job details: ', job);
 
     //FETCH CURRENT JOB WITH PARAMS ID
@@ -17,14 +17,15 @@ function EmployerJobDetails(){
             type: 'FETCH_CURRENT_JOB_POST',
             payload: `${params.id}`
         })
-        console.log('params', params.id);
+        console.log(params.id)
 
-    })
+    }, [])
 
     return<>
     
-    <h1>Details</h1>
     
+    <h2>Title: {job.title}</h2>
+    <p>Description:{job.description}</p>
     
 </>}
 

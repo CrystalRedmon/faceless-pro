@@ -50,8 +50,6 @@ function* fetchCurrentJobPost(action){
 
 
 
-
-
 function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
     yield takeEvery('FETCH_JOBS', FetchJobs);
