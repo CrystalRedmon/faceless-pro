@@ -145,9 +145,26 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/job"
+            path="/jobForm"
           >
             <PostJob />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job/:id/edit"
+          >
+            <PostJob />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/jobList"
+          >
+            <EmployerJobList />
           </ProtectedRoute>
 
 
