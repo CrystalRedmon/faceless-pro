@@ -8,7 +8,7 @@ router.post('/', (req, res) => {
     console.log('candidateInfo: ', req.user)
     const sqlTxt = `INSERT INTO "candidate" 
                     ("user_id", "first_name", "last_name")
-                    VALUES (14, 'firstName2', 'lastName2');`;
+                    VALUES ($1, $2, $3);`;
 
     const sqlParams = [
         req.user.id,
