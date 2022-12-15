@@ -28,7 +28,9 @@ const editJob = (state = [], action) => {
         case `UPDATE_EDIT_JOB`:
             return {
                 ...state,
-                [action.payload.property]: action.payload.value};
+                ...action.payload};
+        case `CLEAR_ADD_FIELDS`:
+            return '';        
     }
     return state;
 }

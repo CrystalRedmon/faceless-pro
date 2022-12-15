@@ -9,20 +9,28 @@ function PostJob() {
     const history = useHistory();
     const params = useParams();
     const job = useSelector(store => store.jobs.editJob);
+
     console.log('edit this job: ', job)
 
 
 // gets the job info if there is a /:id in url.
 // this allows the component to be used as a form to add and edit job post
+
     useEffect(() => {
+        console.log('paramssss', params.id)
         if (params.id) {
             dispatch({
                 type: 'FETCH_EDIT_JOB',
                 payload: params.id
             });
-
+        } else{
+            dispatch({
+                type: 'CLEAR_ADD_FIELDS'
+            })
         }
     }, [params.id])
+
+    
 
 
 // onSubmit will send info info to save_job saga whether it is add or edit
@@ -37,11 +45,12 @@ function PostJob() {
     }
 
     // needed in make sure fields are empty before add
-    const value = ' ';
+    let value;
 
     return (
         <>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
+
             <form action="">
                 <label htmlFor="">Title</label>
                 <input type="text"
@@ -49,18 +58,19 @@ function PostJob() {
                     value={params.id ? job.title : value}
                     onChange={(evt) => dispatch({
                         type: 'UPDATE_EDIT_JOB',
-                        payload: { property: 'title', value: evt.target.value }
+                        payload: { title: evt.target.value }
                     })} />
 
         
 
                 <label htmlFor="">Description</label>
                 <textarea type="text" 
+
                     value={params.id ? job.description : value}
 
                     onChange={(evt) => dispatch({
                         type: 'UPDATE_EDIT_JOB',
-                        payload: { property: 'description', value: evt.target.value }
+                        payload: { description: evt.target.value }
                     })} />
 
                 <button onClick={onSubmit}>Submit</button>
