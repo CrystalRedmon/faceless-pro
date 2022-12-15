@@ -93,3 +93,9 @@ CREATE TABLE "message" (
 	"timestamp" TIMESTAMP NOT NULL,
 	"is_from_candidate" BOOLEAN DEFAULT FALSE
 );
+-- ADD THIS TO YOUR TABLES
+CREATE TABLE "saved_jobs" (
+	"id" serial PRIMARY KEY,
+	"candidate_id" INT REFERENCES "candidate",
+	"job_post_id" INT REFERENCES "job_post"
+);

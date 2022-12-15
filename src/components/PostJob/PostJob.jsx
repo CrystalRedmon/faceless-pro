@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
+import EmployerJobList from "../EmployerJobList/EmployerJobList";
+
 
 
 
@@ -47,12 +49,6 @@ function PostJob() {
     // needed in make sure fields are empty before add
     let value;
 
-
-
-
-
-
-
     return (
         <>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
@@ -79,6 +75,7 @@ function PostJob() {
                         payload: { description: evt.target.value }
                     })} />
 
+            <EmployerJobList />
                 <button onClick={onSubmit}>Submit</button>
             </form>
         </>
