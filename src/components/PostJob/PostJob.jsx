@@ -47,6 +47,12 @@ function PostJob() {
     // needed in make sure fields are empty before add
     let value;
 
+
+
+
+
+
+
     return (
         <>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
@@ -55,7 +61,7 @@ function PostJob() {
                 <label htmlFor="">Title</label>
                 <input type="text"
 
-                    value={params.id ? job.title : value}
+                    defaultValue={params.id ? job.title : value}
                     onChange={(evt) => dispatch({
                         type: 'UPDATE_EDIT_JOB',
                         payload: { title: evt.target.value }
@@ -66,7 +72,7 @@ function PostJob() {
                 <label htmlFor="">Description</label>
                 <textarea type="text" 
 
-                    value={params.id ? job.description : value}
+                    defaultValue={params.id ? job.description : value}
 
                     onChange={(evt) => dispatch({
                         type: 'UPDATE_EDIT_JOB',
