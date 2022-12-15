@@ -3,7 +3,8 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 
-router.post('/', (req, res)=>{
+router.post('/', (req, res) => {
+
     console.log('candidateInfo: ', req.user)
     const sqlTxt = `INSERT INTO "candidate" 
                     ("user_id", "first_name", "last_name")
@@ -16,24 +17,22 @@ router.post('/', (req, res)=>{
     ]
 
     pool.query(sqlTxt, sqlParams)
-    .then(result=>{
-        res.sendStatus(200);
-        console.log('POST candidate info successful');
-    })
-    .catch(error=>{
-        res.sendStatus(500);
-        console.log('POST candidate info failed: ', error);
-    })
+        .then(result => {
+            res.sendStatus(200);
+            console.log('POST candidate info successful');
+        })
+        .catch(error => {
+            res.sendStatus(500);
+            console.log('POST candidate info failed: ', error);
+        })
+
+});
 
 
-})
 
-
-
-router.put('/:id', (req, res)=>{
+router.put('/:id', (req, res) => {
 
     console.log('Candidate14: ', req.user, req.body)
-    
     const sqlTxt = `UPDATE "candidate"
                     SET "first_name" = $1,
                     "last_name" = $2,
@@ -51,18 +50,17 @@ router.put('/:id', (req, res)=>{
         req.user.id
     ]
 
-
     pool.query(sqlTxt, sqlParams)
-    .then(result=>{
-        res.sendStatus(200);
-        console.log('PUT candidate info successful');
-    })
-    .catch(error=>{
-        res.sendStatus(500);
-        console.log('POST candidate info failed: ', error);
-    })
+        .then(result => {
+            res.sendStatus(200);
+            console.log('PUT candidate info successful');
+        })
+        .catch(error => {
+            res.sendStatus(500);
+            console.log('POST candidate info failed: ', error);
+        })
 
-})
+});
 
 
 
