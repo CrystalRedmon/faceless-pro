@@ -15,8 +15,8 @@ function PostJob() {
     console.log('edit this job: ', job)
 
 
-// gets the job info if there is a /:id in url.
-// this allows the component to be used as a form to add and edit job post
+    // gets the job info if there is a /:id in url.
+    // this allows the component to be used as a form to add and edit job post
 
     useEffect(() => {
         console.log('paramssss', params.id)
@@ -25,34 +25,55 @@ function PostJob() {
                 type: 'FETCH_EDIT_JOB',
                 payload: params.id
             });
-        } else{
+        } else {
             dispatch({
                 type: 'CLEAR_ADD_FIELDS'
             })
         }
     }, [params.id])
 
-    
 
 
-// onSubmit will send info info to save_job saga whether it is add or edit
-// post vs put will be determined in saga
+
+    // onSubmit will send info info to save_job saga whether it is add or edit
+    // post vs put will be determined in saga
     const onSubmit = (evt) => {
         evt.preventDefault();
         dispatch({
             type: "SAVE_JOB",
             payload: job
         })
-        history.push('/')
+        history.push('/jobList')
     }
 
     // needed in make sure fields are empty before add
     let value;
 
+
+    //handles back button.
+    const handleBack = () => {
+        //if employer is editing back will take them to details view
+        if (params.id) {
+            history.push(`/details/${job.id}`);
+            dispatch({
+                type: 'CLEAR_ADD_FIELDS' // empties input fields to avoid unwanted edit from populating fields
+            });
+        // if employer is adding back will take them to job list view
+        } else {
+
+            history.push(`/jobList`);
+
+        }
+
+    }
+
+
+
     return (
         <>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
+            <button onClick={handleBack}>Back</button>
             <form action="">
                 <label htmlFor="">Title</label>
                 <input type="text"
@@ -63,10 +84,9 @@ function PostJob() {
                         payload: { title: evt.target.value }
                     })} />
 
-        
 
                 <label htmlFor="">Description</label>
-                <textarea type="text" 
+                <textarea type="text"
 
                     defaultValue={params.id ? job.description : value}
 
@@ -75,7 +95,6 @@ function PostJob() {
                         payload: { description: evt.target.value }
                     })} />
 
-            <EmployerJobList />
                 <button onClick={onSubmit}>Submit</button>
             </form>
         </>

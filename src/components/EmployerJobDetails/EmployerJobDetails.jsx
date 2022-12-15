@@ -24,7 +24,7 @@ function EmployerJobDetails() {
 
 
     const handleBack = () => {
-        history.push('/');
+        history.push('/jobList');
     }
 
     const handleEdit = () =>{
