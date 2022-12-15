@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
                   FROM "job_post"
                   WHERE "job_post"."employer_id" = $1;`;
 
-
+  console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
     .then(dbRes => {
       res.send(dbRes.rows);
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET positions failed: ', error);
+      // console.log('GET positions failed: ', error);
     })
 });
 
@@ -42,7 +42,7 @@ router.get('/:id', (req, res) => {
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET positions failed: ', error);
+      // console.log('GET positions failed: ', error);
     })
 });
 
@@ -62,11 +62,11 @@ router.post('/', (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      console.log('Post job successful: ', dbRes);
+      // console.log('Post job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('Post job failed: ', error);
+      // console.log('Post job failed: ', error);
     })
 
 });
@@ -88,11 +88,11 @@ router.delete('/:id', (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      console.log('Delete job successful: ', dbRes);
+      // console.log('Delete job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('Delete job failed: ', error);
+      // console.log('Delete job failed: ', error);
     })
 
 })
@@ -114,11 +114,11 @@ router.put('/:id', (req, res)=>{
   pool.query(sqlTxt, sqlParams)
   .then(dbRes => {
     res.sendStatus(200);
-    console.log('Update job successful: ', dbRes.rows);
+    // console.log('Update job successful: ', dbRes.rows);
   })
   .catch(error => {
     res.sendStatus(500);
-    console.log('Update job failed: ', error);
+    // console.log('Update job failed: ', error);
   })
 
 })
