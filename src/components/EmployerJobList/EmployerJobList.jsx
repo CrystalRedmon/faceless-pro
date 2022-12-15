@@ -35,7 +35,7 @@ function EmployerJobList() {
             </thead>
             <tbody>
                 {jobs.map(job =>
-                    <EmployerJobItem key={job.id.toString()} job={job} />
+                    <EmployerJobItem key={job.id} job={job} />
                 )}
             </tbody>
         </table>
