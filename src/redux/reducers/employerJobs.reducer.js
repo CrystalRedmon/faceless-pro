@@ -11,24 +11,32 @@ const allJobs = (state = [], action) => {
     return state;
 }
 
-const currentJob = (state = [], action)=>{
-    switch (action.type){
+const currentJob = (state = [], action) => {
+    switch (action.type) {
         case `SET_CURRENT_JOB_POST`:
             return action.payload;
-        case `SET_EDIT_JOB`:
-            return {
-                ...state,
-                [action.payload.property]: action.payload.value
-            };
+
     }
     return state;
 }
 
 
+const editJob = (state = [], action) => {
+    switch (action.type) {
+        case `SET_EDIT_JOB`:
+            return action.payload;
+        case `UPDATE_EDIT_JOB`:
+            return {
+                ...state,
+                [action.payload.property]: action.payload.value};
+    }
+    return state;
+}
 
 
 export default combineReducers({
     allJobs,
     currentJob,
+    editJob
 
 })

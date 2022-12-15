@@ -72,11 +72,13 @@ function* fetchEditJob(action){
 }
 
 function* saveJob(action){
+    console.log('so much payload.id ', action.payload.id)
+    console.log('so much payload ', action.payload)
     if(action.payload.id){
-        yield axios.put(`/api/employer/${action.payload.id}, action.payload`);
+        yield axios.put(`/api/employer/${action.payload.id}`, action.payload);
     }
     else {
-        yield axios.post(`/api/employer/${action.payload}`);
+        yield axios.post(`/api/employer/`, action.payload);
     }
     
 }

@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects';
 import loginSaga from './login.saga';
-import JobSaga from './job.saga';
+import JobSaga from './employerJobs.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 
