@@ -13,8 +13,6 @@ const employerRouter =require('./routes/employer.router');
 
 const employerProfileRouter = require('./routes/employerProfile.router')
 
-
-const employerProfileRouter = require('./routes/employerProfile.router');
 const candidateProfileRouter = require('./routes/candidateProfile.router');
 const candidateInfoRouter = require('./routes/candidateInfo.router');
 

@@ -47,6 +47,10 @@ router.post('/', (req, res) => {
 });
 
 
+
+// GET the 3 Latest Job Posts in the Candidate Landing Page.
+router.get('/', (req, res) => {
+
     const sqlTxt = `SELECT "employer".company_name,"employer".company_address,"job_post".title
     FROM "job_post"
     JOIN "employer"
@@ -62,7 +66,8 @@ router.post('/', (req, res) => {
       .catch(error => {
         res.sendStatus(500);
         console.log('GET positions for home pagefailed: ', error);
-      });
+      })
+  });
 
 
  
@@ -121,6 +126,4 @@ router.post('/', (req, res) => {
       })
   });
 
-
 module.exports = router;
-
