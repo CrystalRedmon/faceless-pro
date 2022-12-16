@@ -3,24 +3,29 @@ import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
+import { useHistory } from 'react-router-dom';
+
 
 function EmployerJobList() {
 
     const dispatch = useDispatch();
     const jobs = useSelector((store) => store.jobs.allJobs);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({ type: 'FETCH_JOBS' });
     }, []);
 
     console.log('all of the jobs', jobs);
+
+
+
+    const handleAddJob=()=>{
+        history.push('/jobForm')
+    }
     return <>
         <h1>Open Job Posts</h1>
-        {/* <List>
-                    {invites.map(invite =>
-                        <InviteItem key={invite.id} invite={invite} />
-                    )}
-            </List> */}
+        <button onClick={handleAddJob}>Add New Job</button>
         <table>
             <thead>
                 <tr>
@@ -30,7 +35,7 @@ function EmployerJobList() {
             </thead>
             <tbody>
                 {jobs.map(job =>
-                    <EmployerJobItem key={job.id.toString()} job={job} />
+                    <EmployerJobItem key={job.id} job={job} />
                 )}
             </tbody>
         </table>

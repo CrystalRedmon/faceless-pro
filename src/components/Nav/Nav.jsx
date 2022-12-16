@@ -48,7 +48,7 @@ function Nav() {
               Employer Profile - side nav
             </Link>
 
-            <Link className="navLink" to="/job">
+            <Link className="navLink" to="/jobList">
               Posted Jobs - side nav
             </Link>
 
