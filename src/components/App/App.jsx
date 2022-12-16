@@ -26,7 +26,7 @@ import PostJob from '../PostJob/PostJob';
 import EmployerJobList from '../EmployerJobList/EmployerJobList';
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 
-
+import StartProfile from '../StartProfile/StartProfile';
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Education from '../Education/Education';
@@ -39,6 +39,7 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
+
 
 import './App.css';
 
@@ -159,7 +160,30 @@ function App() {
           </ProtectedRoute>
 
 
+          {/* <ProtectedRoute
+=======
+
           <ProtectedRoute
+>>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/job"
+          >
+<<<<<<< HEAD
+            <Breadcrumbs /> */}
+          {/* </ProtectedRoute> */}
+
+
+
+          {/* <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+          >
+            <Breadcrumbs />
+          </ProtectedRoute> */}
+
+<ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job/:id/edit"
@@ -174,7 +198,13 @@ function App() {
           >
             <EmployerJobList />
           </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
 
+            path="/StartProfile"
+            ><StartProfile/>
+            </ProtectedRoute>
 
           <ProtectedRoute
             exact
@@ -194,8 +224,9 @@ function App() {
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/Breadcrumbs"
+
           >
-            <Breadcrumbs />
+            <StartProfile />
           </ProtectedRoute>
 
           <Route
@@ -239,14 +270,13 @@ function App() {
               <LandingPage />
             }
           </Route>
-
-          <ProtectedRoute >
-            <Breadcrumbs />
-            <Route exact path="/Education" component={Education} />
-            <Route exact path="/Experience" component={Experience} />
-            <Route exact path="/Skills" component={Skills} />
-            <Route exact path="/VoluntaryIdentification" component={Voluntary} />
-          </ProtectedRoute>
+          <ProtectedRoute>
+        <Breadcrumbs />
+        <Route path="/Education" exact component={Education} />
+        <Route path="/Experience" component={Experience} />
+        <Route path="/Skills" component={Skills} />
+        <Route path="/VoluntaryIdentification" component={Voluntary} />
+      </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

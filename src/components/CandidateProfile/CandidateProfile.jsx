@@ -18,7 +18,7 @@ function CandidateProfile() {
             type: 'GET_PROFILE',
             payload: profile
         })
-        history.push('/Breadcrumbs');
+        history.push('/StartProfile');
     }
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
