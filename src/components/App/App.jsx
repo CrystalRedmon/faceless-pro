@@ -109,7 +109,15 @@ function App() {
             }
 
           </ProtectedRoute>
+
           
+          <ProtectedRoute
+            //
+            exact
+            path="/CandidateLandingPage"
+          >
+            <CandidateLandingPage />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
