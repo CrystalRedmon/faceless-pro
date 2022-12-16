@@ -30,6 +30,7 @@ app.use('/api/employer', employerRouter);
 app.use('/api/employerProfile', employerProfileRouter);
 app.use('/api/candidateProfile', candidateProfileRouter);
 
+
 // Serve static files
 app.use(express.static('build'));
 
