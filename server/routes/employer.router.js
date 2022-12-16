@@ -6,11 +6,11 @@ const router = express.Router();
 // GET ALL JOB POSTS BY EMPLOYER ID/[req.user.user_info.id] 
 router.get('/', (req, res) => {
 
-  const sqlTxt = `SELECT "job_post".title, "job_post".description
+  const sqlTxt = `SELECT *
                   FROM "job_post"
                   WHERE "job_post"."employer_id" = $1;`;
 
-
+  console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
     .then(dbRes => {
       res.send(dbRes.rows);
@@ -18,14 +18,14 @@ router.get('/', (req, res) => {
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET positions failed: ', error);
+      // console.log('GET positions failed: ', error);
     })
 });
 
 // GET SPECIFIC JOB POSTS BY JOB_POST.ID  AND EMPLOYER ID/[req.user.user_info.id] 
 router.get('/:id', (req, res) => {
 
-  const sqlTxt = `SELECT "job_post".title, "job_post".description
+  const sqlTxt = `SELECT "job_post".title, "job_post".description, "job_post".id
                   FROM "job_post"
                   WHERE "job_post"."employer_id" = $1
                   AND "job_post"."id" = $2;`;
@@ -37,12 +37,12 @@ router.get('/:id', (req, res) => {
 
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
-      res.send(dbRes.rows);
-      console.log(dbRes.rows);
+      res.send(dbRes.rows[0]);
+      console.log(dbRes.rows[0]);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET positions failed: ', error);
+      // console.log('GET positions failed: ', error);
     })
 });
 
@@ -62,11 +62,11 @@ router.post('/', (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      console.log('Post job successful: ', dbRes);
+      // console.log('Post job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('Post job failed: ', error);
+      // console.log('Post job failed: ', error);
     })
 
 });
@@ -88,11 +88,11 @@ router.delete('/:id', (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      console.log('Delete job successful: ', dbRes);
+      // console.log('Delete job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('Delete job failed: ', error);
+      // console.log('Delete job failed: ', error);
     })
 
 })
@@ -102,23 +102,23 @@ router.put('/:id', (req, res)=>{
 
   const sqlTxt = ` UPDATE "job_post"
                     SET "title" = $1,
-                    "description" = $2,
+                    "description" = $2
                     WHERE "id" = $3;`;
 
   const sqlParams =[
     req.body.title,
     req.body.description,
-    req.user.user_info.id
+    req.body.id
   ]
 
   pool.query(sqlTxt, sqlParams)
   .then(dbRes => {
     res.sendStatus(200);
-    console.log('Update job successful: ', dbRes);
+    // console.log('Update job successful: ', dbRes.rows);
   })
   .catch(error => {
     res.sendStatus(500);
-    console.log('Update job failed: ', error);
+    // console.log('Update job failed: ', error);
   })
 
 })

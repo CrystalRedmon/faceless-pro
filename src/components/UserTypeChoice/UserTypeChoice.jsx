@@ -34,7 +34,7 @@ function UserTypeChoice() {
                     <CardMedia
                         component="img"
                         height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        // image="/static/images/cards/contemplative-reptile.jpg"
                         alt="candidate"
                     />
                     <CardContent>
@@ -53,7 +53,7 @@ function UserTypeChoice() {
                     <CardMedia
                         component="img"
                         height="140"
-                        image="/static/images/cards/contemplative-reptile.jpg"
+                        // image="/static/images/cards/contemplative-reptile.jpg"
                         alt="employer"
                     />
                     <CardContent>

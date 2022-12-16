@@ -23,6 +23,8 @@ import FounderPage from '../FounderPage/FounderPage';
 import OurStoryPage from '../OurStoryPage/OurStoryPage';
 import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import PostJob from '../PostJob/PostJob';
+import EmployerJobList from '../EmployerJobList/EmployerJobList';
+import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 
 import StartProfile from '../StartProfile/StartProfile';
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
@@ -35,7 +37,8 @@ import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
-
+import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
+import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
 
 
 import './App.css';
@@ -132,6 +135,21 @@ function App() {
             <ProfileCreation />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows supplies details based on supplies.id
+            exact
+            path="/details/:id"
+          >
+            <EmployerJobDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/jobForm"
+          >
+            <PostJob />
+          </ProtectedRoute>
 
 
           {/* <ProtectedRoute
@@ -160,7 +178,7 @@ function App() {
 <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/job"
+            path="/job/:id/edit"
           >
             <PostJob />
           </ProtectedRoute>
@@ -168,7 +186,37 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/jobList"
+          >
+            <EmployerJobList />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+
             path="/StartProfile"
+            ><StartProfile/>
+            </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/savedjobs"
+          >
+            <SavedJobsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/appliedtojobs"
+          >
+            <AppliedToJobsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/Breadcrumbs"
+
           >
             <StartProfile />
           </ProtectedRoute>
@@ -221,14 +269,6 @@ function App() {
         <Route path="/Skills" component={Skills} />
         <Route path="/VoluntaryIdentification" component={Voluntary} />
       </ProtectedRoute>
-
-          <ProtectedRoute >
-            <Breadcrumbs />
-            <Route exact path="/Education" component={Education} />
-            <Route exact path="/Experience" component={Experience} />
-            <Route exact path="/Skills" component={Skills} />
-            <Route exact path="/VoluntaryIdentification" component={Voluntary} />
-          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

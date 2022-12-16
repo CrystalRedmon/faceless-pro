@@ -42,23 +42,48 @@ function Nav() {
         )}
 
         {/* If a user is logged in, show these links */}
-        {user.id && (
+        {user.user_type === 'employer' && (
           <>
             <Link className="navLink" to="/user">
-              Home
+              Employer Profile - side nav
             </Link>
+
+            <Link className="navLink" to="/jobList">
+              Posted Jobs - side nav
+            </Link>
+
+            <LogOutButton className="navLink" />
+          </>
+        )}
+
+        {user.user_type === 'candidate' && (
+          <>
+            <Link className="navLink" to="/user">
+              Search Jobs - side nav
+            </Link>
+
             <Link className="navLink" to="/CandidateProfile">
-              Profile
+              My Profile - side nav
             </Link>
 
-            <Link className="navLink" to="/info">
+            <Link className="navLink" to="/savedjobs">
+              Saved Jobs - side nav
+            </Link>
+
+            <Link className="navLink" to="/appliedtojobs">
+              Applied Jobs - side nav
+            </Link>
+
+            {/* <Link className="navLink" to="/info">
               Info Page
-            </Link>
+            </Link> */}
 
-            <Link className="navLink" to="/job">
-              Post Job
-            </Link>
+            <LogOutButton className="navLink" />
+          </>
+        )}
 
+        {user.user_type === null && (
+          <>
             <LogOutButton className="navLink" />
           </>
         )}

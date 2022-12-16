@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import setJobs from './employer.reducer';
+import jobs from './employerJobs.reducer';
+import candidateReducer from './candidate.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -12,7 +13,8 @@ import setJobs from './employer.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  setJobs,
+  jobs,
+  candidateReducer
 });
 
 export default rootReducer;
