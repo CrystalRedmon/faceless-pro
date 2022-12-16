@@ -166,6 +166,73 @@ router.get('/skill/:id', (req, res) => {
  
  });
 
+ // DELETE a candidates skill
+router.delete('/skill/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `DELETE  FROM "skill"
+  WHERE "id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from skill', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
+   // DELETE a candidates experience
+router.delete('/experience/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `DELETE  FROM "experience"
+  WHERE "id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from skill', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
+
+   // DELETE a candidates education
+router.delete('/education/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `DELETE  FROM "education"
+  WHERE "id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from skill', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
 
  /**
  * POST route template
