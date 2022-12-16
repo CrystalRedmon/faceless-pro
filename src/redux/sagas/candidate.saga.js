@@ -22,6 +22,7 @@ function* saveJobs(action){
     catch(err) {
         console.error('GET saved jobs failed: ', err);
     }
+
 }
 
 function* searchJobs(action){
@@ -39,6 +40,7 @@ function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
     yield takeLatest('FETCH_SEARCHED_JOBS', searchJobs);
+
 
 }
 

@@ -12,29 +12,31 @@ function EmployerForm() {
     const [companyName, setCompanyName] = useState('');
     const [companyAddress, setCompanyAddress] = useState('');
     const [companyPhone, setCompanyPhone] = useState('');
+    const [companyEmail, setCompanyEmail] = useState('');
     const [companyLink, setCompanyLink] = useState('');
     const [companyLogoPath, setCompanyLogoPath] = useState('');
     const [companyDescription, setCompanyDescription] = useState('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in handleSubmit');
 
         dispatch({
             type: 'ADD_EMPLOYER_INFO',
             payload: {
-                companyName: companyName,
-                companyAddress: companyAddress,
-                companyPhone: companyPhone,
-                companyLink: companyLink,
-                companyLogoPath: companyLogoPath,
-                companyDescription: companyDescription
+                company_name: companyName,
+                company_address: companyAddress,
+                company_phone: companyPhone,
+                company_email: companyEmail,
+                logo_path: companyLogoPath,
+                company_description: companyDescription,
+                company_link: companyLink,
             }
         })
 
         setCompanyName('');
         setCompanyAddress('');
         setCompanyPhone('');
+        setCompanyEmail('');
         setCompanyLink('');
         setCompanyLogoPath('');
         setCompanyDescription('');
@@ -45,6 +47,7 @@ function EmployerForm() {
             <TextField value={companyName} onChange={(event) => {setCompanyName(event.target.value)} } label="company name" />
             <TextField value={companyAddress} onChange={(event) => { setCompanyAddress(event.target.value) }} label="company address" />
             <TextField value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
+            <TextField value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
             <TextField value={companyLink} onChange={(event) => { setCompanyLink(event.target.value) }} label="company site link" />
             <TextField value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" />
             <TextField value={companyDescription} onChange={(event) => { setCompanyDescription(event.target.value) }} label="company description" />

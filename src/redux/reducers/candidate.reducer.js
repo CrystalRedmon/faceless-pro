@@ -1,3 +1,4 @@
+
 import { combineReducers } from 'redux';
 const recentJobs = (state = [], action) => {
     switch(action.type) {
@@ -31,3 +32,12 @@ export default combineReducers({
     saveJobs,
     searchJobs,
 })
+
+
+
+
+
+
+
+
+
