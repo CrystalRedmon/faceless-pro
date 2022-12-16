@@ -12,8 +12,37 @@ function* addEmployerInfo(action) {
     }
 }
 
+function* fetchEditEmployer() {
+
+    console.log('in fetchEditEmployer');
+    try {
+        const response = yield axios.get('/api/employerProfile');
+        console.log('THE RESPONSE.DATA FOR EMPLOYER TABLE', response.data);
+
+        yield put({
+            type: 'SET_EDIT_EMPLOYER',
+            payload: response.data
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+function* saveEmployerData(action) {
+    // console.log('in saveEmployerData', action.payload);
+
+    const response = yield axios.put('/api/employerProfile', action.payload);
+
+    console.log(response.data); // OK
+
+    yield put({ type: 'FETCH_USER' });
+}
+
 function* employerSaga() {
     yield takeLatest('ADD_EMPLOYER_INFO', addEmployerInfo);
+    yield takeLatest('FETCH_EDIT_EMPLOYER', fetchEditEmployer);
+    yield takeLatest('SAVE_EMPLOYER_DATA', saveEmployerData);
 }
 
 export default employerSaga
