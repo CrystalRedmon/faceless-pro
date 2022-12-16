@@ -47,7 +47,144 @@ router.post('/', (req, res) => {
   });
 });
 
+// * /GET route template
+// */
+// GET the 3 Latest Job Posts in the Candidate Landing Page.
+router.get('/education/:id', (req, res) => {
 
+
+ // GET route code here
+
+ const sqlText = `SELECT * FROM "education"
+ WHERE "candidate_id" = $1;`;
+
+ pool.query(sqlText, [req.params.id])
+ .then((result) =>{
+  // console.log('result is:',result.rows)
+  res.send(result.rows[0]) 
+  console.log(result.rows);
+ })
+ .catch((error) =>{
+  console.log('error fetching items from education', error)
+  res.sendStatus(500)
+ })
+
+
+});
+
+/**
+* POST route template
+*/
+router.post('/education', (req, res) => {
+ // POST route code here
+ const sqlText = `
+ INSERT INTO "education" 
+ (candidate_id, school, qualification, dates, note) 
+ VALUES ($1, $2, $3, $4, $5)`;
+
+ pool
+ .query(sqlText, [req.body.candidate_id, req.body.school, req.body.qualification, req.body.dates, req.body.note])
+ .then(() => res.sendStatus(200))
+ .catch((err) => {
+   console.log('Education Post info failed ', err);
+   res.sendStatus(500);
+ });
+});
+
+
+
+// * /GET route template
+// */
+// GET the 3 Latest Job Posts in the Candidate Landing Page.
+router.get('/experience/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `SELECT * FROM "experience"
+  WHERE "candidate_id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from experience', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
+ 
+
+ /**
+ * POST route template
+ */
+ router.post('/experience', (req, res) => {
+  // POST route code here
+  const sqlText = `
+  INSERT INTO "experience" 
+  (candidate_id, employer, title, dates, job_duties) 
+  VALUES ($1, $2, $3, $4, $5)`;
+ 
+  pool
+  .query(sqlText, [req.body.candidate_id, req.body.employer, req.body.title, req.body.dates, req.body.job_duties])
+  .then(() => res.sendStatus(200))
+  .catch((err) => {
+    console.log('Experience Post info failed ', err);
+    res.sendStatus(500);
+  });
+ });
+
+
+
+
+// * /GET route template
+// */
+// GET the 3 Latest Job Posts in the Candidate Landing Page.
+router.get('/skill/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `SELECT * FROM "skill"
+  WHERE "candidate_id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from skill', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
+
+
+ /**
+ * POST route template
+ */
+  router.post('/skill', (req, res) => {
+    // POST route code here
+    const sqlText = `
+    INSERT INTO "skill" 
+    (candidate_id, skill_name) 
+    VALUES ($1, $2)`;
+   
+    pool
+    .query(sqlText, [req.body.candidate_id, req.body.skill_name])
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      console.log('skill Post info failed ', err);
+      res.sendStatus(500);
+    });
+   });
 
 // GET the 3 Latest Job Posts in the Candidate Landing Page.
 router.get('/', (req, res) => {
