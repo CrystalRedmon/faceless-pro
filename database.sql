@@ -1,10 +1,10 @@
 -- database name: faceless_pro
 -- drop table commands are in order
 -- create table commands are in order
--- username === email
 
 DROP TABLE "message";
 DROP TABLE "application";
+DROP TABLE "saved_jobs";
 DROP TABLE "job_post";
 DROP TABLE "hyperlink";
 DROP TABLE "skill";
@@ -27,6 +27,7 @@ CREATE TABLE "employer" (
 	"company_name" VARCHAR(255) NOT NULL,
 	"company_address" VARCHAR(255) NOT NULL,
 	"company_phone" VARCHAR(255) NOT NULL,
+	"email" VARCHAR(255) NOT NULL,
 	"logo_path" VARCHAR(255) NOT NULL,
 	"company_description" VARCHAR NOT NULL,
 	"company_link" VARCHAR(255) NOT NULL
@@ -37,6 +38,7 @@ CREATE TABLE "candidate" (
 	"user_id" INT REFERENCES "user",
 	"first_name" VARCHAR(255) NOT NULL,
 	"last_name" VARCHAR(255) NOT NULL,
+	"email" VARCHAR(255) NOT NULL,
 	"linkedin_link" VARCHAR(255),
 	"resume_path" VARCHAR(255),
 	"cover_letter_path" VARCHAR(255)
@@ -93,7 +95,7 @@ CREATE TABLE "message" (
 	"timestamp" TIMESTAMP NOT NULL,
 	"is_from_candidate" BOOLEAN DEFAULT FALSE
 );
--- ADD THIS TO YOUR TABLES
+
 CREATE TABLE "saved_jobs" (
 	"id" serial PRIMARY KEY,
 	"candidate_id" INT REFERENCES "candidate",
