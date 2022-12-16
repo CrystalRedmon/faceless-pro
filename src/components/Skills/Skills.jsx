@@ -10,7 +10,15 @@ import { useSelector } from 'react-redux';
 function Skills() {
   const [serviceList, setServiceList] = useState([{ service: "" }]);
 
-
+  const getSkills = (evt) => {
+    evt.preventDefault();
+    console.log('inside skills', serviceList)
+    dispatch({
+        type: 'GET_SKILLS',
+        payload: serviceList
+    })
+    history.push('/VoluntaryIdentification');
+}
 
 
   const handleServiceChange = (e, index) => {

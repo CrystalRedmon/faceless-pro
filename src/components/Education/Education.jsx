@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 
 function Education() {
   const [education, setEducation] = useState('');
+  const [major, setMajor] = useState('');
+  const [years, setYears] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -47,7 +49,7 @@ function Education() {
           }
 
 
-                <button onClick={getEducation}>Save and Continue</button>
+                <button onClick={getEducation} onChange={(evt)=> setEducation(evt.target.value)}>Save and Continue</button>
 
         </div>
 
