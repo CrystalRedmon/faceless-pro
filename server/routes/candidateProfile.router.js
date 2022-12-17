@@ -6,27 +6,27 @@ const router = express.Router();
  * GET route template
  */
 // GET the 3 Latest Job Posts in the Candidate Landing Page.
-router.get('/', (req, res) => {
+// router.get('/', (req, res) => {
 
 
-  // GET route code here
+//   // GET route code here
 
-  const sqlText = `SELECT * FROM "candidate"
-  WHERE "user_id" = $1;`;
+//   const sqlText = `SELECT * FROM "candidate"
+//   WHERE "user_id" = $1;`;
 
-  pool.query(sqlText)
-  .then((result) =>{
-   // console.log('result is:',result.rows)
-   res.send(result.rows[0]) 
-   console.log(result.rows);
-  })
-  .catch((error) =>{
-   console.log('error fetching items from candidate', error)
-   res.sendStatus(500)
-  })
+//   pool.query(sqlText)
+//   .then((result) =>{
+//    // console.log('result is:',result.rows)
+//    res.send(result.rows[0]) 
+//    console.log(result.rows);
+//   })
+//   .catch((error) =>{
+//    console.log('error fetching items from candidate', error)
+//    res.sendStatus(500)
+//   })
 
 
-});
+// });
 
 /**
  * POST route template

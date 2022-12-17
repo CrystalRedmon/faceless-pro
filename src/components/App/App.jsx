@@ -39,6 +39,7 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
+import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 
 import './App.css';
@@ -82,7 +83,7 @@ function App() {
           >
             <ContactUsPage />
           </Route>
-          
+
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -111,7 +112,7 @@ function App() {
 
           </ProtectedRoute>
 
-          
+
           <ProtectedRoute
             //
             exact
@@ -183,7 +184,7 @@ function App() {
             <Breadcrumbs />
           </ProtectedRoute> */}
 
-<ProtectedRoute
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job/:id/edit"
@@ -203,8 +204,8 @@ function App() {
             exact
 
             path="/StartProfile"
-            ><StartProfile/>
-            </ProtectedRoute>
+          ><StartProfile />
+          </ProtectedRoute>
 
           <ProtectedRoute
             exact
@@ -227,6 +228,16 @@ function App() {
 
           >
             <StartProfile />
+          </ProtectedRoute>
+
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path='/user/editprofile'
+
+          >
+            <EmployerProfilePage/>
           </ProtectedRoute>
 
           <Route
@@ -271,12 +282,12 @@ function App() {
             }
           </Route>
           <ProtectedRoute>
-        <Breadcrumbs />
-        <Route path="/Education" exact component={Education} />
-        <Route path="/Experience" component={Experience} />
-        <Route path="/Skills" component={Skills} />
-        <Route path="/VoluntaryIdentification" component={Voluntary} />
-      </ProtectedRoute>
+            <Breadcrumbs />
+            <Route path="/Education" exact component={Education} />
+            <Route path="/Experience" component={Experience} />
+            <Route path="/Skills" component={Skills} />
+            <Route path="/VoluntaryIdentification" component={Voluntary} />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
