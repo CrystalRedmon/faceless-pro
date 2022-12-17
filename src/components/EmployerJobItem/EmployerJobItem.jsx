@@ -8,8 +8,7 @@ import { PanoramaSharp } from '@mui/icons-material';
 function EmployerJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
-    const params = useParams();
-
+    // const params = useParams();
 
 
     const handleView = () => {

@@ -10,11 +10,11 @@ router.get('/', (req, res) => {
                   FROM "job_post"
                   WHERE "job_post"."employer_id" = $1;`;
 
-  console.log('this is the user: ', req.user);
+  // console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log(dbRes.rows);
+      // console.log(dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
@@ -46,12 +46,25 @@ router.get('/:id', (req, res) => {
     })
 });
 
+router.get('/applicants/:id', (req, res) => {
+
+  const sqlTxt = `SELECT * FROM application WHERE job_post_id = $1;`;
+
+  pool.query(sqlTxt, [req.params.id])
+    .then(dbRes => {
+      res.send(dbRes.rows);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+    })
+});
+
 
 // CREATE JOB POSTS
 router.post('/', (req, res) => {
 
   const sqlTxt = `INSERT INTO "job_post" ("employer_id", "title", "description")
-                VALUES ($1, $2, $3);`
+                  VALUES ($1, $2, $3);`
 
   const sqlParams = [
     req.user.user_info.id,

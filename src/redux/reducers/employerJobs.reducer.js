@@ -35,10 +35,18 @@ const editJob = (state = [], action) => {
     return state;
 }
 
+const applicants = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_APPLICANTS':
+            return action.payload;
+    }
+    return state;
+}
+
 
 export default combineReducers({
     allJobs,
     currentJob,
-    editJob
-
+    editJob,
+    applicants
 })

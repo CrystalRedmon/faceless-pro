@@ -39,7 +39,7 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
-import ViewApplicantsPage from '../ViewApplicantsPage/ViewApplicantsPage';
+import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 
 import './App.css';
 
