@@ -39,8 +39,8 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
-import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
-
+import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
+import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import './App.css';
 
@@ -169,15 +169,11 @@ function App() {
 
 
           {/* <ProtectedRoute
-=======
-
           <ProtectedRoute
->>>>>>> 690445ddb35e5fa17f346d23f1cce2d12977f8c7
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/job"
           >
-<<<<<<< HEAD
             <Breadcrumbs /> */}
           {/* </ProtectedRoute> */}
 
