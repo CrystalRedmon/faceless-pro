@@ -28,7 +28,7 @@ function ApplicantItem({ applicant }) {
                         </Box>
                         <Button variant='contained'>View Applicant</Button>
                     </Box>
-                    
+
                 </Box>
             )
     }

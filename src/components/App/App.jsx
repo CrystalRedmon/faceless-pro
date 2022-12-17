@@ -152,7 +152,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows supplies details based on supplies.id
             exact
             path="/viewApplicantsPage/:id"
           >
