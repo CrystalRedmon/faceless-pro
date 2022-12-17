@@ -14,10 +14,8 @@ function* addEmployerInfo(action) {
 
 function* fetchEditEmployer() {
 
-    console.log('in fetchEditEmployer');
     try {
         const response = yield axios.get('/api/employerProfile');
-        console.log('THE RESPONSE.DATA FOR EMPLOYER TABLE', response.data);
 
         yield put({
             type: 'SET_EDIT_EMPLOYER',
@@ -30,7 +28,6 @@ function* fetchEditEmployer() {
 }
 
 function* saveEmployerData(action) {
-    // console.log('in saveEmployerData', action.payload);
 
     const response = yield axios.put('/api/employerProfile', action.payload);
 
