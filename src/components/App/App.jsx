@@ -39,7 +39,7 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
-import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
+import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 
 import './App.css';
@@ -150,6 +150,13 @@ function App() {
             path="/details/:id"
           >
             <EmployerJobDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/viewApplicantsPage/:id"
+          >
+            <ViewApplicantsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
