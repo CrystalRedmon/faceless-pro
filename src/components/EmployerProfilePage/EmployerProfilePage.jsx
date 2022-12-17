@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 function EmployerProfilePage() {
 
     const employer = useSelector(store => store.editEmployer);
+    const history = useHistory();
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -26,13 +27,20 @@ function EmployerProfilePage() {
             type: 'SAVE_EMPLOYER_DATA',
             payload: employer
         });
-
+        history.push('/')
     }
 
+    const handleClick = () =>{
+
+        history.push('/')
+    }
     // console.log('THE EMPLOYER INFO', employer);
 
     return (
         <Box>
+            <Button onClick={handleClick}>Back</Button>
+            Edit Your Employer Profile
+
             <form>
                 <TextField
                     value={String(employer.company_name)}
