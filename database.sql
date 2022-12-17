@@ -85,6 +85,8 @@ CREATE TABLE "application" (
 	"id" serial PRIMARY KEY,
 	"candidate_id" INT REFERENCES "candidate",
 	"job_post_id" INT REFERENCES "job_post",
+	"random_identifier" VARCHAR NOT NULL,
+	"time" TIMESTAMP DEFAULT NOW() NOT NULL,
 	"status" VARCHAR(255) DEFAULT 'pending'
 );
 
