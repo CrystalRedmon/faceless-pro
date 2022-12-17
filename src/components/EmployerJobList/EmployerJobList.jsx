@@ -18,8 +18,6 @@ function EmployerJobList() {
 
     console.log('all of the jobs', jobs);
 
-
-
     const handleAddJob=()=>{
         history.push('/jobForm')
     }
