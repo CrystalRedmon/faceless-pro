@@ -1,4 +1,5 @@
 function SavedJobsPage() {
+    
     return (
         <h1>SavedJobsPage - CANDIDATE</h1>
         
