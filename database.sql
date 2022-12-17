@@ -84,8 +84,7 @@ CREATE TABLE "job_post" (
 CREATE TABLE "application" (
 	"id" serial PRIMARY KEY,
 	"candidate_id" INT REFERENCES "candidate",
-	"job_post_id" INT REFERENCES "job_post"
-	ON DELETE CASCADE,
+	"job_post_id" INT REFERENCES "job_post" ON DELETE CASCADE,
 	"random_identifier" VARCHAR NOT NULL,
 	"time" TIMESTAMP DEFAULT NOW() NOT NULL,
 	"status" VARCHAR(255) DEFAULT 'pending'
@@ -93,15 +92,14 @@ CREATE TABLE "application" (
 
 CREATE TABLE "message" (
 	"id" serial PRIMARY KEY,
-	"application_id" INT REFERENCES "application",
+	"application_id" INT REFERENCES "application" ON DELETE CASCADE,
 	"content" VARCHAR NOT NULL,
-	"timestamp" TIMESTAMP NOT NULL,
+	"time" TIMESTAMP DEFAULT NOW() NOT NULL,
 	"is_from_candidate" BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE "saved_jobs" (
 	"id" serial PRIMARY KEY,
 	"candidate_id" INT REFERENCES "candidate",
-	"job_post_id" INT REFERENCES "job_post"
-	ON DELETE CASCADE
+	"job_post_id" INT REFERENCES "job_post" ON DELETE CASCADE
 );
