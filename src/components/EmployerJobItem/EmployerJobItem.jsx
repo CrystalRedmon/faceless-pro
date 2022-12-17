@@ -18,21 +18,24 @@ function EmployerJobItem({ job }) {
 
 
     console.log(job.id)
-    const handleDeleteItem =()=>{
+    const handleDeleteItem = () => {
         dispatch({
             type: 'DELETE_JOB_POST',
             payload: job.id
         })
     }
-    
-    
+
+    const handleViewApplicants = () => {
+        history.push(`/viewApplicantsPage/${job.id}`);
+    }
 
     return <>
-    
+
         <tr>
             <td>{job.title}</td>
             <td>
-                <button onClick={handleView}>View</button>
+                <button onClick={handleView}>Details</button>
+                <button onClick={handleViewApplicants}>View Applicants</button>
                 <button onClick={handleDeleteItem}>Delete</button>
             </td>
         </tr>

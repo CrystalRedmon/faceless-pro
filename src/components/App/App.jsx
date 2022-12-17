@@ -39,7 +39,7 @@ import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
-
+import ViewApplicantsPage from '../ViewApplicantsPage/ViewApplicantsPage';
 
 import './App.css';
 
@@ -149,6 +149,14 @@ function App() {
             path="/details/:id"
           >
             <EmployerJobDetails />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows supplies details based on supplies.id
+            exact
+            path="/viewApplicantsPage/:id"
+          >
+            <ViewApplicantsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
