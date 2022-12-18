@@ -278,15 +278,14 @@ router.get('/', (req, res) => {
 
   router.get('/:keyword', (req, res) => {
     console.log("this is the req.body",req.body);
-
+    // CREATE EXTENSION pg_trgm;
+    // CREATE EXTENSION fuzzystrmatch;
     const sqlTxt = `  
-    CREATE EXTENSION pg_trgm;
-    CREATE EXTENSION fuzzystrmatch;
     SELECT "employer".company_name,"employer".company_address,"job_post".title
     FROM "job_post"
     JOIN "employer"
     ON "job_post".employer_id = "employer".id 
-    WHERE SIMILARITY("title","description" 'soft') > 0.4;
+    WHERE SIMILARITY("title", $1) > 0.4;
   `;
   // const keyword = req.params.keyword
   // OR "description" LIKE '%$2%';
