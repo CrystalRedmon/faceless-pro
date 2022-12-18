@@ -15,7 +15,7 @@ function CandidateLandingPage() {
         dispatch({ type: 'FETCH_RECENT_JOBS' });
     }, []);
 
-    const handleChangeKeyword=(evt) => {
+    const handleKeyword=(evt) => {
         setKeyword(evt.target.value)
         console.log(evt)
        }
@@ -34,8 +34,9 @@ function CandidateLandingPage() {
         <div>
         <h1>Candidate Search for Jobs HERE</h1>
         <form>
-        <input placeholder = "Search keywords" value = {keyword} onChange={(evt) => handleChangeKeyword(evt)} ></input>
-        <button onClick={() => onSubmitKeyword(keyword)}>Search</button>
+        <input placeholder = "Search keywords" value = {keyword} onChange={handleKeyword}></input>
+        <button onClick={onSubmitKeyword}>Search</button>
+        
         </form>
 
 
