@@ -5,7 +5,7 @@ function* fetchRecentJobs(){
     try{
         const recentJobs = yield axios.get(`/api/candidateProfile`);
         console.log('Recent jobs GET successful: ', recentJobs.data)
-        yield put({type: 'SET_RECENT_JOBS', payload: recentJobs.data })
+        yield put({type: 'SET_JOBS', payload: recentJobs.data })
     }
     catch(err) {
         console.error('GET recent jobs failed: ', err);
@@ -30,7 +30,7 @@ function* searchJobs(action){
     try{
         const keywordSearch = yield axios.get(`/api/candidateProfile/${action.payload}`);
         console.log('keyword search GET successful: ', keywordSearch.data)
-        yield put({type: 'SET_SEARCHED_JOBS', payload: keywordSearch.data })
+        yield put({type: 'SET_JOBS', payload: keywordSearch.data })
     }
     catch(err) {
         console.error('GET search jobs failed: ', err);

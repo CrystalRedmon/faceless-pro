@@ -1,9 +1,10 @@
 
 import { combineReducers } from 'redux';
-const recentJobs = (state = [], action) => {
+const candidateJobs = (state = [], action) => {
     switch(action.type) {
-        case 'SET_RECENT_JOBS':
+        case 'SET_JOBS':
             return action.payload;
+
     }
    
     return state;
@@ -18,19 +19,18 @@ const saveJobs = (state = [], action) => {
     return state;
 }
 
-const searchJobs = (state = [], action) => {
-    switch(action.type) {
-        case 'SET_SEARCHED_JOBS':
-            return action.payload;
-    }
+// const searchJobs = (state = [], action) => {
+//     switch(action.type) {
+//         case 'SET_SEARCHED_JOBS':
+//             return action.payload;
+//     }
    
-    return state;
-}
+//     return state;
+// }
 
 export default combineReducers({
-    recentJobs,
+    candidateJobs,
     saveJobs,
-    searchJobs,
 })
 
 

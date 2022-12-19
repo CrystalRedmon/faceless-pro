@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import './CandidateLandingPage.css';
 
 function CandidateLandingPage() {
-    const recentJobs = useSelector(store => store.candidateReducer.recentJobs)
-    const searchJobs = useSelector(store => store.candidateReducer.searchJobs)
+    const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
     const [keyword, setKeyword] = useState('');
+    const [searchJobsClicked, setSearchJobsClicked] = useState(false);
 
     const history = useHistory();
     const dispatch = useDispatch();
@@ -20,12 +20,13 @@ function CandidateLandingPage() {
         console.log(evt)
        }
     function onSubmitKeyword(){
-        console.log("keyword",keyword);
+        console.log("keyword",keyword);   
+          setSearchJobsClicked(!searchJobsClicked) // This is called a not operator '!'
         dispatch({
           type: 'FETCH_SEARCHED_JOBS',
           payload: keyword
       });
-    
+
       }
 
     
@@ -36,13 +37,24 @@ function CandidateLandingPage() {
         <form>
         <input placeholder = "Search keywords" value = {keyword} onChange={handleKeyword}></input>
         <button onClick={onSubmitKeyword}>Search</button>
+        {searchJobsClicked ? <button onClick={() =>{
+               setSearchJobsClicked(!searchJobsClicked)
+                      dispatch({
+                        type: 'FETCH_RECENT_JOBS',
+                    })
+                    }}> Undo Search </button>: <> </>
+
+    }
         
         </form>
 
 
-        {/* {searchJobs.length === 0 ? */}
+        
         <section>
-            <h3>Recently Added Jobs</h3>
+        {searchJobsClicked ? <h3>Searched Jobs</h3>
+        :
+             <h3>Recently Added Jobs</h3>}
+            
 
             {recentJobs.map(job => {
             return(
