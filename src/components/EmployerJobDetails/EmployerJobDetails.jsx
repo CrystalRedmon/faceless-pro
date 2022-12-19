@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-
-
 function EmployerJobDetails() {
     const params = useParams();
     const dispatch = useDispatch();

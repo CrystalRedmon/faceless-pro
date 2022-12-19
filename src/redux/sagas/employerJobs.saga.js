@@ -84,7 +84,7 @@ function* saveJob(action) {
 }
 
 function* fetchApplicants(action) {
-    console.log('in fetchApplicants with action.payload', action.payload); // job.id
+    // console.log('in fetchApplicants with action.payload', action.payload); // job.id
     try {
         const response = yield axios.get(`/api/employer/applicants/${action.payload}`);
 
@@ -93,6 +93,21 @@ function* fetchApplicants(action) {
     }
     catch (err) {
         console.error('fetchApplicants failed ', err);
+    }
+}
+
+function* fetchApplicantNotSharedInfo(action) {
+    // console.log('in fetchApplicantNotSharedInfo', action.payload); // application.candidate_id
+    try {
+        const response = yield axios.get(`/api/employer/not_shared/${action.payload}`);
+
+        yield put({
+            type: 'SET_APPLICANT_NOT_SHARED_INFO',
+            payload: response.data
+        });
+    }
+    catch (err) {
+        console.error(err);
     }
 }
 
@@ -105,6 +120,8 @@ function* JobSaga() {
     yield takeEvery('FETCH_EDIT_JOB', fetchEditJob);
     yield takeEvery('SAVE_JOB', saveJob);
     yield takeEvery('FETCH_APPLICANTS', fetchApplicants);
+    yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
+
 }
 
 

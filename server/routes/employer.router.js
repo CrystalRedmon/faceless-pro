@@ -111,36 +111,57 @@ router.delete('/:id', (req, res) => {
 })
 
 // UPDATE JOB POST BY ID
-router.put('/:id', (req, res)=>{
+router.put('/:id', (req, res) => {
 
   const sqlTxt = ` UPDATE "job_post"
                     SET "title" = $1,
                     "description" = $2
                     WHERE "id" = $3;`;
 
-  const sqlParams =[
+  const sqlParams = [
     req.body.title,
     req.body.description,
     req.body.id
   ]
 
   pool.query(sqlTxt, sqlParams)
-  .then(dbRes => {
-    res.sendStatus(200);
-    // console.log('Update job successful: ', dbRes.rows);
-  })
-  .catch(error => {
-    res.sendStatus(500);
-    // console.log('Update job failed: ', error);
-  })
+    .then(dbRes => {
+      res.sendStatus(200);
+      // console.log('Update job successful: ', dbRes.rows);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+      // console.log('Update job failed: ', error);
+    })
 
 })
 
+// GET applicant not_shared info by applicant.candidate_id
+router.get('/not_shared/:id', (req, res) => {
 
+  const candidateId = req.params.id;
 
+  const sqlTxt = `SELECT (SELECT json_agg(e.*)
+                      FROM   education e
+                      WHERE  e.candidate_id = $1)  AS education
+                  , (SELECT json_agg(e.*)
+                      FROM   experience e
+                      WHERE  e.candidate_id = $1)  AS experience
+                  , (SELECT json_agg(e.*)
+                      FROM   skill e
+                      WHERE  e.candidate_id = $1)  AS skill
+                  , (SELECT json_agg(e.*)
+                      FROM   hyperlink e
+                      WHERE  e.candidate_id = $1)  AS hyperlink
+                  WHERE  EXISTS (SELECT FROM application a WHERE a.candidate_id = $1);`;
 
-
-
-
+  pool.query(sqlTxt, [candidateId])
+    .then(dbRes => {
+      res.send(dbRes.rows);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+    })
+});
 
 module.exports = router;
