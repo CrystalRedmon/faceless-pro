@@ -11,7 +11,7 @@ const recentJobs = (state = [], action) => {
 
 const saveJobs = (state = [], action) => {
     switch(action.type) {
-        case 'FETCH_SAVE_JOBS':
+        case 'SET_SAVED_JOBS':
             return action.payload;
     }
    
