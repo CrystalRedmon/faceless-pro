@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const axios = require('axios');
+require('dotenv').config();
 
 /**
  * GET route template
@@ -358,5 +360,84 @@ router.get('/', (req, res) => {
         console.log('Delete Saved Jobs Failed: ', error);
       })
   });
+
+
+
+
+
+
+
+
+router.get('/application/namegenerator', (req, res) => {
+
+  axios({
+      method:'GET',
+      url: 'https://www.randomlists.com/data/animals.json',
+
+  })
+
+
+
+  .then((apiRes)=>{
+    console.log('giphy: ', apiRes.data.RandL.items);
+
+      
+      res.send(apiRes.data.RandL.items); // Replace this
+
+  })
+  .catch((error)=>{
+      console.log('API GET failed, ', error);
+      res.sendStatus(500);
+  })
+  
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/application/namegenerator', (req, res) => {
+
+//   axios({
+//       method:'GET',
+//       url: 'https://api.giphy.com/v1/gifs/random?api_key=rlMxNi7JR2ZZM82bmZJV7JC2k93g8Gnj&tag=&rating=g',
+ 
+//   })
+//   .then((apiRes)=>{
+//     console.log('giphy: ', apiRes.data.data.images.downsized_large);
+
+      
+//       res.send(apiRes.data.data.images.downsized_large); // Replace this
+
+//   })
+//   .catch((error)=>{
+//       console.log('API GET failed, ', error);
+//       res.sendStatus(500);
+//   })
+  
+// })
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
