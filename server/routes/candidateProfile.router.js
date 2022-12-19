@@ -268,7 +268,7 @@ router.get('/', (req, res) => {
     pool.query(sqlTxt)  
       .then(dbRes => {
         res.send(dbRes.rows);
-        console.log(dbRes.rows);
+        console.log('recent jobs:',dbRes.rows);
       })
       .catch(error => {
         res.sendStatus(500);
