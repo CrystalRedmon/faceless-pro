@@ -41,6 +41,7 @@ import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
 import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
+import ApplicantNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
 
 import './App.css';
 
@@ -160,6 +161,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
+            exact
+            path="/applicantProfile/:id"
+          >
+            <ApplicantNotShared />
+          </ProtectedRoute>
+
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/jobForm"
@@ -240,7 +248,7 @@ function App() {
             path='/user/editprofile'
 
           >
-            <EmployerProfilePage/>
+            <EmployerProfilePage />
           </ProtectedRoute>
 
           <Route

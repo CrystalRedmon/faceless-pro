@@ -1,14 +1,15 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useParams, useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
 function ApplicantItem({ applicant }) {
     const dispatch = useDispatch();
+    const history = useHistory();
+    const params = useParams();
 
     // TODO: view applicant profile based on applicant state
-    // TODO: open chat based on applicant state
-    // TODO: add more "cases" for the state of the game
 
     console.log('applicant', applicant);
     switch (applicant.status) {
@@ -19,7 +20,6 @@ function ApplicantItem({ applicant }) {
                         <Box>
                             Applicant: {applicant.random_identifier}
                         </Box> <br />
-
                     </Box>
                     <Box>
                         <Box>
@@ -28,9 +28,8 @@ function ApplicantItem({ applicant }) {
                         <Box>
                             {applicant.status}
                         </Box>
-                        <Button variant='contained'>View Profile</Button>
+                        <Button variant='contained' onClick={() => { history.push(`/applicantProfile/${applicant.candidate_id}`) }}>View Profile</Button>
                     </Box>
-
                 </Box>
             );
         case 'not_shared':
@@ -40,7 +39,6 @@ function ApplicantItem({ applicant }) {
                         <Box>
                             Applicant: {applicant.random_identifier}
                         </Box> <br />
-
                     </Box>
                     <Box>
                         <Box>
@@ -52,7 +50,6 @@ function ApplicantItem({ applicant }) {
                         <Button variant='contained'>Open Chat</Button>
                         <Button variant='contained'>View Profile</Button>
                     </Box>
-
                 </Box>
             );
         case 'shared':
@@ -62,7 +59,6 @@ function ApplicantItem({ applicant }) {
                         <Box>
                             Applicant: {applicant.random_identifier}
                         </Box> <br />
-
                     </Box>
                     <Box>
                         <Box>
@@ -74,7 +70,6 @@ function ApplicantItem({ applicant }) {
                         <Button variant='contained'>Open Chat</Button>
                         <Button variant='contained'>View Profile</Button>
                     </Box>
-
                 </Box>
             );
         case 'rejected':
