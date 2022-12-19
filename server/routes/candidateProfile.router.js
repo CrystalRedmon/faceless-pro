@@ -367,33 +367,42 @@ router.delete('/:id', (req, res) => {
 
 
 
+router.get('/application/namegenerator', (req, res)=>{
 
-router.get('/application/namegenerator', (req, res) => {
+let animalList = 'https://www.randomlists.com/data/animals.json';
+let thingList = 'https://www.randomlists.com/data/things.json'
 
-  axios({
-    method: 'GET',
-    url: 'https://www.randomlists.com/data/animals.json',
+const requestAnimal = axios.get(animalList);
+const requestThing = axios.get(thingList);
 
+
+  axios.all([requestAnimal, requestThing])
+  .then(axios.spread((...response) => {
+
+    const responseAnimal = response[0].data.RandL.items
+    const responseThing = response[1].data.RandL.items
+
+
+    function pickRandom(list) {
+              return list[Math.floor(Math.random() * list.length)];
+            }
+
+    const randomName = pickRandom(responseAnimal) + " " + pickRandom(responseThing);
+    console.log(randomName);
+
+    res.send(randomName);
+
+  })).catch(error => {
+    console.log(error)
   })
 
-    .then((apiRes) => {
-
-      const animalList = apiRes.data.RandL.items;
-
-      function pickRandom(list) {
-        return list[Math.floor(Math.random() * list.length)];
-      }
-
-      console.log('Random Animal: ', pickRandom(animalList));
-      res.send(pickRandom(animalList)); 
-
-    })
-    .catch((error) => {
-      console.log('API GET failed, ', error);
-      res.sendStatus(500);
-    })
 
 })
+
+
+
+
+
 
 
 
@@ -413,32 +422,29 @@ router.get('/application/namegenerator', (req, res) => {
 // router.get('/application/namegenerator', (req, res) => {
 
 //   axios({
-//       method:'GET',
-//       url: 'https://api.giphy.com/v1/gifs/random?api_key=rlMxNi7JR2ZZM82bmZJV7JC2k93g8Gnj&tag=&rating=g',
+//     method: 'GET',
+//     url: 'https://www.randomlists.com/data/animals.json',
 
 //   })
-//   .then((apiRes)=>{
-//     console.log('giphy: ', apiRes.data.data.images.downsized_large);
 
+//     .then((apiRes) => {
 
-//       res.send(apiRes.data.data.images.downsized_large); // Replace this
+//       const animalList = apiRes.data.RandL.items;
 
-//   })
-//   .catch((error)=>{
+//       function pickRandom(list) {
+//         return list[Math.floor(Math.random() * list.length)];
+//       }
+
+//       console.log('Random Animal: ', pickRandom(animalList));
+//       res.send(pickRandom(animalList)); 
+
+//     })
+//     .catch((error) => {
 //       console.log('API GET failed, ', error);
 //       res.sendStatus(500);
-//   })
+//     })
 
 // })
-
-
-
-
-
-
-
-
-
 
 
 
