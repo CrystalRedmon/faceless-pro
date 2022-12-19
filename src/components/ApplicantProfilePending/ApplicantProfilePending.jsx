@@ -2,17 +2,17 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Education from '../ApplicantProfilePending/Education';
-import Experience from '../ApplicantProfilePending/Experience';
-import Skill from '../ApplicantProfilePending/Skill';
-import Hyperlink from '../ApplicantProfilePending/Hyperlink';
+import Education from './Education';
+import Experience from './Experience';
+import Skill from './Skill';
+import Hyperlink from './Hyperlink';
 
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 
-function ApplicantProfileNotShared() {
+function ApplicantProfilePending() {
 
     const applicant = useSelector(store => store.jobs.applicantNotSharedInfo);
 
@@ -27,7 +27,7 @@ function ApplicantProfileNotShared() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    console.log(`the applicant's info`, applicant);
+    // console.log(`the applicant's info`, applicant);
 
     return (
         <Box>
@@ -37,6 +37,8 @@ function ApplicantProfileNotShared() {
             >
                 back
             </Button>
+            <Button variant='contained'>request chat</Button>
+            <Button variant='contained'>reject</Button>
             <Box>
                 {applicant.length != 0 &&
                     <Box sx={{ margin: "20px" }}>
@@ -63,4 +65,4 @@ function ApplicantProfileNotShared() {
     );
 }
 
-export default ApplicantProfileNotShared
+export default ApplicantProfilePending

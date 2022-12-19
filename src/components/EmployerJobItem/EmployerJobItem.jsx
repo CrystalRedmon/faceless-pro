@@ -16,7 +16,7 @@ function EmployerJobItem({ job }) {
     }
 
 
-    console.log(job.id)
+    // console.log(job.id);
     const handleDeleteItem = () => {
         dispatch({
             type: 'DELETE_JOB_POST',
