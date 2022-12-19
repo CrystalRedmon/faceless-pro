@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import { Typography, Menu, MenuList, Box } from '@mui/material';
 import { useState } from 'react';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
