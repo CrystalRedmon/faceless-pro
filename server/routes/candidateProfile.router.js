@@ -279,7 +279,7 @@ router.get('/', (req, res) => {
 router.get('/:keyword', (req, res) => {
   console.log("req.params.keyword", req.params.keyword);
   const sqlTxt = `
-                  SELECT "employer".company_name,"employer".company_address,"job_post".title
+                  SELECT "employer".company_name,"employer".company_address,"job_post".title, "job_post".id
                   FROM "job_post"
                   JOIN "employer"
                   ON "job_post".employer_id = "employer".id 
