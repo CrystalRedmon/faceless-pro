@@ -2,6 +2,12 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import Education from './Education';
+import Experience from './Experience';
+import Skill from './Skill';
+import Hyperlink from './Hyperlink';
+
+import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -25,11 +31,29 @@ function ApplicantNotShared() {
 
     return (
         <Box>
-            <Button variant='contained'>accept</Button>
+            <Button variant='contained'>request chat</Button>
             <Button variant='contained'>reject</Button>
-            <List>
-                <h1>Applicant's not_shared info here! See console.log!</h1>
-            </List>
+            <Box>
+                {applicant.length === 0 ? <></> :
+                    <Box sx={{ margin: "20px" }}>
+                        <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
+                        <List>
+                            {applicant[0].education.map(education => <Education key={education.id} education={education} />)}
+                        </List>
+                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
+                        <List>
+                            {applicant[0].experience.map(experience => <Experience key={experience.id} experience={experience} />)}
+                        </List>
+                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
+                        <List>
+                            {applicant[0].skill.map(skill => <Skill key={skill.id} skill={skill} />)}
+                        </List>
+                        <Typography sx={{ display: "flex" }}><b>Hyperlink</b></Typography>
+                        <List>
+                            {applicant[0].hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
+                        </List>
+                    </Box>}
+            </Box>
         </Box>
     );
 }

@@ -30,7 +30,7 @@ function EmployerProfilePage() {
         history.push('/')
     }
 
-    const handleClick = () =>{
+    const handleClick = () => {
 
         history.push('/')
     }
