@@ -21,7 +21,7 @@ function CandidateLandingPage() {
        }
     function onSubmitKeyword(){
         console.log("keyword",keyword);   
-          setSearchJobsClicked(!searchJobsClicked) // This is called a not operator '!'
+          setSearchJobsClicked(true) // This is called a not operator '!'
         dispatch({
           type: 'FETCH_SEARCHED_JOBS',
           payload: keyword
@@ -38,7 +38,7 @@ function CandidateLandingPage() {
         <input placeholder = "Search keywords" value = {keyword} onChange={handleKeyword}></input>
         <button onClick={onSubmitKeyword}>Search</button>
         {searchJobsClicked ? <button onClick={() =>{
-               setSearchJobsClicked(!searchJobsClicked)
+               setSearchJobsClicked(false)
                       dispatch({
                         type: 'FETCH_RECENT_JOBS',
                     })
