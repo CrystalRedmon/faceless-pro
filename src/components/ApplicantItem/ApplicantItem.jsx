@@ -1,6 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
@@ -9,9 +10,7 @@ function ApplicantItem({ applicant }) {
     const history = useHistory();
     const params = useParams();
 
-    // TODO: view applicant profile based on applicant state
-
-    console.log('applicant', applicant);
+    // console.log('applicant', applicant);
     switch (applicant.status) {
         case 'pending':
             return (
