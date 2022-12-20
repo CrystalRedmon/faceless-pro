@@ -45,8 +45,17 @@ function CandidateJobDetails() {
             <br></br>
             <p> Job Description:{job[0].description}</p> 
 
-            <button>*These two buttons don't work yet* Apply</button>
-            <button>Save</button>
+            <button>Apply</button>
+            <button
+                    onClick={() =>{
+                        dispatch({
+                          type: 'SAVE_JOBS',
+                          payload: job[0]
+                      })
+                      }}
+            
+            >Save
+            </button>
         </>
     );
 }

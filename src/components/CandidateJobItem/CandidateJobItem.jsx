@@ -1,7 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
-import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+
 
 function CandidateJobItem({ job }) {
     const history = useHistory();
