@@ -5,12 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 
-function ApplicantItem({ applicant }) {
+function ApplicantItem({ applicant, jobId }) {
     const dispatch = useDispatch();
     const history = useHistory();
     const params = useParams();
 
-    // console.log('applicant', applicant);
+    useEffect(() => {
+        dispatch({
+            type: 'SET_JOB_ID',
+            payload: jobId // used to back button for "View Profile" later
+        })
+    }, [])
+
     switch (applicant.status) {
         case 'pending':
             return (
@@ -27,7 +33,12 @@ function ApplicantItem({ applicant }) {
                         <Box>
                             {applicant.status}
                         </Box>
-                        <Button variant='contained' onClick={() => { history.push(`/applicantProfile/${applicant.candidate_id}`) }}>View Profile</Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => { history.push(`/ApplicantProfilePending/${applicant.candidate_id}/${jobId}`) }}
+                        >
+                            View Profile
+                        </Button>
                     </Box>
                 </Box>
             );
@@ -47,7 +58,12 @@ function ApplicantItem({ applicant }) {
                             {applicant.status}
                         </Box>
                         <Button variant='contained'>Open Chat</Button>
-                        <Button variant='contained'>View Profile</Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => { history.push(`/ApplicantProfileNotShared/${applicant.candidate_id}/${jobId}`) }}
+                        >
+                            View Profile
+                        </Button>
                     </Box>
                 </Box>
             );
