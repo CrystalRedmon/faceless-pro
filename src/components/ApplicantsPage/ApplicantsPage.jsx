@@ -29,7 +29,7 @@ function ViewApplicantsPage() {
             <h1>ApplicantsPage</h1>
             <List>
                 {applicants.map(applicant =>
-                    <ApplicantItem key={applicant.id} applicant={applicant} />
+                    <ApplicantItem key={applicant.id} applicant={applicant} jobId={params.id} />
                 )}
             </List>
             <button onClick={handleBack}>Back</button>

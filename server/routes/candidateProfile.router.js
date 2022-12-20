@@ -270,7 +270,7 @@ router.get('/', (req, res) => {
   pool.query(sqlTxt)
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log(dbRes.rows);
+      console.log('recent jobs:', dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
@@ -279,16 +279,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:keyword', (req, res) => {
-  console.log("this is the req.body", req.body);
-  // CREATE EXTENSION pg_trgm;
-  // CREATE EXTENSION fuzzystrmatch;
-  const sqlTxt = `  
-    SELECT "employer".company_name,"employer".company_address,"job_post".title
-    FROM "job_post"
-    JOIN "employer"
-    ON "job_post".employer_id = "employer".id 
-    WHERE SIMILARITY("title", $1) > 0.4;
-  `;
+  console.log("req.params.keyword", req.params.keyword);
+  const sqlTxt = `
+                  SELECT "employer".company_name,"employer".company_address,"job_post".title, "job_post".id
+                  FROM "job_post"
+                  JOIN "employer"
+                  ON "job_post".employer_id = "employer".id 
+                  WHERE SIMILARITY("title", $1) > 0.01;
+                  `;
   // const keyword = req.params.keyword
   // OR "description" LIKE '%$2%';
 
