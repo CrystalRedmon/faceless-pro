@@ -16,7 +16,7 @@ function EmployerJobList() {
         dispatch({ type: 'FETCH_JOBS' });
     }, []);
 
-    console.log('all of the jobs', jobs);
+    // console.log('all of the jobs', jobs);
 
     const handleAddJob = () => {
         history.push('/jobForm')

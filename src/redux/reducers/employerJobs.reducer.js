@@ -51,7 +51,6 @@ const applicantNotSharedInfo = (state = [], action) => {
     return state;
 }
 
-
 export default combineReducers({
     allJobs,
     currentJob,
