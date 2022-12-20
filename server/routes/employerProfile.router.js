@@ -8,7 +8,7 @@ const {
 /**
  * GET route template
  */
- router.get('/', (req, res) => {
+ router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
 
   const sqlText = `SELECT * FROM "employer"
@@ -30,7 +30,7 @@ const {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `
   INSERT INTO "employer" 
