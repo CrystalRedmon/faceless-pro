@@ -86,6 +86,17 @@ function* viewJobDetails(action){
         console.error('error getting job detail: ', err);
     }
 }
+
+function* appliedJobs(){
+    console.log('in applied job_post')
+    try{
+        const appliedJobs = yield axios.get(`/api/candidateInfo/applied`);
+        yield put({type: 'SET_JOBS', payload: appliedJobs.data })
+    }
+    catch(err) {
+        console.error('error getting applied jobs: ', err);
+    }
+}
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -94,7 +105,7 @@ function* candidateSaga() {
     yield takeLatest('APPLY_JOB', applyJob);
     yield takeLatest('DELETE_JOB', deleteJob);
     yield takeLatest('VIEW_JOB_DETAILS', viewJobDetails);
-    // yield takeLatest('FETCH_APPLIED_JOBS', appliedJobs);
+    yield takeLatest('FETCH_APPLIED_JOBS', appliedJobs);
 
 
 

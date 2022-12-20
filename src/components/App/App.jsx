@@ -38,7 +38,7 @@ import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
-import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
+import CandidateAppliedJobsPage from '../CandidateAppliedJobsPage/CandidateAppliedJobsPage';
 import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 import ApplicantNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
@@ -227,9 +227,9 @@ function App() {
 
           <ProtectedRoute
             exact
-            path="/appliedtojobs"
+            path="/applied"
           >
-            <AppliedToJobsPage />
+            <CandidateAppliedJobsPage />
           </ProtectedRoute>
 
           <ProtectedRoute

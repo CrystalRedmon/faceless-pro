@@ -70,7 +70,7 @@ function Nav() {
               Saved Jobs - side nav
             </Link>
 
-            <Link className="navLink" to="/appliedtojobs">
+            <Link className="navLink" to="/applied">
               Applied Jobs - side nav
             </Link>
 
