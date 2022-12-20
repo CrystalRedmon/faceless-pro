@@ -34,7 +34,7 @@ function ApplicantNotShared() {
             <Button variant='contained'>request chat</Button>
             <Button variant='contained'>reject</Button>
             <Box>
-                {applicant.length === 0 ? <></> :
+                {applicant.length != 0 &&
                     <Box sx={{ margin: "20px" }}>
                         <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
                         <List>
@@ -52,7 +52,8 @@ function ApplicantNotShared() {
                         <List>
                             {applicant[0].hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
                         </List>
-                    </Box>}
+                    </Box>
+                }
             </Box>
         </Box>
     );
