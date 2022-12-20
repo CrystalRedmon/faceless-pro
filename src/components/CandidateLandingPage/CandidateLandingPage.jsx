@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import React, {useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './CandidateLandingPage.css';
+import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
 
 function CandidateLandingPage() {
     const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
@@ -29,7 +30,6 @@ function CandidateLandingPage() {
 
       }
 
-    
     console.log("This is the recent jobs", recentJobs)
     return (
         <div>
@@ -54,28 +54,10 @@ function CandidateLandingPage() {
         {searchJobsClicked ? <h3>Searched Jobs</h3>
         :
              <h3>Recently Added Jobs</h3>}
-            
 
-            {recentJobs.map(job => {
-            return(
-                <div key = {job.id}>
-                  <h4> {job.title} </h4>
-                  
-                  <p>  {job.company_name}</p> 
-                  
-                  <p> {job.company_address}</p>
-                    <button 
-                  onClick={() =>{
-                      dispatch({
-                        type: 'SAVE_JOBS',
-                        payload: job
-                    })
-                    }}
-                >Save </button>
-                  </div> 
-            )
-
-        })}
+              {recentJobs.map(job =>
+                    <CandidateJobItem key={job.id} job={job} />
+                )}
           </section>
 
         </div>

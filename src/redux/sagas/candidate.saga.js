@@ -78,9 +78,9 @@ function* deleteJob(action) {
 
 function* viewJobDetails(action){
     try{
-        const jobDetail = yield axios.get(`/api/candidateInfo/detail/${action.payload.id}`);
+        const jobDetail = yield axios.get(`/api/candidateInfo/detail/${action.payload}`);
         console.log('job detail: ', jobDetail.data)
-        // yield put({type: 'SET_SAVED_JOBS', payload: savedJobs.data })
+        yield put({type: 'SET_JOBS', payload: jobDetail.data})
     }
     catch(err) {
         console.error('error getting job detail: ', err);

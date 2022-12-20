@@ -27,6 +27,8 @@ router.get('/', (req, res) => {
         console.log('error getting saved jobs: ', error);
       })
   });
+
+
   router.get('/applied', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
@@ -51,19 +53,18 @@ router.get('/', (req, res) => {
       })
   });
 
+//GET Job details
   router.get('/detail/:id', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
-    SELECT "job_post".id,"employer".company_name,"employer".company_address, "job_post".title
-    FROM "saved_jobs"
-    JOIN "job_post"
-        ON "job_post".id = "saved_jobs".job_post_id
+    SELECT "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
+    FROM "job_post"
     JOIN "employer"
         ON "employer".id = "job_post".employer_id
-    WHERE "saved_jobs".candidate_id = $1;`;
+    WHERE "job_post".id = $1;`;
   
   
-    pool.query(sqlTxt,[req.user.user_info.id])  
+    pool.query(sqlTxt,[req.params.id])  
       .then(dbRes => {
         console.log('dbres is',dbRes.rows);
         res.send(dbRes.rows);
