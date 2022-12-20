@@ -111,6 +111,20 @@ function* fetchApplicantNotSharedInfo(action) {
     }
 }
 
+function* fetchApplicantFromApplicationTable(action) {
+    try {
+        const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
+
+        yield put({
+            type: 'SET_APPLICANT_FROM_APPLICATION_TABLE',
+            payload: response.data
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 
 function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
@@ -121,7 +135,7 @@ function* JobSaga() {
     yield takeEvery('SAVE_JOB', saveJob);
     yield takeEvery('FETCH_APPLICANTS', fetchApplicants);
     yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
-
+    yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
 }
 
 
