@@ -10,7 +10,7 @@ function Hyperlink({ hyperlink }) {
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                     {/* <Typography>{hyperlink.link}</Typography> */}
-                    <a href={hyperlink.link}>{hyperlink.link}</a>
+                    <a href={hyperlink.link} target="_blank">{hyperlink.link}</a>
                 </Box>
             </Box>
         </Box>

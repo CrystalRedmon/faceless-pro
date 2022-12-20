@@ -95,7 +95,7 @@ function ApplicantProfile() {
                         <List>
                             {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
                         </List>
-                        <Typography sx={{ display: "flex" }}><b>Hyperlink</b></Typography>
+                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
                         <List>
                             {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
                         </List>
@@ -118,7 +118,7 @@ function ApplicantProfile() {
                         <List>
                             {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
                         </List>
-                        <Typography sx={{ display: "flex" }}><b>Hyperlink</b></Typography>
+                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
                         <List>
                             {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
                         </List>
@@ -142,7 +142,7 @@ function ApplicantProfile() {
                         <List>
                             {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
                         </List>
-                        <Typography sx={{ display: "flex" }}><b>Hyperlink</b></Typography>
+                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
                         <List>
                             {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
                         </List>
