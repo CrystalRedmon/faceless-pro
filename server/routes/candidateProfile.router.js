@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const axios = require('axios');
+const { response } = require('express');
+require('dotenv').config();
 
 /**
  * GET route template
@@ -356,5 +359,37 @@ router.delete('/:id', (req, res) => {
       console.log('Delete Saved Jobs Failed: ', error);
     })
 });
+
+
+
+// router.get('/application/namegenerator', (req, res) => {
+
+//   axios({
+//     method: 'GET',
+//     url: 'https://www.randomlists.com/data/animals.json',
+
+//   })
+
+//     .then((apiRes) => {
+
+//       const animalList = apiRes.data.RandL.items;
+
+//       function pickRandom(list) {
+//         return list[Math.floor(Math.random() * list.length)];
+//       }
+
+//       console.log('Random Animal: ', pickRandom(animalList));
+//       res.send(pickRandom(animalList)); 
+
+//     })
+//     .catch((error) => {
+//       console.log('API GET failed, ', error);
+//       res.sendStatus(500);
+//     })
+
+// })
+
+
+
 
 module.exports = router;

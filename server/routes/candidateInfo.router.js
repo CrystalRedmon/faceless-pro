@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const axios = require('axios');
 
 
 
@@ -97,27 +98,102 @@ router.get('/', (req, res) => {
         console.log('Delete Saved Jobs Failed: ', error);
       })
   });
-  router.post('/:id', (req, res) => {
-    console.log('req.params.id',req.body);
-    console.log('req.user.user_info.id',req.user.user_info.id)
-    console.log('req.params.id',req.user.user_info.id)
+
+
+
+
+
+  router.post('/:id/application', (req, res) => {
+
+    console.log('req.params.id', req.body);
+    console.log('req.user.user_info.id', req.user.user_info.id)
+    console.log('req.params.id', req.user.user_info.id)
+  
+    // initiate randomName variable. value will be assigned after axios
+    let randomName = '';
+    // 
+    let animalList = 'https://www.randomlists.com/data/animals.json';
+    let thingList = 'https://www.randomlists.com/data/things.json'
+  
+    const requestAnimal = axios.get(animalList);
+    const requestThing = axios.get(thingList);
+  
+    // get animal and thing list at the same time
+    axios.all([requestAnimal, requestThing])
+      .then(axios.spread((...response) => {
+  
+        const responseAnimal = response[0].data.RandL.items
+        const responseThing = response[1].data.RandL.items
+  
+        function pickRandom(list) {
+          return list[Math.floor(Math.random() * list.length)];
+        }
+        // use pickRandom to select animal and thing. assign to randomName 
+        randomName = pickRandom(responseAnimal) + " " + pickRandom(responseThing);
+        console.log(randomName);
+  
+        // sqlTxt to insert application
+        const sqlTxt = `INSERT INTO "application" ("candidate_id", "job_post_id", "random_identifier")
+                        VALUES ($1, $2, '${$3}');`;
+  
+  
+        const sqlParams = [
+          req.user.user_info.id,
+          req.params.id,
+          randomName
+        ];
+  
+        pool.query(sqlTxt, sqlParams)
+          .then((response) => {
+            res.sendStatus(200);
+            console.log('Application successful');
+          })
+  
+      })).catch(error => {
+        console.log(error)
+      });
+});
+
+
+
+
+
+
+
+  //  COMMENTS OUT JOB APPLICATION JUST IN CASE...
+  //  router.post('/:id', (req, res) => {
+    
+  //   console.log('req.params.id',req.body);
+  //   console.log('req.user.user_info.id',req.user.user_info.id)
+  //   console.log('req.params.id',req.user.user_info.id)
  
 
-    const sqlTxt =`
-    INSERT INTO "application"
-    ("candidate_id","job_post_id") 
-    VALUES ($1,$2);;`;
+  //   const sqlTxt =`
+  //   INSERT INTO "application"
+  //   ("candidate_id","job_post_id") 
+  //   VALUES ($1,$2);;`;
 
-    pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
-      .then(dbRes => {
-        res.send(dbRes.rows);
-        console.log(dbRes.rows);
-      })
-      .catch(error => {
-        res.sendStatus(500);
-        console.log('Delete Saved Jobs Failed: ', error);
-      })
-  });
+  //   pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
+  //     .then(dbRes => {
+  //       res.send(dbRes.rows);
+  //       console.log(dbRes.rows);
+  //     })
+  //     .catch(error => {
+  //       res.sendStatus(500);
+  //       console.log('Delete Saved Jobs Failed: ', error);
+  //     })
+  // });
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,13 +228,6 @@ router.put('/:id', (req, res) => {
         })
 
 });
-
-
-
-
-
-
-
 
 
 
