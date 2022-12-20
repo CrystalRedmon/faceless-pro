@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { PanoramaSharp } from '@mui/icons-material';
 function SavedJobsPage() {
     const dispatch = useDispatch();
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
@@ -18,34 +19,35 @@ function SavedJobsPage() {
 
                 {savedJobsList.map(job => {
                     return (
-                        <div key={job.id} >
-                            <h4 onClick={() => {
-                                history.push(`/job/${job.id}`)
-                                    dispatch({
-                                        type: 'VIEW_JOB_DETAILS',
-                                        payload: job
-                                    })
-                                }}> {job.title} </h4>
+                        <div key={job.id}
+                        onClick={() => {
+                            history.push(`/CandidateJobDetails/${job.id}`)
+                                dispatch({
+                                    type: 'VIEW_JOB_DETAILS',
+                                    payload: `${params.id}`
+                                })
+                            }} >
+                                <h4 > {job.title} </h4>
 
-                            <p>  {job.company_name}</p>
+                                <p>  {job.company_name}</p>
 
-                            <p> {job.company_address}</p>
-                            <button
+                                <p> {job.company_address}</p>
+                                <button
                                 onClick={() => {
                                     dispatch({
                                         type: 'APPLY_JOB',
                                         payload: job
                                     })
                                 }}
-                            >APPLY </button>
-                            <button
+                                >APPLY </button>
+                                <button
                                 onClick={() => {
                                     dispatch({
                                         type: 'DELETE_JOB',
                                         payload: job
                                     })
-                                }}
-                            >REMOVE </button>
+                                    }}
+                             >REMOVE </button>
                         </div>
                     )
 
