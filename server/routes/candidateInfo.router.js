@@ -32,19 +32,20 @@ router.get('/', (req, res) => {
 
   router.get('/applied', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
-    const sqlTxt = `
-    SELECT "job_post".id,"employer".company_name,"employer".company_address, "job_post".title
-    FROM "saved_jobs"
-    JOIN "job_post"
-        ON "job_post".id = "saved_jobs".job_post_id
-    JOIN "employer"
-        ON "employer".id = "job_post".employer_id
-    WHERE "saved_jobs".candidate_id = $1;`;
+    const sqlTxt =
+     `  SELECT "job_post".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time"
+     FROM "application"
+     JOIN "job_post"
+         ON "job_post".id = "application".job_post_id
+     JOIN "employer"
+         ON "employer".id = "job_post".employer_id
+      WHERE "application".candidate_id = $1
+                `;
   
   
     pool.query(sqlTxt,[req.user.user_info.id])  
       .then(dbRes => {
-        console.log('dbres is',dbRes.rows);
+        console.log('applied jobs response',dbRes.rows);
         res.send(dbRes.rows);
         console.log(dbRes.rows);
       })
