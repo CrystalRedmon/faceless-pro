@@ -41,8 +41,13 @@ import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
 import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
+
 import ApplicantProfilePending from '../ApplicantProfilePending/ApplicantProfilePending';
 import ApplicantProfileNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
+
+import ApplicantNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
+import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+
 import './App.css';
 
 
@@ -121,6 +126,15 @@ function App() {
           >
             <CandidateLandingPage />
           </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/CandidateJobDetails/:id"
+          >
+            <CandidateJobDetails />
+          </ProtectedRoute>
+
 
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
