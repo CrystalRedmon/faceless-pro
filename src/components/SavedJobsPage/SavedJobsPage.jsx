@@ -33,6 +33,7 @@ function SavedJobsPage() {
                                     })
                                 }}
                                 >APPLY </button>
+                                
                                 <button 
                                 onClick={() => {
                                 history.push(`/CandidateJobDetails/${job.id}`)
@@ -41,6 +42,7 @@ function SavedJobsPage() {
                                 payload: `${params.id}`
                                 })
                             }} >DETAILS</button>
+
                                 <button
                                 onClick={() => {
                                     dispatch({
