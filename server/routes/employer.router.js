@@ -140,38 +140,11 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 })
 
 // GET applicant not_shared info by applicant.candidate_id
-// router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
-
-//   const candidateId = req.params.id;
-
-//   const sqlTxt = `SELECT (SELECT json_agg(e.*)
-//                       FROM   education e
-//                       WHERE  e.candidate_id = $1)  AS education
-//                   , (SELECT json_agg(e.*)
-//                       FROM   experience e
-//                       WHERE  e.candidate_id = $1)  AS experience
-//                   , (SELECT json_agg(e.*)
-//                       FROM   skill e
-//                       WHERE  e.candidate_id = $1)  AS skill
-//                   , (SELECT json_agg(e.*)
-//                       FROM   hyperlink e
-//                       WHERE  e.candidate_id = $1)  AS hyperlink
-//                   WHERE  EXISTS (SELECT FROM application a WHERE a.candidate_id = $1);`;
-
-//   pool.query(sqlTxt, [candidateId])
-//     .then(dbRes => {
-//       res.send(dbRes.rows[0]);
-//     })
-//     .catch(error => {
-//       res.sendStatus(500);
-//     })
-// });
-
 router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
   try {
     const candidateId = req.params.id;
     let dbRes = await pool.query(
-                  `SELECT (SELECT json_agg(e.*)
+      `SELECT (SELECT json_agg(e.*)
                       FROM   education e
                       WHERE  e.candidate_id = $1)  AS education
                   , (SELECT json_agg(e.*)
@@ -192,8 +165,9 @@ router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
   }
 })
 
+// GET application info by candidate_id
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
-  // console.log(req.params.id); // candidate id for application table
+
   const candidateId = req.params.id;
 
   const sqlTxt = `SELECT * FROM application WHERE candidate_id = $1;`;
