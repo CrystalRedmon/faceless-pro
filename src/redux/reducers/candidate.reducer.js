@@ -1,5 +1,6 @@
 
 import { combineReducers } from 'redux';
+
 const candidateJobs = (state = [], action) => {
     switch(action.type) {
         case 'SET_JOBS':

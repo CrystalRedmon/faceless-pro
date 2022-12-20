@@ -8,7 +8,7 @@ function CandidateJobDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
     const job = useSelector(store => store.candidateReducer.candidateJobs);
-    // console.log('current job details: ', job);
+    console.log('current job details: ', job);
 
     //FETCH CURRENT JOB WITH PARAMS ID
     useEffect(() => {

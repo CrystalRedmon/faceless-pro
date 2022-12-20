@@ -2,6 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
+const { response } = require('express');
 require('dotenv').config();
 
 /**
@@ -365,34 +366,69 @@ router.delete('/:id', (req, res) => {
 
 
 
-router.get('/application/namegenerator', (req, res)=>{
+router.post('/:id/application', (req, res) => {
+  let randomName ='';
+  let animalList = 'https://www.randomlists.com/data/animals.json';
+  let thingList = 'https://www.randomlists.com/data/things.json'
 
-let animalList = 'https://www.randomlists.com/data/animals.json';
-let thingList = 'https://www.randomlists.com/data/things.json'
-
-const requestAnimal = axios.get(animalList);
-const requestThing = axios.get(thingList);
+  const requestAnimal = axios.get(animalList);
+  const requestThing = axios.get(thingList);
 
 
   axios.all([requestAnimal, requestThing])
-  .then(axios.spread((...response) => {
+    .then(axios.spread((...response) => {
 
-    const responseAnimal = response[0].data.RandL.items
-    const responseThing = response[1].data.RandL.items
+      const responseAnimal = response[0].data.RandL.items
+      const responseThing = response[1].data.RandL.items
 
 
-    function pickRandom(list) {
-              return list[Math.floor(Math.random() * list.length)];
-            }
+      function pickRandom(list) {
+        return list[Math.floor(Math.random() * list.length)];
+      }
 
-    const randomName = pickRandom(responseAnimal) + " " + pickRandom(responseThing);
-    console.log(randomName);
+      randomName = pickRandom(responseAnimal) + " " + pickRandom(responseThing);
+      console.log(randomName);
 
-    res.send(randomName);
 
-  })).catch(error => {
-    console.log(error)
-  })
+      const sqlTxt =`INSERT INTO "application" ("candidate_id", "job_post_id", "random_identifier")
+                      VALUES (1, 3, '${randomName}');`;
+
+      
+      // const sqlParams = [
+      //   req.user.user_info.id,
+      //   req.params.id,
+      //   randomName
+      // ];
+
+      pool.query(sqlTxt)
+      .then((response)=>{
+        res.sendStatus(200);
+        console.log('Application successful');
+      })
+
+    })).catch(error => {
+      console.log(error)
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 })
