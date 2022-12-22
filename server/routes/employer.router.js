@@ -169,15 +169,29 @@ router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
 // GET application info by candidate_id
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
 
-  const candidateId = req.params.id;
+  const applicationId = req.params.id;
 
   const sqlTxt = `SELECT * FROM application WHERE id = $1;`;
 
-  pool.query(sqlTxt, [candidateId])
+  pool.query(sqlTxt, [applicationId])
     .then(dbRes => {
       res.send(dbRes.rows[0]);
     })
     .catch(error => {
+      res.sendStatus(500);
+    })
+});
+
+router.put('/status/:id', rejectUnauthenticated, (req, res) => {
+
+  const queryText = `UPDATE "application" SET "status" = $1 WHERE id = $2;`;
+  const sqlParams = [req.body.newStatus, req.params.id];
+
+  pool.query(queryText, sqlParams)
+    .then(dbRes => {
+      res.sendStatus(201);
+    })
+    .catch(err => {
       res.sendStatus(500);
     })
 });

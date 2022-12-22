@@ -34,6 +34,20 @@ function ApplicantProfile() {
     const dispatch = useDispatch();
     const history = useHistory();
 
+    function handleReject() {
+        // update status
+        dispatch({
+            type: 'UPDATE_APPLICATION_STATUS',
+            payload: {
+                id: applicant.id,
+                newStatus: 'rejected'
+            }
+        })
+        // then go back to the viewApplicantsPage
+        history.push(`/viewApplicantsPage/${params.jobId}`)
+    }
+
+
     // console.log(`the applicant's not shared info`, applicantNotSharedInfo);
     // console.log(`the applicant info from application table`, applicant);
 
@@ -49,9 +63,31 @@ function ApplicantProfile() {
             {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
             {(applicant.status === 'pending' && Object.keys(applicantNotSharedInfo).length != 0) &&
                 <Box>
-                    <Button variant='contained'>request chat</Button>
-                    <Button variant='contained'>reject</Button>
+                    <Button
+                        variant='contained'
+                        onClick={() => {
+                            dispatch({
+                                type: 'UPDATE_APPLICATION_STATUS',
+                                payload: {
+                                    id: applicant.id,
+                                    newStatus: 'not_shared'
+                                }
+                            })
+
+                        }}
+                    >
+                        request chat
+                    </Button>
+                    <Button
+                        variant='contained'
+                        onClick={handleReject}
+                    >
+                        reject
+                    </Button>
+
+                    {/* refactored */}
                     <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
+
                 </Box>
             }
 
