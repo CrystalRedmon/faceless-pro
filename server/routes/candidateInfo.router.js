@@ -4,7 +4,7 @@ const router = express.Router();
 const axios = require('axios');
 
 
-
+//GET Saved Candidate Jobs
 router.get('/', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
@@ -29,7 +29,7 @@ router.get('/', (req, res) => {
       })
   });
 
-
+//GET Applied Candidate Jobs
   router.get('/applied', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
@@ -55,11 +55,11 @@ router.get('/', (req, res) => {
       })
   });
 
-//GET Job details
+//GET specific Job details Candidate
   router.get('/detail/:id', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
-    SELECT "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
+    SELECT "job_post".id, "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
     FROM "job_post"
     JOIN "employer"
         ON "employer".id = "job_post".employer_id
@@ -78,6 +78,7 @@ router.get('/', (req, res) => {
       })
   });
 
+  //DELETE Saved Jobs Candidate
   router.delete('/:id', (req, res) => {
     console.log('req.params.id',req.body);
     console.log('req.user.user_info.id',req.user.user_info.id)
@@ -99,8 +100,6 @@ router.get('/', (req, res) => {
         console.log('Delete Saved Jobs Failed: ', error);
       })
   });
-
-
 
 
 
@@ -198,6 +197,7 @@ router.get('/', (req, res) => {
 
 
 
+  //PUT Candidate Profile
 router.put('/:id', (req, res) => {
 
     console.log('Candidate14: ', req.user, req.body)

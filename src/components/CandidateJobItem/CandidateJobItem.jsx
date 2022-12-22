@@ -1,16 +1,27 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
-import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+
 
 function CandidateJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
+    const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
     // const params = useParams();
 
+    useEffect(() => {
+        dispatch({ type: 'FETCH_SAVED_JOBS' });
+    }, []);
+
+    function submitSave(){
+        dispatch({
+            type: 'FETCH_SAVED_JOBS',
+        });
+    }
 
     const detailsPage = () => {
         history.push(`/CandidateJobDetails/${job.id}`)
+
     }
 
     return <>
@@ -22,14 +33,33 @@ function CandidateJobItem({ job }) {
                   <p>  {job.company_name}</p> 
                   
                   <p> {job.company_address}</p>
-                    <button 
+
+        <div onClick = {submitSave}>
+                  {savedJobsList.find(c => c.id === job.id) ?
+                  <button
+                  onClick={() =>{
+                    dispatch({
+                      type: 'DELETE_JOB',
+                      payload: job
+                  })
+                  }}
+                  >Unsave</button> : 
+                  
+                  <button 
                   onClick={() =>{
                       dispatch({
                         type: 'SAVE_JOBS',
                         payload: job
                     })
                     }}
-                >Save </button> <button onClick = {detailsPage}>Details </button>
+                >Save </button>
+                
+                
+
+}
+</div>
+                
+                <button onClick = {detailsPage}>Details </button>
          </div> 
     
           </section>
@@ -37,3 +67,4 @@ function CandidateJobItem({ job }) {
 }
 
 export default CandidateJobItem;
+
