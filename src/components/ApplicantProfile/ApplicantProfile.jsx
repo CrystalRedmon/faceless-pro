@@ -50,6 +50,7 @@ function ApplicantProfile() {
             }
         })
         // then go back to the viewApplicantsPage
+        // BUG: Sometimes it will remove the applicant from the list. Refresh page.
         history.push(`/viewApplicantsPage/${params.jobId}`)
     }
 
