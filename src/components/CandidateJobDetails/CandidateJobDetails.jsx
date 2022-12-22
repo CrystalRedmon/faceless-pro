@@ -50,17 +50,6 @@ function submitSave(){
       <br></br>
       <p> Job Description:{job[0].description}</p>
 
-      {/* <button
-        onClick={() => {
-          dispatch({
-            type: "SAVE_JOBS",
-            payload: job[0],
-          });
-        }}
-      >
-        Save
-      </button> */}
-
       <div onClick = {submitSave}>
                   {savedJobsList.find(c => c.id === job[0].id) ?
                   <button
@@ -80,6 +69,7 @@ function submitSave(){
                     })
                     }}
                 >Save </button>
+
 }
 </div>
 

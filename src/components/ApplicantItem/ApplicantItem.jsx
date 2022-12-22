@@ -17,6 +17,8 @@ function ApplicantItem({ applicant, jobId }) {
         })
     }, [])
 
+    console.log(applicant);
+
     switch (applicant.status) {
         case 'pending':
             return (
@@ -35,7 +37,7 @@ function ApplicantItem({ applicant, jobId }) {
                         </Box>
                         <Button
                             variant='contained'
-                            onClick={() => { history.push(`/ApplicantProfilePending/${applicant.candidate_id}/${jobId}`) }}
+                            onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
                         >
                             View Profile
                         </Button>
@@ -60,7 +62,7 @@ function ApplicantItem({ applicant, jobId }) {
                         <Button variant='contained'>Open Chat</Button>
                         <Button
                             variant='contained'
-                            onClick={() => { history.push(`/ApplicantProfileNotShared/${applicant.candidate_id}/${jobId}`) }}
+                            onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
                         >
                             View Profile
                         </Button>
@@ -83,7 +85,12 @@ function ApplicantItem({ applicant, jobId }) {
                             {applicant.status}
                         </Box>
                         <Button variant='contained'>Open Chat</Button>
-                        <Button variant='contained'>View Profile</Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
+                        >
+                            View Profile
+                        </Button>
                     </Box>
                 </Box>
             );

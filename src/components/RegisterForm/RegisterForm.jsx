@@ -29,7 +29,7 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          Email:
+          Username:
           <input
             type="text"
             name="username"

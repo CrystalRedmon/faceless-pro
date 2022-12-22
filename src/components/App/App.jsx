@@ -38,14 +38,11 @@ import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
 import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
-import AppliedToJobsPage from '../AppliedToJobsPage/AppliedToJobsPage';
+import CandidateAppliedJobsPage from '../CandidateAppliedJobsPage/CandidateAppliedJobsPage';
 import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
-import ApplicantProfilePending from '../ApplicantProfilePending/ApplicantProfilePending';
-import ApplicantProfileNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
-
-import ApplicantNotShared from '../ApplicantProfileNotShared/ApplicantProfileNotShared';
+import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 
 import './App.css';
@@ -174,19 +171,11 @@ function App() {
             <ViewApplicantsPage />
           </ProtectedRoute>
 
-          {/* Employer Applicant Status' */}
           <ProtectedRoute
             exact
-            path="/ApplicantProfilePending/:id/:jobId"
+            path="/ApplicantProfile/:id/:jobId"
           >
-            <ApplicantProfilePending />
-          </ProtectedRoute>
-
-          <ProtectedRoute
-            exact
-            path="/ApplicantProfileNotShared/:id/:jobId"
-          >
-            <ApplicantProfileNotShared />
+            <ApplicantProfile />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -249,9 +238,9 @@ function App() {
 
           <ProtectedRoute
             exact
-            path="/appliedtojobs"
+            path="/applied"
           >
-            <AppliedToJobsPage />
+            <CandidateAppliedJobsPage />
           </ProtectedRoute>
 
           <ProtectedRoute
