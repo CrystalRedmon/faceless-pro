@@ -7,6 +7,8 @@ import Experience from './Experience';
 import Skill from './Skill';
 import Hyperlink from './Hyperlink';
 
+import ApplicantNotSharedInfo from './ApplicantNotSharedInfo';
+
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -43,76 +45,24 @@ function ApplicantProfile() {
             >
                 back
             </Button>
+
             {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
             {(applicant.status === 'pending' && Object.keys(applicantNotSharedInfo).length != 0) &&
                 <Box>
                     <Button variant='contained'>request chat</Button>
                     <Button variant='contained'>reject</Button>
-                    <Box sx={{ margin: "20px" }}>
-                        <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
-                    </Box>
+                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
                 </Box>
             }
 
             {(applicant.status === 'not_shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <Box>
-                    <Box sx={{ margin: "20px" }}>
-                        <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
-                    </Box>
-                </Box>
+                <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
             }
 
             {(applicant.status === 'shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
                 <Box>
                     <h1>TODO: SHARED INFO HERE</h1>
-                    <Box sx={{ margin: "20px" }}>
-                        <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
-                    </Box>
+                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
                 </Box>
             }
         </Box>

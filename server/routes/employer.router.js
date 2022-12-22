@@ -145,18 +145,18 @@ router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
     const applicationId = req.params.id;
 
     let dbRes = await pool.query(
-      `SELECT (SELECT json_agg(e.*)
-          FROM   education e
-          WHERE  e.id = 2)  AS education
-        , (SELECT json_agg(e.*)
-          FROM   experience e
-          WHERE  e.id = 2)  AS experience
-        , (SELECT json_agg(e.*)
-          FROM   skill e
-          WHERE  e.id = 2)  AS skill
-        , (SELECT json_agg(e.*)
-          FROM   hyperlink e
-          WHERE  e.id = 2)  AS hyperlink
+      `SELECT (SELECT json_agg(ed.*)
+          FROM   education ed
+          WHERE  ed.candidate_id = $1)  AS education
+        , (SELECT json_agg(ex.*)
+          FROM   experience ex
+          WHERE  ex.candidate_id = $1)  AS experience
+        , (SELECT json_agg(s.*)
+          FROM   skill s
+          WHERE  s.candidate_id = $1)  AS skill
+        , (SELECT json_agg(h.*)
+          FROM   hyperlink h
+          WHERE  h.candidate_id = $1)  AS hyperlink
       WHERE  EXISTS (SELECT FROM application a WHERE a.id = $1);`, [applicationId]);
     res.send(dbRes.rows[0]);
   }
