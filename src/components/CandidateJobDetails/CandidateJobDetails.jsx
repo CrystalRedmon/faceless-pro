@@ -7,6 +7,7 @@ function CandidateJobDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const job = useSelector((store) => store.candidateReducer.candidateJobs);
+  const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
   // console.log('current job details: ', job);
 
   //FETCH CURRENT JOB WITH PARAMS ID
@@ -15,8 +16,16 @@ function CandidateJobDetails() {
       type: "VIEW_JOB_DETAILS",
       payload: `${params.id}`,
     });
+    dispatch({ type: 'FETCH_SAVED_JOBS' });
     // console.log(params.id)
   }, []);
+
+
+function submitSave(){
+    dispatch({
+        type: 'FETCH_SAVED_JOBS',
+    });
+}
 
   console.log("params.id is...", params.id);
 
@@ -41,7 +50,7 @@ function CandidateJobDetails() {
       <br></br>
       <p> Job Description:{job[0].description}</p>
 
-      <button
+      {/* <button
         onClick={() => {
           dispatch({
             type: "SAVE_JOBS",
@@ -50,7 +59,30 @@ function CandidateJobDetails() {
         }}
       >
         Save
-      </button>
+      </button> */}
+
+      <div onClick = {submitSave}>
+                  {savedJobsList.find(c => c.id === job[0].id) ?
+                  <button
+                  onClick={() =>{
+                    dispatch({
+                      type: 'DELETE_JOB',
+                      payload: job[0],
+                  })
+                  }}
+                  >Unsave</button> : 
+                  
+                  <button 
+                  onClick={() =>{
+                      dispatch({
+                        type: 'SAVE_JOBS',
+                        payload: job[0],
+                    })
+                    }}
+                >Save </button>
+}
+</div>
+
       <button>Apply</button>
     </>
   );
