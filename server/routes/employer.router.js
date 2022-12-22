@@ -139,7 +139,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
-// GET applicant not_shared info by applicant.candidate_id
+// GET applicant not_shared info by applicant.id
 router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
   try {
     const applicationId = req.params.id;
@@ -166,7 +166,7 @@ router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
   }
 })
 
-// GET application info by candidate_id
+// GET application info by application.id
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
 
   const applicationId = req.params.id;
@@ -182,6 +182,7 @@ router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+// UPDATE status of application by application.id
 router.put('/status/:id', rejectUnauthenticated, (req, res) => {
 
   const queryText = `UPDATE "application" SET "status" = $1 WHERE id = $2;`;
@@ -195,5 +196,23 @@ router.put('/status/:id', rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     })
 });
+
+// GET applicant shared info by applicant.id
+router.get('/shared/:id', rejectUnauthenticated, async (req, res) => {
+  try {
+    const applicationId = req.params.id;
+
+    let dbRes = await pool.query(
+      `SELECT first_name, last_name, email, linkedin_link, resume_path, cover_letter_path 
+        FROM application
+        JOIN candidate ON application.candidate_id = candidate.id
+        WHERE application.id = $1;`, [applicationId]);
+    res.send(dbRes.rows[0]);
+  }
+  catch (err) {
+    console.error('GET /shared/:id', err);
+    res.sendStatus(500);
+  }
+})
 
 module.exports = router;

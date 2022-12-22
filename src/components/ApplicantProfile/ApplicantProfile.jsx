@@ -8,6 +8,7 @@ import Skill from './Skill';
 import Hyperlink from './Hyperlink';
 
 import ApplicantNotSharedInfo from './ApplicantNotSharedInfo';
+import ApplicantSharedInfo from './ApplicantSharedInfo';
 
 import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -17,6 +18,7 @@ import List from '@mui/material/List';
 function ApplicantProfile() {
 
     const applicantNotSharedInfo = useSelector(store => store.jobs.applicantNotSharedInfo);
+    const applicantSharedInfo = useSelector(store => store.jobs.applicantSharedInfo);
     const applicant = useSelector(store => store.jobs.applicant);
 
     useEffect(() => {
@@ -26,6 +28,10 @@ function ApplicantProfile() {
         })
         dispatch({
             type: 'FETCH_APPLICANT_FROM_APPLICATION_TABLE',
+            payload: `${params.id}`
+        })
+        dispatch({
+            type: 'FETCH_APPLICANT_SHARED_INFO',
             payload: `${params.id}`
         })
     }, [])
@@ -49,6 +55,7 @@ function ApplicantProfile() {
 
 
     // console.log(`the applicant's not shared info`, applicantNotSharedInfo);
+    // console.log(`the applicant's shared info`, applicantNotSharedInfo);
     // console.log(`the applicant info from application table`, applicant);
 
     return (
@@ -86,19 +93,19 @@ function ApplicantProfile() {
                     </Button>
 
                     {/* refactored */}
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
+                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
 
                 </Box>
             }
 
             {(applicant.status === 'not_shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
+                <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
             }
 
             {(applicant.status === 'shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
                 <Box>
-                    <h1>TODO: SHARED INFO HERE</h1>
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} />
+                    <ApplicantSharedInfo applicantSharedInfo={applicantSharedInfo} />
+                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
                 </Box>
             }
         </Box>

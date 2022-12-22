@@ -143,6 +143,20 @@ function* updateApplicationStatus(action) {
     });
 }
 
+function* fetchApplicantSharedInfo(action) {
+    try {
+        const response = yield axios.get(`/api/employer/shared/${action.payload}`);
+
+        yield put({
+            type: 'SET_APPLICANT_SHARED_INFO',
+            payload: response.data
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 
 function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
@@ -155,6 +169,7 @@ function* JobSaga() {
     yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
     yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
     yield takeEvery('UPDATE_APPLICATION_STATUS', updateApplicationStatus);
+    yield takeEvery('FETCH_APPLICANT_SHARED_INFO', fetchApplicantSharedInfo);
 }
 
 

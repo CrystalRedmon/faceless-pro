@@ -7,9 +7,12 @@ import Experience from './Experience';
 import Skill from './Skill';
 import Hyperlink from './Hyperlink';
 
-function ApplicantNotSharedInfo({ applicantNotSharedInfo }) {
+function ApplicantNotSharedInfo({ applicantNotSharedInfo, applicant }) {
+    console.log(applicant);
     return (
         <Box sx={{ margin: "20px" }}>
+            {applicant.status != 'shared' && <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.random_identifier}</Typography>}
+
             <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
             <List>
                 {applicantNotSharedInfo.education.map(education => <Education key={education.id} education={education} />)}
