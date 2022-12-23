@@ -1,152 +1,75 @@
-
-import "./Skills.css";
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 
 function Skills() {
-  const [serviceList, setServiceList] = useState([{ service: "" }]);
-
-  const getSkills = (evt) => {
-    evt.preventDefault();
-    console.log('inside skills', serviceList)
-    dispatch({
-        type: 'GET_SKILLS',
-        payload: serviceList
-    })
-    history.push('/VoluntaryIdentification');
-}
+  const history = useHistory();
+  const dispatch = useDispatch();
 
 
-  const handleServiceChange = (e, index) => {
-    const { name, value } = e.target;
-    const list = [...serviceList];
-    list[index][name] = value;
-    setServiceList(list);
+  const [formFields, setFormFields] = useState([
+    { Skill:''}
+  ])
+
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+    // setFormFields(JSON.stringify(data));
+  }
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log('Formfield info is here', formFields);
+  
+    formFields.forEach((form) => {
+      dispatch({
+        type: 'ADD_SKILL',
+        payload: {
+          Skill: form.Skill,
+        },
+      });
+    });
   };
 
+  const addFields = () => {
+    let object = {
+      Skill: ''
+    }
 
-  const handleServiceRemove = (index) => {
-    const list = [...serviceList];
-    list.splice(index, 1);
-    setServiceList(list);
-  };
+    setFormFields([...formFields, object])
+  }
 
-  const handleServiceAdd = () => {
-    setServiceList([...serviceList, { service: "" }]);
-  };
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1)
+    setFormFields(data)
+  }
 
   return (
-    <form className="App" autoComplete="off">
-      <div className="form-field">
-        <label htmlFor="service"> Add Skills </label>
-        {serviceList.map((singleService, index) => (
-          <div key={index} className="services">
-            <div className="first-division">
+    <div className="Skill">
+      <form onSubmit={submit}>
+        {formFields.map((form, index) => {
+          return (
+            <div key={index}>
               <input
-                name="service"
-                type="text"
-                id="service"
-                value={singleService.service}
-                onChange={(e) => handleServiceChange(e, index)}
-                required
+                name='Skill'
+                placeholder='Add Skill'
+                onChange={event => handleFormChange(event, index)}
+                value={form.School}
               />
-              {serviceList.length - 1 === index && serviceList.length < 4 && (
-                <button
-                  type="button"
-                  onClick={handleServiceAdd}
-                  className="add-btn"
-                >
-                  <span>Add a Skill</span>
-                </button>
-              )}
+              <button onClick={() => removeFields(index)}>Remove</button>
             </div>
-            <div className="second-division">
-              {serviceList.length !== 1 && (
-                <button
-                  type="button"
-                  onClick={() => handleServiceRemove(index)}
-                  className="remove-btn"
-                >
-                  <span>Remove</span>
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="output">
-        <h2>Skills</h2>
-        {serviceList &&
-          serviceList.map((singleService, index) => (
-            <ul key={index}>
-              {singleService.service && <li>{singleService.service}</li>}
-            </ul>
-          ))}
-      </div>
-    </form>
+          )
+        })}
+      </form>
+      <button onClick={addFields}>Add More..</button>
+      <br />
+      <button onClick={submit}>Submit</button>
+    </div>
   );
 }
 
+
 export default Skills;
-// import React, { useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
-// import { useEffect } from 'react';
-// import {useSelector} from 'react-redux';
-
-
-// function Skills() {
-//     const [skills, setSkills] = useState('');
-//     const dispatch = useDispatch();
-//     const history = useHistory();
-
-//     const getSkills = (evt) => {
-//         evt.preventDefault();
-//         console.log('inside Skills', skills)
-//         // dispatch({
-//         //     type: 'GET_SKILLS',
-//         //     payload: skills
-//         // })
-//         history.push('/VoluntaryIdentification');
-//     }
-//   class MyForm extends React.Component {
-//     state = {
-//       isFormOpen: false
-//     };
-
-//     handleFormOpen = () => {
-//       this.setState({ isFormOpen: true });
-//     }
-
-//     render() {
-//       return (
-//         <div>
-//             <h1>INSIDE SKILLS</h1>
-//           {
-//             this.state.isFormOpen
-//               ? <form>
-//                 <input type='text'
-//               placeholder='Insert Skills'
-              
-//               >
-//               </input>
-//               </form>
-//               : <button onClick={this.handleFormOpen}>+ Add Skills</button>
-//           }
-
-//         <button onClick={getSkills}> Save and Continue </button>
-//         </div>
-
-//       );
-//     }
-//   }
-
-
-//   return <MyForm />;
-// }
-
-// export default Skills;

@@ -97,6 +97,34 @@ function* appliedJobs(){
         console.error('error getting applied jobs: ', err);
     }
 }
+
+function* addEducation(action){
+    console.log('action.payload Add education',action.payload)
+    try{
+        yield axios.post(`/api/candidateProfile/education`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding education',error)
+    }
+}
+function* addExperience(action){
+    console.log('action.payload Add experience',action.payload)
+    try{
+        yield axios.post(`/api/candidateProfile/experience`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding education',error)
+    }
+}
+function* addSkill(action){
+    console.log('action.payload Add skill',action.payload)
+    try{
+        yield axios.post(`/api/candidateProfile/skill`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding education',error)
+    }
+}
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -106,6 +134,9 @@ function* candidateSaga() {
     yield takeLatest('DELETE_JOB', deleteJob);
     yield takeLatest('VIEW_JOB_DETAILS', viewJobDetails);
     yield takeLatest('FETCH_APPLIED_JOBS', appliedJobs);
+    yield takeLatest('ADD_EDUCATION', addEducation);
+    yield takeLatest('ADD_EXPERIENCE',addExperience);
+    yield takeLatest('ADD_SKILL', addSkill);
 
 
 
