@@ -3,6 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
 const { response } = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 require('dotenv').config();
 
 /**
@@ -62,23 +63,31 @@ router.get('/education/:id', (req, res) => {
       console.log(result.rows);
     })
     .catch((error) => {
-      console.log('error fetching items from education', error)
+      console.log('error fetching items from education', error);
       res.sendStatus(500)
     })
 
 
 });
 
-//POST education for candidate.
-router.post('/education', (req, res) => {
-  // POST route code here
+
+router.post('/education', rejectUnauthenticated, (req, res) => {
+  // console.log('req.body', req.body);
+  const sqlParam = [
+    req.user.id,
+    req.body.School,
+    req.body.Major,
+    req.body.Dates,
+    req.body.Notes
+  ]
+
   const sqlText = `
  INSERT INTO "education" 
- (candidate_id, school, qualification, dates, note) 
+ ("candidate_id", "school", "qualification", "dates", "note") 
  VALUES ($1, $2, $3, $4, $5)`;
 
   pool
-    .query(sqlText, [req.body.candidate_id, req.body.school, req.body.qualification, req.body.dates, req.body.note])
+    .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
     .catch((err) => {
       console.log('Education Post info failed ', err);
@@ -87,8 +96,8 @@ router.post('/education', (req, res) => {
 });
 
 
-
 //GET experience for candiddate
+
 router.get('/experience/:id', (req, res) => {
 
  const sqlText = `SELECT * FROM "experience"
@@ -108,24 +117,34 @@ router.get('/experience/:id', (req, res) => {
 });
 
 
+
 //POST experience for candidate.
-router.post('/experience', (req, res) => {
-  // POST route code here
+router.post('/experience', rejectUnauthenticated, (req, res) => {
+  // console.log('req.body', req.body);
+  const sqlParam = [
+    req.user.id,
+    req.body.Company,
+    req.body.Title,
+    req.body.Dates,
+    req.body.JobDuty
+  ]
+  
   const sqlText = `
   INSERT INTO "experience" 
   (candidate_id, employer, title, dates, job_duties) 
   VALUES ($1, $2, $3, $4, $5)`;
 
   pool
-    .query(sqlText, [req.body.candidate_id, req.body.employer, req.body.title, req.body.dates, req.body.job_duties])
+    .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log('Experience Post info failed ', err);
+      console.log('Education Post info failed ', err);
       res.sendStatus(500);
     });
 });
 
 //GET skill for candidate.
+
 router.get('/skill/:id', (req, res) => {
 
   const sqlText = `SELECT * FROM "skill"
@@ -209,21 +228,27 @@ router.delete('/education/:id', (req, res) => {
 });
 
 //POST skill for candidate.
-router.post('/skill', (req, res) => {
-  // POST route code here
+router.post('/skill', rejectUnauthenticated, (req, res) => {
+  console.log('req.body', req.body);
+  const sqlParam = [
+    req.user.id,
+    req.body.Skill
+  ]
+  
   const sqlText = `
-    INSERT INTO "skill" 
-    (candidate_id, skill_name) 
-    VALUES ($1, $2)`;
+INSERT INTO "skill" 
+(candidate_id, skill_name) 
+VALUES ($1, $2)`;
 
   pool
-    .query(sqlText, [req.body.candidate_id, req.body.skill_name])
+    .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log('skill Post info failed ', err);
+      console.log('Education Post info failed ', err);
       res.sendStatus(500);
     });
 });
+
 
 // GET the 3 Latest Job Posts in the Candidate Landing Page.
 router.get('/', (req, res) => {

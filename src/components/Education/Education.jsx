@@ -1,63 +1,100 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import './Education.css';
 
 function Education() {
-  const [education, setEducation] = useState('');
-  const [major, setMajor] = useState('');
-  const [years, setYears] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const getEducation = (evt) => {
-    evt.preventDefault();
-    console.log('inside Education', education)
-    // dispatch({
-    //     type: 'GET_EDUCATION',
-    //     payload: education
-    // })
-    history.push('/Experience');
+
+  const [formFields, setFormFields] = useState([
+    { School: '', Major: '' , Dates:'',Notes: ''},
+  ])
+
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+    // setFormFields(JSON.stringify(data));
   }
-  class MyForm extends React.Component {
-    state = {
-      isFormOpen: false
-    };
 
-    handleFormOpen = () => {
-      this.setState({ isFormOpen: true });
-    };
+  const submit = (e) => {
+    e.preventDefault();
+    console.log('Formfield info is here', formFields);
+  
+    formFields.forEach((form) => {
+      dispatch({
+        type: 'ADD_EDUCATION',
+        payload: {
+          School: form.School,
+          Major: form.Major,
+          Dates: form.Dates,
+          Notes: form.Notes,
+        },
+      });
+      history.push('/experience');
+    });
+  };
 
-    render() {
-      return (
-
-        <div>
-          <h1>INSIDE EDUCATION</h1>
-          {
-            this.state.isFormOpen
-              ? (
-                <form>
-                  <input type='text' placeholder='Insert School'></input>
-                  <input type='text' placeholder='Major/Concentration'></input>
-                  <input type='text' placeholder='Dates Attended'></input>
-                  <input type='text' placeholder='Major Projects/Courses'></input>
-
-                </form>
-              )
-              : <button onClick={this.handleFormOpen}>+ Add Education</button>
-          }
-
-
-                <button onClick={getEducation} onChange={(evt)=> setEducation(evt.target.value)}>Save and Continue</button>
-
-        </div>
-
-      );
+  const addFields = () => {
+    let object = {
+      School: '',
+      Major: '',
+      Dates: '',
+      Notes: ''
     }
+
+    setFormFields([...formFields, object])
   }
 
-  return <MyForm />;
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1)
+    setFormFields(data)
+  }
+
+  return (
+    <div className="Education">
+      <form onSubmit={submit}>
+        {formFields.map((form, index) => {
+          return (
+            <div key={index}>
+              <input
+                name='School'
+                placeholder='School Name'
+                onChange={event => handleFormChange(event, index)}
+                value={form.School}
+              />
+              <input
+                name='Major'
+                placeholder='Major'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Major}
+              />
+              <input
+                name='Dates'
+                placeholder='Dates Attended'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Dates}
+              />
+              <input
+                name='Notes'
+                placeholder='Notes'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Notes}
+              />
+              <button onClick={() => removeFields(index)}>Remove</button>
+            </div>
+          )
+        })}
+      </form>
+      <button onClick={addFields}>Add More..</button>
+      <br />
+      <button onClick={submit}>Submit</button>
+    </div>
+  );
 }
+
 
 export default Education;

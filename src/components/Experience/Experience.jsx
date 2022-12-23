@@ -1,58 +1,99 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+
 
 function Experience() {
-  const [experience, setExperience] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const getExperience = (evt) => {
-    evt.preventDefault();
-    console.log('inside Experience', experience)
-    // dispatch({
-    //     type: 'GET_EXPERIENCE',
-    //     payload: experience
-    // })
-    history.push('/Skills');
+
+  const [formFields, setFormFields] = useState([
+    { Company: '', Title: '' , Dates:'',JobDuty: ''},
+  ])
+
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+    // setFormFields(JSON.stringify(data));
   }
 
-  class MyForm extends React.Component {
-    state = {
-      isFormOpen: false
-    };
+  const submit = (e) => {
+    e.preventDefault();
+    console.log('Formfield info is here', formFields);
+  
+    formFields.forEach((form) => {
+      dispatch({
+        type: 'ADD_EXPERIENCE',
+        payload: {
+          Company: form.Company,
+          Title: form.Title,
+          Dates: form.Dates,
+          JobDuty: form.JobDuty,
+        },
+      });
+    });
+  };
 
-    handleFormOpen = () => {
-      this.setState({ isFormOpen: true });
+  const addFields = () => {
+    let object = {
+      Company: '',
+      Title: '',
+      Dates: '',
+      JobDuty: ''
     }
 
-    render() {
-      return (
-        <div>
-          <h1>INSIDE EXPERIENCE</h1>
-          {
-            this.state.isFormOpen
-              ? (
-                <form>
-                  <input type='text' placeholder='Company'></input>
-                  <input type='text' placeholder='Job Title'></input>
-                  <input type='text' placeholder='Dates Worked'></input>
-                  <input type='text' placeholder='Job Duties'></input>
-
-                </form>
-              )
-              : <button onClick={this.handleFormOpen}>+ Add Experience</button>
-          }
-          <button onClick={getExperience}>Save and Continue</button>
-        </div>
-
-      );
-    }
+    setFormFields([...formFields, object])
   }
 
-  return <MyForm />;
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1)
+    setFormFields(data)
+  }
+
+  return (
+    <div className="Education">
+      <form onSubmit={submit}>
+        {formFields.map((form, index) => {
+          return (
+            <div key={index}>
+              <input
+                name='Company'
+                placeholder='Company Name'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Company}
+              />
+              <input
+                name='Title'
+                placeholder='Title'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Title}
+              />
+              <input
+                name='Dates'
+                placeholder='Dates'
+                onChange={event => handleFormChange(event, index)}
+                value={form.Dates}
+              />
+              <input
+                name='JobDuty'
+                placeholder='Job Duty'
+                onChange={event => handleFormChange(event, index)}
+                value={form.JobDuty}
+              />
+              <button onClick={() => removeFields(index)}>Remove</button>
+            </div>
+          )
+        })}
+      </form>
+      <button onClick={addFields}>Add More..</button>
+      <br />
+      <button onClick={submit}>Submit</button>
+    </div>
+  );
 }
+
 
 export default Experience;
