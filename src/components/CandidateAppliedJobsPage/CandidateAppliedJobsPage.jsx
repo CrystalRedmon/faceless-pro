@@ -13,6 +13,7 @@ function AppliedToJobsPage() {
 
     const appliedJobsList = useSelector(store => store.candidateReducer.candidateJobs);
     console.log('Jobs applied to:', appliedJobsList)
+    
     useEffect(() => {
         dispatch({ type: 'FETCH_APPLIED_JOBS' });
     }, []);

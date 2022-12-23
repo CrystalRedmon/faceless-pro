@@ -56,6 +56,10 @@ try{
     yield put({
         type: 'FETCH_SAVED_JOBS'
     })
+    yield put({
+        type: 'FETCH_APPLIED_JOBS' 
+        // FETCH APPLIED JOBS AFTER A JOB AS BEEN APPLIED TO ENSURES THE MOST RECENTLY APPLIED JOB APPEARS ON APPLIED JOB PAGE AFTER APPLY CLICKED ON CANDIDATE JOB DETAILS
+    })
 }
 catch( error ){
     console.log('error deleting request',error)

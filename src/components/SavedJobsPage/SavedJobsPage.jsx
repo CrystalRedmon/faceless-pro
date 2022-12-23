@@ -4,10 +4,13 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { PanoramaSharp } from '@mui/icons-material';
+
+
 function SavedJobsPage() {
     const dispatch = useDispatch();
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
     const history = useHistory()
+
     console.log('savedJob', savedJobsList)
     useEffect(() => {
         dispatch({ type: 'FETCH_SAVED_JOBS' });
@@ -31,6 +34,7 @@ function SavedJobsPage() {
                                         type: 'APPLY_JOB',
                                         payload: job
                                     })
+                                    history.push('/applied');
                                 }}
                                 >APPLY </button>
                                 
