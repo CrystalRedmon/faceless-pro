@@ -34,15 +34,23 @@ require('dotenv').config();
 
 
 //POST Candidate Profile information 
-router.post('/', (req, res) => {
+router.post('/profile', (req, res) => {
   // POST route code here
   const sqlText = `
   INSERT INTO "candidate" 
-  (user_id, first_name, last_name, linkedin_link, resume_path, cover_letter_path) 
-  VALUES ($1, $2, $3, $4, $5, $6)`;
-
+  (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
+  VALUES ($1, $2, $3, $4, $5, $6,$7)`;
+    const sqlParam = [
+      req.user.user_info.id,
+      req.body.FirstName,
+      req.body.LastName,
+      req.body.Email,
+      req.body.LinkedIn,
+      req.body.ResumePath,
+      req.body.CoverLetterPath
+    ]
   pool
-    .query(sqlText, [req.body.user_id, req.body.first_name, req.body.last_name, req.body.linkedin_link, req.body.resume_path, req.body.cover_letter_path])
+    .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
     .catch((err) => {
       console.log('Candidate Post info failed ', err);
