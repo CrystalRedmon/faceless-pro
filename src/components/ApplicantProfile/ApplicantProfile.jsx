@@ -32,44 +32,10 @@ function ApplicantProfile() {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    console.log(`the applicant's not shared info`, applicantNotSharedInfo);
-    console.log(`the applicant info from application table`, applicant);
+    // console.log(`the applicant's not shared info`, applicantNotSharedInfo);
+    // console.log(`the applicant info from application table`, applicant);
 
     return (
-        // <Box>
-        // <Button
-        //     variant='contained'
-        //     onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
-        // >
-        //     back
-        // </Button>
-
-        // <Button variant='contained'>request chat</Button>
-        // <Button variant='contained'>reject</Button>
-        //     <Box>
-        //         {applicantNotSharedInfo.length != 0 &&
-        //             <Box sx={{ margin: "20px" }}>
-        //                 <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-        //                 <List>
-        //                     {applicantNotSharedInfo.education.map(education => <Education key={education.id} education={education} />)}
-        //                 </List>
-        //                 <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-        //                 <List>
-        //                     {applicantNotSharedInfo.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-        //                 </List>
-        //                 <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-        //                 <List>
-        //                     {applicantNotSharedInfo.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-        //                 </List>
-        //                 <Typography sx={{ display: "flex" }}><b>Hyperlink</b></Typography>
-        //                 <List>
-        //                     {applicantNotSharedInfo.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-        //                 </List>
-        //             </Box>
-        //         }
-        //     </Box>
-        // </Box>
-
         <Box>
             <Button
                 variant='contained'

@@ -97,7 +97,7 @@ function* fetchApplicants(action) {
 }
 
 function* fetchApplicantNotSharedInfo(action) {
-    // console.log('in fetchApplicantNotSharedInfo', action.payload); // application.candidate_id
+
     try {
         const response = yield axios.get(`/api/employer/not_shared/${action.payload}`);
 

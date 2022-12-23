@@ -19,14 +19,7 @@ function SavedJobsPage() {
 
                 {savedJobsList.map(job => {
                     return (
-                        <div key={job.id}
-                        onClick={() => {
-                            history.push(`/CandidateJobDetails/${job.id}`)
-                                dispatch({
-                                    type: 'VIEW_JOB_DETAILS',
-                                    payload: `${params.id}`
-                                })
-                            }} >
+                        <div key={job.id}>
                                 <h4 > {job.title} </h4>
 
                                 <p>  {job.company_name}</p>
@@ -40,6 +33,16 @@ function SavedJobsPage() {
                                     })
                                 }}
                                 >APPLY </button>
+                                
+                                <button 
+                                onClick={() => {
+                                history.push(`/CandidateJobDetails/${job.id}`)
+                                dispatch({
+                                 type: 'VIEW_JOB_DETAILS',
+                                payload: `${params.id}`
+                                })
+                            }} >DETAILS</button>
+
                                 <button
                                 onClick={() => {
                                     dispatch({

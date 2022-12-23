@@ -32,9 +32,8 @@ require('dotenv').config();
 
 // });
 
-/**
- * POST route template
- */
+
+//POST Candidate Profile information 
 router.post('/', (req, res) => {
   // POST route code here
   const sqlText = `
@@ -51,13 +50,8 @@ router.post('/', (req, res) => {
     });
 });
 
-// * /GET route template
-// */
-// GET the 3 Latest Job Posts in the Candidate Landing Page.
+//GET education for candidate.
 router.get('/education/:id', (req, res) => {
-
-
-  // GET route code here
 
   const sqlText = `SELECT * FROM "education"
  WHERE "candidate_id" = $1;`;
@@ -76,11 +70,9 @@ router.get('/education/:id', (req, res) => {
 
 });
 
-/**
-* POST route template
-*/
+
 router.post('/education', rejectUnauthenticated, (req, res) => {
-  console.log('req.body', req.body);
+  // console.log('req.body', req.body);
   const sqlParam = [
     req.user.id,
     req.body.School,
@@ -88,6 +80,7 @@ router.post('/education', rejectUnauthenticated, (req, res) => {
     req.body.Dates,
     req.body.Notes
   ]
+
   const sqlText = `
  INSERT INTO "education" 
  ("candidate_id", "school", "qualification", "dates", "note") 
@@ -103,23 +96,15 @@ router.post('/education', rejectUnauthenticated, (req, res) => {
 });
 
 
+//GET experience for candiddate
 
-
-
-// * /GET route template
-// */
-// GET the 3 Latest Job Posts in the Candidate Landing Page.
 router.get('/experience/:id', (req, res) => {
 
-
-  // GET route code here
-
-  const sqlText = `SELECT * FROM "experience"
+ const sqlText = `SELECT * FROM "experience"
   WHERE "candidate_id" = $1;`;
 
   pool.query(sqlText, [req.params.id])
     .then((result) => {
-      // console.log('result is:',result.rows)
       res.send(result.rows[0])
       console.log(result.rows);
     })
@@ -132,12 +117,10 @@ router.get('/experience/:id', (req, res) => {
 });
 
 
-/**
-* POST route template
-*/
 
+//POST experience for candidate.
 router.post('/experience', rejectUnauthenticated, (req, res) => {
-  console.log('req.body', req.body);
+  // console.log('req.body', req.body);
   const sqlParam = [
     req.user.id,
     req.body.Company,
@@ -145,6 +128,7 @@ router.post('/experience', rejectUnauthenticated, (req, res) => {
     req.body.Dates,
     req.body.JobDuty
   ]
+  
   const sqlText = `
   INSERT INTO "experience" 
   (candidate_id, employer, title, dates, job_duties) 
@@ -159,15 +143,9 @@ router.post('/experience', rejectUnauthenticated, (req, res) => {
     });
 });
 
+//GET skill for candidate.
 
-
-// * /GET route template
-// */
-// GET the 3 Latest Job Posts in the Candidate Landing Page.
 router.get('/skill/:id', (req, res) => {
-
-
-  // GET route code here
 
   const sqlText = `SELECT * FROM "skill"
   WHERE "candidate_id" = $1;`;
@@ -189,9 +167,6 @@ router.get('/skill/:id', (req, res) => {
 // DELETE a candidates skill
 router.delete('/skill/:id', (req, res) => {
 
-
-  // GET route code here
-
   const sqlText = `DELETE  FROM "skill"
   WHERE "id" = $1;`;
 
@@ -208,6 +183,7 @@ router.delete('/skill/:id', (req, res) => {
 
 
 });
+
 // DELETE a candidates experience
 router.delete('/experience/:id', (req, res) => {
 
@@ -234,9 +210,6 @@ router.delete('/experience/:id', (req, res) => {
 // DELETE a candidates education
 router.delete('/education/:id', (req, res) => {
 
-
-  // GET route code here
-
   const sqlText = `DELETE  FROM "education"
   WHERE "id" = $1;`;
 
@@ -254,12 +227,14 @@ router.delete('/education/:id', (req, res) => {
 
 });
 
+//POST skill for candidate.
 router.post('/skill', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   const sqlParam = [
     req.user.id,
     req.body.Skill
   ]
+  
   const sqlText = `
 INSERT INTO "skill" 
 (candidate_id, skill_name) 
@@ -298,6 +273,7 @@ router.get('/', (req, res) => {
     })
 });
 
+//GET the job search by keyword for candidate
 router.get('/:keyword', (req, res) => {
   console.log("req.params.keyword", req.params.keyword);
   const sqlTxt = `
@@ -322,27 +298,6 @@ router.get('/:keyword', (req, res) => {
     })
 });
 
-
-
-// GET to the jobs details page in the Candidate Landing Page.
-router.get('/:id', (req, res) => {
-
-  const sqlTxt = `SELECT "employer".company_name,"employer".logo_path,"job_post".title,"job_post".description
-    FROM "job_post"
-    JOIN "employer"
-        on "employer".id = "job_post".employer_id
-    WHERE "job_post".id = $1;`;
-
-  pool.query(sqlTxt, [req.params.id])
-    .then(dbRes => {
-      res.send(dbRes.rows);
-      console.log(dbRes.rows);
-    })
-    .catch(error => {
-      res.sendStatus(500);
-      console.log('GET job details failed: ', error);
-    })
-});
 
 //SAVE jobs 
 router.post('/:id', (req, res) => {
