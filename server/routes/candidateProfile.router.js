@@ -82,7 +82,7 @@ router.get('/education/:id', (req, res) => {
 router.post('/education', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   const sqlParam = [
-    req.user.id,
+    req.user.user_info.id ,
     req.body.School,
     req.body.Major,
     req.body.Dates,
@@ -139,7 +139,7 @@ router.get('/experience/:id', (req, res) => {
 router.post('/experience', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   const sqlParam = [
-    req.user.id,
+    req.user.user_info.id ,
     req.body.Company,
     req.body.Title,
     req.body.Dates,
@@ -257,7 +257,7 @@ router.delete('/education/:id', (req, res) => {
 router.post('/skill', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   const sqlParam = [
-    req.user.id,
+    req.user.user_info.id ,
     req.body.Skill
   ]
   const sqlText = `
