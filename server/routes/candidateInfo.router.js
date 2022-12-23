@@ -105,7 +105,7 @@ router.get('/', (req, res) => {
 
   router.post('/:id/application', (req, res) => {
 
-    console.log('req.params.id', req.body);
+    console.log('req.params.id', req.params.id);
     console.log('req.user.user_info.id', req.user.user_info.id)
     console.log('req.params.id', req.user.user_info.id)
   
@@ -134,7 +134,7 @@ router.get('/', (req, res) => {
   
         // sqlTxt to insert application
         const sqlTxt = `INSERT INTO "application" ("candidate_id", "job_post_id", "random_identifier")
-                        VALUES ($1, $2, '${$3}');`;
+                        VALUES ($1, $2, $3);`;
   
   
         const sqlParams = [

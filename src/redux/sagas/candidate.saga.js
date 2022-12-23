@@ -51,10 +51,14 @@ function* fetchSavedJobs(){
 function* applyJob(action) {
 console.log('action.payload for applied job: ', action.payload.id)
 try{
-    yield axios.post(`/api/candidateInfo/${action.payload.id}`)
+    yield axios.post(`/api/candidateInfo/${action.payload.id}/application`)
 
     yield put({
         type: 'FETCH_SAVED_JOBS'
+    })
+    yield put({
+        type: 'FETCH_APPLIED_JOBS' 
+        // FETCH APPLIED JOBS AFTER A JOB AS BEEN APPLIED TO ENSURES THE MOST RECENTLY APPLIED JOB APPEARS ON APPLIED JOB PAGE AFTER APPLY CLICKED ON CANDIDATE JOB DETAILS
     })
 }
 catch( error ){

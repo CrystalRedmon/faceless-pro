@@ -21,11 +21,11 @@ function CandidateJobDetails() {
   }, []);
 
 
-function submitSave(){
+  function submitSave() {
     dispatch({
-        type: 'FETCH_SAVED_JOBS',
+      type: 'FETCH_SAVED_JOBS',
     });
-}
+  }
 
   console.log("params.id is...", params.id);
 
@@ -50,30 +50,37 @@ function submitSave(){
       <br></br>
       <p> Job Description:{job[0].description}</p>
 
-      <div onClick = {submitSave}>
-                  {savedJobsList.find(c => c.id === job[0].id) ?
-                  <button
-                  onClick={() =>{
-                    dispatch({
-                      type: 'DELETE_JOB',
-                      payload: job[0],
-                  })
-                  }}
-                  >Unsave</button> : 
-                  
-                  <button 
-                  onClick={() =>{
-                      dispatch({
-                        type: 'SAVE_JOBS',
-                        payload: job[0],
-                    })
-                    }}
-                >Save </button>
+      <div onClick={submitSave}>
+        {savedJobsList.find(c => c.id === job[0].id) ?
+          <button
+            onClick={() => {
+              dispatch({
+                type: 'DELETE_JOB',
+                payload: job[0],
+              })
+            }}
+          >Unsave</button> :
 
-}
-</div>
+          <button
+            onClick={() => {
+              dispatch({
+                type: 'SAVE_JOBS',
+                payload: job[0],
+              })
+            }}
+          >Save </button>
 
-      <button>Apply</button>
+        }
+      </div>
+
+      <button
+      onClick={()=>{
+        dispatch({
+          type: 'APPLY_JOB',
+          payload: job[0]
+        })
+        history.push('/applied')
+      }}>Apply</button>
     </>
   );
 }
