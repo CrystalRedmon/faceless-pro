@@ -129,6 +129,15 @@ function* addSkill(action){
         console.log('error adding education',error)
     }
 }
+function* addProfile(action){
+    console.log('action.payload Add profile',action.payload)
+    try{
+        yield axios.post(`/api/candidateProfile/profile`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding profile info',error)
+    }
+}
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -141,6 +150,7 @@ function* candidateSaga() {
     yield takeLatest('ADD_EDUCATION', addEducation);
     yield takeLatest('ADD_EXPERIENCE',addExperience);
     yield takeLatest('ADD_SKILL', addSkill);
+    yield takeLatest('ADD_PROFILE', addProfile);
 
 
 
