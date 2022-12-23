@@ -59,11 +59,20 @@ const applicant = (state = {}, action) => {
     return state;
 }
 
+const applicantSharedInfo = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_APPLICANT_SHARED_INFO':
+            return action.payload;
+    }
+    return state;
+}
+
 export default combineReducers({
     allJobs,
     currentJob,
     editJob,
     applicants,
     applicantNotSharedInfo,
-    applicant
+    applicant,
+    applicantSharedInfo
 })
