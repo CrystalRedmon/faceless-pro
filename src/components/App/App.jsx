@@ -44,6 +44,7 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+import Message from '../Message/Message';
 
 import './App.css';
 
@@ -139,6 +140,14 @@ function App() {
             path="/CandidateProfile"
           >
             <CandidateProfile />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            
+            exact
+            path="/message"
+          >
+            <Message />
           </ProtectedRoute>
 
           <ProtectedRoute
