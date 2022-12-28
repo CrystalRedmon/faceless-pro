@@ -19,12 +19,15 @@ function FounderPage() {
 
 
       <Box
+      border = {3}
        sx={{
+        borderRadius: 2,
+        p:2,
         boxShadow: 3,
         position: 'absolute', left: 550, top:150,
         width: 970,
-        height: 420,
-        backgroundColor: 'gray',
+        height: 390,
+        backgroundColor: '#e0e0e0',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],

@@ -9,12 +9,21 @@ function OurStoryPage() {
 
   return (
     <div>
-      <Typography variant='h4'>Our Story</Typography>
+      <Typography sx={{ ml: 90
+       
+      }} variant='h4'>Our Story</Typography>
+
       <Box
+      border = {3}
       sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        ml:30,
+        mt:10,
         width: 400,
         height: 180,
-        backgroundColor: 'gray',
+        backgroundColor: '#e0e0e0',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
@@ -28,10 +37,15 @@ we believe that the best candidate should be determined by <br></br>
       </Box>
 
       <Box
+      border = {3}
       sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        ml: 100,
         width: 700,
-        height: 100,
-        backgroundColor: 'gray',
+        height: 120,
+        backgroundColor: '#e0e0e0',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
