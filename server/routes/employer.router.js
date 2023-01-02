@@ -51,9 +51,13 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
 
-  const sqlTxt = `SELECT * FROM application WHERE job_post_id = $1;`;
+  const sqlTxt = `SELECT application.id, application.random_identifier, application.time, application.status
+FROM application
+JOIN job_post ON application.job_post_id = job_post.id
+JOIN employer ON job_post.employer_id = employer.id
+WHERE application.job_post_id = $1 AND job_post.id = $2;`;
 
-  pool.query(sqlTxt, [req.params.id])
+  pool.query(sqlTxt, [req.params.id, req.user.user_info.id])
     .then(dbRes => {
       res.send(dbRes.rows);
     })
@@ -216,3 +220,51 @@ router.get('/shared/:id', rejectUnauthenticated, async (req, res) => {
 })
 
 module.exports = router;
+
+
+
+/*
+
+SELECT 
+
+  if (status = "shared")
+    candidate.fName,
+    candidate.Lnamt,
+    etc
+  else {
+    // don't
+  }
+  // can use CASE for conditionals
+  CASE WHEN status = 'shared' THEN candidate.fName else NULL END,
+  // .... etc....
+
+FROM application
+JOIN job_post
+JOIN education
+JOIN experience
+// et...
+WHERE
+  application.id = req.params.id      // from URL
+  job_post.employer_id = req.user.id  // Authorization!!!
+
+  // or
+  WHERE application.job_id = ...
+  applicaiont.cand_id = ...
+*/
+
+/**
+pool.query(sqlQuery, params)
+  .then(dbRes => {
+    let result = dbRes.rows[0];
+
+    if (result.status !== 'shared') {
+      delete result.fName
+      delete result.lName,
+      etc.
+      // or
+      result.fName = null;
+    }
+
+    res.send(result);
+  })
+ */
