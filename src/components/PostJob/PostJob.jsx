@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
+import { TextareaAutosize } from "@material-ui/core";
 
 
 
@@ -86,7 +87,7 @@ function PostJob() {
 
 
                 <label htmlFor="">Description</label>
-                <textarea type="text"
+                <TextareaAutosize type="text"
 
                     defaultValue={params.id ? job.description : value}
 
