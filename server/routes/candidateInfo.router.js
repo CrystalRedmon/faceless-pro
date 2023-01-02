@@ -31,9 +31,9 @@ router.get('/', (req, res) => {
 
 //GET Applied Candidate Jobs
   router.get('/applied', (req, res) => {
-    console.log('req.params.id',req.user.user_info.id)
+    // console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
-     `  SELECT "job_post".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time"
+     `  SELECT "application".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time","job_post".id
      FROM "application"
      JOIN "job_post"
          ON "job_post".id = "application".job_post_id
@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
   
     pool.query(sqlTxt,[req.user.user_info.id])  
       .then(dbRes => {
-        console.log('applied jobs response',dbRes.rows);
+        // console.log('applied jobs response',dbRes.rows);
         res.send(dbRes.rows);
         console.log(dbRes.rows);
       })
