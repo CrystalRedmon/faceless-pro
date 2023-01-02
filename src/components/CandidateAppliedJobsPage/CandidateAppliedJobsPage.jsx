@@ -10,14 +10,14 @@ function AppliedToJobsPage() {
   const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
-  
+
   const appliedJobsList = useSelector(
-  (store) => store.candidateReducer.candidateJobs
+    (store) => store.candidateReducer.candidateJobs
   );
   console.log("Jobs applied to:", appliedJobsList);
-  
+
   useEffect(() => {
-  dispatch({ type: "FETCH_APPLIED_JOBS" });
+    dispatch({ type: "FETCH_APPLIED_JOBS" });
   }, []);
 
   return (
@@ -71,19 +71,19 @@ function AppliedToJobsPage() {
                   <>
                     <p>Applied on {new Date(job.time).toLocaleString()}</p>
                     <Button
-variant="contained"
-color="primary"
-onClick={() => {
-dispatch({
-type: "SET_JOB_MESSAGE",
-payload: job.id,
-});
-history.push("/message");
-console.log("application id:", job.id);
-}}
->
-Chat
-</Button>
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        dispatch({
+                          type: "SET_JOB_MESSAGE",
+                          payload: job.id,
+                        });
+                        history.push("/message");
+                        console.log("application id:", job.id);
+                      }}
+                    >
+                      Chat
+                    </Button>
                   </>
                 ) : (
                   <></>
@@ -95,19 +95,19 @@ Chat
                     <p>Applied on {new Date(job.time).toLocaleString()}</p>
                     <br />
                     <Button
-variant="contained"
-color="primary"
-onClick={() => {
-dispatch({
-type: "SET_JOB_MESSAGE",
-payload: job.id,
-});
-history.push("/message");
-console.log("application id:", job.id);
-}}
->
-Chat
-</Button>
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        dispatch({
+                          type: "SET_JOB_MESSAGE",
+                          payload: job.id,
+                        });
+                        history.push("/message");
+                        console.log("application id:", job.id);
+                      }}
+                    >
+                      Chat
+                    </Button>
                   </>
                 ) : (
                   <></>
