@@ -294,14 +294,9 @@ function App() {
             exact
             path="/home"
           >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
+
               <LandingPage />
-            }
+            
           </Route>
           <ProtectedRoute>
             <Breadcrumbs />

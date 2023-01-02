@@ -163,5 +163,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
     </div>
   );
 }
+// Here is a link to more statistics if we want to change them.
+// https://www.diversity-inclusion-platform.ch/en/how-to-deal-with-unconscious-biases-in-human-resources-decisions/?noredirect=en-US#:~:text=Unconscious%20biases%20can%20permeate%20the,offer%20to%20the%20favored%20candidate.
 
 export default LandingPage;
