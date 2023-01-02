@@ -1,13 +1,13 @@
-import {useSelector} from "react-redux";
-import { useHistory} from "react-router-dom"
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom"
 import './EmployerHomepage.css'
-import {InputLabel, Button} from "@mui/material"
+import { InputLabel, Button, Grid } from "@mui/material"
 
-function EmployerHomepage(){
+function EmployerHomepage() {
 
-    const employer = useSelector(store=> store.user);
+    const employer = useSelector(store => store.user);
     const history = useHistory();
-    
+
 
     console.log('this is the employer: ', employer);
 
@@ -16,26 +16,27 @@ function EmployerHomepage(){
     }
 
 
-    return<>
-    
-    <h1>Employer Homepage</h1>
-    <h2>Welcome {employer.username}</h2>
-    <div>{employer.user_info.logo_path}</div>
-    <ul className='employerinfo'>
-        <li>{employer.user_info.company_address}</li>
-        <li>{employer.user_info.company_phone}</li>
-        <li>{employer.user_info.email}</li>
-        <li>{employer.user_info.company_link}</li>
-    </ul>
+    return <>
 
+        <Grid container spacing={2}>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8}>
+                <h1 mb={20}>Welcome, {employer.username}</h1>
+                <div>{employer.user_info.logo_path}</div>
+                <ul className='employerinfo'>
+                    <li>{employer.user_info.company_address}</li>
+                    <li>{employer.user_info.company_phone}</li>
+                    <li>{employer.user_info.email}</li>
+                    <li>{employer.user_info.company_link}</li>
+                </ul>
+                <Button variant='contained' onClick={handleToProile}>View/Edit Full Profile</Button>
+            </Grid>
+            <Grid item xs={2}></Grid>
 
-    <Button variant='contained' onClick={handleToProile}>View/Edit Full Profile</Button>
-    
-    
-    
-    
-    
-    </>}
+        </Grid>
+
+    </>
+}
 
 
 export default EmployerHomepage;

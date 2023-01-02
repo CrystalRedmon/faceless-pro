@@ -38,7 +38,7 @@ function EmployerProfilePage() {
 
     return (
         <Box>
-            <Button onClick={handleClick}>Back</Button>
+            <Button variant='contained' onClick={handleClick}>Back</Button>
             Edit Your Employer Profile
 
             <form>

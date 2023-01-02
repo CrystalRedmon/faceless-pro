@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
 import { TextareaAutosize } from "@material-ui/core";
-import {InputLabel, Button} from "@mui/material"
+import {InputLabel, Button, Grid} from "@mui/material"
 
 
 
@@ -75,6 +75,9 @@ function PostJob() {
 
     return (
         <>
+        <Grid container spacing={2}>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={8}>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
             <Button variant='contained' onClick={handleBack}>Back</Button>
@@ -103,6 +106,9 @@ function PostJob() {
 
                 <Button variant='contained' onClick={onSubmit}>Submit</Button>
             </form>
+            </Grid>
+            <Grid item xs={2}></Grid>
+            </Grid>
         </>
     )
 }
