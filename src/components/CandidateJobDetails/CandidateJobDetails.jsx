@@ -1,14 +1,17 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { join } from "redux-saga/effects";
 
 function CandidateJobDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const appliedJobsList = useSelector((store) => store.candidateReducer.appliedJobs);
   const job = useSelector((store) => store.candidateReducer.candidateJobs);
   const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
-  // console.log('current job details: ', job);
+   console.log(' applied jobs ', job[0].id);
+
 
   //FETCH CURRENT JOB WITH PARAMS ID
   useEffect(() => {
@@ -74,15 +77,18 @@ function CandidateJobDetails() {
 
         }
       </div>
-
-      <button
+     
+      {appliedJobsList.find(d => d.id === job[0].id) ? 
+      <p>Applied</p>:
+         <button
       onClick={()=>{
         dispatch({
           type: 'APPLY_JOB',
           payload: job[0]
         })
         history.push('/applied')
-      }}>Apply</button>
+      }}>Apply</button> 
+    }
     </>
   );
 }

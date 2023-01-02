@@ -294,9 +294,7 @@ function App() {
             exact
             path="/home"
           >
-
               <LandingPage />
-            
           </Route>
           <ProtectedRoute>
             <Breadcrumbs />

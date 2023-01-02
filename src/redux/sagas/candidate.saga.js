@@ -95,7 +95,7 @@ function* appliedJobs(){
     console.log('in applied job_post')
     try{
         const appliedJobs = yield axios.get(`/api/candidateInfo/applied`);
-        yield put({type: 'SET_JOBS', payload: appliedJobs.data })
+        yield put({type: 'SET_APPLIED_JOBS', payload: appliedJobs.data })
     }
     catch(err) {
         console.error('error getting applied jobs: ', err);
