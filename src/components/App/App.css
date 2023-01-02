@@ -114,3 +114,7 @@ input {
 /* * {
   border: solid black;
 } */
+
+.formatText{
+  white-space: pre-wrap;
+}
