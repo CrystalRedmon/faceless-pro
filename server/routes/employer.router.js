@@ -55,7 +55,7 @@ router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
 FROM application
 JOIN job_post ON application.job_post_id = job_post.id
 JOIN employer ON job_post.employer_id = employer.id
-WHERE application.job_post_id = $1 AND job_post.id = $2;`;
+WHERE application.job_post_id = $1 AND employer.user_id = $2;`;
 
   pool.query(sqlTxt, [req.params.id, req.user.user_info.id])
     .then(dbRes => {
@@ -170,16 +170,142 @@ router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
   }
 })
 
-// GET application info by application.id
+// GET application info
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
+  console.log('here111');
 
   const applicationId = req.params.id;
+  console.log(applicationId);
 
-  const sqlTxt = `SELECT * FROM application WHERE id = $1;`;
+  const sqlTxt = `SELECT (
+    SELECT json_agg(ed.*)
+    FROM education ed
+    WHERE ed.candidate_id = $1
+) AS education,
+(
+    SELECT json_agg(ex.*)
+    FROM experience ex
+    WHERE ex.candidate_id = $1
+) AS experience,
+(
+    SELECT json_agg(sk.*)
+    FROM skill sk
+    WHERE sk.candidate_id = $1
+) AS skill,
+(
+    SELECT json_agg(hy.*)
+    FROM hyperlink hy
+    WHERE hy.candidate_id = $1
+) AS hyperlink,
+(
+    SELECT json_agg(candidate.*)
+    FROM candidate
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS profile,
+(
+    SELECT json_agg(application.*)
+    FROM candidate
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS status_and_identifier
+WHERE EXISTS (
+    SELECT
+    FROM application
+    WHERE application.id = $1
+);`;
 
-  pool.query(sqlTxt, [applicationId])
+  pool.query(sqlTxt, [applicationId, req.user.user_info.id])
     .then(dbRes => {
-      res.send(dbRes.rows[0]);
+      /**
+    pool.query(sqlQuery, params)
+  .then(dbRes => {
+    let result = dbRes.rows[0];
+
+    if (result.status !== 'shared') {
+      delete result.fName
+      delete result.lName,
+      etc.
+      // or
+      result.fName = null;
+    }
+
+    res.send(result);
+  })
+ */
+      let result = dbRes.rows[0];
+      console.log(result);
+      /*
+      {
+  education: [
+    {
+      id: 1,
+      candidate_id: 1,
+      school: 'prime',
+      qualification: 'my qualifications',
+      dates: '11/11/2022',
+      note: 'some notes'
+    },
+    {
+      id: 2,
+      candidate_id: 1,
+      school: 'u of m',
+      qualification: 'bs in stuff',
+      dates: '11/12/2021',
+      note: null
+    }
+  ],
+  experience: [
+    {
+      id: 1,
+      candidate_id: 1,
+      employer: 'dairy queen',
+      title: 'senior manager',
+      dates: '9/10/22',
+      job_duties: 'worked hard'
+    }
+  ],
+  skill: [
+    { id: 1, candidate_id: 1, skill_name: 'tennis' },
+    { id: 2, candidate_id: 1, skill_name: 'software stuff skill' }
+  ],
+  hyperlink: [ { id: 1, candidate_id: 1, link: 'www.google.com' } ],
+  profile: [
+    {
+      id: 1,
+      user_id: 2,
+      first_name: 'Daniel',
+      last_name: 'Legan',
+      email: 'legan.daniel@gmail.com',
+      linkedin_link: 'stuff.com',
+      resume_path: 'resume path',
+      cover_letter_path: 'cover letter path'
+    }
+  ],
+  status_and_identifier: [
+    {
+      id: 1,
+      candidate_id: 1,
+      job_post_id: 1,
+      random_identifier: 'iguana money',
+      time: '2023-01-02T09:43:41.737516',
+      status: 'shared'
+    }
+  ]
+}
+      */
+      if (result.status_and_identifier[0].status != 'shared') {
+        delete result.profile
+        console.log('the applicant info sending is,', result);
+        res.send(result);
+      } else {
+        console.log('the applicant SHARED info sending is,', result);
+        res.send(result);
+      }
     })
     .catch(error => {
       res.sendStatus(500);

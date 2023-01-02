@@ -157,6 +157,22 @@ function* fetchApplicantSharedInfo(action) {
     }
 }
 
+function* fetchApplicant(action) {
+    console.log('in fetchApplicant');
+    yield axios.get(`/api/employer/applicant/${action.payload}`);
+    // try {
+    //     const response = yield axios.get(`/api/employer/shared/${action.payload}`);
+
+    //     yield put({
+    //         type: 'SET_APPLICANT_INFO',
+    //         payload: response.data
+    //     });
+    // }
+    // catch (err) {
+    //     console.error(err);
+    // }
+}
+
 
 function* JobSaga() {
     yield takeEvery('POST_JOB', postJob);
@@ -170,6 +186,7 @@ function* JobSaga() {
     yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
     yield takeEvery('UPDATE_APPLICATION_STATUS', updateApplicationStatus);
     yield takeEvery('FETCH_APPLICANT_SHARED_INFO', fetchApplicantSharedInfo);
+    yield takeEvery('FETCH_APPLICANT', fetchApplicant);
 }
 
 

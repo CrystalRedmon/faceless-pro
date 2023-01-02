@@ -17,21 +17,13 @@ import List from '@mui/material/List';
 
 function ApplicantProfile() {
 
-    const applicantNotSharedInfo = useSelector(store => store.jobs.applicantNotSharedInfo);
-    const applicantSharedInfo = useSelector(store => store.jobs.applicantSharedInfo);
-    const applicant = useSelector(store => store.jobs.applicant);
+    // const applicantNotSharedInfo = useSelector(store => store.jobs.applicantNotSharedInfo);
+    // const applicantSharedInfo = useSelector(store => store.jobs.applicantSharedInfo);
+    // const applicant = useSelector(store => store.jobs.applicant);
 
     useEffect(() => {
         dispatch({
-            type: 'FETCH_APPLICANT_NOT_SHARED_INFO',
-            payload: `${params.id}`
-        })
-        dispatch({
-            type: 'FETCH_APPLICANT_FROM_APPLICATION_TABLE',
-            payload: `${params.id}`
-        })
-        dispatch({
-            type: 'FETCH_APPLICANT_SHARED_INFO',
+            type: 'FETCH_APPLICANT',
             payload: `${params.id}`
         })
     }, [])
@@ -60,55 +52,58 @@ function ApplicantProfile() {
     // console.log(`the applicant info from application table`, applicant);
 
     return (
+        // <Box>
+        //     <Button
+        //         variant='contained'
+        //         onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
+        //     >
+        //         back
+        //     </Button>
+
+        //     {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
+        //     {(applicant.status === 'pending' && Object.keys(applicantNotSharedInfo).length != 0) &&
+        //         <Box>
+        //             <Button
+        //                 variant='contained'
+        //                 onClick={() => {
+        //                     dispatch({
+        //                         type: 'UPDATE_APPLICATION_STATUS',
+        //                         payload: {
+        //                             id: applicant.id,
+        //                             newStatus: 'not_shared'
+        //                         }
+        //                     })
+
+        //                 }}
+        //             >
+        //                 request chat
+        //             </Button>
+        //             <Button
+        //                 variant='contained'
+        //                 onClick={handleReject}
+        //             >
+        //                 reject
+        //             </Button>
+
+        //             {/* refactored */}
+        //             <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
+
+        //         </Box>
+        //     }
+
+        //     {(applicant.status === 'not_shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
+        //         <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
+        //     }
+
+        //     {(applicant.status === 'shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
+        //         <Box>
+        //             <ApplicantSharedInfo applicantSharedInfo={applicantSharedInfo} />
+        //             <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
+        //         </Box>
+        //     }
+        // </Box>
         <Box>
-            <Button
-                variant='contained'
-                onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
-            >
-                back
-            </Button>
-
-            {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
-            {(applicant.status === 'pending' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <Box>
-                    <Button
-                        variant='contained'
-                        onClick={() => {
-                            dispatch({
-                                type: 'UPDATE_APPLICATION_STATUS',
-                                payload: {
-                                    id: applicant.id,
-                                    newStatus: 'not_shared'
-                                }
-                            })
-
-                        }}
-                    >
-                        request chat
-                    </Button>
-                    <Button
-                        variant='contained'
-                        onClick={handleReject}
-                    >
-                        reject
-                    </Button>
-
-                    {/* refactored */}
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-
-                </Box>
-            }
-
-            {(applicant.status === 'not_shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-            }
-
-            {(applicant.status === 'shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <Box>
-                    <ApplicantSharedInfo applicantSharedInfo={applicantSharedInfo} />
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-                </Box>
-            }
+            hi
         </Box>
     );
 }
