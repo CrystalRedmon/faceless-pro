@@ -36,7 +36,7 @@ function EmployerJobDetails() {
             <button onClick={handleBack}>Back</button>
             <button onClick={handleEdit}>Edit</button>
             <h2>Title: {job.title}</h2>
-            <p class='formatText'>Description:{job.description}</p>
+            <p className='formatText'>Description:{job.description}</p>
         </>
     );
 }

@@ -119,12 +119,15 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const sqlTxt = ` UPDATE "job_post"
                     SET "title" = $1,
                     "description" = $2
-                    WHERE "id" = $3;`;
+                    WHERE "id" = $3
+                    AND "job_post"."employer_id"= $4;`;
 
   const sqlParams = [
     req.body.title,
     req.body.description,
-    req.body.id
+    req.body.id,
+    req.user.user_info.id
+
   ]
 
   pool.query(sqlTxt, sqlParams)
