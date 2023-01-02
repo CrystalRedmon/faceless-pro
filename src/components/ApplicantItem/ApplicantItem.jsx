@@ -17,7 +17,7 @@ function ApplicantItem({ applicant, jobId }) {
         })
     }, [])
 
-    console.log(applicant);
+    // console.log(applicant);
 
     switch (applicant.status) {
         case 'pending':

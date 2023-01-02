@@ -50,6 +50,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
+  console.log('hi there')
 
   const sqlTxt = `SELECT application.id, application.random_identifier, application.time, application.status
 FROM application
@@ -221,24 +222,7 @@ WHERE EXISTS (
 
   pool.query(sqlTxt, [applicationId, req.user.user_info.id])
     .then(dbRes => {
-      /**
-    pool.query(sqlQuery, params)
-  .then(dbRes => {
-    let result = dbRes.rows[0];
-
-    if (result.status !== 'shared') {
-      delete result.fName
-      delete result.lName,
-      etc.
-      // or
-      result.fName = null;
-    }
-
-    res.send(result);
-  })
- */
       let result = dbRes.rows[0];
-      console.log(result);
       /*
       {
   education: [

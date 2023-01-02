@@ -96,34 +96,34 @@ function* fetchApplicants(action) {
     }
 }
 
-function* fetchApplicantNotSharedInfo(action) {
+// function* fetchApplicantNotSharedInfo(action) {
 
-    try {
-        const response = yield axios.get(`/api/employer/not_shared/${action.payload}`);
+//     try {
+//         const response = yield axios.get(`/api/employer/not_shared/${action.payload}`);
 
-        yield put({
-            type: 'SET_APPLICANT_NOT_SHARED_INFO',
-            payload: response.data
-        });
-    }
-    catch (err) {
-        console.error(err);
-    }
-}
+//         yield put({
+//             type: 'SET_APPLICANT_NOT_SHARED_INFO',
+//             payload: response.data
+//         });
+//     }
+//     catch (err) {
+//         console.error(err);
+//     }
+// }
 
-function* fetchApplicantFromApplicationTable(action) {
-    try {
-        const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
+// function* fetchApplicantFromApplicationTable(action) {
+//     try {
+//         const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
 
-        yield put({
-            type: 'SET_APPLICANT_FROM_APPLICATION_TABLE',
-            payload: response.data
-        });
-    }
-    catch (err) {
-        console.error(err);
-    }
-}
+//         yield put({
+//             type: 'SET_APPLICANT_FROM_APPLICATION_TABLE',
+//             payload: response.data
+//         });
+//     }
+//     catch (err) {
+//         console.error(err);
+//     }
+// }
 
 function* updateApplicationStatus(action) {
     const applicationId = action.payload.id;
@@ -143,34 +143,33 @@ function* updateApplicationStatus(action) {
     });
 }
 
-function* fetchApplicantSharedInfo(action) {
+// function* fetchApplicantSharedInfo(action) {
+//     try {
+//         const response = yield axios.get(`/api/employer/shared/${action.payload}`);
+
+//         yield put({
+//             type: 'SET_APPLICANT_SHARED_INFO',
+//             payload: response.data
+//         });
+//     }
+//     catch (err) {
+//         console.error(err);
+//     }
+// }
+
+function* fetchApplicant(action) {
+    yield axios.get(`/api/employer/applicant/${action.payload}`);
     try {
-        const response = yield axios.get(`/api/employer/shared/${action.payload}`);
+        const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
 
         yield put({
-            type: 'SET_APPLICANT_SHARED_INFO',
+            type: 'SET_APPLICANT_INFO',
             payload: response.data
         });
     }
     catch (err) {
         console.error(err);
     }
-}
-
-function* fetchApplicant(action) {
-    console.log('in fetchApplicant');
-    yield axios.get(`/api/employer/applicant/${action.payload}`);
-    // try {
-    //     const response = yield axios.get(`/api/employer/shared/${action.payload}`);
-
-    //     yield put({
-    //         type: 'SET_APPLICANT_INFO',
-    //         payload: response.data
-    //     });
-    // }
-    // catch (err) {
-    //     console.error(err);
-    // }
 }
 
 
@@ -182,10 +181,10 @@ function* JobSaga() {
     yield takeEvery('FETCH_EDIT_JOB', fetchEditJob);
     yield takeEvery('SAVE_JOB', saveJob);
     yield takeEvery('FETCH_APPLICANTS', fetchApplicants);
-    yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
-    yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
+    // yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
+    // yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
     yield takeEvery('UPDATE_APPLICATION_STATUS', updateApplicationStatus);
-    yield takeEvery('FETCH_APPLICANT_SHARED_INFO', fetchApplicantSharedInfo);
+    // yield takeEvery('FETCH_APPLICANT_SHARED_INFO', fetchApplicantSharedInfo);
     yield takeEvery('FETCH_APPLICANT', fetchApplicant);
 }
 
