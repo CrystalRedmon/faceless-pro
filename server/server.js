@@ -15,6 +15,7 @@ const employerProfileRouter = require('./routes/employerProfile.router')
 
 const candidateProfileRouter = require('./routes/candidateProfile.router');
 const candidateInfoRouter = require('./routes/candidateInfo.router');
+const messageRouter = require('./routes/message.router')
 
 
 // Body parser middleware
@@ -34,6 +35,7 @@ app.use('/api/employer', employerRouter);
 app.use('/api/employerProfile', employerProfileRouter);
 app.use('/api/candidateProfile', candidateProfileRouter);
 app.use('/api/candidateInfo', candidateInfoRouter);
+app.use('/api/message', messageRouter);
 
 
 // Serve static files

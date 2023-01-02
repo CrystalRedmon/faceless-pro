@@ -70,7 +70,20 @@ function AppliedToJobsPage() {
                 {job.status === "not_shared" ? (
                   <>
                     <p>Applied on {new Date(job.time).toLocaleString()}</p>
-                    <button>Chat</button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        dispatch({
+                          type: "SET_JOB_MESSAGE",
+                          payload: job.id,
+                        });
+                        history.push("/message");
+                        console.log("application id:", job.id);
+                      }}
+                    >
+                      Chat
+                    </Button>
                   </>
                 ) : (
                   <></>
@@ -81,7 +94,20 @@ function AppliedToJobsPage() {
                   <>
                     <p>Applied on {new Date(job.time).toLocaleString()}</p>
                     <br />
-                    <button>Chat</button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        dispatch({
+                          type: "SET_JOB_MESSAGE",
+                          payload: job.id,
+                        });
+                        history.push("/message");
+                        console.log("application id:", job.id);
+                      }}
+                    >
+                      Chat
+                    </Button>
                   </>
                 ) : (
                   <></>
@@ -119,3 +145,5 @@ function AppliedToJobsPage() {
 }
 
 export default AppliedToJobsPage;
+
+
