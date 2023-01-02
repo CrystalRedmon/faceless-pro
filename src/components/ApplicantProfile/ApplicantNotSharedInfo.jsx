@@ -8,7 +8,8 @@ import Skill from './Skill';
 import Hyperlink from './Hyperlink';
 
 function ApplicantNotSharedInfo({ applicantNotSharedInfo, applicant }) {
-    console.log(applicant);
+    console.log('This is the applicant', applicant);
+    console.log('This is the applicantNotSharedInfo', applicantNotSharedInfo);
     return (
         <Box sx={{ margin: "20px" }}>
             {applicant.status != 'shared' && <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.random_identifier}</Typography>}
