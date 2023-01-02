@@ -4,6 +4,7 @@ import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
 import { useHistory } from 'react-router-dom';
+import {InputLabel, Button} from "@mui/material"
 
 
 function EmployerJobList() {
@@ -23,7 +24,7 @@ function EmployerJobList() {
     }
     return <>
         <h1>Open Job Posts</h1>
-        <button onClick={handleAddJob}>Add New Job</button>
+        <Button variant='contained' onClick={handleAddJob}>Add New Job</Button>
         <table>
             <thead>
                 <tr>

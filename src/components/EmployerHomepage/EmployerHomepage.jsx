@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import { useHistory} from "react-router-dom"
 import './EmployerHomepage.css'
+import {InputLabel, Button} from "@mui/material"
 
 function EmployerHomepage(){
 
@@ -28,7 +29,7 @@ function EmployerHomepage(){
     </ul>
 
 
-    <button onClick={handleToProile}>View/Edit Full Profile</button>
+    <Button variant='contained' onClick={handleToProile}>View/Edit Full Profile</Button>
     
     
     

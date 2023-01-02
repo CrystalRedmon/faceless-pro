@@ -1,9 +1,10 @@
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TableCell from '@mui/material/TableCell';
+import {TableCell, Button} from '@mui/material';
 import { useEffect } from 'react'
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 import { PanoramaSharp } from '@mui/icons-material';
+
 
 function EmployerJobItem({ job }) {
     const history = useHistory();
@@ -33,9 +34,9 @@ function EmployerJobItem({ job }) {
         <tr>
             <td>{job.title}</td>
             <td>
-                <button onClick={handleView}>Details</button>
-                <button onClick={handleViewApplicants}>View Applicants</button>
-                <button onClick={handleDeleteItem}>Delete</button>
+                <Button variant='contained' onClick={handleView}>Details</Button>
+                <Button variant='contained' onClick={handleViewApplicants}>View Applicants</Button>
+                <Button variant='contained' onClick={handleDeleteItem}>Delete</Button>
             </td>
         </tr>
     </>

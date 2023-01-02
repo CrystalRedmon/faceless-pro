@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
 import { TextareaAutosize } from "@material-ui/core";
+import {InputLabel, Button} from "@mui/material"
+
+
 
 
 
@@ -74,9 +77,9 @@ function PostJob() {
         <>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
-            <button onClick={handleBack}>Back</button>
+            <Button variant='contained' onClick={handleBack}>Back</Button>
             <form action="">
-                <label htmlFor="">Title</label>
+                <InputLabel htmlFor="">Title</InputLabel>
                 <input type="text"
 
                     defaultValue={params.id ? job.title : value}
@@ -85,10 +88,12 @@ function PostJob() {
                         payload: { title: evt.target.value }
                     })} />
 
-
-                <label htmlFor="">Description</label>
+                <br />
+                <InputLabel htmlFor="">Description</InputLabel>
                 <TextareaAutosize type="text"
 
+                    minRows={50}
+                    style={{ width: 750, margin: 'auto' }}
                     defaultValue={params.id ? job.description : value}
 
                     onChange={(evt) => dispatch({
@@ -96,7 +101,7 @@ function PostJob() {
                         payload: { description: evt.target.value }
                     })} />
 
-                <button onClick={onSubmit}>Submit</button>
+                <Button variant='contained' onClick={onSubmit}>Submit</Button>
             </form>
         </>
     )
