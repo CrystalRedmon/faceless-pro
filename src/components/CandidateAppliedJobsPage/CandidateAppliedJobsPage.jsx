@@ -12,7 +12,7 @@ function AppliedToJobsPage() {
   const dispatch = useDispatch();
 
   const appliedJobsList = useSelector(
-    (store) => store.candidateReducer.candidateJobs
+    (store) => store.candidateReducer.appliedJobs
   );
   console.log("Jobs applied to:", appliedJobsList);
 
