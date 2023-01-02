@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
+
 function EmployerJobDetails() {
     const params = useParams();
     const dispatch = useDispatch();
@@ -29,12 +30,13 @@ function EmployerJobDetails() {
         history.push(`/job/${params.id}/edit`)
     }
 
+    console.log(job.description);
     return (
         <>
             <button onClick={handleBack}>Back</button>
             <button onClick={handleEdit}>Edit</button>
             <h2>Title: {job.title}</h2>
-            <p>Description:{job.description}</p>
+            <p class='formatText'>Description:{job.description}</p>
         </>
     );
 }
