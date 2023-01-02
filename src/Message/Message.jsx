@@ -12,6 +12,8 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { useParams } from "react-router-dom";
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,30 +35,28 @@ const useStyles = makeStyles(theme => ({
 function Message() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const jobMessageID = useSelector(
-    store => store.candidateReducer.jobMessage
-  );
-  console.log("JOB message:", jobMessageID);
+    const params = useParams()
 
   // Use a ref to store the interval ID
   const intervalId = useRef();
 
   useEffect(() => {
-    dispatch({ type: "FETCH_MESSAGES", payload: jobMessageID });
+    dispatch({ type: "FETCH_MESSAGES",payload: `${params.id}`});
+    console.log('params.id is:',`${params.id}`)
 
     // Start the interval
     intervalId.current = setInterval(() => {
-      dispatch({ type: "FETCH_MESSAGES", payload: jobMessageID });
+      dispatch({ type: "FETCH_MESSAGES", payload: params.id});
     }, 500);
 
     // Return a cleanup function to cancel the interval when the component unmounts
     return () => clearInterval(intervalId.current);
-  }, [jobMessageID]);
+  },[]);
 
   const messageList = useSelector(
     store => store.candidateReducer.messageList
   );
-  console.log("messagelist", messageList);
+  console.log("messageList", messageList);
 
   const [message, setMessage] = useState("");
 
@@ -70,7 +70,7 @@ function Message() {
     dispatch({
       type: "ADD_MESSAGE",
       payload: {
-        jobId:jobMessageID,
+        jobId:`${params.id}`,
         message: message
       }
     });
@@ -78,14 +78,15 @@ function Message() {
   }
   return (
     <Container className={classes.root}>
-      <Typography variant="h4">{message.title} - {message.company_name}</Typography>
+      <Typography variant="h4">Messages withPosition</Typography>
       <Paper className={classes.messageList}>
         <List>
           {messageList.map(message => {
             return (
               <ListItem
                 key={message.id}
-                justify={message.is_from_candidate ? "left" : "right"}>
+                justify={message.is_from_candidate ? "flex-end" : "flex-start"}
+                >
                 <ListItemText
                   primary={message.content}
                   secondary={

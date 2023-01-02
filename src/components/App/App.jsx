@@ -128,7 +128,7 @@ function App() {
           <ProtectedRoute
             //
             exact
-            path="/message"
+            path="/message/:id"
           >
             <Message />
           </ProtectedRoute>
