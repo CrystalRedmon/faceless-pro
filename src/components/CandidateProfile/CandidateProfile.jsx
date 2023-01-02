@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
 
 function CandidateProfile() {
+  const history = useHistory();
   const [formData, setFormData] = useState({
     FirstName: '',
     LastName: '',
@@ -20,13 +22,19 @@ function CandidateProfile() {
       ...formData,
       [name]: value,
     });
+
   }
 
-  const submit = (event) => {
+  const submit = (event) => {{
     event.preventDefault();
     dispatch({ type: 'ADD_PROFILE', payload: formData });
+
   }
 
+}
+const nextpage = (event)=> {
+  history.push('/education');
+}
   return (
     <>
       <h2>Welcome to your profile!</h2>
@@ -87,7 +95,7 @@ function CandidateProfile() {
             />
           </FormControl>
           <br />
-          <Button variant="contained" color="primary" type="submit">Submit</Button>
+          <Button variant="contained" color="primary" type="submit" onClick={nextpage}>Submit</Button>
         </form>
       </div>
     </>

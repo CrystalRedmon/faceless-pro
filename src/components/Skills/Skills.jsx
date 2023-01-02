@@ -30,6 +30,7 @@ function Skills() {
         },
       });
     });
+    history.push('/VoluntaryIdentification');
   };
 
   const addFields = () => {

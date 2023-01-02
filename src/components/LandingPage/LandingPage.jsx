@@ -1,4 +1,13 @@
 
+import { Parallax } from 'react-parallax';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import { CardActionArea } from '@mui/material';
+//import recruiter from '/Users/aminamuumin/primet3/faceless-pro/public/images/Screen Shot 2023-01-02 at 11.51.30 AM.png';
+//import employment from '../images/employment stock image1.jpg';
+
+
 import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -151,7 +160,6 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         </div>
         {/* <div className="grid-col grid-col_4">
           <RegisterForm />
-
           <center>
             <h4>Already a Member?</h4>
             <button className="btn btn_sizeSm" onClick={onLogin}>
