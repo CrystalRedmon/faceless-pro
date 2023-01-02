@@ -72,6 +72,33 @@ router.get('/education/:id', (req, res) => {
 
 });
 
+
+// DELETE education BY ID
+router.delete('/education/:id', (req, res) => {
+  const sqlTxt = `DELETE 
+                  FROM "education",
+                  WHERE "id" = $1`;
+
+  const sqlParams = [
+    req.params.id
+  ]
+
+
+  pool.query(sqlTxt, sqlParams)
+    .then(dbRes => {
+      res.sendStatus(200);
+      // console.log('Delete edu successful: ', dbRes);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+      // console.log('Delete edu failed: ', error);
+    })
+
+})
+
+
+
+
 /**
 * POST route template
 */
@@ -166,6 +193,29 @@ router.get('/skill/:id', (req, res) => {
  
  });
 
+ 
+ // GET the 3 Latest Job Posts in the Candidate Landing Page.
+ router.delete('/skill/:id', (req, res) => {
+
+
+  // GET route code here
+ 
+  const sqlText = `DELETE  FROM "skill"
+  WHERE "id" = $1;`;
+ 
+  pool.query(sqlText, [req.params.id])
+  .then((result) =>{
+   // console.log('result is:',result.rows)
+   res.send(result.rows[0]) 
+   console.log(result.rows);
+  })
+  .catch((error) =>{
+   console.log('error fetching items from skill', error)
+   res.sendStatus(500)
+  })
+ 
+ 
+ });
 
  /**
  * POST route template
