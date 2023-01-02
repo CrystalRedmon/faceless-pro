@@ -30,7 +30,7 @@ function EmployerJobDetails() {
         history.push(`/job/${params.id}/edit`)
     }
 
-    console.log(job.description);
+    
     return (
         <>
             <button onClick={handleBack}>Back</button>
