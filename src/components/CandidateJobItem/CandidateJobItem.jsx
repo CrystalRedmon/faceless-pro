@@ -45,7 +45,8 @@ function CandidateJobItem({ job }) {
                     dispatch({
                       type: 'DELETE_JOB',
                       payload: job
-                  })
+                  });
+                  dispatch({ type: 'FETCH_SAVED_JOBS' });
                   }}
                   >Unsave</button> : 
                   
@@ -54,7 +55,8 @@ function CandidateJobItem({ job }) {
                       dispatch({
                         type: 'SAVE_JOBS',
                         payload: job
-                    })
+                    });
+                    dispatch({ type: 'FETCH_SAVED_JOBS' });
                     }}
                 >Save </button>
                 
