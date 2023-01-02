@@ -58,7 +58,7 @@ function PostJob() {
             dispatch({
                 type: 'CLEAR_ADD_FIELDS' // empties input fields to avoid unwanted edit from populating fields
             });
-        // if employer is adding back will take them to job list view
+            // if employer is adding back will take them to job list view
         } else {
 
             history.push(`/jobList`);

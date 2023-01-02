@@ -1,19 +1,22 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
- router.get('/', (req, res) => {
+ router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
 
   const sqlText = `SELECT * FROM "employer"
   WHERE "user_id" = $1;`;
 
-  pool.query(sqlText)
+  pool.query(sqlText, [req.user.id])
   .then((result) =>{
-   // console.log('result is:',result.rows)
+    // console.log('result is:', result.rows[0]);
    res.send(result.rows[0]) 
   //  console.log(result.rows);
   })
@@ -27,7 +30,7 @@ const router = express.Router();
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `
   INSERT INTO "employer" 
@@ -41,6 +44,18 @@ router.post('/', (req, res) => {
     console.log('Employer Post info failed ', err);
     res.sendStatus(500);
   });
+});
+
+router.put('/', rejectUnauthenticated, (req, res) => {
+  const sqlText = `UPDATE employer SET company_name = $1, company_address = $2, company_phone = $3, email = $4, logo_path = $5, company_description = $6, company_link = $7 WHERE user_id = $8`;
+  pool.query(sqlText, [req.body.company_name, req.body.company_address, req.body.company_phone, req.body.email, req.body.logo_path, req.body.company_description, req.body.company_link, req.body.user_id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error making database query ${sqlText}`, error);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

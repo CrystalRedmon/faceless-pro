@@ -1,58 +1,101 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 function Experience() {
-  const [experience, setExperience] = useState('');
-  const dispatch = useDispatch();
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const getExperience = (evt) => {
-    evt.preventDefault();
-    console.log('inside Experience', experience)
-    // dispatch({
-    //     type: 'GET_EXPERIENCE',
-    //     payload: experience
-    // })
-    history.push('/Skills');
-  }
+  const [formFields, setFormFields] = useState([
+    { Company: '', Title: '', Dates: '', JobDuty: '' },
+  ]);
 
-  class MyForm extends React.Component {
-    state = {
-      isFormOpen: false
+  const handleFormChange = (event, index) => {
+    let data = [...formFields];
+    data[index][event.target.name] = event.target.value;
+    setFormFields(data);
+  };
+
+  const submit = (e) => {
+    e.preventDefault();
+    console.log('Formfield info is here', formFields);
+
+    formFields.forEach((form) => {
+      dispatch({
+        type: 'ADD_EXPERIENCE',
+        payload: {
+          Company: form.Company,
+          Title: form.Title,
+          Dates: form.Dates,
+          JobDuty: form.JobDuty,
+        },
+      });
+    });
+  };
+
+  const addFields = () => {
+    let object = {
+      Company: '',
+      Title: '',
+      Dates: '',
+      JobDuty: '',
     };
 
-    handleFormOpen = () => {
-      this.setState({ isFormOpen: true });
-    }
+    setFormFields([...formFields, object]);
+  };
 
-    render() {
-      return (
-        <div>
-          <h1>INSIDE EXPERIENCE</h1>
-          {
-            this.state.isFormOpen
-              ? (
-                <form>
-                  <input type='text' placeholder='Company'></input>
-                  <input type='text' placeholder='Job Title'></input>
-                  <input type='text' placeholder='Dates Worked'></input>
-                  <input type='text' placeholder='Job Duties'></input>
+  const removeFields = (index) => {
+    let data = [...formFields];
+    data.splice(index, 1);
+    setFormFields(data);
+  };
 
-                </form>
-              )
-              : <button onClick={this.handleFormOpen}>+ Add Experience</button>
-          }
-          <button onClick={getExperience}>Save and Continue</button>
-        </div>
-
-      );
-    }
-  }
-
-  return <MyForm />;
+  return (
+    <div className="Education">
+      <form onSubmit={submit}>
+        {formFields.map((form, index) => {
+          return (
+            <div key={index}>
+              <TextField
+                label="Company"
+                name="Company"
+                placeholder="Company Name"
+                onChange={event => handleFormChange(event, index)}
+                value={form.Company}
+              />
+              <TextField
+                label="Title"
+                name="Title"
+                placeholder="Title"
+                onChange={event => handleFormChange(event, index)}
+                value={form.Title}
+              />
+              <TextField
+                label="Dates"
+                name="Dates"
+                placeholder="Dates"
+                onChange={event => handleFormChange(event, index)}
+                value={form.Dates}
+              />
+              <TextField
+                label="Job Duty"
+                name="JobDuty"
+                placeholder="Job Duty"
+                onChange={event => handleFormChange(event, index)}
+                value={form.JobDuty}
+              />
+              <Button onClick={() => removeFields(index)}>Remove</Button>
+            </div>
+          );
+        })}
+      </form>
+      <Button onClick={addFields}>Add More..</Button>
+      <br />
+      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+      </div>
+);
 }
 
 export default Experience;

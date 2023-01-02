@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import Avatar from '@mui/material/Avatar';
 import { Typography, Menu, MenuList, Box } from '@mui/material';
 import { useState } from 'react';
-import {Button} from '@mui/material';
+import { Button } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -70,7 +70,7 @@ function Nav() {
               Saved Jobs - side nav
             </Link>
 
-            <Link className="navLink" to="/appliedtojobs">
+            <Link className="navLink" to="/applied">
               Applied Jobs - side nav
             </Link>
 
