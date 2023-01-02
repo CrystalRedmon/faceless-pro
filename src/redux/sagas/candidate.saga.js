@@ -138,6 +138,27 @@ function* addProfile(action){
         console.log('error adding profile info',error)
     }
 }
+
+function* fetchMessage(action){
+    console.log('payload for message',action.payload)
+    try{
+        const messages = yield axios.get(`/api/message/${action.payload}`);
+        yield put({type: 'SET_MESSAGE', payload: messages.data })
+    }
+    catch(err) {
+        console.error('error getting applied jobs: ', err);
+    }
+}
+
+function* addMessage(action){
+    console.log('action.payload addMessage',action.payload)
+    try{
+        yield axios.post(`/api/message`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding message',error)
+    }
+}
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -151,6 +172,11 @@ function* candidateSaga() {
     yield takeLatest('ADD_EXPERIENCE',addExperience);
     yield takeLatest('ADD_SKILL', addSkill);
     yield takeLatest('ADD_PROFILE', addProfile);
+    yield takeLatest('FETCH_MESSAGES',fetchMessage);
+    yield takeLatest('ADD_MESSAGE',addMessage);
+
+
+    
 
 
 
