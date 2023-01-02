@@ -1,66 +1,164 @@
-import React, { useState } from 'react';
+
 import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './LandingPage.css';
+import { Typography } from '@material-ui/core';
+import Box from "@mui/material/Box";
+import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
+
+
 
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+  const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
   const history = useHistory();
+  const dispatch = useDispatch();
 
-  const onLogin = (event) => {
-    history.push('/login');
-  };
+  useEffect(() => {
+    dispatch({ type: 'FETCH_RECENT_JOBS' });
+}, []);
+
+  // const onLogin = (event) => {
+  //   history.push('/login');
+  // };
 
   return (
     <div className="container">
-      <h2>{heading}</h2>
+      <Box><Typography variant = "h4">Mission & Values</Typography></Box>
+<Box sx={{ml: 10, mt: 5}}>
+    <Typography sx={{ml: 100}} variant = 'h6' >
+    Our mission is to eliminate discrimination during the application process.
+At Faceless Pro, we believe that the best candidate should be determined by
+skills and experience and not on physical attributes. 
+Our vision is to provide a one-stop platform that solves all the problems encountered during the recruitment process for both the employers and the employee.
+            </Typography>
+            </Box>
 
+    <Box sx={{mt: 10, mb:10}}> 
+    <Typography variant = "h4">Discrimination in the hiring process still persists today.</Typography>
+    </Box>
+
+    <Stack
+        direction="row"
+        divider={<Divider orientation="vertical" flexItem />}
+        spacing={8}
+        marginBottom = {10}
+      >
+
+    <Box
+      border = {3}
+      sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        pr:3,
+        ml:5,
+        width: 310,
+        height: 300,
+        backgroundColor: '#b2dfdb',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}>
+        <Typography variant = "h6" > A study by the Nuffield College’s Centre for Social Investigation (CSI), </Typography>
+       
+ <br></br>
+ <br></br>
+        <Typography variant = "p" > British job applicants from ethnic and racial minority groups sent 60% more resumes to get the same responses from employers, compared to White white applicants with the same skillset, experience, and qualifications. </Typography>
+        <br></br><br></br>
+        <Typography variant = "p" >http://csi.nuff.ox.ac.uk/?p=1299 </Typography>
+
+        </Box>
+
+        <Box
+      border = {3}
+      sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        pr:3,
+        ml:5,
+        width: 310,
+        height: 310,
+        backgroundColor: '#b2dfdb',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}>
+        <Typography variant = "h6" > From a study done by Johannes Kepler University Linz in Austria, </Typography>
+       
+ <br></br>
+ <br></br>
+        <Typography variant = "p" > Female applicants submitted applications with their photograph attached with or without headscarfs. Applicants with headscarfs faced high levels discrimination. In order to get the same amount of positive feedback as the other women, they'd have to apply for 4.5 times more jobs. </Typography>
+        <br></br><br></br>
+        <Typography variant = "p" >https://docs.iza.org/dp10217.pdf </Typography>
+
+        </Box>
+
+        <Box
+      border = {3}
+      sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        pr:3,
+        ml:5,
+        width: 310,
+        height: 310,
+        backgroundColor: '#b2dfdb',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}>
+        <Typography variant = "h6" > According to a study done by the Harvard Business Review, </Typography>
+       
+ <br></br>
+ <br></br>
+        <Typography variant = "p" > In the recruitment process if there is only one woman in the finalist pool, the chances of her being selected in virtually 0%. But if the finalist pool has at least two women applicants the chance of being selected jumps to nearly 80%  </Typography>
+        <br></br><br></br>
+        <Typography variant = "p" >https://hbr.org/2016/04/if-theres-only-one-woman-in-your-candidate-pool-theres-statistically-no-chance-shell-be-hired</Typography>
+
+        </Box>
+
+      </Stack>
+
+
+    <Typography variant = "h4">Featured Jobs</Typography>
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-            interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-            sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-            elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-            interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
-          </p>
+        <Stack
+        direction="row"
+       marginLeft={30}
+       marginTop={5}
+        spacing={50}
+        marginBottom = {10}
+      >
 
-          <p>
-            Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-            id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-            consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-            finibus metus facilisis. Nullam eget lectus non urna rhoncus
-            accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-            euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-            lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-            congue.
-          </p>
-
-          <p>
-            Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-            Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-            vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-            sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-            non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-            amet nisi.
-          </p>
+          
+              {recentJobs.map(job =>
+                    <Box><CandidateJobItem key={job.id} job={job} /> </Box>
+                )}
+          
+          </Stack>
         </div>
-        <div className="grid-col grid-col_4">
+        {/* <div className="grid-col grid-col_4">
           <RegisterForm />
 
           <center>
             <h4>Already a Member?</h4>
             <button className="btn btn_sizeSm" onClick={onLogin}>
               Login
-            </button>
-          </center>
-        </div>
+            </button> */}
+          {/* </center>
+        </div> */}
       </div>
     </div>
   );

@@ -1,12 +1,14 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
+import UserPage from '../UserPage/UserPage';
 
 
 function CandidateJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
+    const user = useSelector(store => store.user);
     // const params = useParams();
 
     useEffect(() => {
@@ -33,7 +35,9 @@ function CandidateJobItem({ job }) {
                   <p>  {job.company_name}</p> 
                   
                   <p> {job.company_address}</p>
-
+            
+{user.id ?  
+<div>
         <div onClick = {submitSave}>
                   {savedJobsList.find(c => c.id === job.id) ?
                   <button
@@ -61,6 +65,14 @@ function CandidateJobItem({ job }) {
                 
                 <button onClick = {detailsPage}>Details </button>
          </div> 
+
+: <> </>
+
+         
+}
+
+</div>
+
     
           </section>
     </>
