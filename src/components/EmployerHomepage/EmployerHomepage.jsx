@@ -19,7 +19,7 @@ function EmployerHomepage(){
     
     <h1>Employer Homepage</h1>
     <h2>Welcome {employer.username}</h2>
-    <div><img src={employer.logo_path} alt="" width={'200px'}/></div>
+    <div><img src={employer.user_info.logo_path} alt="" width={'200px'}/></div>
     <ul className='employerinfo'>
         <li>{employer.user_info.company_address}</li>
         <li>{employer.user_info.company_phone}</li>
