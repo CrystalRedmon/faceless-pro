@@ -4,8 +4,9 @@ import './EmployerHomepage.css'
 
 function EmployerHomepage(){
 
-    const employer = useSelector(store=> store.user.user_info);
+    const employer = useSelector(store=> store.user);
     const history = useHistory();
+    
 
     console.log('this is the employer: ', employer);
 
@@ -17,13 +18,13 @@ function EmployerHomepage(){
     return<>
     
     <h1>Employer Homepage</h1>
-    <h2>Welcome {employer.company_name}</h2>
-    <div><img src={employer.logo_path} alt="" width={'200px'}/></div>
+    <h2>Welcome {employer.username}</h2>
+    <div>{employer.user_info.logo_path}</div>
     <ul className='employerinfo'>
-        <li>{employer.company_address}</li>
-        <li>{employer.company_phone}</li>
-        <li>{employer.email}</li>
-        <li>{employer.company_link}</li>
+        <li>{employer.user_info.company_address}</li>
+        <li>{employer.user_info.company_phone}</li>
+        <li>{employer.user_info.email}</li>
+        <li>{employer.user_info.company_link}</li>
     </ul>
 
 

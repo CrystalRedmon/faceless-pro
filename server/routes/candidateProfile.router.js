@@ -41,7 +41,7 @@ router.post('/profile', (req, res) => {
   (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
   VALUES ($1, $2, $3, $4, $5, $6,$7)`;
     const sqlParam = [
-      req.user.user_info.id,
+      req.user.id,
       req.body.FirstName,
       req.body.LastName,
       req.body.Email,
@@ -263,7 +263,6 @@ router.get('/', (req, res) => {
 
 
   const sqlTxt = `SELECT "job_post".id, "employer".company_name,"employer".company_address,"job_post".title
-
     FROM "job_post"
     JOIN "employer"
       ON "job_post".employer_id = "employer".id

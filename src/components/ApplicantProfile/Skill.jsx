@@ -10,7 +10,7 @@ function Skill({ skill }) {
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
                     <Typography>{skill.skill_name}</Typography>
-                </Box>
+                </Box>''
             </Box>
         </Box>
     );

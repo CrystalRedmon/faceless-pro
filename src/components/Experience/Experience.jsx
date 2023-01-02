@@ -32,6 +32,7 @@ function Experience() {
           JobDuty: form.JobDuty,
         },
       });
+      history.push('/skills');
     });
   };
 

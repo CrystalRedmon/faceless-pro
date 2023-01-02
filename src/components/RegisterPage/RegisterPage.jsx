@@ -1,4 +1,5 @@
 import React from 'react';
+import './RegisterPage.css'
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';

@@ -7,7 +7,7 @@ function Breadcrumbs() {
     { label: 'Education', path: 'Education' },
     { label: 'Experience', path: 'Experience' },
     { label: 'Skills', path: 'Skills' },
-    { label: 'VoluntaryIdentification', path: 'VoluntaryIdentification' },
+    { label: 'Complete Profile', path: 'VoluntaryIdentification' },
   ];
 
   return (
