@@ -21,11 +21,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
    		ON "candidate".id = "application".candidate_id
    	JOIN "user"
    		ON "user".id = "candidate".user_id
-    WHERE "message".application_id = $1 AND "user".id = $2;`;
+    WHERE "message".application_id = $1 AND "candidate".id = $2;`;
   
     pool.query(sqlTxt,[req.params.id,req.user.user_info.id])
       .then(dbRes => {
-        console.log('message rows:',dbRes.rows)
+        // console.log('message rows:',dbRes.rows)
         res.send(dbRes.rows);
       })
       .catch(error => {

@@ -98,6 +98,20 @@ const useStyles = makeStyles({
                     >
                       Chat
                     </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        console.log("Sharing info for job id:",job.id)
+                        dispatch({
+                          type: "SHARE_INFO",
+                          payload: job.id
+                          
+                        })
+                      }}
+                    >
+                      Share Information
+                    </Button>
                   </>
                 ) : (
                   <></>
@@ -106,7 +120,7 @@ const useStyles = makeStyles({
               <Box>
                 {job.status === "shared" ? (
                   <>
-                    <p>Applied on {new Date(job.time).toLocaleString()}</p>
+                    <p>Person info shared with employer-Applied on {new Date(job.time).toLocaleString()}</p>
                     <br />
                     <Button
                       variant="contained"
