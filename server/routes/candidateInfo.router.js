@@ -54,7 +54,7 @@ router.get('/info/:id', rejectUnauthenticated, (req, res) => {
 
 
 //GET Saved Candidate Jobs
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
     SELECT "job_post".id,"employer".company_name,"employer".company_address, "job_post".title
@@ -79,7 +79,7 @@ router.get('/', (req, res) => {
   });
 
 //GET Applied Candidate Jobs
-  router.get('/applied', (req, res) => {
+  router.get('/applied', rejectUnauthenticated, (req, res) => {
     // console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
      `  SELECT "application".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time","job_post".id
@@ -105,7 +105,7 @@ router.get('/', (req, res) => {
   });
 
 //GET specific Job details Candidate
-  router.get('/detail/:id', (req, res) => {
+  router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
     SELECT "job_post".id, "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
@@ -128,7 +128,7 @@ router.get('/', (req, res) => {
   });
 
   //DELETE Saved Jobs Candidate
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.body);
     console.log('req.user.user_info.id',req.user.user_info.id)
     console.log('req.params.id',req.user.user_info.id)
@@ -152,7 +152,7 @@ router.get('/', (req, res) => {
 
 
 
-  router.post('/:id/application', (req, res) => {
+  router.post('/:id/application', rejectUnauthenticated, (req, res) => {
 
     console.log('req.params.id', req.params.id);
     console.log('req.user.user_info.id', req.user.user_info.id)
@@ -237,17 +237,8 @@ router.get('/', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
   //PUT Candidate Profile
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 
     console.log('Candidate14: ', req.user, req.body)
     const sqlTxt = `UPDATE "candidate"
