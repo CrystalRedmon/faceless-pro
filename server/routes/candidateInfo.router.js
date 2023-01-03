@@ -5,6 +5,54 @@ const axios = require('axios');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 
+
+// GET candidate info for profile page
+router.get('/info/:id', rejectUnauthenticated, (req, res) => {
+  const applicationId = req.params.id;
+
+  const sqlTxt = `SELECT
+(
+    SELECT json_agg(education.*)
+    FROM education
+    JOIN candidate ON education.candidate_id = candidate.id
+    WHERE candidate.user_id = $1 
+) AS education,
+(
+    SELECT json_agg(experience.*)
+    FROM experience
+    JOIN candidate ON experience.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS experience,
+(
+    SELECT json_agg(skill.*)
+    FROM skill
+    JOIN candidate ON skill.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS skill,
+(
+    SELECT json_agg(hyperlink.*)
+    FROM hyperlink
+    JOIN candidate ON hyperlink.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS hyperlink,
+(
+    SELECT json_agg(candidate.*)
+    FROM candidate
+    WHERE candidate.user_id = $1
+) AS profile;`;
+
+  pool.query(sqlTxt, [req.user.user_info.user_id])
+    .then(dbRes => {
+    res.send(dbRes.rows);
+
+    })
+    .catch(error => {
+      res.sendStatus(500);
+    })
+});
+
+
+
 //GET Saved Candidate Jobs
 router.get('/', (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
