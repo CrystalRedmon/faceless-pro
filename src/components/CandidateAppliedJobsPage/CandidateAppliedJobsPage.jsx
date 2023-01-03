@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
@@ -19,6 +20,19 @@ function AppliedToJobsPage() {
   useEffect(() => {
     dispatch({ type: "FETCH_APPLIED_JOBS" });
   }, []);
+
+
+const useStyles = makeStyles({
+  table: {
+    tableLayout: "fixed",
+    width: "100%",
+  },
+  td: {
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
+  },
+});
 
   return (
     <>
@@ -78,11 +92,25 @@ function AppliedToJobsPage() {
                           type: "SET_JOB_MESSAGE",
                           payload: job.id,
                         });
-                        history.push("/message");
+                        history.push(`/message/${job.id}`);
                         console.log("application id:", job.id);
                       }}
                     >
                       Chat
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => {
+                        console.log("Sharing info for job id:",job.id)
+                        dispatch({
+                          type: "SHARE_INFO",
+                          payload: job.id
+                          
+                        })
+                      }}
+                    >
+                      Share Information
                     </Button>
                   </>
                 ) : (
@@ -92,7 +120,7 @@ function AppliedToJobsPage() {
               <Box>
                 {job.status === "shared" ? (
                   <>
-                    <p>Applied on {new Date(job.time).toLocaleString()}</p>
+                    <p>Person info shared with employer-Applied on {new Date(job.time).toLocaleString()}</p>
                     <br />
                     <Button
                       variant="contained"
@@ -102,7 +130,7 @@ function AppliedToJobsPage() {
                           type: "SET_JOB_MESSAGE",
                           payload: job.id,
                         });
-                        history.push("/message");
+                        history.push(`/message/${job.id}`);
                         console.log("application id:", job.id);
                       }}
                     >
