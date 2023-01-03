@@ -158,7 +158,7 @@ function* updateApplicationStatus(action) {
 // }
 
 function* fetchApplicant(action) {
-    yield axios.get(`/api/employer/applicant/${action.payload}`);
+
     try {
         const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
 

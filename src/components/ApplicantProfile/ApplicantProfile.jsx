@@ -103,13 +103,22 @@ function ApplicantProfile() {
                             {applicant.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
                         </List>
                         <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
+                        {applicant.skill != null ?
+                            <>
+                                <List>
+                                    {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
+                                </List></>
+                            : <>applicant did not fill out</>
+                        }
                         <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
+                        {applicant.hyperlink != null ?
+                            <>
+                                <List>
+                                    {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
+                                </List>
+                            </>
+                            : <>applicant did not fill out</>
+                        }
                     </Box>
                 </Box>
             }
