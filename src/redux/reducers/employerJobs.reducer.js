@@ -43,25 +43,9 @@ const applicants = (state = [], action) => {
     return state;
 }
 
-const applicantNotSharedInfo = (state = {}, action) => {
+const applicantInfo = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_APPLICANT_NOT_SHARED_INFO':
-            return action.payload;
-    }
-    return state;
-}
-
-const applicant = (state = {}, action) => {
-    switch (action.type) {
-        case 'SET_APPLICANT_FROM_APPLICATION_TABLE':
-            return action.payload;
-    }
-    return state;
-}
-
-const applicantSharedInfo = (state = {}, action) => {
-    switch (action.type) {
-        case 'SET_APPLICANT_SHARED_INFO':
+        case 'SET_APPLICANT_INFO':
             return action.payload;
     }
     return state;
@@ -72,7 +56,5 @@ export default combineReducers({
     currentJob,
     editJob,
     applicants,
-    applicantNotSharedInfo,
-    applicant,
-    applicantSharedInfo
+    applicantInfo
 })

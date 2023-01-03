@@ -20,6 +20,16 @@ const saveJobs = (state = [], action) => {
     return state;
 }
 
+const appliedJobs = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_APPLIED_JOBS':
+            return action.payload;
+
+    }
+   
+    return state;
+}
+
 // const searchJobs = (state = [], action) => {
 //     switch(action.type) {
 //         case 'SET_SEARCHED_JOBS':
@@ -49,8 +59,10 @@ const jobMessage = (state =[],action) =>{
 export default combineReducers({
     candidateJobs,
     saveJobs,
+    appliedJobs,
     messageList,
     jobMessage
+
 })
 
 
