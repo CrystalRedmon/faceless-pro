@@ -27,12 +27,12 @@ function EmployerProfilePage() {
             type: 'SAVE_EMPLOYER_DATA',
             payload: employer
         });
-        history.push('/')
+        history.push('/user')
     }
 
     const handleClick = () => {
 
-        history.push('/')
+        history.push('/user')
     }
     // console.log('THE EMPLOYER INFO', employer);
 

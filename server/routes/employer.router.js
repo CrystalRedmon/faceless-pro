@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
   const sqlTxt = `SELECT *
                   FROM "job_post"
-                  WHERE "job_post"."employer_id" = $1;`;
+                  WHERE "employer_id" = $1;`;
 
   // console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
@@ -49,11 +49,22 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+//GET LIST OF ALL APPLICANTS BASED ON JOB POST ID
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
 
-  const sqlTxt = `SELECT * FROM application WHERE job_post_id = $1;`;
+  const sqlTxt = `SELECT * 
+                  FROM "application"
+                  JOIN "job_post"
+                  ON "job_post"."id"= "application".job_post_id
+                  WHERE "job_post".id = $1
+                  AND "employer_id" = $2;`;
 
-  pool.query(sqlTxt, [req.params.id])
+  const sqlParams = [
+  req.params.id,
+  req.user.user_info.id
+  ]
+
+  pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.send(dbRes.rows);
     })
@@ -119,12 +130,14 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const sqlTxt = ` UPDATE "job_post"
                     SET "title" = $1,
                     "description" = $2
-                    WHERE "id" = $3;`;
+                    WHERE "id" = $3
+                    AND "employer_id" = $4;`;
 
   const sqlParams = [
     req.body.title,
     req.body.description,
-    req.body.id
+    req.body.id,
+    req.user.user_info.id
   ]
 
   pool.query(sqlTxt, sqlParams)
@@ -171,9 +184,19 @@ router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
 
   const applicationId = req.params.id;
 
-  const sqlTxt = `SELECT * FROM application WHERE id = $1;`;
+  const sqlTxt = `SELECT * 
+                  FROM "application"
+                  JOIN "job_post"
+                  ON "job_post"."id"= "application".job_post_id
+                  WHERE "application"."id" = $1
+                  AND "employer_id" = $2;`;
+  
+  const sqlParams = [
+    applicationId,
+    req.user.user_info.id
+  ]
 
-  pool.query(sqlTxt, [applicationId])
+  pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.send(dbRes.rows[0]);
     })
