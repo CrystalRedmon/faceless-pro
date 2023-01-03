@@ -14,6 +14,8 @@ import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
+import Swal from 'sweetalert2';
+
 
 function ApplicantProfile() {
 
@@ -33,17 +35,49 @@ function ApplicantProfile() {
     const history = useHistory();
 
     function handleReject() {
-        console.log('the app id is', applicant.status_and_identifier[0].id);
         // update status
-        dispatch({
-            type: 'UPDATE_APPLICATION_STATUS',
-            payload: {
-                id: applicant.status_and_identifier[0].id,
-                newStatus: 'rejected'
+        Swal.fire({
+            title: 'Are you sure you want to reject this application?',
+            showDenyButton: true,
+            confirmButtonText: 'YES',
+            denyButtonText: `NO`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({
+                    type: 'UPDATE_APPLICATION_STATUS',
+                    payload: {
+                        id: applicant.status_and_identifier[0].id,
+                        newStatus: 'rejected'
+                    }
+                })
+                history.push(`/viewApplicantsPage/${params.jobId}`)
+            } else if (result.isDenied) {
+                Swal.fire('Changes were not saved', '', 'info')
             }
         })
         // then go back to the viewApplicantsPage
-        history.push(`/viewApplicantsPage/${params.jobId}`)
+    }
+
+    function handleRequestChat() {
+        Swal.fire({
+            title: 'By requesting to chat you are agreeing to establish a connection between you and the applicant. Do you wish to continue?',
+            showDenyButton: true,
+            confirmButtonText: 'YES',
+            denyButtonText: `NO`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Connection established!', '', 'success')
+                dispatch({
+                    type: 'UPDATE_APPLICATION_STATUS',
+                    payload: {
+                        id: applicant.status_and_identifier[0].id,
+                        newStatus: 'not_shared'
+                    }
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Changes were not saved', '', 'info')
+            }
+        })
     }
 
     // console.log(`the applicant info`, applicant);
@@ -63,16 +97,7 @@ function ApplicantProfile() {
                 <Box>
                     <Button
                         variant='contained'
-                        onClick={() => {
-                            dispatch({
-                                type: 'UPDATE_APPLICATION_STATUS',
-                                payload: {
-                                    id: applicant.status_and_identifier[0].id,
-                                    newStatus: 'not_shared'
-                                }
-                            })
-
-                        }}
+                        onClick={handleRequestChat}
                     >
                         request chat
                     </Button>
@@ -82,7 +107,7 @@ function ApplicantProfile() {
                     >
                         reject
                     </Button>
-                    <ApplicantNotSharedInfo applicant={applicant}/>
+                    <ApplicantNotSharedInfo applicant={applicant} />
                     {/* <Box>
                         <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.status_and_identifier[0].random_identifier}</Typography>
                         <List>
