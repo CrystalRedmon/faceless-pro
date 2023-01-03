@@ -222,6 +222,31 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 });
 
+router.put('/info/:id',rejectUnauthenticated,(req, res) => {
+
+  console.log('Candidate14: ', req.user, req.params.id)
+  const sqlTxt = `
+  UPDATE "application"
+  SET "status" = 'shared'
+  WHERE "id" = $1;
+  `;
+
+  const sqlParams = [
+    req.params.id
+  ]
+
+  pool.query(sqlTxt, sqlParams)
+      .then(result => {
+          res.sendStatus(200);
+          console.log('PUT candidate info successful');
+      })
+      .catch(error => {
+          res.sendStatus(500);
+          console.log('POST candidate info failed: ', error);
+      })
+
+});
+
 
 
 

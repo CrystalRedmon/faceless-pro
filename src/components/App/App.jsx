@@ -128,7 +128,7 @@ function App() {
           <ProtectedRoute
             //
             exact
-            path="/message"
+            path="/message/:id"
           >
             <Message />
           </ProtectedRoute>
@@ -303,9 +303,7 @@ function App() {
             exact
             path="/home"
           >
-
               <LandingPage />
-            
           </Route>
           <ProtectedRoute>
             <Breadcrumbs />

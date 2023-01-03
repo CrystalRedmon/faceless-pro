@@ -51,21 +51,19 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 
 //GET LIST OF ALL APPLICANTS BASED ON JOB POST ID
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
+  // console.log('req.user', req.user.user_info.user_id);
+  // console.log(req.params.id);
 
-  const sqlTxt = `SELECT * 
-                  FROM "application"
-                  JOIN "job_post"
-                  ON "job_post"."id"= "application".job_post_id
-                  WHERE "job_post".id = $1
-                  AND "employer_id" = $2;`;
+  const sqlTxt = `SELECT application.id, application.random_identifier, application.time, application.status
+FROM application
+JOIN job_post ON application.job_post_id = job_post.id
+JOIN employer ON job_post.employer_id = employer.id
+WHERE application.job_post_id = $1 AND employer.user_id = $2
+ORDER BY application.id;`;
 
-  const sqlParams = [
-  req.params.id,
-  req.user.user_info.id
-  ]
-
-  pool.query(sqlTxt, sqlParams)
+  pool.query(sqlTxt, [Number(req.params.id), req.user.user_info.user_id])
     .then(dbRes => {
+      console.log('the rows', dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch(error => {
@@ -152,64 +150,100 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
-// GET applicant not_shared info by applicant.id
-router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
-  try {
-    const applicationId = req.params.id;
-
-    let dbRes = await pool.query(
-      `SELECT (SELECT json_agg(ed.*)
-          FROM   education ed
-          WHERE  ed.candidate_id = $1)  AS education
-        , (SELECT json_agg(ex.*)
-          FROM   experience ex
-          WHERE  ex.candidate_id = $1)  AS experience
-        , (SELECT json_agg(s.*)
-          FROM   skill s
-          WHERE  s.candidate_id = $1)  AS skill
-        , (SELECT json_agg(h.*)
-          FROM   hyperlink h
-          WHERE  h.candidate_id = $1)  AS hyperlink
-      WHERE  EXISTS (SELECT FROM application a WHERE a.id = $1);`, [applicationId]);
-    res.send(dbRes.rows[0]);
-  }
-  catch (err) {
-    console.error('GET /not_shared/:id', err);
-    res.sendStatus(500);
-  }
-})
-
-// GET application info by application.id
+// GET application info
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
-
   const applicationId = req.params.id;
 
-  const sqlTxt = `SELECT * 
-                  FROM "application"
-                  JOIN "job_post"
-                  ON "job_post"."id"= "application".job_post_id
-                  WHERE "application"."id" = $1
-                  AND "employer_id" = $2;`;
-  
-  const sqlParams = [
-    applicationId,
-    req.user.user_info.id
-  ]
+  const sqlTxt = `SELECT
+(
+    SELECT json_agg(education.*)
+    FROM education
+    JOIN candidate ON education.candidate_id = candidate.id
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS education,
+(
+    SELECT json_agg(experience.*)
+    FROM experience
+    JOIN candidate ON experience.candidate_id = candidate.id
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS experience,
+(
+    SELECT json_agg(skill.*)
+    FROM skill
+    JOIN candidate ON skill.candidate_id = candidate.id
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS skill,
+(
+    SELECT json_agg(hyperlink.*)
+    FROM hyperlink
+    JOIN candidate ON hyperlink.candidate_id = candidate.id
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS hyperlink,
+(
+    SELECT json_agg(candidate.*)
+    FROM candidate
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS profile,
+(
+    SELECT json_agg(application.*)
+    FROM candidate
+    JOIN application ON candidate.id = application.candidate_id
+    JOIN job_post ON application.job_post_id = job_post.id
+    JOIN employer ON job_post.employer_id = employer.id
+    WHERE employer.user_id = $2 AND application.id = $1
+) AS status_and_identifier
+WHERE EXISTS (
+    SELECT
+    FROM application
+    WHERE application.id = $1
+);`;
 
-  pool.query(sqlTxt, sqlParams)
+  pool.query(sqlTxt, [applicationId, req.user.user_info.user_id])
     .then(dbRes => {
-      res.send(dbRes.rows[0]);
+      let result = dbRes.rows[0];
+
+      if (result.status_and_identifier[0].status != 'shared') {
+        delete result.profile
+        console.log('the applicant info sending is,', result);
+        res.send(result);
+      } else {
+        console.log('the applicant SHARED info sending is,', result);
+        res.send(result);
+      }
     })
     .catch(error => {
       res.sendStatus(500);
     })
 });
 
-// UPDATE status of application by application.id
+// UPDATE status of application
 router.put('/status/:id', rejectUnauthenticated, (req, res) => {
-
-  const queryText = `UPDATE "application" SET "status" = $1 WHERE id = $2;`;
-  const sqlParams = [req.body.newStatus, req.params.id];
+  // console.log(req.body.newStatus);
+  // console.log('applicationId', req.params.id);
+  // console.log('req.user.user_info.user_id', req.user.user_info.user_id);
+  const queryText = `
+UPDATE application
+SET status = $1
+FROM job_post
+	JOIN employer ON employer.id = job_post.employer_id
+WHERE
+	application.id = $2 AND employer.user_id = $3;`;
+  const sqlParams = [req.body.newStatus, req.params.id, req.user.user_info.user_id];
 
   pool.query(queryText, sqlParams)
     .then(dbRes => {
@@ -221,21 +255,69 @@ router.put('/status/:id', rejectUnauthenticated, (req, res) => {
 });
 
 // GET applicant shared info by applicant.id
-router.get('/shared/:id', rejectUnauthenticated, async (req, res) => {
-  try {
-    const applicationId = req.params.id;
+// router.get('/shared/:id', rejectUnauthenticated, async (req, res) => {
+//   try {
+//     const applicationId = req.params.id;
 
-    let dbRes = await pool.query(
-      `SELECT first_name, last_name, email, linkedin_link, resume_path, cover_letter_path 
-        FROM application
-        JOIN candidate ON application.candidate_id = candidate.id
-        WHERE application.id = $1;`, [applicationId]);
-    res.send(dbRes.rows[0]);
-  }
-  catch (err) {
-    console.error('GET /shared/:id', err);
-    res.sendStatus(500);
-  }
-})
+//     let dbRes = await pool.query(
+//       `SELECT first_name, last_name, email, linkedin_link, resume_path, cover_letter_path 
+//         FROM application
+//         JOIN candidate ON application.candidate_id = candidate.id
+//         WHERE application.id = $1;`, [applicationId]);
+//     res.send(dbRes.rows[0]);
+//   }
+//   catch (err) {
+//     console.error('GET /shared/:id', err);
+//     res.sendStatus(500);
+//   }
+// })
 
 module.exports = router;
+
+
+
+/*
+
+SELECT 
+
+  if (status = "shared")
+    candidate.fName,
+    candidate.Lnamt,
+    etc
+  else {
+    // don't
+  }
+  // can use CASE for conditionals
+  CASE WHEN status = 'shared' THEN candidate.fName else NULL END,
+  // .... etc....
+
+FROM application
+JOIN job_post
+JOIN education
+JOIN experience
+// et...
+WHERE
+  application.id = req.params.id      // from URL
+  job_post.employer_id = req.user.id  // Authorization!!!
+
+  // or
+  WHERE application.job_id = ...
+  applicaiont.cand_id = ...
+*/
+
+/**
+pool.query(sqlQuery, params)
+  .then(dbRes => {
+    let result = dbRes.rows[0];
+
+    if (result.status !== 'shared') {
+      delete result.fName
+      delete result.lName,
+      etc.
+      // or
+      result.fName = null;
+    }
+
+    res.send(result);
+  })
+ */
