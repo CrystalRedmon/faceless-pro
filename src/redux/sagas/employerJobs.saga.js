@@ -84,7 +84,6 @@ function* saveJob(action) {
 }
 
 function* fetchApplicants(action) {
-    // console.log('in fetchApplicants with action.payload', action.payload); // job.id
     try {
         const response = yield axios.get(`/api/employer/applicants/${action.payload}`);
 
@@ -96,64 +95,38 @@ function* fetchApplicants(action) {
     }
 }
 
-function* fetchApplicantNotSharedInfo(action) {
-
+function* updateApplicationStatus(action) {
+    const applicationId = action.payload.id;
+    const newStatus = action.payload.newStatus;
+    // console.log('in updateApplicationStatus');
+    // console.log('applicationId', applicationId);
+    // console.log('newStatus', newStatus);
     try {
-        const response = yield axios.get(`/api/employer/not_shared/${action.payload}`);
+
+        yield axios.put(`/api/employer/status/${applicationId}`, { newStatus });
 
         yield put({
-            type: 'SET_APPLICANT_NOT_SHARED_INFO',
-            payload: response.data
+            type: 'FETCH_APPLICANT',
+            payload: applicationId
         });
     }
     catch (err) {
-        console.error(err);
+        console.error('updateApplicationStatus failed ', err);
     }
 }
 
-function* fetchApplicantFromApplicationTable(action) {
+function* fetchApplicant(action) {
+
     try {
         const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
 
         yield put({
-            type: 'SET_APPLICANT_FROM_APPLICATION_TABLE',
+            type: 'SET_APPLICANT_INFO',
             payload: response.data
         });
     }
     catch (err) {
-        console.error(err);
-    }
-}
-
-function* updateApplicationStatus(action) {
-    const applicationId = action.payload.id;
-    const newStatus = action.payload.newStatus;
-
-    const response = yield axios.put(`/api/employer/status/${applicationId}`, { newStatus });
-    console.log(response.data);
-
-    yield put({
-        type: 'FETCH_APPLICANT_NOT_SHARED_INFO',
-        payload: applicationId
-    });
-
-    yield put({
-        type: 'FETCH_APPLICANT_FROM_APPLICATION_TABLE',
-        payload: applicationId
-    });
-}
-
-function* fetchApplicantSharedInfo(action) {
-    try {
-        const response = yield axios.get(`/api/employer/shared/${action.payload}`);
-
-        yield put({
-            type: 'SET_APPLICANT_SHARED_INFO',
-            payload: response.data
-        });
-    }
-    catch (err) {
-        console.error(err);
+        console.error('fetchApplicant failed ', err);
     }
 }
 
@@ -166,10 +139,8 @@ function* JobSaga() {
     yield takeEvery('FETCH_EDIT_JOB', fetchEditJob);
     yield takeEvery('SAVE_JOB', saveJob);
     yield takeEvery('FETCH_APPLICANTS', fetchApplicants);
-    yield takeEvery('FETCH_APPLICANT_NOT_SHARED_INFO', fetchApplicantNotSharedInfo);
-    yield takeEvery('FETCH_APPLICANT_FROM_APPLICATION_TABLE', fetchApplicantFromApplicationTable);
     yield takeEvery('UPDATE_APPLICATION_STATUS', updateApplicationStatus);
-    yield takeEvery('FETCH_APPLICANT_SHARED_INFO', fetchApplicantSharedInfo);
+    yield takeEvery('FETCH_APPLICANT', fetchApplicant);
 }
 
 
