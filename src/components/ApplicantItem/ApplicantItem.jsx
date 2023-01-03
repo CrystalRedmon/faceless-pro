@@ -30,7 +30,7 @@ function ApplicantItem({ applicant, jobId }) {
                     </Box>
                     <Box>
                         <Box>
-                            {applicant.time}
+                            {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
                             {applicant.status}
@@ -54,12 +54,17 @@ function ApplicantItem({ applicant, jobId }) {
                     </Box>
                     <Box>
                         <Box>
-                            {applicant.time}
+                            {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
                             {applicant.status}
                         </Box>
-                        <Button variant='contained'>Open Chat</Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => { history.push(`/message/${applicant.id}`)}}
+                        >
+                            Open Chat
+                        </Button>
                         <Button
                             variant='contained'
                             onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
@@ -79,12 +84,17 @@ function ApplicantItem({ applicant, jobId }) {
                     </Box>
                     <Box>
                         <Box>
-                            {applicant.time}
+                            {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
                             {applicant.status}
                         </Box>
-                        <Button variant='contained'>Open Chat</Button>
+                        <Button
+                            variant='contained'
+                            onClick={() => { history.push(`/message/${applicant.id}`) }}
+                        >
+                            Open Chat
+                        </Button>
                         <Button
                             variant='contained'
                             onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}

@@ -86,7 +86,14 @@
           <Grid container>
             <Grid item xs={12} className={classes.headBG}>
               <Box display="flex" alignItems="center" p={1}>
-                <Box p={1} flexGrow={1}>
+              <Box p={1} flexGrow={1}>
+                {/* added a back button, Mohamed */}
+                <Button
+                  variant='contained'
+                  onClick={() => { window.history.back() }}
+                >
+                  back
+                </Button>
                   <Typography variant="h5" className="header-message">
                     Chat with 
                     
