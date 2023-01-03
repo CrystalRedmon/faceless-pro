@@ -24,14 +24,20 @@ function EmployerJobList() {
     }
     return <>
         <Grid container spacing={2}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={9}>
+                <h1>Open Job Posts <Button variant='contained' onClick={handleAddJob}>Add New Job</Button></h1>
+            </Grid>
             <Grid item xs={2}></Grid>
             <Grid item xs={8}>
-                <h1>Open Job Posts <Button variant='contained' onClick={handleAddJob}>Add New Job</Button></h1>
-                
-                <table>
+
+
+                <table width='100%'>
                     <thead>
                         <tr>
-                            <th scope="col">TITLE</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
                             <th scope="col"></th>
                         </tr>
                     </thead>

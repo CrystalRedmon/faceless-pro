@@ -19,8 +19,8 @@ function EmployerHomepage() {
     return <>
 
         <Grid container spacing={2}>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={8}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
                 <h1 mb={20}>Welcome, {employer.username}</h1>
                 <div>{employer.user_info.logo_path}</div>
                 <ul className='employerinfo'>
@@ -31,7 +31,7 @@ function EmployerHomepage() {
                 </ul>
                 <Button variant='contained' onClick={handleToProile}>View/Edit Full Profile</Button>
             </Grid>
-            <Grid item xs={2}></Grid>
+            <Grid item xs={3}></Grid>
 
         </Grid>
 

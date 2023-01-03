@@ -76,8 +76,8 @@ function PostJob() {
     return (
         <>
         <Grid container spacing={2}>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={8}>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={9}>
             <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
             <Button variant='contained' onClick={handleBack}>Back</Button>
@@ -107,7 +107,7 @@ function PostJob() {
                 <Button variant='contained' onClick={onSubmit}>Submit</Button>
             </form>
             </Grid>
-            <Grid item xs={2}></Grid>
+            <Grid item xs={3}></Grid>
             </Grid>
         </>
     )

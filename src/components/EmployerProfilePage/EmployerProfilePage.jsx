@@ -41,7 +41,7 @@ function EmployerProfilePage() {
         <Box>
 
             <Grid container spacing={2}>
-                <Grid item xs={2}></Grid>
+                <Grid item xs={3}></Grid>
                 <Grid item xs={8}>
                     <h1>
                         Edit Your Employer Profile
@@ -129,7 +129,7 @@ function EmployerProfilePage() {
                         </Grid>
                     </form>
                 </Grid>
-                <Grid item xs={2}></Grid>
+                <Grid item xs={3}></Grid>
             </Grid>
         </Box>
     );

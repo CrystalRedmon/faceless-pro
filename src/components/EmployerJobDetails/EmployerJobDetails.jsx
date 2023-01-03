@@ -35,8 +35,8 @@ function EmployerJobDetails() {
     return (
         <>
             <Grid container spacing={2}>
-                <Grid item xs={2}></Grid>
-                <Grid item xs={8}>
+                <Grid item xs={3}></Grid>
+                <Grid item xs={6}>
                     <Button variant='contained' onClick={handleBack}>Back</Button>
                     <Button variant='contained' onClick={handleEdit}>Edit</Button>
                     <h2>Title: {job.title}</h2>

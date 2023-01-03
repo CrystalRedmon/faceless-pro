@@ -1,6 +1,6 @@
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import {TableCell, Button} from '@mui/material';
+import { TableCell, Button } from '@mui/material';
 import { useEffect } from 'react'
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 import { PanoramaSharp } from '@mui/icons-material';
@@ -35,7 +35,11 @@ function EmployerJobItem({ job }) {
             <td>{job.title}</td>
             <td>
                 <Button variant='contained' onClick={handleView}>Details</Button>
+            </td>
+            <td>
                 <Button variant='contained' onClick={handleViewApplicants}>View Applicants</Button>
+            </td>
+            <td>
                 <Button variant='contained' onClick={handleDeleteItem}>Delete</Button>
             </td>
         </tr>
