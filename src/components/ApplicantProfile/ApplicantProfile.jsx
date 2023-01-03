@@ -20,12 +20,6 @@ function ApplicantProfile() {
     // const applicantNotSharedInfo = useSelector(store => store.jobs.applicantNotSharedInfo);
     // const applicantSharedInfo = useSelector(store => store.jobs.applicantSharedInfo);
     const applicant = useSelector(store => store.jobs.applicantInfo);
-    // const applicantNotSharedInfo = {
-    //     education: applicant.education[0],
-    //     experience: applicant.experience[0],
-    //     skill: applicant.skill[0],
-    //     hyperlink: applicant.hyperlink[0]
-    // }
 
     useEffect(() => {
         dispatch({
@@ -39,24 +33,20 @@ function ApplicantProfile() {
     const history = useHistory();
 
     function handleReject() {
+        console.log('the app id is', applicant.status_and_identifier[0].id);
         // update status
         dispatch({
-            // fix with req.user
             type: 'UPDATE_APPLICATION_STATUS',
             payload: {
-                id: applicant.id,
+                id: applicant.status_and_identifier[0].id,
                 newStatus: 'rejected'
             }
         })
         // then go back to the viewApplicantsPage
-        // BUG: Sometimes it will remove the applicant from the list. Refresh page.
         history.push(`/viewApplicantsPage/${params.jobId}`)
     }
 
-
-    // console.log(`the applicant's not shared info`, applicantNotSharedInfo);
-    // console.log(`the applicant's shared info`, applicantNotSharedInfo);
-    console.log(`the applicant info`, applicant);
+    // console.log(`the applicant info`, applicant);
 
     return (
         <Box>
@@ -68,16 +58,16 @@ function ApplicantProfile() {
             </Button>
 
             {/* pending */}
+            {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'pending') &&
                 <Box>
                     <Button
                         variant='contained'
                         onClick={() => {
                             dispatch({
-                                // fix with req.user
                                 type: 'UPDATE_APPLICATION_STATUS',
                                 payload: {
-                                    id: applicant.id,
+                                    id: applicant.status_and_identifier[0].id,
                                     newStatus: 'not_shared'
                                 }
                             })
@@ -92,7 +82,8 @@ function ApplicantProfile() {
                     >
                         reject
                     </Button>
-                    <Box>
+                    <ApplicantNotSharedInfo applicant={applicant}/>
+                    {/* <Box>
                         <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.status_and_identifier[0].random_identifier}</Typography>
                         <List>
                             <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
@@ -119,104 +110,29 @@ function ApplicantProfile() {
                             </>
                             : <>applicant did not fill out</>
                         }
-                    </Box>
+                    </Box> */}
                 </Box>
             }
             {/* not_shared */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'not_shared') &&
                 <Box>
-                    <Box>
-                        <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.status_and_identifier[0].random_identifier}</Typography>
-                        <List>
-                            <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                            {applicant.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicant.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
-                    </Box>
+                    <ApplicantNotSharedInfo applicant={applicant} />
                 </Box>
             }
             {/* shared */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'shared') &&
                 <Box>
-                    <Box sx={{ margin: "20px" }}>
+                    {/* <Box sx={{ margin: "20px" }}>
                         <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.profile[0].first_name} {applicant.profile[0].last_name}</Typography>
                         <Typography sx={{ display: "flex" }}><b>Email:</b>{applicant.profile[0].email}</Typography>
                         <Typography sx={{ display: "flex" }}><b>LinkedIn:</b><a href={applicant.profile[0].linkedin_link} target="_blank">{applicant.profile[0].linkedin_link}</a></Typography>
                         <Typography sx={{ display: "flex" }}><b>Resume:</b>{applicant.profile[0].resume_path}</Typography>
                         <Typography sx={{ display: "flex" }}><b>Cover Letter:</b>{applicant.profile[0].cover_letter_path}</Typography>
-                    </Box>
-                    <Box>
-                        <List>
-                            <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                            {applicant.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicant.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        <List>
-                            {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        <List>
-                            {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                        </List>
-                    </Box>
+                    </Box> */}
+                    <ApplicantSharedInfo applicant={applicant} />
+                    <ApplicantNotSharedInfo applicant={applicant} />
                 </Box>
             }
-
-            {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
-            {/* {(applicant.status === 'pending' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <Box>
-                    <Button
-                        variant='contained'
-                        onClick={() => {
-                            dispatch({
-                                type: 'UPDATE_APPLICATION_STATUS',
-                                payload: {
-                                    id: applicant.id,
-                                    newStatus: 'not_shared'
-                                }
-                            })
-
-                        }}
-                    >
-                        request chat
-                    </Button>
-                    <Button
-                        variant='contained'
-                        onClick={handleReject}
-                    >
-                        reject
-                    </Button>
-
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-
-                </Box>
-            }
-
-            {(applicant.status === 'not_shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-            }
-
-            {(applicant.status === 'shared' && Object.keys(applicantNotSharedInfo).length != 0) &&
-                <Box>
-                    <ApplicantSharedInfo applicantSharedInfo={applicantSharedInfo} />
-                    <ApplicantNotSharedInfo applicantNotSharedInfo={applicantNotSharedInfo} applicant={applicant} />
-                </Box>
-            } */}
         </Box>
     );
 }

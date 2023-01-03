@@ -57,7 +57,8 @@ router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
 FROM application
 JOIN job_post ON application.job_post_id = job_post.id
 JOIN employer ON job_post.employer_id = employer.id
-WHERE application.job_post_id = $1 AND employer.user_id = $2;`;
+WHERE application.job_post_id = $1 AND employer.user_id = $2
+ORDER BY application.id;`;
 
   pool.query(sqlTxt, [Number(req.params.id), req.user.user_info.user_id])
     .then(dbRes => {
@@ -146,38 +147,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 })
 
-// GET applicant not_shared info by applicant.id
-// router.get('/not_shared/:id', rejectUnauthenticated, async (req, res) => {
-//   try {
-//     const applicationId = req.params.id;
-
-//     let dbRes = await pool.query(
-//       `SELECT (SELECT json_agg(ed.*)
-//           FROM   education ed
-//           WHERE  ed.candidate_id = $1)  AS education
-//         , (SELECT json_agg(ex.*)
-//           FROM   experience ex
-//           WHERE  ex.candidate_id = $1)  AS experience
-//         , (SELECT json_agg(s.*)
-//           FROM   skill s
-//           WHERE  s.candidate_id = $1)  AS skill
-//         , (SELECT json_agg(h.*)
-//           FROM   hyperlink h
-//           WHERE  h.candidate_id = $1)  AS hyperlink
-//       WHERE  EXISTS (SELECT FROM application a WHERE a.id = $1);`, [applicationId]);
-//     res.send(dbRes.rows[0]);
-//   }
-//   catch (err) {
-//     console.error('GET /not_shared/:id', err);
-//     res.sendStatus(500);
-//   }
-// })
-
 // GET application info
 router.get('/applicant/:id', rejectUnauthenticated, (req, res) => {
-  console.log('hi!');
   const applicationId = req.params.id;
-  console.log(applicationId);
 
   const sqlTxt = `SELECT
 (
@@ -241,65 +213,7 @@ WHERE EXISTS (
   pool.query(sqlTxt, [applicationId, req.user.user_info.user_id])
     .then(dbRes => {
       let result = dbRes.rows[0];
-      /*
-      {
-  education: [
-    {
-      id: 1,
-      candidate_id: 1,
-      school: 'prime',
-      qualification: 'my qualifications',
-      dates: '11/11/2022',
-      note: 'some notes'
-    },
-    {
-      id: 2,
-      candidate_id: 1,
-      school: 'u of m',
-      qualification: 'bs in stuff',
-      dates: '11/12/2021',
-      note: null
-    }
-  ],
-  experience: [
-    {
-      id: 1,
-      candidate_id: 1,
-      employer: 'dairy queen',
-      title: 'senior manager',
-      dates: '9/10/22',
-      job_duties: 'worked hard'
-    }
-  ],
-  skill: [
-    { id: 1, candidate_id: 1, skill_name: 'tennis' },
-    { id: 2, candidate_id: 1, skill_name: 'software stuff skill' }
-  ],
-  hyperlink: [ { id: 1, candidate_id: 1, link: 'www.google.com' } ],
-  profile: [
-    {
-      id: 1,
-      user_id: 2,
-      first_name: 'Daniel',
-      last_name: 'Legan',
-      email: 'legan.daniel@gmail.com',
-      linkedin_link: 'stuff.com',
-      resume_path: 'resume path',
-      cover_letter_path: 'cover letter path'
-    }
-  ],
-  status_and_identifier: [
-    {
-      id: 1,
-      candidate_id: 1,
-      job_post_id: 1,
-      random_identifier: 'iguana money',
-      time: '2023-01-02T09:43:41.737516',
-      status: 'shared'
-    }
-  ]
-}
-      */
+
       if (result.status_and_identifier[0].status != 'shared') {
         delete result.profile
         console.log('the applicant info sending is,', result);
@@ -314,11 +228,19 @@ WHERE EXISTS (
     })
 });
 
-// UPDATE status of application by application.id
+// UPDATE status of application
 router.put('/status/:id', rejectUnauthenticated, (req, res) => {
-
-  const queryText = `UPDATE "application" SET "status" = $1 WHERE id = $2;`;
-  const sqlParams = [req.body.newStatus, req.params.id];
+  // console.log(req.body.newStatus);
+  // console.log('applicationId', req.params.id);
+  // console.log('req.user.user_info.user_id', req.user.user_info.user_id);
+  const queryText = `
+UPDATE application
+SET status = $1
+FROM job_post
+	JOIN employer ON employer.id = job_post.employer_id
+WHERE
+	application.id = $2 AND employer.user_id = $3;`;
+  const sqlParams = [req.body.newStatus, req.params.id, req.user.user_info.user_id];
 
   pool.query(queryText, sqlParams)
     .then(dbRes => {
