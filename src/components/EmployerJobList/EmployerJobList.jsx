@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
-import { useHistory } from 'react-router-dom';
-import { InputLabel, Button, Grid, Link } from "@mui/material"
+import { useHistory, Link } from 'react-router-dom';
+import { InputLabel, Button, Grid, Typography } from "@mui/material"
 
 
 function EmployerJobList() {
@@ -27,7 +27,7 @@ function EmployerJobList() {
             <Grid item xs={4.5}></Grid>
             <Grid item xs={6.5}>
                 <h1>Open Job Posts</h1>
-                <Link variant='contained' onClick={handleAddJob} marginLeft={9}>Add New Job</Link>
+                <Typography marginLeft={9}><Link variant='contained' onClick={handleAddJob} >Add New Job</Link></Typography>
             </Grid>
             <Grid item xs={1.5}></Grid>
             <Grid container

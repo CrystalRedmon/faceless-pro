@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import './EmployerHomepage.css'
 import { InputLabel, Button, Grid } from "@mui/material"
 
@@ -29,9 +29,9 @@ function EmployerHomepage() {
                     <li>{employer.user_info.email}</li>
                     <li>{employer.user_info.company_link}</li>
                 </ul>
-                <Button variant='contained' onClick={handleToProile}>View/Edit Full Profile</Button>
+                <Link variant='contained' onClick={handleToProile}>View/Edit Full Profile</Link>
             </Grid>
-            <Grid item xs={3}></Grid>
+            <Grid item xs={3}> </Grid>
 
         </Grid>
 
