@@ -72,7 +72,6 @@ const candidateInfo = (state = [], action) => {
     return state;
 }
 
-
 export default combineReducers({
     candidateJobs,
     saveJobs,
