@@ -4,7 +4,7 @@ import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
 import { useHistory } from 'react-router-dom';
-import { InputLabel, Button, Grid } from "@mui/material"
+import { InputLabel, Button, Grid, Link } from "@mui/material"
 
 
 function EmployerJobList() {
@@ -24,15 +24,24 @@ function EmployerJobList() {
     }
     return <>
         <Grid container spacing={2}>
-            <Grid item xs={3}></Grid>
-            <Grid item xs={9}>
-                <h1>Open Job Posts <Button variant='contained' onClick={handleAddJob}>Add New Job</Button></h1>
+            <Grid item xs={4.5}></Grid>
+            <Grid item xs={6.5}>
+                <h1>Open Job Posts</h1>
+                <Link variant='contained' onClick={handleAddJob} marginLeft={9}>Add New Job</Link>
             </Grid>
-            <Grid item xs={2}></Grid>
-            <Grid item xs={8}>
+            <Grid item xs={1.5}></Grid>
+            <Grid container
+                spacing={2}
+                item xs={9}
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+                mt={5}>
+                {jobs.map(job =>
+                    <EmployerJobItem key={job.id} job={job} />
+                )}
 
-
-                <table width='100%'>
+                {/* <table width='100%'>
                     <thead>
                         <tr>
                             <th scope="col"></th>
@@ -46,9 +55,9 @@ function EmployerJobList() {
                             <EmployerJobItem key={job.id} job={job} />
                         )}
                     </tbody>
-                </table>
+                </table> */}
             </Grid>
-            <Grid item xs={2}></Grid>
+            <Grid item xs={1}></Grid>
         </Grid>
     </>
 }
