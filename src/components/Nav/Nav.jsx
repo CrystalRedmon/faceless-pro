@@ -71,7 +71,7 @@ function Nav() {
               Search Jobs - side nav
             </Link>
 
-            <Link className="navLink" to="/CandidateProfile">
+            <Link className="navLink" to="/CandidatePage">
               My Profile - side nav
             </Link>
 

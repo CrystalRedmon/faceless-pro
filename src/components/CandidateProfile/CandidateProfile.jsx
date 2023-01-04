@@ -15,6 +15,7 @@ function CandidateProfile() {
   });
 
   const dispatch = useDispatch();
+  const [showProfile, setShowProfile] = useState(false); // Add state to track whether to show the profile or not
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -25,53 +26,58 @@ function CandidateProfile() {
 
   }
 
-  const submit = (event) => {{
+  const submit = (event) => {
     event.preventDefault();
     dispatch({ type: 'ADD_PROFILE', payload: formData });
-
+    setShowProfile(true); // Set showProfile to true once the form is submitted
   }
 
-}
-const nextpage = (event)=> {
-  history.push('/education');
-}
-  return (
+  const nextpage = (event) => {
+    history.push('/education');
+  }
+
+  return ((
     <>
       <h2>Welcome to your profile!</h2>
-      <div className="Profile">
-        <form onSubmit={submit}>
-          <FormControl>
-            <InputLabel htmlFor="first-name">First Name</InputLabel>
-            <Input
-              id="first-name"
-              name='FirstName'
-              onChange={event => handleFormChange(event)}
-              value={formData.FirstName}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="last-name">Last Name</InputLabel>
-            <Input
-              id="last-name"
-              name='LastName'
-              onChange={event => handleFormChange(event)}
-              value={formData.LastName}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="email">Email</InputLabel>
-            <Input
-              id="email"
-              name='Email'
-              onChange={event => handleFormChange(event)}
-              value={formData.Email}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
-            <Input
-              id="linkedin"
-              name='LinkedIn'
+      {showProfile ? ( // Show the profile if showProfile is true
+        <div className="Profile">
+          {/* Display the profile here */}
+        </div>
+      ) : (
+        <div className="Profile">
+          <form onSubmit={submit}>
+            <FormControl>
+              <InputLabel htmlFor="first-name">First Name</InputLabel>
+              <Input
+                id="first-name"
+                name='FirstName'
+                onChange={event => handleFormChange(event)}
+                value={formData.FirstName}
+              />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="last-name">Last Name</InputLabel>
+              <Input
+                id="last-name"
+                name='LastName'
+                onChange={event => handleFormChange(event)}
+                value={formData.LastName}
+              />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="email">Email</InputLabel>
+              <Input
+                id="email"
+                name='Email'
+                onChange={event => handleFormChange(event)}
+                value={formData.Email}
+              />
+            </FormControl>
+            <FormControl>
+              <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
+              <Input
+                id="linkedin"
+                name='LinkedIn'
               onChange={event => handleFormChange(event)}
               value={formData.LinkedIn}
             />
@@ -97,9 +103,10 @@ const nextpage = (event)=> {
           <br />
           <Button variant="contained" color="primary" type="submit" onClick={nextpage}>Submit</Button>
         </form>
-      </div>
-    </>
+      </div> )}
+  </>
+      )
   );
-}
+      }
 
 export default CandidateProfile;

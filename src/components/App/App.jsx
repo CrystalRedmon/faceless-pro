@@ -44,6 +44,7 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
 import './App.css';
 
@@ -144,6 +145,14 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/CandidatePage"
+          >
+            <CandidateProfilePage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
             path="/info"
           >
             <InfoPage />
@@ -155,6 +164,7 @@ function App() {
           >
             <ProfileCreation />
           </ProtectedRoute>
+
 
           <ProtectedRoute
             // logged in shows supplies details based on supplies.id
@@ -310,6 +320,8 @@ function App() {
             <Route path="/Skills" component={Skills} />
             <Route path="/VoluntaryIdentification" component={Voluntary} />
           </ProtectedRoute>
+
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

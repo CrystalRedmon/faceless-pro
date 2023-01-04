@@ -20,6 +20,15 @@ const saveJobs = (state = [], action) => {
     return state;
 }
 
+const saveProfile = (state = [], action) => {
+    switch(action.type) {
+        case 'ADD_PROFILE':
+            return action.payload;
+    }
+   
+    return state;
+}
+
 // const searchJobs = (state = [], action) => {
 //     switch(action.type) {
 //         case 'SET_SEARCHED_JOBS':
@@ -32,6 +41,7 @@ const saveJobs = (state = [], action) => {
 export default combineReducers({
     candidateJobs,
     saveJobs,
+    saveProfile,
 })
 
 

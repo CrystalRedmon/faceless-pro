@@ -17,7 +17,7 @@ function StartProfile(){
         //     type: 'GET_PROFILE',
         //     payload: profile
         // })
-        history.push('/Education');
+        history.push('/user');
     }
 
     return(
