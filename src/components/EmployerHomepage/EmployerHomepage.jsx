@@ -29,7 +29,7 @@ function EmployerHomepage() {
                     <li>{employer.user_info.email}</li>
                     <li>{employer.user_info.company_link}</li>
                 </ul>
-                <Link variant='contained' onClick={handleToProile}>View/Edit Full Profile</Link>
+                <Link variant='contained' onClick={handleToProile} component="button">View/Edit Full Profile</Link>
             </Grid>
             <Grid item xs={3}> </Grid>
 

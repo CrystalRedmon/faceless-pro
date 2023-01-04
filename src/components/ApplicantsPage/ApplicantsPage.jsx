@@ -30,13 +30,13 @@ function ViewApplicantsPage() {
             <Grid container spacing={2}>
                 <Grid item xs={3}></Grid>
                 <Grid item xs={6}>
+                <Button variant='contained' onClick={handleBack}>Back</Button>
                     <h1>ApplicantsPage</h1>
                     <List>
                         {applicants.map(applicant =>
                             <ApplicantItem key={applicant.id} applicant={applicant} jobId={params.id} />
                         )}
                     </List>
-                    <Button variant='contained' onClick={handleBack}>Back</Button>
                 </Grid>
                 <Grid item xs={3}></Grid>
             </Grid>
