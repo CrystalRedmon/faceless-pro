@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import { InputLabel, Button, Grid, Typography } from "@mui/material"
 
 
 function EmployerJobList() {
@@ -22,21 +23,42 @@ function EmployerJobList() {
         history.push('/jobForm')
     }
     return <>
-        <h1>Open Job Posts</h1>
-        <button onClick={handleAddJob}>Add New Job</button>
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col">TITLE</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
+        <Grid container spacing={2}>
+            <Grid item xs={4.5}></Grid>
+            <Grid item xs={6.5}>
+                <h1>Open Job Posts</h1>
+                <Typography marginLeft={9}><Link variant='contained' onClick={handleAddJob} >Add New Job</Link></Typography>
+            </Grid>
+            <Grid item xs={1.5}></Grid>
+            <Grid container
+                spacing={2}
+                item xs={9}
+                direction="row"
+                justify="flex-start"
+                alignItems="flex-start"
+                mt={5}>
                 {jobs.map(job =>
                     <EmployerJobItem key={job.id} job={job} />
                 )}
-            </tbody>
-        </table>
+
+                {/* <table width='100%'>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {jobs.map(job =>
+                            <EmployerJobItem key={job.id} job={job} />
+                        )}
+                    </tbody>
+                </table> */}
+            </Grid>
+            <Grid item xs={1}></Grid>
+        </Grid>
     </>
 }
 

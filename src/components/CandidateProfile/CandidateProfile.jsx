@@ -37,7 +37,7 @@ function CandidateProfile() {
 
   }
 
-  console.log(FirstName, "formData");
+  // console.log(FirstName, "formData");
 
 
 

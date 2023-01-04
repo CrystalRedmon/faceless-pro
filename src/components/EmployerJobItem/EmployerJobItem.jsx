@@ -1,9 +1,10 @@
 import { useHistory, useParams, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import TableCell from '@mui/material/TableCell';
+import { TableCell, Button, Card, Grid, CardContent, Typography } from '@mui/material';
 import { useEffect } from 'react'
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 import { PanoramaSharp } from '@mui/icons-material';
+
 
 function EmployerJobItem({ job }) {
     const history = useHistory();
@@ -30,14 +31,28 @@ function EmployerJobItem({ job }) {
 
     return <>
 
-        <tr>
+
+        <Card variant="outlined" sx={{ width: 275, height: 200, margin: 2}}>
+            <CardContent>
+                <h2>{job.title}</h2>
+                <Typography><Link variant='contained' onClick={handleView}>View Details</Link></Typography>
+                <Typography><Link variant='contained' onClick={handleViewApplicants}>View Applicants</Link></Typography>
+                <Button variant='contained' onClick={handleDeleteItem} sx={{marginTop:1}}>Delete</Button>
+            </CardContent>
+
+        </Card>
+        {/* <tr>
             <td>{job.title}</td>
             <td>
-                <button onClick={handleView}>Details</button>
-                <button onClick={handleViewApplicants}>View Applicants</button>
-                <button onClick={handleDeleteItem}>Delete</button>
+                <Button variant='contained' onClick={handleView}>Details</Button>
             </td>
-        </tr>
+            <td>
+                <Button variant='contained' onClick={handleViewApplicants}>View Applicants</Button>
+            </td>
+            <td>
+                <Button variant='contained' onClick={handleDeleteItem}>Delete</Button>
+            </td>
+        </tr> */}
     </>
 }
 

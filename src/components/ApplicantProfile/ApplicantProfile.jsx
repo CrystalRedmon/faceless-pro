@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Swal from 'sweetalert2';
+import { auto } from '@popperjs/core';
 
 
 function ApplicantProfile() {
@@ -86,6 +87,7 @@ function ApplicantProfile() {
         <Box>
             <Button
                 variant='contained'
+                sx={{marginLeft:27}}
                 onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
             >
                 back
@@ -154,7 +156,7 @@ function ApplicantProfile() {
                         <Typography sx={{ display: "flex" }}><b>Resume:</b>{applicant.profile[0].resume_path}</Typography>
                         <Typography sx={{ display: "flex" }}><b>Cover Letter:</b>{applicant.profile[0].cover_letter_path}</Typography>
                     </Box> */}
-                    <ApplicantSharedInfo applicant={applicant} />
+                    <Box sx={{marginLeft:25}}><ApplicantSharedInfo applicant={applicant} /></Box>
                     <ApplicantNotSharedInfo applicant={applicant} />
                 </Box>
             }

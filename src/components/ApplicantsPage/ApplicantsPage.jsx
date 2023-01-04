@@ -1,7 +1,7 @@
 import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import List from '@mui/material/List';
+import { List, Grid, Button } from '@mui/material';
 import ApplicantItem from '../ApplicantItem/ApplicantItem';
 
 function ViewApplicantsPage() {
@@ -27,13 +27,19 @@ function ViewApplicantsPage() {
 
     return (
         <>
-            <h1>ApplicantsPage</h1>
-            <List>
-                {applicants.map(applicant =>
-                    <ApplicantItem key={applicant.id} applicant={applicant} jobId={params.id} />
-                )}
-            </List>
-            <button onClick={handleBack}>Back</button>
+            <Grid container spacing={2}>
+                <Grid item xs={3}></Grid>
+                <Grid item xs={6}>
+                <Button variant='contained' onClick={handleBack}>Back</Button>
+                    <h1>ApplicantsPage</h1>
+                    <List>
+                        {applicants.map(applicant =>
+                            <ApplicantItem key={applicant.id} applicant={applicant} jobId={params.id} />
+                        )}
+                    </List>
+                </Grid>
+                <Grid item xs={3}></Grid>
+            </Grid>
         </>
     );
 }
