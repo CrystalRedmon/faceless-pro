@@ -1,14 +1,17 @@
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { join } from "redux-saga/effects";
 
 function CandidateJobDetails() {
   const params = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  const appliedJobsList = useSelector((store) => store.candidateReducer.appliedJobs);
   const job = useSelector((store) => store.candidateReducer.candidateJobs);
   const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
-  // console.log('current job details: ', job);
+   console.log(' applied jobs ', job[0].id);
+
 
   //FETCH CURRENT JOB WITH PARAMS ID
   useEffect(() => {
@@ -48,7 +51,7 @@ function CandidateJobDetails() {
 
       <h2>Job Title:{job[0].title}</h2>
       <br></br>
-      <p> Job Description:{job[0].description}</p>
+      <p class='formatText'> Job Description:{job[0].description}</p>
 
       <div onClick={submitSave}>
         {savedJobsList.find(c => c.id === job[0].id) ?
@@ -57,7 +60,8 @@ function CandidateJobDetails() {
               dispatch({
                 type: 'DELETE_JOB',
                 payload: job[0],
-              })
+              });
+              dispatch({ type: 'FETCH_SAVED_JOBS' });
             }}
           >Unsave</button> :
 
@@ -66,21 +70,25 @@ function CandidateJobDetails() {
               dispatch({
                 type: 'SAVE_JOBS',
                 payload: job[0],
-              })
+              });
+              dispatch({ type: 'FETCH_SAVED_JOBS' });
             }}
           >Save </button>
 
         }
       </div>
-
-      <button
+     
+      {appliedJobsList.find(d => d.id === job[0].id) ? 
+      <p>Applied</p>:
+         <button
       onClick={()=>{
         dispatch({
           type: 'APPLY_JOB',
           payload: job[0]
         })
         history.push('/applied')
-      }}>Apply</button>
+      }}>Apply</button> 
+    }
     </>
   );
 }

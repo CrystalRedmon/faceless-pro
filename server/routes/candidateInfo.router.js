@@ -2,10 +2,59 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
+
+
+// GET candidate info for profile page
+router.get('/info/:id', rejectUnauthenticated, (req, res) => {
+  const applicationId = req.params.id;
+
+  const sqlTxt = `SELECT
+(
+    SELECT json_agg(education.*)
+    FROM education
+    JOIN candidate ON education.candidate_id = candidate.id
+    WHERE candidate.user_id = $1 
+) AS education,
+(
+    SELECT json_agg(experience.*)
+    FROM experience
+    JOIN candidate ON experience.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS experience,
+(
+    SELECT json_agg(skill.*)
+    FROM skill
+    JOIN candidate ON skill.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS skill,
+(
+    SELECT json_agg(hyperlink.*)
+    FROM hyperlink
+    JOIN candidate ON hyperlink.candidate_id = candidate.id
+    WHERE candidate.user_id = $1
+) AS hyperlink,
+(
+    SELECT json_agg(candidate.*)
+    FROM candidate
+    WHERE candidate.user_id = $1
+) AS profile;`;
+
+  pool.query(sqlTxt, [req.user.user_info.user_id])
+    .then(dbRes => {
+    res.send(dbRes.rows);
+
+    })
+    .catch(error => {
+      res.sendStatus(500);
+    })
+});
+
 
 
 //GET Saved Candidate Jobs
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
     SELECT "job_post".id,"employer".company_name,"employer".company_address, "job_post".title
@@ -30,10 +79,10 @@ router.get('/', (req, res) => {
   });
 
 //GET Applied Candidate Jobs
-  router.get('/applied', (req, res) => {
-    console.log('req.params.id',req.user.user_info.id)
+  router.get('/applied', rejectUnauthenticated, (req, res) => {
+    // console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
-     `  SELECT "job_post".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time"
+     `  SELECT "application".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time","job_post".id
      FROM "application"
      JOIN "job_post"
          ON "job_post".id = "application".job_post_id
@@ -45,7 +94,7 @@ router.get('/', (req, res) => {
   
     pool.query(sqlTxt,[req.user.user_info.id])  
       .then(dbRes => {
-        console.log('applied jobs response',dbRes.rows);
+        // console.log('applied jobs response',dbRes.rows);
         res.send(dbRes.rows);
         console.log(dbRes.rows);
       })
@@ -56,7 +105,7 @@ router.get('/', (req, res) => {
   });
 
 //GET specific Job details Candidate
-  router.get('/detail/:id', (req, res) => {
+  router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
     SELECT "job_post".id, "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
@@ -79,7 +128,7 @@ router.get('/', (req, res) => {
   });
 
   //DELETE Saved Jobs Candidate
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.body);
     console.log('req.user.user_info.id',req.user.user_info.id)
     console.log('req.params.id',req.user.user_info.id)
@@ -103,7 +152,7 @@ router.get('/', (req, res) => {
 
 
 
-  router.post('/:id/application', (req, res) => {
+  router.post('/:id/application', rejectUnauthenticated, (req, res) => {
 
     console.log('req.params.id', req.params.id);
     console.log('req.user.user_info.id', req.user.user_info.id)
@@ -188,17 +237,8 @@ router.get('/', (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
   //PUT Candidate Profile
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
 
     console.log('Candidate14: ', req.user, req.body)
     const sqlTxt = `UPDATE "candidate"
@@ -227,6 +267,31 @@ router.put('/:id', (req, res) => {
             res.sendStatus(500);
             console.log('POST candidate info failed: ', error);
         })
+
+});
+
+router.put('/info/:id',rejectUnauthenticated,(req, res) => {
+
+  console.log('Candidate14: ', req.user, req.params.id)
+  const sqlTxt = `
+  UPDATE "application"
+  SET "status" = 'shared'
+  WHERE "id" = $1;
+  `;
+
+  const sqlParams = [
+    req.params.id
+  ]
+
+  pool.query(sqlTxt, sqlParams)
+      .then(result => {
+          res.sendStatus(200);
+          console.log('PUT candidate info successful');
+      })
+      .catch(error => {
+          res.sendStatus(500);
+          console.log('POST candidate info failed: ', error);
+      })
 
 });
 

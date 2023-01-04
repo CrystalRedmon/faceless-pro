@@ -95,7 +95,7 @@ function* appliedJobs(){
     console.log('in applied job_post')
     try{
         const appliedJobs = yield axios.get(`/api/candidateInfo/applied`);
-        yield put({type: 'SET_JOBS', payload: appliedJobs.data })
+        yield put({type: 'SET_APPLIED_JOBS', payload: appliedJobs.data })
     }
     catch(err) {
         console.error('error getting applied jobs: ', err);
@@ -138,6 +138,50 @@ function* addProfile(action){
         console.log('error adding profile info',error)
     }
 }
+
+function* fetchMessage(action){
+    console.log('payload for message',action.payload)
+    try{
+        const messages = yield axios.get(`/api/message/${action.payload}`);
+        yield put({type: 'SET_MESSAGE', payload: messages.data })
+    }
+    catch(err) {
+        console.error('error getting applied jobs: ', err);
+    }
+}
+
+function* addMessage(action){
+    console.log('action.payload addMessage',action.payload)
+    try{
+        yield axios.post(`/api/message`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding message',error)
+    }
+}
+
+function* shareInfo(action){
+    console.log('action. payload for shareInfo:',action.payload)
+    try{
+        yield axios.put(`/api/candidateInfo/info/${action.payload}`)
+    }
+    catch( error ){
+        console.log('error adding message',error)
+    }
+}
+
+function* candidateInfo(action){
+    console.log('action. payload for candidate Info:',action)
+    try{
+       const info = yield axios.get(`/api/candidateInfo/info/:id`)
+       yield put({type: 'SET_INFO', payload: info.data })
+
+    }
+    catch( error ){
+        console.log('error adding message',error)
+    }
+}
+
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -151,6 +195,15 @@ function* candidateSaga() {
     yield takeLatest('ADD_EXPERIENCE',addExperience);
     yield takeLatest('ADD_SKILL', addSkill);
     yield takeLatest('ADD_PROFILE', addProfile);
+    yield takeLatest('FETCH_MESSAGES',fetchMessage);
+    yield takeLatest('ADD_MESSAGE',addMessage);
+    yield takeLatest('SHARE_INFO',shareInfo);
+    yield takeLatest('FETCH_CANDIDATE_INFO',candidateInfo);
+
+
+
+
+    
 
 
 

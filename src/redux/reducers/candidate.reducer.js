@@ -20,10 +20,17 @@ const saveJobs = (state = [], action) => {
     return state;
 }
 
+
 const saveProfile = (state = [], action) => {
     switch(action.type) {
         case 'ADD_PROFILE':
             return action.payload;
+
+const appliedJobs = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_APPLIED_JOBS':
+            return action.payload;
+
     }
    
     return state;
@@ -37,18 +44,48 @@ const saveProfile = (state = [], action) => {
    
 //     return state;
 // }
+const messageList = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_MESSAGE':
+            return action.payload;
+    }
+   
+    return state;
+}
+
+const jobMessage = (state =[],action) =>{
+    switch (action.type){
+        case 'SET_JOB_MESSAGE':
+            return action.payload
+    }
+    return state;
+}
+
+const candidateInfo = (state =[],action) =>{
+    switch (action.type){
+        case 'SET_INFO':
+            return action.payload
+    }
+    return state;
+}
+
+
+}}
+
 
 export default combineReducers({
     candidateJobs,
     saveJobs,
+
     saveProfile,
+
+    appliedJobs,
+    messageList,
+    jobMessage,
+    candidateInfo
+
+
 })
-
-
-
-
-
-
 
 
 

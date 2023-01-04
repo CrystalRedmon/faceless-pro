@@ -44,7 +44,11 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+
 import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
+
+import Message from '../../Message/Message';
+
 
 import './App.css';
 
@@ -123,6 +127,14 @@ function App() {
             path="/CandidateLandingPage"
           >
             <CandidateLandingPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            //
+            exact
+            path="/message/:id"
+          >
+            <Message />
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -304,14 +316,7 @@ function App() {
             exact
             path="/home"
           >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
               <LandingPage />
-            }
           </Route>
           <ProtectedRoute>
             <Breadcrumbs />
