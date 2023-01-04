@@ -33,11 +33,8 @@
     "redux": "^4.1.2",
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.1.3",
-<<<<<<< HEAD
-    "server": "^1.0.38"
-=======
+    "server": "^1.0.38",
     "sweetalert2": "^11.6.16"
->>>>>>> efa9c87a0b446702cbc89c67567d049c8e570548
   },
   "scripts": {
     "start": "node server/server.js",
