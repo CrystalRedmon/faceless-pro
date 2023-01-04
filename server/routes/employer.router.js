@@ -129,7 +129,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
                     SET "title" = $1,
                     "description" = $2
                     WHERE "id" = $3
-                    AND "employer_id" = $4;`;
+                    AND "job_post"."employer_id"= $4;`;
+
 
   const sqlParams = [
     req.body.title,
