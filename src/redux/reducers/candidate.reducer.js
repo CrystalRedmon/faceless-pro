@@ -20,6 +20,12 @@ const saveJobs = (state = [], action) => {
     return state;
 }
 
+
+const saveProfile = (state = [], action) => {
+    switch(action.type) {
+        case 'ADD_PROFILE':
+            return action.payload;
+
 const appliedJobs = (state = [], action) => {
     switch(action.type) {
         case 'SET_APPLIED_JOBS':
@@ -64,12 +70,15 @@ const candidateInfo = (state =[],action) =>{
 }
 
 
-
+}}
 
 
 export default combineReducers({
     candidateJobs,
     saveJobs,
+
+    saveProfile,
+
     appliedJobs,
     messageList,
     jobMessage,
@@ -77,12 +86,6 @@ export default combineReducers({
 
 
 })
-
-
-
-
-
-
 
 
 

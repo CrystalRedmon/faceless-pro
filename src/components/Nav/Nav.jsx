@@ -84,8 +84,10 @@ function Nav() {
               Search Jobs
             </Link>
 
-            <Link className="navLink" to="/CandidateProfile">
-              My Profile
+
+            <Link className="navLink" to="/CandidatePage">
+              My Profile 
+
             </Link>
 
             <Link className="navLink" to="/savedjobs">
