@@ -169,6 +169,19 @@ function* shareInfo(action){
         console.log('error adding message',error)
     }
 }
+
+function* candidateInfo(action){
+    console.log('action. payload for candidate Info:',action)
+    try{
+       const info = yield axios.get(`/api/candidateInfo/info/:id`)
+       yield put({type: 'SET_INFO', payload: info.data })
+
+    }
+    catch( error ){
+        console.log('error adding message',error)
+    }
+}
+
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -185,6 +198,8 @@ function* candidateSaga() {
     yield takeLatest('FETCH_MESSAGES',fetchMessage);
     yield takeLatest('ADD_MESSAGE',addMessage);
     yield takeLatest('SHARE_INFO',shareInfo);
+    yield takeLatest('FETCH_CANDIDATE_INFO',candidateInfo);
+
 
 
 

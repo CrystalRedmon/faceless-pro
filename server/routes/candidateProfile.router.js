@@ -34,7 +34,7 @@ require('dotenv').config();
 
 
 //POST Candidate Profile information 
-router.post('/profile', (req, res) => {
+router.post('/profile', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `
   INSERT INTO "candidate" 
@@ -59,7 +59,7 @@ router.post('/profile', (req, res) => {
 });
 
 //GET education for candidate.
-router.get('/education/:id', (req, res) => {
+router.get('/education/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "education"
  WHERE "candidate_id" = $1;`;
@@ -106,7 +106,7 @@ router.post('/education', rejectUnauthenticated, (req, res) => {
 
 //GET experience for candiddate
 
-router.get('/experience/:id', (req, res) => {
+router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
 
  const sqlText = `SELECT * FROM "experience"
   WHERE "candidate_id" = $1;`;
@@ -153,7 +153,7 @@ router.post('/experience', rejectUnauthenticated, (req, res) => {
 
 //GET skill for candidate.
 
-router.get('/skill/:id', (req, res) => {
+router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "skill"
   WHERE "candidate_id" = $1;`;
@@ -173,7 +173,7 @@ router.get('/skill/:id', (req, res) => {
 });
 
 // DELETE a candidates skill
-router.delete('/skill/:id', (req, res) => {
+router.delete('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `DELETE  FROM "skill"
   WHERE "id" = $1;`;
@@ -193,7 +193,7 @@ router.delete('/skill/:id', (req, res) => {
 });
 
 // DELETE a candidates experience
-router.delete('/experience/:id', (req, res) => {
+router.delete('/experience/:id', rejectUnauthenticated, (req, res) => {
 
 
   // GET route code here
@@ -216,7 +216,7 @@ router.delete('/experience/:id', (req, res) => {
 });
 
 // DELETE a candidates education
-router.delete('/education/:id', (req, res) => {
+router.delete('/education/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `DELETE  FROM "education"
   WHERE "id" = $1;`;
@@ -259,7 +259,7 @@ VALUES ($1, $2)`;
 
 
 // GET the 3 Latest Job Posts in the Candidate Landing Page.
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
 
 
   const sqlTxt = `SELECT "job_post".id, "employer".company_name,"employer".company_address,"job_post".title
@@ -281,7 +281,7 @@ router.get('/', (req, res) => {
 });
 
 //GET the job search by keyword for candidate
-router.get('/:keyword', (req, res) => {
+router.get('/:keyword', rejectUnauthenticated, (req, res) => {
   console.log("req.params.keyword", req.params.keyword);
   const sqlTxt = `
                   SELECT "employer".company_name,"employer".company_address,"job_post".title, "job_post".id
@@ -307,7 +307,7 @@ router.get('/:keyword', (req, res) => {
 
 
 //SAVE jobs 
-router.post('/:id', (req, res) => {
+router.post('/:id', rejectUnauthenticated, (req, res) => {
   // POST route code here
 
   const sqlTxt = `  INSERT INTO saved_jobs ("candidate_id", "job_post_id") 
@@ -325,7 +325,7 @@ router.post('/:id', (req, res) => {
 });
 
 // Delete Candidate Saved Jobs
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
 
 
   const sqlTxt = `DELETE FROM saved_jobs WHERE "candidate_id" = $1 AND "job_post_id" = $2;`;
@@ -340,35 +340,6 @@ router.delete('/:id', (req, res) => {
       console.log('Delete Saved Jobs Failed: ', error);
     })
 });
-
-
-
-// router.get('/application/namegenerator', (req, res) => {
-
-//   axios({
-//     method: 'GET',
-//     url: 'https://www.randomlists.com/data/animals.json',
-
-//   })
-
-//     .then((apiRes) => {
-
-//       const animalList = apiRes.data.RandL.items;
-
-//       function pickRandom(list) {
-//         return list[Math.floor(Math.random() * list.length)];
-//       }
-
-//       console.log('Random Animal: ', pickRandom(animalList));
-//       res.send(pickRandom(animalList)); 
-
-//     })
-//     .catch((error) => {
-//       console.log('API GET failed, ', error);
-//       res.sendStatus(500);
-//     })
-
-// })
 
 
 

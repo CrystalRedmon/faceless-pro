@@ -11,7 +11,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
   const sqlTxt = `SELECT *
                   FROM "job_post"
-                  WHERE "job_post"."employer_id" = $1;`;
+                  WHERE "employer_id" = $1;`;
 
   // console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
@@ -49,6 +49,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     })
 });
 
+//GET LIST OF ALL APPLICANTS BASED ON JOB POST ID
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
   // console.log('req.user', req.user.user_info.user_id);
   // console.log(req.params.id);
@@ -130,12 +131,12 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
                     WHERE "id" = $3
                     AND "job_post"."employer_id"= $4;`;
 
+
   const sqlParams = [
     req.body.title,
     req.body.description,
     req.body.id,
     req.user.user_info.id
-
   ]
 
   pool.query(sqlTxt, sqlParams)
