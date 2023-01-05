@@ -34,7 +34,7 @@ function CandidateProfile() {
     dispatch({ type: 'ADD_PROFILE', payload: formData });
     history.push('/education');
   }
-
+  }
   return (
     <>
       <h2>Welcome to your profile!</h2>
@@ -100,7 +100,6 @@ function CandidateProfile() {
       </div>
     </>
   );
-  }
 }
 
 export default CandidateProfile;
