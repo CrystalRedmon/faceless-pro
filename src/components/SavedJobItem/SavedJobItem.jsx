@@ -1,9 +1,11 @@
 import { Card, CardContent } from '@mui/material';
 import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
+import { useHistory} from 'react-router-dom';
 
 
 
-function SavedJobItem() {
+function SavedJobItem({job}) {
     const dispatch = useDispatch();
     // const savedJobsList = useSelector((store) => store.candidateReducer.saveJobs);
     const appliedJobsList = useSelector(
