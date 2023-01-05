@@ -44,6 +44,7 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+import CandidateHyperLink from '../Hyperlink/Hyperlink';
 
 // import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
@@ -51,6 +52,7 @@ import Message from '../../Message/Message';
 import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
 import EditEducation from '../Education/EditEducation';
 import './App.css';
+import Hyperlink from '../ApplicantProfile/Hyperlink';
 
 
 function App() {
@@ -61,22 +63,22 @@ function App() {
   useEffect(() => {
     dispatch({
       type: 'FETCH_CANDIDATE_INFO',
-  })
-  dispatch({
-    type: "FETCH_EDUCATION"
-  })
+    })
+    dispatch({
+      type: "FETCH_EDUCATION"
+    })
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-//   useEffect(() => {
-//     dispatch({
-//         type: 'FETCH_CANDIDATE_INFO',
-//     })
-// }, [])
-const info = useSelector(store => store.candidateReducer.candidateInfo);
-// const education = useSelector(store => store.education);
-// console.log("education info",education)
-console.log('info',info)
+  //   useEffect(() => {
+  //     dispatch({
+  //         type: 'FETCH_CANDIDATE_INFO',
+  //     })
+  // }, [])
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
+  // const education = useSelector(store => store.education);
+  // console.log("education info",education)
+  console.log('info', info)
   return (
     <Router>
       <div>
@@ -89,14 +91,22 @@ console.log('info',info)
             exact
             path="/profile"
           >
-              
-             
-          
+
+
+
             <CandidateProfile />
-          
+
           </ProtectedRoute>
 
-          
+          <ProtectedRoute
+            exact
+            path="/hyperlink"
+          >
+            <CandidateHyperLink />
+
+          </ProtectedRoute>
+
+
           <Route
             exact
             path="/founder"
@@ -341,7 +351,7 @@ console.log('info',info)
             exact
             path="/home"
           >
-              <LandingPage />
+            <LandingPage />
           </Route>
           {/* <ProtectedRoute exact path="/Education">
             {education.id === 0 ?  
@@ -350,18 +360,18 @@ console.log('info',info)
               <EditEducation />
             }
             </ProtectedRoute> */}
-            <ProtectedRoute exact path="/Education">
-              <Education/>
-            </ProtectedRoute>
+          <ProtectedRoute exact path="/Education">
+            <Education />
+          </ProtectedRoute>
 
-            <ProtectedRoute exact path="/Experience">
-              <Experience />
-            </ProtectedRoute>
+          <ProtectedRoute exact path="/Experience">
+            <Experience />
+          </ProtectedRoute>
 
-            <ProtectedRoute exact path="/Skills">
+          <ProtectedRoute exact path="/Skills">
             <Skills />
-            </ProtectedRoute>
-            {/*
+          </ProtectedRoute>
+          {/*
           <ProtectedRoute>
             <Breadcrumbs />
             <Route path="/CandidateProfile" exact component={CandidateLandingPage} />
@@ -371,7 +381,7 @@ console.log('info',info)
             <Route path="/VoluntaryIdentification" component={Voluntary} />
           </ProtectedRoute>
           */}
-          
+
 
 
           {/* If none of the other routes matched, we will show a 404. */}

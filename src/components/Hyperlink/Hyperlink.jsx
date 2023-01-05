@@ -4,12 +4,12 @@ import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-function Skills() {
+function CandidateHyperLink() {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const [formFields, setFormFields] = useState([
-    { Skill: '' },
+    { Hyperlink: '' },
   ]);
 
   const handleFormChange = (event, index) => {
@@ -24,18 +24,18 @@ function Skills() {
 
     formFields.forEach((form) => {
       dispatch({
-        type: 'ADD_SKILL',
+        type: 'ADD_HYPERLINK',
         payload: {
-          Skill: form.Skill,
+          Hyperlink: form.Hyperlink,
         },
       });
     });
-    history.push('/hyperlink');
+    history.push('/user');
   };
 
   const addFields = () => {
     let object = {
-      Skill: '',
+      Hyperlink: '',
     };
 
     setFormFields([...formFields, object]);
@@ -47,17 +47,17 @@ function Skills() {
     setFormFields(data);
   };
   return (
-    <div className="Skill">
+    <div className="Hyperlink">
       <form onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
             <div key={index}>
               <TextField
-                label="Skill"
-                name="Skill"
-                placeholder="Add Skill"
+                label="Hyperlink"
+                name="Hyperlink"
+                placeholder="Add Hyperlink"
                 onChange={event => handleFormChange(event, index)}
-                value={form.Skill}
+                value={form.Hyperlink}
               />
               <Button onClick={() => removeFields(index)}>Remove</Button>
             </div>
@@ -73,4 +73,6 @@ function Skills() {
   );
 }
 
-export default Skills;
+
+
+export default CandidateHyperLink;
