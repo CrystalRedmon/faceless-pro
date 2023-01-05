@@ -37,18 +37,20 @@ require('dotenv').config();
 router.post('/profile', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log("IN Candidate POST")
+  // const sqlText = `
+  // INSERT INTO "candidate" 
+  // (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
+  // VALUES ($1, $2, $3, $4, $5, $6,$7)`;
   const sqlText = `
   INSERT INTO "candidate" 
-  (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
-  VALUES ($1, $2, $3, $4, $5, $6,$7)`;
+  (user_id, first_name, last_name,email,linkedin_link) 
+  VALUES ($1, $2, $3, $4, $5)`;
   const sqlParam = [
     req.user.id,
     req.body.FirstName,
     req.body.LastName,
     req.body.Email,
     req.body.LinkedIn,
-    req.body.ResumePath,
-    req.body.CoverLetterPath
   ]
   pool
     .query(sqlText, sqlParam)

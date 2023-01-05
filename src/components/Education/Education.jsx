@@ -76,7 +76,7 @@ function Education() {
                 />
               </FormControl>
               <FormControl>
-                <InputLabel htmlFor="major">Major</InputLabel>
+                <InputLabel htmlFor="major">Qualifications</InputLabel>
                 <Input
                   id="major"
                   name='Major'
