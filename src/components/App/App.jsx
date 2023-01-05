@@ -307,6 +307,7 @@ function App() {
           </Route>
           <ProtectedRoute>
             <Breadcrumbs />
+            <Route path="/CandidateProfile" exact component={CandidateLandingPage} />
             <Route path="/Education" exact component={Education} />
             <Route path="/Experience" component={Experience} />
             <Route path="/Skills" component={Skills} />

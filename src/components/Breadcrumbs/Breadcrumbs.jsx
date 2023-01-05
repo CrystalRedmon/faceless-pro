@@ -4,10 +4,10 @@ import './Breadcrumbs.css';
 function Breadcrumbs() {
   let match = useRouteMatch();
   let links = [
+    { label: 'Candidate Profile', path: 'CandidateProfile' },
     { label: 'Education', path: 'Education' },
     { label: 'Experience', path: 'Experience' },
     { label: 'Skills', path: 'Skills' },
-    { label: 'Complete Profile', path: 'VoluntaryIdentification' },
   ];
 
   return (
