@@ -64,9 +64,6 @@ function App() {
     dispatch({
       type: 'FETCH_CANDIDATE_INFO',
     })
-    dispatch({
-      type: "FETCH_EDUCATION"
-    })
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
@@ -76,8 +73,7 @@ function App() {
   //     })
   // }, [])
   const info = useSelector(store => store.candidateReducer.candidateInfo);
-  // const education = useSelector(store => store.education);
-  // console.log("education info",education)
+
   console.log('info', info)
   return (
     <Router>

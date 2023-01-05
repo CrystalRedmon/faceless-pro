@@ -7,11 +7,6 @@ function Education() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({
-        type: 'FETCH_CANDIDATE_INFO',
-    })
-}, [])
 
   const editedEducation = useSelector(store => store.candidateReducer.editEducation);
   const info = useSelector(store => store.candidateReducer.candidateInfo);
