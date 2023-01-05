@@ -5,11 +5,9 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
  router.get('/', rejectUnauthenticated, (req, res) => {
-  // GET route code here
+  
 
   const sqlText = `SELECT * FROM "employer"
   WHERE "user_id" = $1;`;
@@ -48,7 +46,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 router.put('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `UPDATE employer SET company_name = $1, company_address = $2, company_phone = $3, email = $4, logo_path = $5, company_description = $6, company_link = $7 WHERE user_id = $8`;
-  pool.query(sqlText, [req.body.company_name, req.body.company_address, req.body.company_phone, req.body.email, req.body.logo_path, req.body.company_description, req.body.company_link, req.body.user_id])
+  pool.query(sqlText, [req.body.company_name, req.body.company_address, req.body.company_phone, req.body.email, req.body.logo_path, req.body.company_description, req.body.company_link, req.user.id])
     .then((result) => {
       res.sendStatus(200);
     })

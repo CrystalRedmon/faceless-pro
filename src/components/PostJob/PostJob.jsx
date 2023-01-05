@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
+import { TextareaAutosize } from "@material-ui/core";
+import { InputLabel, Button, Grid } from "@mui/material"
+
+
 
 
 
@@ -71,32 +75,42 @@ function PostJob() {
 
     return (
         <>
-            <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
-
-            <button onClick={handleBack}>Back</button>
-            <form action="">
-                <label htmlFor="">Title</label>
-                <input type="text"
-
-                    defaultValue={params.id ? job.title : value}
-                    onChange={(evt) => dispatch({
-                        type: 'UPDATE_EDIT_JOB',
-                        payload: { title: evt.target.value }
-                    })} />
+            <Grid container spacing={2}>
+                <Grid item xs={3}></Grid>
+                <Grid item xs={9}>
+                    <Link variant='contained' onClick={handleBack}>Back</Link>
+                    <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
 
-                <label htmlFor="">Description</label>
-                <textarea type="text"
+                    <form action="">
+                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title</InputLabel>
+                        <input type="text"
 
-                    defaultValue={params.id ? job.description : value}
+                            defaultValue={params.id ? job.title : value}
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_JOB',
+                                payload: { title: evt.target.value }
+                            })} />
 
-                    onChange={(evt) => dispatch({
-                        type: 'UPDATE_EDIT_JOB',
-                        payload: { description: evt.target.value }
-                    })} />
+                        <br />
+                        <InputLabel htmlFor="">Description</InputLabel>
+                        <TextareaAutosize type="text"
 
-                <button onClick={onSubmit}>Submit</button>
-            </form>
+                            minRows={50}
+                            style={{ width: 750, margin: 'auto' }}
+                            defaultValue={params.id ? job.description : value}
+
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_JOB',
+                                payload: { description: evt.target.value }
+                            })} />
+
+
+                    </form>
+                    <Button variant='contained' onClick={onSubmit}>Submit</Button>
+                </Grid>
+                <Grid item xs={3}></Grid>
+            </Grid>
         </>
     )
 }

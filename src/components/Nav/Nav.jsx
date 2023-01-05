@@ -67,11 +67,11 @@ function Nav() {
         {user.user_type === 'employer' && (
           <>
             <Link className="navLink" to="/user">
-              Employer Profile - side nav
+              Employer Profile
             </Link>
 
             <Link className="navLink" to="/jobList">
-              Posted Jobs - side nav
+              Posted Jobs
             </Link>
 
             <LogOutButton className="navLink" />
@@ -81,19 +81,21 @@ function Nav() {
         {user.user_type === 'candidate' && (
           <>
             <Link className="navLink" to="/user">
-              Search Jobs - side nav
+              Search Jobs
             </Link>
 
-            <Link className="navLink" to="/CandidateProfile">
-              My Profile - side nav
+
+            <Link className="navLink" to="/CandidatePage">
+              My Profile 
+
             </Link>
 
             <Link className="navLink" to="/savedjobs">
-              Saved Jobs - side nav
+              Saved Jobs
             </Link>
 
             <Link className="navLink" to="/applied">
-              Applied Jobs - side nav
+              Applied Jobs
             </Link>
 
             {/* <Link className="navLink" to="/info">

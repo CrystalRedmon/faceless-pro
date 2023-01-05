@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import { Typography } from '@mui/material';
 
 function ApplicantItem({ applicant, jobId }) {
     const dispatch = useDispatch();
@@ -22,19 +23,21 @@ function ApplicantItem({ applicant, jobId }) {
     switch (applicant.status) {
         case 'pending':
             return (
-                <Box sx={{ border: 'solid black 2px', display: "flex", justifyContent: 'space-between' }}>
+
+                <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2}}>
                     <Box>
                         <Box>
                             Applicant: {applicant.random_identifier}
-                        </Box> <br />
-                    </Box>
-                    <Box>
-                        <Box>
+                        </Box>
+                        <Box sx={{ marginTop: 1, marginBottom: 1 }}>
                             {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            {applicant.status}
+                            Status: {applicant.status}
                         </Box>
+                    </Box>
+                    <Box>
+
                         <Button
                             variant='contained'
                             onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
@@ -46,61 +49,80 @@ function ApplicantItem({ applicant, jobId }) {
             );
         case 'not_shared':
             return (
-                <Box sx={{ border: 'solid black 2px', display: "flex", justifyContent: 'space-between' }}>
+                <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
                         <Box>
                             Applicant: {applicant.random_identifier}
-                        </Box> <br />
-                    </Box>
-                    <Box>
-                        <Box>
+                        </Box>
+                        <Box sx={{ marginTop: 1, marginBottom: 1 }}>
                             {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            {applicant.status}
+                            Status: {applicant.status}
                         </Box>
-                        <Button
-                            variant='contained'
-                            onClick={() => { history.push(`/message/${applicant.id}`)}}
-                        >
-                            Open Chat
-                        </Button>
-                        <Button
-                            variant='contained'
-                            onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
-                        >
-                            View Profile
-                        </Button>
+                    </Box>
+                    <Box>
+
+                        <Typography>
+                            <Button
+
+                                variant='contained'
+                                sx={{ marginBottom: 1 }}
+                                onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
+                            >
+                                View Profile
+                            </Button>
+                        </Typography>
+
+                        <Typography>
+                            <Button
+                                variant='contained'
+                                sx={{ width: 137 }}
+                                onClick={() => { history.push(`/message/${applicant.id}`) }}
+                            >
+                                Open Chat
+                            </Button>
+                        </Typography>
+
+
                     </Box>
                 </Box>
             );
         case 'shared':
             return (
-                <Box sx={{ border: 'solid black 2px', display: "flex", justifyContent: 'space-between' }}>
+                <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
                         <Box>
                             Applicant: {applicant.random_identifier}
-                        </Box> <br />
-                    </Box>
-                    <Box>
-                        <Box>
+                        </Box>
+                        <Box sx={{ marginTop: 1, marginBottom: 1 }}>
                             {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            {applicant.status}
+                            Status:{applicant.status}
                         </Box>
-                        <Button
-                            variant='contained'
-                            onClick={() => { history.push(`/message/${applicant.id}`) }}
-                        >
-                            Open Chat
-                        </Button>
-                        <Button
-                            variant='contained'
-                            onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
-                        >
-                            View Profile
-                        </Button>
+                    </Box>
+                    <Box>
+                        <Typography>
+                            <Button
+                            sx={{ marginBottom: 1 }}
+                                variant='contained'
+                                onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
+                            >
+                                View Profile
+                            </Button>
+
+                        </Typography>
+                        <Typography>
+                            <Button
+                                sx={{ width: 137 }}
+                                variant='contained'
+                                onClick={() => { history.push(`/message/${applicant.id}`) }}
+                            >
+                                Open Chat
+                            </Button>
+                        </Typography>
+
                     </Box>
                 </Box>
             );

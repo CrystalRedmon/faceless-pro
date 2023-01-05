@@ -1,6 +1,7 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Grid, Button, Typography } from "@mui/material";
 
 
 
@@ -26,17 +27,23 @@ function EmployerJobDetails() {
         history.push('/jobList');
     }
 
-    const handleEdit = () =>{
+    const handleEdit = () => {
         history.push(`/job/${params.id}/edit`)
     }
 
-    
+
     return (
         <>
-            <button onClick={handleBack}>Back</button>
-            <button onClick={handleEdit}>Edit</button>
-            <h2>Title: {job.title}</h2>
-            <p class='formatText'>Description:{job.description}</p>
+            <Grid container spacing={2}>
+                <Grid item xs={3}></Grid>
+                <Grid item xs={6}>
+                    <Grid item xs={6}><Link variant='contained' onClick={handleBack}>Back</Link> </Grid> 
+                    <Grid item xs={6}><Link variant='contained' onClick={handleEdit}>Edit</Link></Grid>
+                    
+                    <h2>Title: {job.title}</h2>
+                    <p className='formatText'>Description:{job.description}</p>
+                </Grid>
+            </Grid>
         </>
     );
 }

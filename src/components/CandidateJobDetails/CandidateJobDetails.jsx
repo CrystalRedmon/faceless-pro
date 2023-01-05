@@ -51,7 +51,7 @@ function CandidateJobDetails() {
 
       <h2>Job Title:{job[0].title}</h2>
       <br></br>
-      <p class='formatText'> Job Description:{job[0].description}</p>
+      <p className='formatText'> Job Description:{job[0].description}</p>
 
       <div onClick={submitSave}>
         {savedJobsList.find(c => c.id === job[0].id) ?

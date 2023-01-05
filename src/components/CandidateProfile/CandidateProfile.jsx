@@ -24,7 +24,12 @@ function CandidateProfile() {
     });
   }
 
-  const submit = (event) => {
+
+  // console.log(FirstName, "formData");
+
+
+  const submit = (event) => {{
+
     event.preventDefault();
     dispatch({ type: 'ADD_PROFILE', payload: formData });
     history.push('/education');
