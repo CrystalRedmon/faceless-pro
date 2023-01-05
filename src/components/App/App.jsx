@@ -45,7 +45,7 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 
-import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
+// import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
 import Message from '../../Message/Message';
 import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
@@ -56,7 +56,6 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
-  const info = useSelector(store => store.candidateReducer.candidateInfo);
 
   useEffect(() => {
     dispatch({
@@ -70,7 +69,8 @@ function App() {
 //         type: 'FETCH_CANDIDATE_INFO',
 //     })
 // }, [])
-
+const info = useSelector(store => store.candidateReducer.candidateInfo);
+console.log('info',info)
   return (
     <Router>
       <div>
@@ -83,7 +83,7 @@ function App() {
             exact
             path="/profile"
           >
-          {info.id > 0 ?    
+          {info.id > 0 ?      
           <EditCandidateProfile/>    
           :
             <CandidateProfile />
@@ -139,13 +139,13 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             //
             exact
             path="/CandidateLandingPage"
           >
             <CandidateLandingPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             //
@@ -171,13 +171,13 @@ function App() {
             <CandidateProfile />
           </ProtectedRoute> */}
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/CandidatePage"
           >
             <CandidateProfilePage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
