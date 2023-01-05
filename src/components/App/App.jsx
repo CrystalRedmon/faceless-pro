@@ -89,11 +89,11 @@ console.log('info',info)
             exact
             path="/profile"
           >
-          {info.id > 0 ?      
-          <EditCandidateProfile/>    
-          :
+              
+             
+          
             <CandidateProfile />
-          }
+          
           </ProtectedRoute>
 
           
