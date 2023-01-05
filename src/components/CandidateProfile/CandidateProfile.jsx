@@ -100,6 +100,7 @@ function CandidateProfile() {
       </div>
     </>
   );
+  }
 }
 
 export default CandidateProfile;
