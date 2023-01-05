@@ -54,7 +54,7 @@ function Experience() {
   };
 
   return (
-    <div className="Education">
+    <div className="Education" style={{ display: 'flex', justifyContent: 'center' }}>
       <form onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
@@ -94,7 +94,7 @@ function Experience() {
       </form>
       <Button onClick={addFields}>Add More..</Button>
       <br />
-      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
       </div>
 );
 }
