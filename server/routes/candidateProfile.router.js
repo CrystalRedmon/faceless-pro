@@ -269,7 +269,29 @@ VALUES ($1, $2)`;
     .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
     .catch((err) => {
-      console.log('Education Post info failed ', err);
+      console.log('Skill Post info failed ', err);
+      res.sendStatus(500);
+    });
+});
+
+//POST hyperlink for candidate.
+router.post('/hyperlink', rejectUnauthenticated, (req, res) => {
+  console.log('req.body', req.body);
+  const sqlParam = [
+    req.user.user_info.id,
+    req.body.Hyperlink
+  ]
+
+  const sqlText = `
+INSERT INTO "hyperlink" 
+(candidate_id, link) 
+VALUES ($1, $2)`;
+
+  pool
+    .query(sqlText, sqlParam)
+    .then(() => res.sendStatus(200))
+    .catch((err) => {
+      console.log('hyperlink post info failed ', err);
       res.sendStatus(500);
     });
 });

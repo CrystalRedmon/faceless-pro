@@ -127,7 +127,17 @@ function* addSkill(action){
         yield axios.post(`/api/candidateProfile/skill`,action.payload)
     }
     catch( error ){
-        console.log('error adding education',error)
+        console.log('error adding skill',error)
+    }
+}
+
+function* addHyperLink(action){
+    console.log('action.payload Add HyperLink',action.payload)
+    try{
+        yield axios.post(`/api/candidateProfile/hyperlink`,action.payload)
+    }
+    catch( error ){
+        console.log('error adding hyperlink',error)
     }
 }
 function* addProfile(action){
@@ -207,6 +217,7 @@ function* fetchEducation(){
      }
 }
 
+
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -219,6 +230,7 @@ function* candidateSaga() {
     yield takeLatest('ADD_EDUCATION', addEducation);
     yield takeLatest('ADD_EXPERIENCE',addExperience);
     yield takeLatest('ADD_SKILL', addSkill);
+    yield takeLatest('ADD_HYPERLINK', addHyperLink);
     yield takeLatest('ADD_PROFILE', addProfile);
     yield takeLatest('FETCH_MESSAGES',fetchMessage);
     yield takeLatest('ADD_MESSAGE',addMessage);
