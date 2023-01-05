@@ -32,8 +32,6 @@ function SavedJobItem({job}) {
 
                     <p> {job.company_name}</p>
 
-                    <p> {job.company_address}</p>
-
                     <div onClick={submitApplied}>
                         {appliedJobsList.find((c) => c.id === job.id) ? (
                             <p>Applied</p>
