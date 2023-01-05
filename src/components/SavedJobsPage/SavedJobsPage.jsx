@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { PanoramaSharp } from "@mui/icons-material";
+import { Card, Grid, CardContent } from '@mui/material';
 
 function SavedJobsPage() {
   const dispatch = useDispatch();
@@ -19,70 +20,88 @@ function SavedJobsPage() {
     dispatch({ type: 'FETCH_APPLIED_JOBS' });
   }, []);
 
-  function submitApplied(){
+  function submitApplied() {
     dispatch({
-        type: 'FETCH_APPLIED_JOBS',
+      type: 'FETCH_APPLIED_JOBS',
     });
-}
+  }
 
   return (
     <>
-      <h1>Saved Jobs</h1>
-      <section>
-        {savedJobsList.map((job) => {
-          return (
-            <div key={job.id}>
-              <h4> {job.title} </h4>
+      <Grid container spacing={2}>
+        <Grid item xs={5}></Grid>
+        <Grid item xs={7}><h1>Saved Jobs</h1></Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={9}
+          container
+          spacing={2}
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start"
+          mt={5}>
+          <section>
+            {savedJobsList.map((job) => {
+              return (
+                <Grid container item xs={12}>
+                  <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3 }}>
 
-              <p> {job.company_name}</p>
+                    <CardContent>
+                      <div key={job.id}>
+                        <h4> {job.title} </h4>
 
-              <p> {job.company_address}</p>
+                        <p> {job.company_name}</p>
 
-              <div onClick = {submitApplied}>
-                {appliedJobsList.find((c) => c.id === job.id) ? (
-                  <p>Applied</p>
-                ) : (
-                  <button
-                    onClick={() => {
-                      dispatch({
-                        type: "APPLY_JOB",
-                        payload: job,
-                      });
-                      history.push("/applied");
-                    }}
-                  >
-                    APPLY{" "}
-                  </button>
-                )}
-              </div>
+                        <div onClick={submitApplied}>
+                          {appliedJobsList.find((c) => c.id === job.id) ? (
+                            <p>Applied</p>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                dispatch({
+                                  type: "APPLY_JOB",
+                                  payload: job,
+                                });
+                                history.push("/applied");
+                              }}
+                            >
+                              APPLY{" "}
+                            </button>
+                          )}
+                        </div>
 
-              <button
-                onClick={() => {
-                  history.push(`/CandidateJobDetails/${job.id}`);
-                  dispatch({
-                    type: "VIEW_JOB_DETAILS",
-                    payload: `${params.id}`,
-                  });
-                }}
-              >
-                DETAILS
-              </button>
+                        <button
+                          onClick={() => {
+                            history.push(`/CandidateJobDetails/${job.id}`);
+                            dispatch({
+                              type: "VIEW_JOB_DETAILS",
+                              payload: `${params.id}`,
+                            });
+                          }}
+                        >
+                          DETAILS
+                        </button>
 
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "DELETE_JOB",
-                    payload: job,
-                  });
-                }}
-              >
-                REMOVE{" "}
-              </button>
-            </div>
-          );
-        })}
-      </section>
+                        <button
+                          onClick={() => {
+                            dispatch({
+                              type: "DELETE_JOB",
+                              payload: job,
+                            });
+                          }}
+                        >
+                          REMOVE{" "}
+                        </button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              );
+            })}
+          </section>
+        </Grid>
+      </Grid>
     </>
+
   );
 }
 
