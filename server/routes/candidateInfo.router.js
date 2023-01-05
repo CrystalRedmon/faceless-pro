@@ -7,43 +7,16 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 
 
 // GET candidate info for profile page
-router.get('/info/:id', rejectUnauthenticated, (req, res) => {
-  const applicationId = req.params.id;
+router.get('/info', rejectUnauthenticated, (req, res) => {
 
-  const sqlTxt = `SELECT
-(
-    SELECT json_agg(education.*)
-    FROM education
-    JOIN candidate ON education.candidate_id = candidate.id
-    WHERE candidate.user_id = $1 
-) AS education,
-(
-    SELECT json_agg(experience.*)
-    FROM experience
-    JOIN candidate ON experience.candidate_id = candidate.id
-    WHERE candidate.user_id = $1
-) AS experience,
-(
-    SELECT json_agg(skill.*)
-    FROM skill
-    JOIN candidate ON skill.candidate_id = candidate.id
-    WHERE candidate.user_id = $1
-) AS skill,
-(
-    SELECT json_agg(hyperlink.*)
-    FROM hyperlink
-    JOIN candidate ON hyperlink.candidate_id = candidate.id
-    WHERE candidate.user_id = $1
-) AS hyperlink,
-(
-    SELECT json_agg(candidate.*)
-    FROM candidate
-    WHERE candidate.user_id = $1
-) AS profile;`;
+
+  const sqlTxt = `SELECT * FROM
+  candidate
+    WHERE candidate.user_id = $1;`;
 
   pool.query(sqlTxt, [req.user.user_info.user_id])
     .then(dbRes => {
-    res.send(dbRes.rows);
+    res.send(dbRes.rows[0]);
 
     })
     .catch(error => {
@@ -237,21 +210,34 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
   //PUT Candidate Profile
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-
     console.log('Candidate14: ', req.user, req.body)
     const sqlTxt = `UPDATE "candidate"
                     SET "first_name" = $1,
                     "last_name" = $2,
-                    "linkedin_link" = $3,
-                    "resume_path" = $4,
-                    "cover_letter_path" = $5
-                    WHERE "id" = $6;`;
+                    "email" = $3,
+                    "linkedin_link" = $4,
+                    "resume_path" = $5,
+                    "cover_letter_path" = $6
+                    WHERE "id" = $7;`;
 
     const sqlParams = [
         req.body.first_name,
         req.body.last_name,
+        req.body.email,
         req.body.linkedin_link,
         req.body.resume_path,
         req.body.cover_letter_path,
@@ -265,7 +251,7 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
         })
         .catch(error => {
             res.sendStatus(500);
-            console.log('POST candidate info failed: ', error);
+            console.log('PUT candidate info failed: ', error);
         })
 
 });

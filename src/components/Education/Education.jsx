@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect  } from 'react';
+import { useDispatch, useSelector  } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
@@ -7,8 +7,16 @@ function Education() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch({
+        type: 'FETCH_CANDIDATE_INFO',
+    })
+}, [])
+
+  const editedEducation = useSelector(store => store.candidateReducer.editEducation);
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
   const [formFields, setFormFields] = useState([
-    { School: '', Major: '' , Dates:'',Notes: ''},
+    { School: '', Major: '', Dates: '', Notes: '' },
   ])
 
   const handleFormChange = (event, index) => {
@@ -61,49 +69,49 @@ function Education() {
               <FormControl>
                 <InputLabel htmlFor="school-name">School Name</InputLabel>
                 <Input
-id="school-name"
-name='School'
-onChange={event => handleFormChange(event, index)}
-value={form.School}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="major">Major</InputLabel>
-<Input
-id="major"
-name='Major'
-onChange={event => handleFormChange(event, index)}
-value={form.Major}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="dates">Dates Attended</InputLabel>
-<Input
-id="dates"
-name='Dates'
-onChange={event => handleFormChange(event, index)}
-value={form.Dates}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="notes">Notes</InputLabel>
-<Input
-id="notes"
-name='Notes'
-onChange={event => handleFormChange(event, index)}
-value={form.Notes}
-/>
-</FormControl>
-<Button onClick={() => removeFields(index)}>Remove</Button>
-</div>
-)
-})}
-</form>
-<Button onClick={addFields}>Add More..</Button>
-<br />
-<Button variant="contained" color="primary" onClick={submit}>Submit</Button>
-</div>
-);
+                  id="school-name"
+                  name='School'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.School}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="major">Major</InputLabel>
+                <Input
+                  id="major"
+                  name='Major'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Major}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="dates">Dates Attended</InputLabel>
+                <Input
+                  id="dates"
+                  name='Dates'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Dates}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="notes">Notes</InputLabel>
+                <Input
+                  id="notes"
+                  name='Notes'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Notes}
+                />
+              </FormControl>
+              <Button onClick={() => removeFields(index)}>Remove</Button>
+            </div>
+          )
+        })}
+      </form>
+      <Button onClick={addFields}>Add More..</Button>
+      <br />
+      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+    </div>
+  );
 }
 
 export default Education;

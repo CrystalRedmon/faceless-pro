@@ -36,19 +36,20 @@ require('dotenv').config();
 //POST Candidate Profile information 
 router.post('/profile', rejectUnauthenticated, (req, res) => {
   // POST route code here
+  console.log("IN Candidate POST")
   const sqlText = `
   INSERT INTO "candidate" 
   (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
   VALUES ($1, $2, $3, $4, $5, $6,$7)`;
-    const sqlParam = [
-      req.user.id,
-      req.body.FirstName,
-      req.body.LastName,
-      req.body.Email,
-      req.body.LinkedIn,
-      req.body.ResumePath,
-      req.body.CoverLetterPath
-    ]
+  const sqlParam = [
+    req.user.id,
+    req.body.FirstName,
+    req.body.LastName,
+    req.body.Email,
+    req.body.LinkedIn,
+    req.body.ResumePath,
+    req.body.CoverLetterPath
+  ]
   pool
     .query(sqlText, sqlParam)
     .then(() => res.sendStatus(200))
@@ -59,12 +60,12 @@ router.post('/profile', rejectUnauthenticated, (req, res) => {
 });
 
 //GET education for candidate.
-router.get('/education/:id', rejectUnauthenticated, (req, res) => {
+router.get('/education', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "education"
  WHERE "candidate_id" = $1;`;
 
-  pool.query(sqlText, [req.params.id])
+  pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
       // console.log('result is:',result.rows)
       res.send(result.rows[0])
@@ -82,7 +83,7 @@ router.get('/education/:id', rejectUnauthenticated, (req, res) => {
 router.post('/education', rejectUnauthenticated, (req, res) => {
   // console.log('req.body', req.body);
   const sqlParam = [
-    req.user.user_info.id ,
+    req.user.user_info.id,
     req.body.School,
     req.body.Major,
     req.body.Dates,
@@ -108,10 +109,10 @@ router.post('/education', rejectUnauthenticated, (req, res) => {
 
 router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
 
- const sqlText = `SELECT * FROM "experience"
+  const sqlText = `SELECT * FROM "experience"
   WHERE "candidate_id" = $1;`;
 
-  pool.query(sqlText, [req.params.id])
+  pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
       res.send(result.rows[0])
       console.log(result.rows);
@@ -130,13 +131,13 @@ router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
 router.post('/experience', rejectUnauthenticated, (req, res) => {
   // console.log('req.body', req.body);
   const sqlParam = [
-    req.user.user_info.id ,
+    req.user.user_info.id,
     req.body.Company,
     req.body.Title,
     req.body.Dates,
     req.body.JobDuty
   ]
-  
+
   const sqlText = `
   INSERT INTO "experience" 
   (candidate_id, employer, title, dates, job_duties) 
@@ -158,7 +159,7 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
   const sqlText = `SELECT * FROM "skill"
   WHERE "candidate_id" = $1;`;
 
-  pool.query(sqlText, [req.params.id])
+  pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
       // console.log('result is:',result.rows)
       res.send(result.rows[0])
@@ -176,9 +177,15 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
 router.delete('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `DELETE  FROM "skill"
-  WHERE "id" = $1;`;
+  WHERE "id" = $1
+  AND "candidate_id" = $2;`;
 
-  pool.query(sqlText, [req.params.id])
+  const sqlParams = [
+    req.params.id,
+    req.user.user_info.id
+  ]
+
+  pool.query(sqlText, sqlParams)
     .then((result) => {
       // console.log('result is:',result.rows)
       res.send(result.rows[0])
@@ -199,9 +206,14 @@ router.delete('/experience/:id', rejectUnauthenticated, (req, res) => {
   // GET route code here
 
   const sqlText = `DELETE  FROM "experience"
-  WHERE "id" = $1;`;
+  WHERE "id" = $1
+  AND "candidate_id" = $2;`;
 
-  pool.query(sqlText, [req.params.id])
+  const sqlParams = [
+    req.params.id,
+    req.user.user_info.id
+  ]
+  pool.query(sqlText, sqlParams)
     .then((result) => {
       // console.log('result is:',result.rows)
       res.send(result.rows[0])
@@ -219,9 +231,14 @@ router.delete('/experience/:id', rejectUnauthenticated, (req, res) => {
 router.delete('/education/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `DELETE  FROM "education"
-  WHERE "id" = $1;`;
+  WHERE "id" = $1
+  AND "candidate_id" = $2;`;
 
-  pool.query(sqlText, [req.params.id])
+  const sqlParams = [
+    req.params.id,
+    req.user.user_info.id
+  ]
+  pool.query(sqlText, sqlParams)
     .then((result) => {
       // console.log('result is:',result.rows)
       res.send(result.rows[0])
@@ -239,10 +256,10 @@ router.delete('/education/:id', rejectUnauthenticated, (req, res) => {
 router.post('/skill', rejectUnauthenticated, (req, res) => {
   console.log('req.body', req.body);
   const sqlParam = [
-    req.user.user_info.id ,
+    req.user.user_info.id,
     req.body.Skill
   ]
-  
+
   const sqlText = `
 INSERT INTO "skill" 
 (candidate_id, skill_name) 

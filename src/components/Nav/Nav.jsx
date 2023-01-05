@@ -28,6 +28,7 @@ function Nav() {
     setAnchorEl(null);
   }
 
+  console.log(user);
 
   return (
     <div className="nav">
@@ -63,8 +64,20 @@ function Nav() {
           </Link>
         )}
 
-        {/* If a user is logged in, show these links */}
-        {user.user_type === 'employer' && (
+        {/* if user type is employer AND their user_info is null,
+         ie. haven't filled out their required inputs, only allow them to do so until they complete it */}
+        {(user.user_type === 'employer' && user.user_info === null) && (
+          <>
+            <Link className="navLink" to="/user">
+              Employer Profile
+            </Link>
+
+            <LogOutButton className="navLink" />
+          </>
+        )}
+
+        {/* if the user type is employer AND they have completed their profile, they can post jobs and edit their profile! */}
+        {(user.user_type === 'employer' && user.user_info != null) && (
           <>
             <Link className="navLink" to="/user">
               Employer Profile
@@ -84,8 +97,10 @@ function Nav() {
               Search Jobs
             </Link>
 
-            <Link className="navLink" to="/CandidateProfile">
-              My Profile
+
+            <Link className="navLink" to="/profile">
+              My Profile 
+
             </Link>
 
             <Link className="navLink" to="/savedjobs">
