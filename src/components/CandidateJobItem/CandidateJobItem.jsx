@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
 import UserPage from '../UserPage/UserPage';
 import { Card, Grid, CardContent, Typography } from '@mui/material';
+import './CandidateJobItem.css';
 
 
 function CandidateJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
+    const info = useSelector(store => store.candidateReducer.candidateInfo);
     const user = useSelector(store => store.user);
     // const params = useParams();
 
@@ -27,6 +29,11 @@ function CandidateJobItem({ job }) {
 
     }
 
+    const ProfilePage = () => {
+        history.push(`/profile`)
+
+    }
+
     return <>
         <section>
             <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
@@ -40,7 +47,9 @@ function CandidateJobItem({ job }) {
                         <p>  {job.company_name}</p>
 
 
-                        {user.id ?
+                     
+
+                        {info.id ?
                             <div>
                                 <div onClick={submitSave}>
                                     {savedJobsList.find(c => c.id === job.id) ?
@@ -69,10 +78,17 @@ function CandidateJobItem({ job }) {
                                     }
                                 </div>
 
-                                <button onClick={detailsPage}>Details </button>
+                                <button onClick={detailsPage}>View Job Details </button>
                             </div>
 
-                            : <> </>
+                            : <> 
+                            
+
+                            <button onClick={ProfilePage}>Complete Your Profile to Save and Apply</button>
+                            <br></br><br></br>
+                             <button onClick={detailsPage}>View Job Details </button>
+                            </>
+                            
 
 
                         }
