@@ -74,8 +74,8 @@ function App() {
 //     })
 // }, [])
 const info = useSelector(store => store.candidateReducer.candidateInfo);
-const education = useSelector(store => store.education);
-console.log("education info",education)
+// const education = useSelector(store => store.education);
+// console.log("education info",education)
 console.log('info',info)
   return (
     <Router>
@@ -343,12 +343,15 @@ console.log('info',info)
           >
               <LandingPage />
           </Route>
-          <ProtectedRoute exact path="/Education">
+          {/* <ProtectedRoute exact path="/Education">
             {education.id === 0 ?  
               <Education />
               :
               <EditEducation />
             }
+            </ProtectedRoute> */}
+            <ProtectedRoute exact path="/Education">
+              <Education/>
             </ProtectedRoute>
 
             <ProtectedRoute exact path="/Experience">
