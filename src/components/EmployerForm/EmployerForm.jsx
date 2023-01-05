@@ -45,13 +45,13 @@ function EmployerForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <TextField value={companyName} onChange={(event) => {setCompanyName(event.target.value)} } label="company name" />
-            <TextField value={companyAddress} onChange={(event) => { setCompanyAddress(event.target.value) }} label="company address" />
-            <TextField value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
-            <TextField value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
-            <TextField value={companyLink} onChange={(event) => { setCompanyLink(event.target.value) }} label="company site link" />
-            <TextField value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" />
-            <TextField value={companyDescription} onChange={(event) => { setCompanyDescription(event.target.value) }} label="company description" />
+            <TextField required value={companyName} onChange={(event) => {setCompanyName(event.target.value)} } label="company name" />
+            <TextField required value={companyAddress} onChange={(event) => { setCompanyAddress(event.target.value) }} label="company address" />
+            <TextField required value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
+            <TextField required value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
+            <TextField required value={companyLink} onChange={(event) => { setCompanyLink(event.target.value) }} label="company site link" />
+            <TextField required value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" />
+            <TextField required value={companyDescription} onChange={(event) => { setCompanyDescription(event.target.value) }} label="company description" />
             <Button type='submit' variant='contained'>submit</Button>
         </form>
     );
