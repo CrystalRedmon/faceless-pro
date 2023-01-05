@@ -1,5 +1,5 @@
 const skills = (state = [], action) => {
-    if (action.type === 'GET_SKILLS') {
+    if (action.type === 'ADD_SKILLS') {
         return action.payload
     }
     return state;

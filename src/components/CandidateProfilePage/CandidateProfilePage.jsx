@@ -9,40 +9,43 @@ import { useDispatch } from 'react-redux';
 
 
 function CandidateProfilePage(){
-    // history = useHistory();
+    const history = useHistory();
 
-    // const education = useSelector((store)=>{
-    //     return store.education
-    // })
-    // const experience = useSelector((store)=>{
-    //     return store.experience
-    // })
-    // const skills = useSelector((store)=>{
-    //     return store.skills
-    // })
-
-
+    const education = useSelector((store)=>{
+        return store.education
+    })
+    const experience = useSelector((store)=>{
+        return store.experience
+    })
+    const skills = useSelector((store)=>{
+        return store.skills
+    })
 
 
-    const editProfile = () => {
+
+
+    const editProfile = () => {{
         // removeData();
       
             console.log('inside candidate profile')
-        
-            // history.push('/');
+   
           }
+             
+          history.push('/CandidateProfile');
+        }
+
 
           return (
             <div className="container">
               <h4>Profile</h4>
         
               
-              <p>Education: </p>
+              <p>Education: {education}</p>
               <p> 
-                Experience: 
+                Experience: (experience)
             </p>
         
-              <p> Skills:</p>
+              <p> Skills: {skills}</p>
           
             <button onClick={editProfile}>Edit Profile</button>
             </div>

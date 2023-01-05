@@ -77,12 +77,9 @@ export default combineReducers({
     candidateJobs,
     saveJobs,
 
-    saveProfile,
 
-    appliedJobs,
-    messageList,
-    jobMessage,
-    candidateInfo
+
+
 
 
 })
