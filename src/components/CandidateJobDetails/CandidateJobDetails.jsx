@@ -40,8 +40,47 @@ function CandidateJobDetails() {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={2}></Grid>
-        <Grid item xs={10}><button onClick={goBack}>Back</button></Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={5}><button onClick={goBack}>Back</button></Grid>
+        <Grid item xs={3}>
+          <div onClick={submitSave}>
+            {savedJobsList.find(c => c.id === job[0].id) ?
+              <button
+                onClick={() => {
+                  dispatch({
+                    type: 'DELETE_JOB',
+                    payload: job[0],
+                  });
+                  dispatch({ type: 'FETCH_SAVED_JOBS' });
+                }}
+              >Unsave</button> :
+
+              <button
+                onClick={() => {
+                  dispatch({
+                    type: 'SAVE_JOBS',
+                    payload: job[0],
+                  });
+                  dispatch({ type: 'FETCH_SAVED_JOBS' });
+                }}
+              >Save </button>
+
+            }
+          </div>
+
+          {appliedJobsList.find(d => d.id === job[0].id) ?
+            <p>Applied</p> :
+            <button
+              onClick={() => {
+                dispatch({
+                  type: 'APPLY_JOB',
+                  payload: job[0]
+                })
+                history.push('/applied')
+              }}>Apply</button>
+          }
+        </Grid>
+
 
         {/* <h1>Candidate Job Details</h1>
       <br></br>
@@ -50,56 +89,22 @@ function CandidateJobDetails() {
         <Grid item xs={3}></Grid>
 
         <Grid container
-          item={9}
-          direction="row"
-          justify="flex-start"
-          alignItems="flex-start">
+          item xs={4}
+          alignItems="flex-start" 
+          direction="column">
           <Typography variant={'h1'} sx={{ fontSize: '3em' }}>{job[0].title}</Typography>
-
-          <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_name}</Typography>
-        
-          <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_address}</Typography>
-          
+          <Typography variant={'h2'} sx={{ fontSize: '1em' }}>{job[0].company_name}</Typography>
+          {/* <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_address}</Typography> */}
 
         </Grid>
-        <p className='formatText'> Job Description:{job[0].description}</p>
 
-        <div onClick={submitSave}>
-          {savedJobsList.find(c => c.id === job[0].id) ?
-            <button
-              onClick={() => {
-                dispatch({
-                  type: 'DELETE_JOB',
-                  payload: job[0],
-                });
-                dispatch({ type: 'FETCH_SAVED_JOBS' });
-              }}
-            >Unsave</button> :
+        <Grid item xs={5}></Grid>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <p className='formatText'>{job[0].description}</p>
+        </Grid>
 
-            <button
-              onClick={() => {
-                dispatch({
-                  type: 'SAVE_JOBS',
-                  payload: job[0],
-                });
-                dispatch({ type: 'FETCH_SAVED_JOBS' });
-              }}
-            >Save </button>
 
-          }
-        </div>
-
-        {appliedJobsList.find(d => d.id === job[0].id) ?
-          <p>Applied</p> :
-          <button
-            onClick={() => {
-              dispatch({
-                type: 'APPLY_JOB',
-                payload: job[0]
-              })
-              history.push('/applied')
-            }}>Apply</button>
-        }
       </Grid>
     </>
   );
