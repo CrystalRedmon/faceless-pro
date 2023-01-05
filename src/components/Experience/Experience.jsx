@@ -32,8 +32,8 @@ function Experience() {
           JobDuty: form.JobDuty,
         },
       });
-      history.push('/skills');
     });
+    history.push('/skills')
   };
 
   const addFields = () => {

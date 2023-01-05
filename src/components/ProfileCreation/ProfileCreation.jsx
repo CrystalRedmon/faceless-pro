@@ -11,6 +11,7 @@ function ProfileCreation() {
   return (
     <Router>
       <Breadcrumbs />
+      <Route path="/CandidateProfile" exact component={Education} />
       <Route path="/Education" exact component={Education} />
       <Route path="/Experience" component={Experience} />
       <Route path="/Skills" component={Skills} />

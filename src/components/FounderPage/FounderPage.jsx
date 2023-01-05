@@ -53,7 +53,9 @@ Not race, gender, age, religion, sexuality, or disability status. With Faceless 
     </Box>
 
 <Box> 
-<a href="https://www.linkedin.com/in/abyannur/" target="_blank">
+
+  {/* No social media wanted.  */}
+{/* <a href="https://www.linkedin.com/in/abyannur/" target="_blank">
 <img class = "socialMedia" src = "images/linkedin.png"/>
 </a>
 
@@ -67,7 +69,7 @@ Not race, gender, age, religion, sexuality, or disability status. With Faceless 
 
 <a href="https://www.linkedin.com/in/abyannur/" target="_blank">
 <img class = "socialMedia" src = "images/gmail.png"/>
-</a>
+</a> */}
   
 
 

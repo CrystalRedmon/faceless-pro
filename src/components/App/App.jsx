@@ -44,13 +44,15 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
+import CandidateHyperLink from '../Hyperlink/Hyperlink';
 
-import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
+// import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
 import Message from '../../Message/Message';
-
-
+import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
+import EditEducation from '../Education/EditEducation';
 import './App.css';
+import Hyperlink from '../ApplicantProfile/Hyperlink';
 
 
 function App() {
@@ -59,9 +61,24 @@ function App() {
   const user = useSelector(store => store.user);
 
   useEffect(() => {
+    dispatch({
+      type: 'FETCH_CANDIDATE_INFO',
+    })
+    dispatch({
+      type: "FETCH_EDUCATION"
+    })
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
+  //   useEffect(() => {
+  //     dispatch({
+  //         type: 'FETCH_CANDIDATE_INFO',
+  //     })
+  // }, [])
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
+  // const education = useSelector(store => store.education);
+  // console.log("education info",education)
+  console.log('info', info)
   return (
     <Router>
       <div>
@@ -69,6 +86,25 @@ function App() {
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
+
+          <ProtectedRoute
+            exact
+            path="/profile"
+          >
+
+
+
+            <CandidateProfile />
+
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            exact
+            path="/hyperlink"
+          >
+            <CandidateHyperLink />
+
+          </ProtectedRoute>
 
 
           <Route
@@ -121,13 +157,13 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             //
             exact
             path="/CandidateLandingPage"
           >
             <CandidateLandingPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             //
@@ -146,21 +182,20 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+          {/* <ProtectedRoute
             exact
             path="/CandidateProfile"
           >
             <CandidateProfile />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/CandidatePage"
           >
             <CandidateProfilePage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
@@ -316,15 +351,36 @@ function App() {
             exact
             path="/home"
           >
-              <LandingPage />
+            <LandingPage />
           </Route>
+          {/* <ProtectedRoute exact path="/Education">
+            {education.id === 0 ?  
+              <Education />
+              :
+              <EditEducation />
+            }
+            </ProtectedRoute> */}
+          <ProtectedRoute exact path="/Education">
+            <Education />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/Experience">
+            <Experience />
+          </ProtectedRoute>
+
+          <ProtectedRoute exact path="/Skills">
+            <Skills />
+          </ProtectedRoute>
+          {/*
           <ProtectedRoute>
             <Breadcrumbs />
+            <Route path="/CandidateProfile" exact component={CandidateLandingPage} />
             <Route path="/Education" exact component={Education} />
             <Route path="/Experience" component={Experience} />
             <Route path="/Skills" component={Skills} />
             <Route path="/VoluntaryIdentification" component={Voluntary} />
           </ProtectedRoute>
+          */}
 
 
 

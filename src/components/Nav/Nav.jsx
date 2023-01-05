@@ -28,6 +28,7 @@ function Nav() {
     setAnchorEl(null);
   }
 
+  console.log(user);
 
   return (
     <div className="nav">
@@ -63,15 +64,27 @@ function Nav() {
           </Link>
         )}
 
-        {/* If a user is logged in, show these links */}
-        {user.user_type === 'employer' && (
+        {/* if user type is employer AND their user_info is null,
+         ie. haven't filled out their required inputs, only allow them to do so until they complete it */}
+        {(user.user_type === 'employer' && user.user_info === null) && (
           <>
             <Link className="navLink" to="/user">
-              Employer Profile - side nav
+              Employer Profile
+            </Link>
+
+            <LogOutButton className="navLink" />
+          </>
+        )}
+
+        {/* if the user type is employer AND they have completed their profile, they can post jobs and edit their profile! */}
+        {(user.user_type === 'employer' && user.user_info != null) && (
+          <>
+            <Link className="navLink" to="/user">
+              Employer Profile
             </Link>
 
             <Link className="navLink" to="/jobList">
-              Posted Jobs - side nav
+              Posted Jobs
             </Link>
 
             <LogOutButton className="navLink" />
@@ -81,19 +94,21 @@ function Nav() {
         {user.user_type === 'candidate' && (
           <>
             <Link className="navLink" to="/user">
-              Search Jobs - side nav
+              Search Jobs
             </Link>
 
-            <Link className="navLink" to="/CandidatePage">
-              My Profile - side nav
+
+            <Link className="navLink" to="/profile">
+              My Profile 
+
             </Link>
 
             <Link className="navLink" to="/savedjobs">
-              Saved Jobs - side nav
+              Saved Jobs
             </Link>
 
             <Link className="navLink" to="/applied">
-              Applied Jobs - side nav
+              Applied Jobs
             </Link>
 
             {/* <Link className="navLink" to="/info">
