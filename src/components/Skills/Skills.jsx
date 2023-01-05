@@ -48,7 +48,7 @@ function Skills() {
     setFormFields(data);
   };
   return (
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className="Skill" style={{ display: 'flex', justifyContent: 'center' }}>
     <form onSubmit={submit}>
       {formFields.map((form, index) => {
         return (
