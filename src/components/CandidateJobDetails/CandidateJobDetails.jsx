@@ -2,6 +2,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { join } from "redux-saga/effects";
+import { Grid, Typography } from '@mui/material';
 
 function CandidateJobDetails() {
   const params = useParams();
@@ -10,7 +11,7 @@ function CandidateJobDetails() {
   const appliedJobsList = useSelector((store) => store.candidateReducer.appliedJobs);
   const job = useSelector((store) => store.candidateReducer.candidateJobs);
   const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
-   console.log(' applied jobs ', job[0].id);
+  console.log(' applied jobs ', job[0].id);
 
 
   //FETCH CURRENT JOB WITH PARAMS ID
@@ -38,57 +39,68 @@ function CandidateJobDetails() {
 
   return (
     <>
-      <h1>Candidate Job Details</h1>
-      <button onClick={goBack}>Back</button>
+      <Grid container spacing={2}>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={10}><button onClick={goBack}>Back</button></Grid>
+
+        {/* <h1>Candidate Job Details</h1>
       <br></br>
       <h2>Company Logo:{job[0].logo_path}</h2>
-      <br></br>
-      <h2>Company Name:{job[0].company_name}</h2>
-      <br></br>
-      <h2>Company Address:{job[0].company_address}</h2>
-      <br></br>
-      <br></br>
+      <br></br> */}
+        <Grid item xs={3}></Grid>
 
-      <h2>Job Title:{job[0].title}</h2>
-      <br></br>
-      <p className='formatText'> Job Description:{job[0].description}</p>
+        <Grid container
+          item={9}
+          direction="row"
+          justify="flex-start"
+          alignItems="flex-start">
+          <Typography variant={'h1'} sx={{ fontSize: '3em' }}>{job[0].title}</Typography>
 
-      <div onClick={submitSave}>
-        {savedJobsList.find(c => c.id === job[0].id) ?
+          <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_name}</Typography>
+        
+          <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_address}</Typography>
+          
+
+        </Grid>
+        <p className='formatText'> Job Description:{job[0].description}</p>
+
+        <div onClick={submitSave}>
+          {savedJobsList.find(c => c.id === job[0].id) ?
+            <button
+              onClick={() => {
+                dispatch({
+                  type: 'DELETE_JOB',
+                  payload: job[0],
+                });
+                dispatch({ type: 'FETCH_SAVED_JOBS' });
+              }}
+            >Unsave</button> :
+
+            <button
+              onClick={() => {
+                dispatch({
+                  type: 'SAVE_JOBS',
+                  payload: job[0],
+                });
+                dispatch({ type: 'FETCH_SAVED_JOBS' });
+              }}
+            >Save </button>
+
+          }
+        </div>
+
+        {appliedJobsList.find(d => d.id === job[0].id) ?
+          <p>Applied</p> :
           <button
             onClick={() => {
               dispatch({
-                type: 'DELETE_JOB',
-                payload: job[0],
-              });
-              dispatch({ type: 'FETCH_SAVED_JOBS' });
-            }}
-          >Unsave</button> :
-
-          <button
-            onClick={() => {
-              dispatch({
-                type: 'SAVE_JOBS',
-                payload: job[0],
-              });
-              dispatch({ type: 'FETCH_SAVED_JOBS' });
-            }}
-          >Save </button>
-
+                type: 'APPLY_JOB',
+                payload: job[0]
+              })
+              history.push('/applied')
+            }}>Apply</button>
         }
-      </div>
-     
-      {appliedJobsList.find(d => d.id === job[0].id) ? 
-      <p>Applied</p>:
-         <button
-      onClick={()=>{
-        dispatch({
-          type: 'APPLY_JOB',
-          payload: job[0]
-        })
-        history.push('/applied')
-      }}>Apply</button> 
-    }
+      </Grid>
     </>
   );
 }

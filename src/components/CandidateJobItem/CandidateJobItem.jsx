@@ -29,7 +29,7 @@ function CandidateJobItem({ job }) {
 
     return <>
         <section>
-            <Card variant="outlined" sx={{ width: 275, height: 200, margin: 2 }}>
+            <Card variant="outlined" sx={{ width: 275, height: 200, margin: 2, boxShadow: 3}}>
                 <CardContent>
 
 
