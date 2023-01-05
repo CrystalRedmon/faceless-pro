@@ -109,7 +109,7 @@ function CandidateProfile() {
           </FormControl> */}
 
           <br />
-          <Button variant="contained" color="primary" type="submit">Submit</Button>
+          <Button variant="contained" color="primary" type="submit">Next</Button>
         </form>
       </div>
     </>

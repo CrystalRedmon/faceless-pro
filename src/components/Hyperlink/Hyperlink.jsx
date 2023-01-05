@@ -67,7 +67,7 @@ function CandidateHyperLink() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <Button onClick={addFields}>Add More..</Button>
         <br />
-        <Button onClick={submit}>Submit</Button>
+        <Button onClick={submit}>Submit Profile</Button>
       </div>
     </div>
   );
