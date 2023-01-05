@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
 
 function CandidateProfile() {
   const [formData, setFormData] = useState({
@@ -28,16 +28,25 @@ function CandidateProfile() {
   // console.log(FirstName, "formData");
 
 
-  const submit = (event) => {{
+  const submit = (event) => {
+    {
+      event.preventDefault();
 
-    event.preventDefault();
-    dispatch({ type: 'ADD_PROFILE', payload: formData });
-    history.push('/education');
+      dispatch({
+        type: 'ADD_PROFILE',
+        payload: formData
+      });
+
+      // history.push('/education');
+      history.push('/ResumeCoverLetter');
+    }
   }
-  }
+
+
   return (
     <>
       <h2>Welcome to your profile!</h2>
+      <h3>This information will not be shared with the employers until you choose to share</h3>
       <div className="Profile">
         <form onSubmit={submit}>
           <FormControl>
@@ -45,6 +54,7 @@ function CandidateProfile() {
             <Input
               id="first-name"
               name='FirstName'
+              required
               onChange={event => handleFormChange(event)}
               value={formData.FirstName}
             />
@@ -54,6 +64,7 @@ function CandidateProfile() {
             <Input
               id="last-name"
               name='LastName'
+              required
               onChange={event => handleFormChange(event)}
               value={formData.LastName}
             />
@@ -63,6 +74,7 @@ function CandidateProfile() {
             <Input
               id="email"
               name='Email'
+              required
               onChange={event => handleFormChange(event)}
               value={formData.Email}
             />
@@ -76,7 +88,8 @@ function CandidateProfile() {
               value={formData.LinkedIn}
             />
           </FormControl>
-          <FormControl>
+
+          {/* <FormControl>
             <InputLabel htmlFor="resume-path">Resume Path</InputLabel>
             <Input
               id="resume-path"
@@ -93,7 +106,8 @@ function CandidateProfile() {
               onChange={event => handleFormChange(event)}
               value={formData.CoverLetterPath}
             />
-          </FormControl>
+          </FormControl> */}
+
           <br />
           <Button variant="contained" color="primary" type="submit">Submit</Button>
         </form>

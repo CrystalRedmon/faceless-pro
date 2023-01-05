@@ -45,6 +45,7 @@ import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 import CandidateHyperLink from '../Hyperlink/Hyperlink';
+import ResumeCoverLetter from '../ResumeCoverLetter/ResumeCoverLetter';
 
 // import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
@@ -356,6 +357,11 @@ function App() {
               <EditEducation />
             }
             </ProtectedRoute> */}
+          
+          <ProtectedRoute exact path="/ResumeCoverLetter">
+            <ResumeCoverLetter />
+          </ProtectedRoute>
+
           <ProtectedRoute exact path="/Education">
             <Education />
           </ProtectedRoute>
