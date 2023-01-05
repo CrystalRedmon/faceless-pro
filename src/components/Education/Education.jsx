@@ -8,7 +8,7 @@ function Education() {
   const dispatch = useDispatch();
 
   const [formFields, setFormFields] = useState([
-    { School: '', Major: '' , Dates:'',Notes: ''},
+    { School: '', Major: '', Dates: '', Notes: '' },
   ])
 
   const handleFormChange = (event, index) => {
@@ -61,49 +61,49 @@ function Education() {
               <FormControl>
                 <InputLabel htmlFor="school-name">School Name</InputLabel>
                 <Input
-id="school-name"
-name='School'
-onChange={event => handleFormChange(event, index)}
-value={form.School}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="major">Major</InputLabel>
-<Input
-id="major"
-name='Major'
-onChange={event => handleFormChange(event, index)}
-value={form.Major}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="dates">Dates Attended</InputLabel>
-<Input
-id="dates"
-name='Dates'
-onChange={event => handleFormChange(event, index)}
-value={form.Dates}
-/>
-</FormControl>
-<FormControl>
-<InputLabel htmlFor="notes">Notes</InputLabel>
-<Input
-id="notes"
-name='Notes'
-onChange={event => handleFormChange(event, index)}
-value={form.Notes}
-/>
-</FormControl>
-<Button onClick={() => removeFields(index)}>Remove</Button>
-</div>
-)
-})}
-</form>
-<Button onClick={addFields}>Add More..</Button>
-<br />
-<Button variant="contained" color="primary" onClick={submit}>Submit</Button>
-</div>
-);
+                  id="school-name"
+                  name='School'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.School}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="major">Major</InputLabel>
+                <Input
+                  id="major"
+                  name='Major'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Major}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="dates">Dates Attended</InputLabel>
+                <Input
+                  id="dates"
+                  name='Dates'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Dates}
+                />
+              </FormControl>
+              <FormControl>
+                <InputLabel htmlFor="notes">Notes</InputLabel>
+                <Input
+                  id="notes"
+                  name='Notes'
+                  onChange={event => handleFormChange(event, index)}
+                  value={form.Notes}
+                />
+              </FormControl>
+              <Button onClick={() => removeFields(index)}>Remove</Button>
+            </div>
+          )
+        })}
+      </form>
+      <Button onClick={addFields}>Add More..</Button>
+      <br />
+      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+    </div>
+  );
 }
 
 export default Education;

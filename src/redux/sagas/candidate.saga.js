@@ -106,6 +106,7 @@ function* addEducation(action){
     console.log('action.payload Add education',action.payload)
     try{
         yield axios.post(`/api/candidateProfile/education`,action.payload)
+
     }
     catch( error ){
         console.log('error adding education',error)
@@ -195,6 +196,17 @@ function* candidateInfo(action){
     }
 }
 
+function* fetchEducation(){
+    try{
+        const education = yield axios.get(`/api/candidateProfile/education`)
+        yield put({type: 'SET_EDUCATION', payload: education.data })
+ 
+     }
+     catch( error ){
+         console.log('error adding message',error)
+     }
+}
+
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
@@ -213,6 +225,7 @@ function* candidateSaga() {
     yield takeLatest('SHARE_INFO',shareInfo);
     yield takeLatest('FETCH_CANDIDATE_INFO',candidateInfo);
     yield takeLatest('UPDATE_PROFILE',updateInfo);
+    yield takeLatest('FETCH_EDUCATION',fetchEducation);
 
 
 
