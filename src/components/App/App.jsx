@@ -360,8 +360,18 @@ console.log('info',info)
 
             <ProtectedRoute exact path="/Skills">
             <Skills />
+            </ProtectedRoute>
+            {/*
+          <ProtectedRoute>
+            <Breadcrumbs />
+            <Route path="/CandidateProfile" exact component={CandidateLandingPage} />
+            <Route path="/Education" exact component={Education} />
+            <Route path="/Experience" component={Experience} />
+            <Route path="/Skills" component={Skills} />
+            <Route path="/VoluntaryIdentification" component={Voluntary} />
           </ProtectedRoute>
-
+          */}
+          
 
 
           {/* If none of the other routes matched, we will show a 404. */}

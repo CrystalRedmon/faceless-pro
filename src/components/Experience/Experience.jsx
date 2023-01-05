@@ -1,102 +1,199 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
+import { Typography } from '@mui/material';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
-function Experience() {
+
+function CandidateProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const [formFields, setFormFields] = useState([
-    { Company: '', Title: '', Dates: '', JobDuty: '' },
-  ]);
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
+  const [formData, setFormData] = useState({
+    FirstName: '',
+    LastName: '',
+    Email: '',
+    LinkedIn: '',
+    ResumePath: '',
+    CoverLetterPath: ''
+  });
 
-  const handleFormChange = (event, index) => {
-    let data = [...formFields];
-    data[index][event.target.name] = event.target.value;
-    setFormFields(data);
-  };
+ 
 
-  const submit = (e) => {
-    e.preventDefault();
-    console.log('Formfield info is here', formFields);
+  useEffect(() => {
+    dispatch({
+        type: 'FETCH_CANDIDATE_INFO',
+    })
+}, [])
 
-    formFields.forEach((form) => {
-      dispatch({
-        type: 'ADD_EXPERIENCE',
-        payload: {
-          Company: form.Company,
-          Title: form.Title,
-          Dates: form.Dates,
-          JobDuty: form.JobDuty,
-        },
-      });
-      history.push('/skills');
+
+
+  const handleFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-  };
 
-  const addFields = () => {
-    let object = {
-      Company: '',
-      Title: '',
-      Dates: '',
-      JobDuty: '',
-    };
+  }
 
-    setFormFields([...formFields, object]);
-  };
 
-  const removeFields = (index) => {
-    let data = [...formFields];
-    data.splice(index, 1);
-    setFormFields(data);
-  };
 
+  const submit = (event) => {{
+    event.preventDefault();
+    dispatch({ type: 'ADD_PROFILE', payload: formData });
+
+  }}
+  const save = (event) => {{
+    event.preventDefault();
+    dispatch({ type: 'ADD_PROFILE', payload: info[0] });
+
+  }}
+
+  // console.log(info[0].profile[0].first_name);
+const nextpage = (event)=> {
+  history.push('/education');
+}
   return (
-    <div className="Education">
-      <form onSubmit={submit}>
-        {formFields.map((form, index) => {
-          return (
-            <div key={index}>
-              <TextField
-                label="Company"
-                name="Company"
-                placeholder="Company Name"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Company}
-              />
-              <TextField
-                label="Title"
-                name="Title"
-                placeholder="Title"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Title}
-              />
-              <TextField
-                label="Dates"
-                name="Dates"
-                placeholder="Dates"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Dates}
-              />
-              <TextField
-                label="Job Duty"
-                name="JobDuty"
-                placeholder="Job Duty"
-                onChange={event => handleFormChange(event, index)}
-                value={form.JobDuty}
-              />
-              <Button onClick={() => removeFields(index)}>Remove</Button>
-            </div>
-          );
-        })}
+    <>
+      <h2>Welcome to your profile!</h2>
+
+    {info.length > 0 ?        
+      <div className="Profile">
+      <form onSubmit={save}>
+        {/* <FormControl>
+          <InputLabel htmlFor="first-name">First Nameeee</InputLabel> */}
+          <TextField
+           id="first-name"
+           name='FirstName'
+            value= {String(info[0].profile[0].first_name)}
+            onChange={(evt) => dispatch({
+              type: 'UPDATE_EDIT_PROFILE',
+              payload: { FirstName: evt.target.value }
+          })}
+          />
+        {/* </FormControl> */}
+        {/* <FormControl>
+          <InputLabel htmlFor="last-name">Last Nameeee</InputLabel>
+          <Input
+            id="last-name"
+            name='LastName'
+            onChange={event => handleFormChange(event)}
+            value={info[0].profile[0].last_name}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="email">Email</InputLabel>
+          <Input
+            id="email"
+            name='Email'
+            onChange={event => handleFormChange(event)}
+            value={info[0].profile[0].email}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
+          <Input
+            id="linkedin"
+            name='LinkedIn'
+            onChange={event => handleFormChange(event)}
+            value={info[0].profile[0].linkedin_link}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="resume-path">Resume Path</InputLabel>
+          <Input
+            id="resume-path"
+            name='ResumePath'
+            onChange={event =>handleFormChange(event)}
+            value={info[0].profile[0].resume_path}
+          />
+        </FormControl>
+        <FormControl>
+          <InputLabel htmlFor="cover-letter-path">Cover Letter Path</InputLabel>
+          <Input
+            id="cover-letter-path"
+            name='CoverLetterPath'
+            onChange={event => handleFormChange(event)}
+            value={info[0].profile[0].cover_letter_path}
+          />
+        </FormControl> */}
+        <br />
+        <Button variant="contained" color="primary" type="submit" onClick={nextpage}>Save</Button>
       </form>
-      <Button onClick={addFields}>Add More..</Button>
-      <br />
-      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+    </div>
+
+      :
+
+      <div className="Profile">
+        <form onSubmit={submit}>
+          <FormControl>
+            <InputLabel htmlFor="first-name">First Name</InputLabel>
+            <Input
+              id="first-name"
+              name='FirstName'
+              onChange={event => handleFormChange(event)}
+              value={formData.FirstName}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="last-name">Last Name</InputLabel>
+            <Input
+              id="last-name"
+              name='LastName'
+              onChange={event => handleFormChange(event)}
+              value={formData.LastName}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <Input
+              id="email"
+              name='Email'
+              onChange={event => handleFormChange(event)}
+              value={formData.Email}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
+            <Input
+              id="linkedin"
+              name='LinkedIn'
+              onChange={event => handleFormChange(event)}
+              value={formData.LinkedIn}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="resume-path">Resume Path</InputLabel>
+            <Input
+              id="resume-path"
+              name='ResumePath'
+              onChange={event =>handleFormChange(event)}
+              value={formData.ResumePath}
+            />
+          </FormControl>
+          <FormControl>
+            <InputLabel htmlFor="cover-letter-path">Cover Letter Path</InputLabel>
+            <Input
+              id="cover-letter-path"
+              name='CoverLetterPath'
+              onChange={event => handleFormChange(event)}
+              value={formData.CoverLetterPath}
+            />
+          </FormControl>
+          <br />
+          <Button variant="contained" color="primary" type="submit" onClick={nextpage}>Submit</Button>
+        </form>
       </div>
-);
+
+
+    } 
+
+    </>
+  );
 }
 
-export default Experience;
+export default CandidateProfile;
