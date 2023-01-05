@@ -1,32 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, InputLabel, Input, Button } from '@material-ui/core';
-import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
 
 function CandidateProfile() {
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const profile = useSelector(store => store.candidateReducer.candidateInfo);
   const [formData, setFormData] = useState({
-    FirstName: profile.first_name,
-    LastName: profile.last_name,
-    Email: profile.email,
-    LinkedIn: profile.linkedin_link,
-    ResumePath: profile.resume_path,
-    CoverLetterPath: profile.cover_letter_path,
+    FirstName: '',
+    LastName: '',
+    Email: '',
+    LinkedIn: '',
+    ResumePath: '',
+    CoverLetterPath: '',
   });
 
-
-  useEffect(() => {
-    dispatch({
-        type: 'FETCH_CANDIDATE_INFO',
-    })
-}, [])
-
-
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -34,34 +22,22 @@ function CandidateProfile() {
       ...formData,
       [name]: value,
     });
-
   }
+
 
   // console.log(FirstName, "formData");
 
 
-
   const submit = (event) => {{
+
     event.preventDefault();
     dispatch({ type: 'ADD_PROFILE', payload: formData });
-
+    history.push('/education');
   }
 
-}
-const nextpage = (event)=> {
-  history.push('/education');
-}
   return (
     <>
       <h2>Welcome to your profile!</h2>
-
-
-
-         
-  
-
-
-      
       <div className="Profile">
         <form onSubmit={submit}>
           <FormControl>
@@ -119,10 +95,9 @@ const nextpage = (event)=> {
             />
           </FormControl>
           <br />
-          <Button variant="contained" color="primary" type="submit" onClick={nextpage}>Submit</Button>
+          <Button variant="contained" color="primary" type="submit">Submit</Button>
         </form>
       </div>
-
     </>
   );
 }

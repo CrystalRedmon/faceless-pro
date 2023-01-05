@@ -36,6 +36,7 @@ require('dotenv').config();
 //POST Candidate Profile information 
 router.post('/profile', rejectUnauthenticated, (req, res) => {
   // POST route code here
+  console.log("IN Candidate POST")
   const sqlText = `
   INSERT INTO "candidate" 
   (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 

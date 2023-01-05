@@ -170,11 +170,24 @@ function* shareInfo(action){
     }
 }
 
+function* updateInfo(action){
+    console.log('action. payload for shareInfo:',action.payload)
+
+    try{
+        yield axios.put(`/api/candidateInfo/info`, action.payload);
+       
+        yield put({ type: 'FETCH_USER' });
+    }
+    catch( error ){
+        console.log('error updating profile info',error)
+    }
+}
+
 function* candidateInfo(action){
     console.log('action. payload for candidate Info:',action)
     try{
-       const info = yield axios.get(`/api/candidateInfo/info/:id`)
-       yield put({type: 'SET_INFO', payload: info.data })
+       const info = yield axios.get(`/api/candidateInfo/info`)
+       yield put({type: 'SET_EDIT_PROFILE', payload: info.data })
 
     }
     catch( error ){
@@ -199,6 +212,8 @@ function* candidateSaga() {
     yield takeLatest('ADD_MESSAGE',addMessage);
     yield takeLatest('SHARE_INFO',shareInfo);
     yield takeLatest('FETCH_CANDIDATE_INFO',candidateInfo);
+    yield takeLatest('UPDATE_PROFILE',updateInfo);
+
 
 
 

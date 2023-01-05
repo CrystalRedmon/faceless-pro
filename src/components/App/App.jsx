@@ -48,8 +48,7 @@ import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 
 import Message from '../../Message/Message';
-
-
+import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
 import './App.css';
 
 
@@ -57,10 +56,20 @@ function App() {
   const dispatch = useDispatch();
 
   const user = useSelector(store => store.user);
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
 
   useEffect(() => {
+    dispatch({
+      type: 'FETCH_CANDIDATE_INFO',
+  })
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
+
+//   useEffect(() => {
+//     dispatch({
+//         type: 'FETCH_CANDIDATE_INFO',
+//     })
+// }, [])
 
   return (
     <Router>
@@ -70,7 +79,16 @@ function App() {
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
 
-
+          <ProtectedRoute
+            exact
+            path="/profile"
+          >
+          {info.id > 0 ?    
+          <EditCandidateProfile/>    
+          :
+            <CandidateProfile />
+          }
+          </ProtectedRoute>
           <Route
             exact
             path="/founder"
@@ -146,13 +164,12 @@ function App() {
           </ProtectedRoute>
 
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
+          {/* <ProtectedRoute
             exact
             path="/CandidateProfile"
           >
             <CandidateProfile />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
