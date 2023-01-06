@@ -1,9 +1,9 @@
 
 import { Parallax } from 'react-parallax';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import { CardActionArea } from '@mui/material';
+import { Card, Grid, CardContent, Typography } from '@mui/material';
+
 //import recruiter from '/Users/aminamuumin/primet3/faceless-pro/public/images/Screen Shot 2023-01-02 at 11.51.30 AM.png';
 //import employment from '../images/employment stock image1.jpg';
 
@@ -12,7 +12,6 @@ import { useHistory } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './LandingPage.css';
-import { Typography } from '@material-ui/core';
 import Box from "@mui/material/Box";
 import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
@@ -40,7 +39,7 @@ function LandingPage() {
     <div className="container">
       <Box><Typography variant = "h4">Mission & Values</Typography></Box>
 <Box sx={{ml: 10, mt: 5}}>
-    <Typography sx={{ml: 100}} variant = 'h6' >
+    <Typography sx={{ml: 0}} variant = 'h6' >
     Our mission is to eliminate discrimination during the application process.
 At Faceless Pro, we believe that the best candidate should be determined by
 skills and experience and not on physical attributes. 
@@ -147,14 +146,62 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         direction="row"
        marginLeft={30}
        marginTop={5}
-        spacing={50}
-        marginBottom = {10}
+      //   spacing={50}
+      //   marginBottom = {10}
       >
+                 <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+                <CardContent>
+
+
+
+                    <div>
+                        <h4> Instructor</h4>
+
+                        <p> Prime Digital Academy </p>
+
+                        <p> 301 S 4th Ave #577, Minneapolis, MN </p>
+                   
+                            </div>
+                </CardContent>
+            </Card>
+
+            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+                <CardContent>
+
+
+
+                    <div>
+                        <h4> Chemical Engineer</h4>
+
+                        <p> Honeywell </p>
+
+                        <p> 1433 NE Stinson Blvd, Minneapolis, MN 55413 </p>
+                   
+                            </div>
+                </CardContent>
+            </Card>
+
+
+            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+                <CardContent>
+
+
+
+                    <div>
+                        <h4> Data Analyst</h4>
+
+                        <p> Target </p>
+
+                        <p> Target Plaza South, 1000 Nicollet Mall, Minneapolis, MN 55403</p>
+                   
+                            </div>
+                </CardContent>
+            </Card>
 
           
-              {recentJobs.map(job =>
+              {/* {recentJobs.map(job =>
                     <Box><CandidateJobItem key={job.id} job={job} /> </Box>
-                )}
+                )} */}
           
           </Stack>
         </div>

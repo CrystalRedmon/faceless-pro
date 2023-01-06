@@ -6,6 +6,7 @@ function* fetchRecentJobs(){
         const recentJobs = yield axios.get(`/api/candidateProfile`);
         console.log('Recent jobs GET successful: ', recentJobs.data)
         yield put({type: 'SET_JOBS', payload: recentJobs.data })
+        yield put({type: 'FETCH_CANDIDATE_INFO'})
     }
     catch(err) {
         console.error('GET recent jobs failed: ', err);
@@ -18,6 +19,7 @@ function* saveJobs(action){
         const savedJob = yield axios.post(`/api/candidateProfile/${action.payload.id}`);
         console.log('Save recent jobs POST successful: ', savedJob.data)
         yield put({type: 'SET_SAVED_JOBS', payload: savedJob.data })
+        yield put({ type: 'FETCH_SAVED_JOBS' });
     }
     catch(err) {
         console.error('GET saved jobs failed: ', err);
@@ -43,6 +45,7 @@ function* fetchSavedJobs(){
         const savedJobs = yield axios.get(`/api/candidateInfo`);
         console.log('saved jobs GET successful: ', savedJobs.data)
         yield put({type: 'SET_SAVED_JOBS', payload: savedJobs.data })
+
     }
     catch(err) {
         console.error('GET recent jobs failed: ', err);
@@ -74,6 +77,7 @@ function* deleteJob(action) {
         yield put({
             type: 'FETCH_SAVED_JOBS'
         })
+        yield put({ type: 'FETCH_SAVED_JOBS' });
     }
     catch( error ){
         console.log('error deleting request',error)
