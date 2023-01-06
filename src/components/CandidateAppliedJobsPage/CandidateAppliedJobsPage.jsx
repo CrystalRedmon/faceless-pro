@@ -33,6 +33,8 @@ const useStyles = makeStyles({
     whiteSpace: "nowrap",
   },
 });
+  
+  // console.log('JOBBBB', job);
 
   return (
     <>
@@ -85,12 +87,12 @@ const useStyles = makeStyles({
                       variant="contained"
                       color="primary"
                       onClick={() => {
-                        dispatch({
-                          type: "SET_JOB_MESSAGE",
-                          payload: job.id,
-                        });
-                        history.push(`/message/${job.id}`);
-                        console.log("application id:", job.id);
+                        // dispatch({
+                        //   type: "SET_JOB_MESSAGE",
+                        //   payload: job.id,
+                        // });
+                        history.push(`/message/${job.application_id}`);
+                        console.log("job", job.application_id);
                       }}
                     >
                       Chat
@@ -99,10 +101,10 @@ const useStyles = makeStyles({
                       variant="contained"
                       color="primary"
                       onClick={() => {
-                        console.log("Sharing info for job id:",job.id)
+                        console.log("Sharing info for job id:",job.application_id)
                         dispatch({
                           type: "SHARE_INFO",
-                          payload: job.id
+                          payload: job.application_id
                           
                         })
                       }}
@@ -123,12 +125,12 @@ const useStyles = makeStyles({
                       variant="contained"
                       color="primary"
                       onClick={() => {
-                        dispatch({
-                          type: "SET_JOB_MESSAGE",
-                          payload: job.id,
-                        });
-                        history.push(`/message/${job.id}`);
-                        console.log("application id:", job.id);
+                        // dispatch({
+                        //   type: "SET_JOB_MESSAGE",
+                        //   payload: job.id,
+                        // });
+                        history.push(`/message/${job.application_id}`);
+                        console.log("application id:", job.application_id);
                       }}
                     >
                       Chat

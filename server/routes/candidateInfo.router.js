@@ -55,7 +55,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   router.get('/applied', rejectUnauthenticated, (req, res) => {
     // console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
+
      `  SELECT "application".id,"employer".company_name,"employer".company_address,"job_post".title, "application".status,"application"."time","job_post".id
+
      FROM "application"
      JOIN "job_post"
          ON "job_post".id = "application".job_post_id

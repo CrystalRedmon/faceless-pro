@@ -94,11 +94,11 @@
                 >
                   back
                 </Button>
+                {messageList.length != 0 &&
                   <Typography variant="h5" className="header-message">
-                    Chat with 
-                    
-                    {/* {messageList[0].company_name} for {messageList[0].title} position */}
+                    Chat with {messageList[0].company_name} for {messageList[0].title} position
                   </Typography>
+                }
                 </Box>
                 {/* <Box p={1}>
                   <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
