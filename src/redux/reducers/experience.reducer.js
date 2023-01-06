@@ -1,5 +1,5 @@
 const experience = (state = [], action) => {
-    if (action.type === 'ADD_EXPERIENCE') {
+    if (action.type === 'GET_EXPERIENCE') {
         return action.payload
     }
     return state;

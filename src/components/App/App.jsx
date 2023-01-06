@@ -47,7 +47,8 @@ import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 import CandidateHyperLink from '../Hyperlink/Hyperlink';
 import ResumeCoverLetter from '../ResumeCoverLetter/ResumeCoverLetter';
 
-// import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
+//import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
+import CandidateHomepage from '../CandidateHomepage/CandidateHomepage';
 
 import Message from '../../Message/Message';
 import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
@@ -185,14 +186,21 @@ function App() {
           >
             <CandidateProfile />
           </ProtectedRoute> */}
-
-          {/* <ProtectedRoute
+{/* 
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/user/editCandidate"
+          >
+            <CandidateProfilePage />
+          </ProtectedRoute>  */}
+          <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/CandidatePage"
           >
-            <CandidateProfilePage />
-          </ProtectedRoute> */}
+            <CandidateHomepage />
+          </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
