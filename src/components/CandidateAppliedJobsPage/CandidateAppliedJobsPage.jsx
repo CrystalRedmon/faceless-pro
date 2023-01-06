@@ -48,11 +48,13 @@ function AppliedToJobsPage() {
             {appliedJobsList.map((job) => {
               return (
                 <Grid container >
+                  <Grid item xs={3}></Grid>
+                  <Grid item xs={9}></Grid>
                   <Box
                     key={job.id}
                     sx={{ width: '50em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}
                   >
-                    <Box>
+                    <Box sx={{ width: '50%' }}>
                       {" "}
                       <Typography variant='h4' sx={{ fontSize: 4 }}
                         onClick={() => {
@@ -83,9 +85,9 @@ function AppliedToJobsPage() {
                         DETAILS
                       </Button>
 
-
                     </Box>
-                    <Box>
+
+                    <Box sx={{ width: '50%', display: "flex", alignSelf: "flex-end", display: "flex", justifyContent: "flex-end" }}>
                       {" "}
                       {job.status === "pending" ? (
                         <p>Applied on {new Date(job.time).toLocaleString()}</p>
@@ -94,7 +96,7 @@ function AppliedToJobsPage() {
                       )}
                     </Box>
 
-                    <Box>
+                    <Box >
                       {job.status === "not_shared" ? (
                         <>
                           <p>Applied on {new Date(job.time).toLocaleString()}</p>
@@ -131,10 +133,10 @@ function AppliedToJobsPage() {
                         <></>
                       )}
                     </Box>
-                    <Box>
+                    <Box display="flex" justifyContent="flex-end">
                       {job.status === "shared" ? (
                         <>
-                          <p>Person info shared with employer-Applied on {new Date(job.time).toLocaleString()}</p>
+                          <p >Person info shared with employer-Applied on {new Date(job.time).toLocaleString()}</p>
                           <br />
                           <Button
                             variant="contained"
