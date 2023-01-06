@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import { Typography } from "@material-ui/core";
 function AppliedToJobsPage() {
   const history = useHistory();
   const params = useParams();
@@ -42,7 +43,7 @@ function AppliedToJobsPage() {
         <Grid item xs={8}><h1>AppliedToJobsPage - CANDIDATE</h1></Grid>
 
         <Grid item xs={3}></Grid>
-        <Grid sx={{marginTop: 4}}>
+        <Grid sx={{ marginTop: 4 }}>
           <section>
             {appliedJobsList.map((job) => {
               return (
@@ -53,7 +54,7 @@ function AppliedToJobsPage() {
                   >
                     <Box>
                       {" "}
-                      <h4
+                      <Typography variant='h4' sx={{ fontSize: 4 }}
                         onClick={() => {
                           history.push(`/job/${job.id}`);
                           dispatch({
@@ -64,16 +65,25 @@ function AppliedToJobsPage() {
                       >
                         {" "}
                         {job.title}{" "}
-                      </h4>
-                    </Box>
-                    <Box>
-                      <p>{job.company_name}</p>
-                    </Box>
-                    <Box>
-                      <p> {job.logo_path} </p>
-                    </Box>
-                    <Box>
-                      <p> {job.company_address}</p>
+                      </Typography>
+
+                      <Box>
+                        <Typography sx={{ fontSize: 3 }}>{job.company_name}</Typography>
+                      </Box>
+                      <Button
+                        variant='contained'
+                        onClick={() => {
+                          history.push(`/CandidateJobDetails/${job.id}`);
+                          dispatch({
+                            type: "VIEW_JOB_DETAILS",
+                            payload: `${params.id}`,
+                          });
+                        }}
+                      >
+                        DETAILS
+                      </Button>
+
+
                     </Box>
                     <Box>
                       {" "}
@@ -83,6 +93,7 @@ function AppliedToJobsPage() {
                         <></>
                       )}
                     </Box>
+
                     <Box>
                       {job.status === "not_shared" ? (
                         <>
@@ -156,17 +167,7 @@ function AppliedToJobsPage() {
                       )}
                     </Box>
 
-                    <button
-                      onClick={() => {
-                        history.push(`/CandidateJobDetails/${job.id}`);
-                        dispatch({
-                          type: "VIEW_JOB_DETAILS",
-                          payload: `${params.id}`,
-                        });
-                      }}
-                    >
-                      DETAILS
-                    </button>
+
                   </Box>
                 </Grid>);
             })}
