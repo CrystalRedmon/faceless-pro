@@ -5,10 +5,38 @@ const {
   rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
+// router.get('/:id', rejectUnauthenticated, (req, res) => {
+//     console.log('message req.body',req.params.id)
+//     console.log('req.user',req.user)
+//     const sqlTxt = `
+//     SELECT "employer".company_name, "job_post".title,"application".random_identifier,"message"."content","message"."time","message".is_from_candidate
+//     FROM "message"
+//    	JOIN "application"
+//    		ON "application".id = "message".application_id
+//    	JOIN "job_post"
+//    		ON "job_post".id = "application".job_post_id
+//    	JOIN "employer"
+//    		ON "employer".id = "job_post".employer_id
+//    	JOIN "candidate"
+//    		ON "candidate".id = "application".candidate_id
+//    	JOIN "user"
+//    		ON "user".id = "candidate".user_id
+//     WHERE "message".application_id = $1 AND "candidate".id = $2;`;
+  
+//     pool.query(sqlTxt,[req.params.id,req.user.user_info.id])
+//       .then(dbRes => {
+//         // console.log('message rows:',dbRes.rows)
+//         res.send(dbRes.rows);
+//       })
+//       .catch(error => {
+//         res.sendStatus(500);
+//       })
+// });
+  
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-    console.log('message req.body',req.params.id)
-    console.log('req.user',req.user)
-    const sqlTxt = `
+  console.log('message req.body', req.params.id)
+  console.log('req.user', req.user)
+  const sqlTxt = `
     SELECT "employer".company_name, "job_post".title,"application".random_identifier,"message"."content","message"."time","message".is_from_candidate
     FROM "message"
    	JOIN "application"
@@ -21,17 +49,17 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
    		ON "candidate".id = "application".candidate_id
    	JOIN "user"
    		ON "user".id = "candidate".user_id
-    WHERE "message".application_id = $1 AND "candidate".id = $2;`;
-  
-    pool.query(sqlTxt,[req.params.id,req.user.user_info.id])
-      .then(dbRes => {
-        // console.log('message rows:',dbRes.rows)
-        res.send(dbRes.rows);
-      })
-      .catch(error => {
-        res.sendStatus(500);
-      })
-  });
+    WHERE "message".application_id = $1;`;
+
+  pool.query(sqlTxt, [req.params.id])
+    .then(dbRes => {
+      // console.log('message rows:',dbRes.rows)
+      res.send(dbRes.rows);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+    })
+});
 
   router.post('/', rejectUnauthenticated, (req, res) => {
     console.log("message from client/req.body",req.body)

@@ -33,7 +33,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   const sqlText = `
   INSERT INTO "employer" 
   (user_id, company_name, company_address, company_phone, email, company_description, company_link) 
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+  VALUES ($1, $2, $3, $4, $5, $6, $7)`;
 
   pool
   .query(sqlText, [req.user.id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.company_email, req.body.company_description, req.body.company_link])
