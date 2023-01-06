@@ -8,8 +8,24 @@ function ApplicantSharedInfo({ applicant }) {
             <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.profile[0].first_name} {applicant.profile[0].last_name}</Typography>
             <Typography sx={{ display: "flex" }}><b>Email:</b>{applicant.profile[0].email}</Typography>
             <Typography sx={{ display: "flex" }}><b>LinkedIn:</b><a href={applicant.profile[0].linkedin_link} target="_blank">{applicant.profile[0].linkedin_link}</a></Typography>
-            <Typography sx={{ display: "flex" }}><b>Resume:</b>{applicant.profile[0].resume_path}</Typography>
-            <Typography sx={{ display: "flex" }}><b>Cover Letter:</b>{applicant.profile[0].cover_letter_path}</Typography>
+
+            <Typography sx={{ display: "flex" }}>
+                <b>Resume:</b>
+                <a
+                    href={applicant.profile[0].resume_path}
+                    download={`${applicant.profile[0].first_name}-${applicant.profile[0].last_name}-resume.pdf`}
+                >
+                    Download Resume
+                </a></Typography>
+
+            <Typography sx={{ display: "flex" }}>
+                <b>Cover Letter:</b>
+                <a
+                    href={applicant.profile[0].cover_letter_path}
+                    download={`${applicant.profile[0].first_name}-${applicant.profile[0].last_name}-cover-letter.pdf`}
+                >
+                    Download Cover Letter
+                </a></Typography>
         </Box>
     );
 }

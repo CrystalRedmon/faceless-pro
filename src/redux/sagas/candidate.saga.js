@@ -217,6 +217,44 @@ function* fetchEducation(){
      }
 }
 
+function* uploadResume(action) {
+    // console.log('in uploadResume saga');
+    // console.log('file info payload', action.payload[0]);
+    let formData = new FormData();
+
+    formData.append('uploaded_file', action.payload[0]);
+    try {
+        const response = yield axios.post('/api/resume', formData, {
+            headers: {
+                headers: { "Content-Type": "multipart/form-data" }
+            }
+        })
+        console.log(response.data);
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+function* uploadCoverLetter(action) {
+    // console.log('in uploadCoverLetter saga');
+    // console.log('file info payload', action.payload[0]);
+    let formData = new FormData();
+
+    formData.append('uploaded_file', action.payload[0]);
+    try {
+        const response = yield axios.post('/api/coverLetter', formData, {
+            headers: {
+                headers: { "Content-Type": "multipart/form-data" }
+            }
+        })
+        console.log(response.data);
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
 
 function* candidateSaga() {
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
@@ -237,17 +275,9 @@ function* candidateSaga() {
     yield takeLatest('SHARE_INFO',shareInfo);
     yield takeLatest('FETCH_CANDIDATE_INFO',candidateInfo);
     yield takeLatest('UPDATE_PROFILE',updateInfo);
-    yield takeLatest('FETCH_EDUCATION',fetchEducation);
-
-
-
-
-
-    
-
-
-
-
+    yield takeLatest('FETCH_EDUCATION', fetchEducation);
+    yield takeLatest('EDIT_RESUME', uploadResume);
+    yield takeLatest('EDIT_COVER_LETTER', uploadCoverLetter);
 }
 
 export default candidateSaga
