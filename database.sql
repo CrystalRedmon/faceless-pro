@@ -93,7 +93,7 @@ CREATE TABLE "application" (
 CREATE TABLE "message" (
 	"id" serial PRIMARY KEY,
 	"application_id" INT REFERENCES "application" ON DELETE CASCADE,
-	"content" VARCHAR DEFAULT 'We reviewed your application and would like to schedule and interview.',
+	"content" VARCHAR,
 	"time" TIMESTAMP DEFAULT NOW() NOT NULL,
 	"is_from_candidate" BOOLEAN DEFAULT FALSE
 );
