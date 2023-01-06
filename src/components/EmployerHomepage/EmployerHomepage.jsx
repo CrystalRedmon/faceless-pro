@@ -22,7 +22,7 @@ function EmployerHomepage() {
             <Grid item xs={3}></Grid>
             <Grid item xs={6}>
                 <h1 mb={20}>Welcome, {employer.username}</h1>
-                <div>{employer.user_info.logo_path}</div>
+                {/* <div>{employer.user_info.logo_path}</div> */}
                 <ul className='employerinfo'>
                     <li>{employer.user_info.company_address}</li>
                     <li>{employer.user_info.company_phone}</li>

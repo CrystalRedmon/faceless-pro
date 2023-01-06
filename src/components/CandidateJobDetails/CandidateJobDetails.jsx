@@ -41,7 +41,7 @@ function CandidateJobDetails() {
       <h1>Candidate Job Details</h1>
       <button onClick={goBack}>Back</button>
       <br></br>
-      <h2>Company Logo:{job[0].logo_path}</h2>
+      {/* <h2>Company Logo:{job[0].logo_path}</h2> */}
       <br></br>
       <h2>Company Name:{job[0].company_name}</h2>
       <br></br>

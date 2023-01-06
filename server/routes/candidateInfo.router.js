@@ -55,7 +55,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   router.get('/applied', rejectUnauthenticated, (req, res) => {
     // console.log('req.params.id',req.user.user_info.id)
     const sqlTxt =
-     `  SELECT "application".id,"employer".company_name,"employer".company_address,"employer".logo_path,"job_post".title, "application".status,"application"."time","job_post".id
+     `  SELECT "application".id,"employer".company_name,"employer".company_address,"job_post".title, "application".status,"application"."time","job_post".id
      FROM "application"
      JOIN "job_post"
          ON "job_post".id = "application".job_post_id
@@ -81,7 +81,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   router.get('/detail/:id', rejectUnauthenticated, (req, res) => {
     console.log('req.params.id',req.user.user_info.id)
     const sqlTxt = `
-    SELECT "job_post".id, "employer".logo_path, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
+    SELECT "job_post".id, "employer".company_name,"employer".company_address, "job_post".title, "job_post".description
     FROM "job_post"
     JOIN "employer"
         ON "employer".id = "job_post".employer_id

@@ -67,9 +67,6 @@ const useStyles = makeStyles({
                 <p> {job.company_name}</p>
               </Box>
               <Box>
-                <p> {job.logo_path} </p>
-              </Box>
-              <Box>
                 <p> {job.company_address}</p>
               </Box>
               <Box>
