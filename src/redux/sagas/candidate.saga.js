@@ -175,6 +175,11 @@ function* shareInfo(action){
     console.log('action. payload for shareInfo:',action.payload)
     try{
         yield axios.put(`/api/candidateInfo/info/${action.payload}`)
+
+        yield put({
+            type: 'FETCH_APPLIED_JOBS'
+            // FETCH APPLIED JOBS AFTER A JOB AS BEEN APPLIED TO ENSURES THE MOST RECENTLY APPLIED JOB APPEARS ON APPLIED JOB PAGE AFTER APPLY CLICKED ON CANDIDATE JOB DETAILS
+        })
     }
     catch( error ){
         console.log('error adding message',error)
@@ -192,6 +197,8 @@ function* updateInfo(action){
     catch( error ){
         console.log('error updating profile info',error)
     }
+
+    
 }
 
 function* candidateInfo(action){
