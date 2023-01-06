@@ -7,11 +7,6 @@ function Education() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch({
-        type: 'FETCH_CANDIDATE_INFO',
-    })
-}, [])
 
   const editedEducation = useSelector(store => store.candidateReducer.editEducation);
   const info = useSelector(store => store.candidateReducer.candidateInfo);
@@ -61,7 +56,7 @@ function Education() {
   }
 
   return (
-    <div className="Education">
+    <div style={{ display: 'flex', justifyContent: 'center' }} className="Education">
       <form onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
@@ -76,7 +71,7 @@ function Education() {
                 />
               </FormControl>
               <FormControl>
-                <InputLabel htmlFor="major">Major</InputLabel>
+                <InputLabel htmlFor="major">Qualifications</InputLabel>
                 <Input
                   id="major"
                   name='Major'
@@ -109,7 +104,7 @@ function Education() {
       </form>
       <Button onClick={addFields}>Add More..</Button>
       <br />
-      <Button variant="contained" color="primary" onClick={submit}>Submit</Button>
+      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
     </div>
   );
 }

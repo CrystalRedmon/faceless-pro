@@ -34,7 +34,7 @@ function EmployerJobDetails() {
 
     return (
         <>
-            <Grid container spacing={2}>
+            <Grid container spacing={2} >
                 <Grid item xs={3}></Grid>
                 <Grid item xs={6}>
                     <Grid item xs={6}><Link variant='contained' onClick={handleBack}>Back</Link> </Grid> 
