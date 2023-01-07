@@ -53,7 +53,7 @@ function Message() {
     // Start the interval
     intervalId.current = setInterval(() => {
       dispatch({ type: "FETCH_MESSAGES", payload: params.id });
-    }, 1000000000);
+    }, 500);
 
     // Return a cleanup function to cancel the interval when the component unmounts
     return () => clearInterval(intervalId.current);

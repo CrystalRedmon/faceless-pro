@@ -177,7 +177,7 @@ function AppliedToJobsPage() {
           <h1>Your Applied Jobs</h1>
           <List>
             {appliedJobsList.map(job =>
-              <CandidateAppliedItem key={job.application_id} job={job} jobDetailsId={params.id} />
+              <CandidateAppliedItem key={job.application_id} job={job} />
             )}
           </List>
         </Grid>

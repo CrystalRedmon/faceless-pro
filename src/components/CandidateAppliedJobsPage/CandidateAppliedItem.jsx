@@ -8,13 +8,13 @@ import { Typography } from '@mui/material';
 
 import Swal from 'sweetalert2';
 
-function CandidateAppliedItem({ job, jobDetailsId }) {
+function CandidateAppliedItem({ job }) {
     const history = useHistory();
     const params = useParams();
     const dispatch = useDispatch();
 
     console.log('each job', job);
-    console.log('each jobDetailsId', jobDetailsId); // undefined
+    // console.log('each jobDetailsId', jobDetailsId); // undefined
 
     function handleShare() {
         Swal.fire({
@@ -58,7 +58,7 @@ function CandidateAppliedItem({ job, jobDetailsId }) {
                         {/* needs clarification */}
                         <Button
                             variant='contained'
-                            onClick={() => { history.push(`/job/${job.id}`) }}
+                            onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
                         </Button>
@@ -87,7 +87,7 @@ function CandidateAppliedItem({ job, jobDetailsId }) {
                         <Typography>
                             <Button
                                 variant='contained'
-                                onClick={() => { history.push(`/job/${job.id}`) }}
+                                onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
@@ -140,7 +140,7 @@ function CandidateAppliedItem({ job, jobDetailsId }) {
                         <Typography>
                             <Button
                                 variant='contained'
-                                onClick={() => { history.push(`/job/${job.id}`) }}
+                                onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
@@ -185,7 +185,7 @@ function CandidateAppliedItem({ job, jobDetailsId }) {
                         {/* needs clarification */}
                         <Button
                             variant='contained'
-                            onClick={() => { history.push(`/job/${job.id}`) }}
+                            onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
                         </Button>
