@@ -24,7 +24,6 @@ function CandidateHomepage() {
         })
     }, [])
 
-
     return (<>
 
         <Grid container spacing={2}>
