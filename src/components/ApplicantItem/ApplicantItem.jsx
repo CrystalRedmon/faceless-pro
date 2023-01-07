@@ -23,7 +23,6 @@ function ApplicantItem({ applicant, jobId }) {
     switch (applicant.status) {
         case 'pending':
             return (
-
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2}}>
                     <Box>
                         <Box>
@@ -62,7 +61,6 @@ function ApplicantItem({ applicant, jobId }) {
                         </Box>
                     </Box>
                     <Box>
-
                         <Typography>
                             <Button
 
@@ -83,8 +81,6 @@ function ApplicantItem({ applicant, jobId }) {
                                 Open Chat
                             </Button>
                         </Typography>
-
-
                     </Box>
                 </Box>
             );
@@ -122,7 +118,6 @@ function ApplicantItem({ applicant, jobId }) {
                                 Open Chat
                             </Button>
                         </Typography>
-
                     </Box>
                 </Box>
             );
