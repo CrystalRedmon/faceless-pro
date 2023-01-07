@@ -46,6 +46,7 @@ function CandidateJobItem({ job }) {
 
                         <p>  {job.company_name}</p>
 
+                        <p> {job.company_address}</p>
 
                      
 
