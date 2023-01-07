@@ -110,34 +110,6 @@ function ApplicantProfile() {
                         reject
                     </Button>
                     <ApplicantNotSharedInfo applicant={applicant} />
-                    {/* <Box>
-                        <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.status_and_identifier[0].random_identifier}</Typography>
-                        <List>
-                            <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
-                            {applicant.education.map(education => <Education key={education.id} education={education} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Experience</b></Typography>
-                        <List>
-                            {applicant.experience.map(experience => <Experience key={experience.id} experience={experience} />)}
-                        </List>
-                        <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
-                        {applicant.skill != null ?
-                            <>
-                                <List>
-                                    {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                                </List></>
-                            : <>applicant did not fill out</>
-                        }
-                        <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
-                        {applicant.hyperlink != null ?
-                            <>
-                                <List>
-                                    {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
-                                </List>
-                            </>
-                            : <>applicant did not fill out</>
-                        }
-                    </Box> */}
                 </Box>
             }
             {/* not_shared */}
@@ -149,13 +121,6 @@ function ApplicantProfile() {
             {/* shared */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'shared') &&
                 <Box>
-                    {/* <Box sx={{ margin: "20px" }}>
-                        <Typography sx={{ display: "flex" }}><b>Name:</b>{applicant.profile[0].first_name} {applicant.profile[0].last_name}</Typography>
-                        <Typography sx={{ display: "flex" }}><b>Email:</b>{applicant.profile[0].email}</Typography>
-                        <Typography sx={{ display: "flex" }}><b>LinkedIn:</b><a href={applicant.profile[0].linkedin_link} target="_blank">{applicant.profile[0].linkedin_link}</a></Typography>
-                        <Typography sx={{ display: "flex" }}><b>Resume:</b>{applicant.profile[0].resume_path}</Typography>
-                        <Typography sx={{ display: "flex" }}><b>Cover Letter:</b>{applicant.profile[0].cover_letter_path}</Typography>
-                    </Box> */}
                     <Box sx={{marginLeft:25}}><ApplicantSharedInfo applicant={applicant} /></Box>
                     <ApplicantNotSharedInfo applicant={applicant} />
                 </Box>

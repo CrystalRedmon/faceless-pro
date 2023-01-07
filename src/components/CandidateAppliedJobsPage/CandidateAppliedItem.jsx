@@ -10,10 +10,11 @@ import Swal from 'sweetalert2';
 
 function CandidateAppliedItem({ job, jobDetailsId }) {
     const history = useHistory();
+    const params = useParams();
     const dispatch = useDispatch();
 
     console.log('each job', job);
-    console.log('each jobDetailsId', jobDetailsId);
+    console.log('each jobDetailsId', jobDetailsId); // undefined
 
     function handleShare() {
         Swal.fire({

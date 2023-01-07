@@ -174,7 +174,7 @@ function AppliedToJobsPage() {
         <Grid item xs={3}></Grid>
         <Grid item xs={6}>
           <Button variant='contained' onClick={() => { window.history.back() }}>Back</Button>
-          <h1>CandidateAppliedToJobsPage</h1>
+          <h1>Your Applied Jobs</h1>
           <List>
             {appliedJobsList.map(job =>
               <CandidateAppliedItem key={job.application_id} job={job} jobDetailsId={params.id} />
