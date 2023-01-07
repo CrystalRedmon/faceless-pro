@@ -1,5 +1,5 @@
 const education = (state = [], action) => {
-    if (action.type === 'SET_EDUCATION') {
+    if (action.type === 'GET_EDUCATION') {
         return action.payload
     }
     return state;

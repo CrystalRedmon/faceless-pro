@@ -33,6 +33,9 @@ CREATE TABLE "employer" (
 	"company_link" VARCHAR(255) NOT NULL
 );
 
+ALTER TABLE "employer"
+DROP COLUMN logo_path;
+
 CREATE TABLE "candidate" (
 	"id" serial PRIMARY KEY,
 	"user_id" INT REFERENCES "user",

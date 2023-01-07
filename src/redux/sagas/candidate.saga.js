@@ -1,6 +1,42 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
+
+function* addCandidateInfo(action) {
+    console.log('in addCandidateInfo with action.payload', action.payload);
+    try {
+        yield axios.post('/api/candidateProfile', action.payload);
+        yield put({ type: 'FETCH_USER' });
+
+    } catch (error) {
+        console.log('error in adding to candidate table', error);
+    }
+}
+
+function* fetchEditCandidate() {
+
+    try {
+        const response = yield axios.get('/api/candidateProfile');
+
+        yield put({
+            type: 'SET_EDIT_CANDIDATE',
+            payload: response.data
+        });
+    }
+    catch (err) {
+        console.error(err);
+    }
+}
+
+function* saveCandidateData(action) {
+
+    const response = yield axios.put('/api/candidateProfile', action.payload);
+
+    console.log(response.data); // OK
+
+    yield put({ type: 'FETCH_CANDIDATE' });
+}
+
 function* fetchRecentJobs(){
     try{
         const recentJobs = yield axios.get(`/api/candidateProfile`);
@@ -268,6 +304,9 @@ function* uploadCoverLetter(action) {
 
 
 function* candidateSaga() {
+    yield takeLatest('ADD_CANDIDATE_INFO', addCandidateInfo);
+    yield takeLatest('FETCH_EDIT_CANDIDATE', fetchEditCandidate);
+    yield takeLatest('SAVE_CANDIDATE_DATA', saveCandidateData);
     yield takeLatest('FETCH_RECENT_JOBS', fetchRecentJobs);
     yield takeLatest('SAVE_JOBS', saveJobs);
     yield takeLatest('FETCH_SEARCHED_JOBS', searchJobs);

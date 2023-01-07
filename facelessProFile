@@ -148,6 +148,8 @@ CREATE TABLE public.employer (
     company_link character varying(255) NOT NULL
 );
 
+ALTER TABLE public.employer
+DROP COLUMN logo_path;
 
 ALTER TABLE public.employer OWNER TO mohamedyusuf;
 
@@ -498,7 +500,7 @@ COPY public.education (id, candidate_id, school, qualification, dates, note) FRO
 -- Data for Name: employer; Type: TABLE DATA; Schema: public; Owner: mohamedyusuf
 --
 
-COPY public.employer (id, user_id, company_name, company_address, company_phone, logo_path, company_description, company_link) FROM stdin;
+COPY public.employer (id, user_id, company_name, company_address, company_phone, company_description, company_link) FROM stdin;
 1	1	prime	123 west	555-555-5555	photo	bootcamp located in Minneapolis	link
 4	8	emp2	123 west	555-555-5555	photo	bootcamp located in Minneapolis	link
 5	9	emp3	123 west	555-555-5555	photo	bootcamp located in Minneapolis	link

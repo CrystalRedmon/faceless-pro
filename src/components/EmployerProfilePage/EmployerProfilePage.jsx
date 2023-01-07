@@ -113,7 +113,7 @@ function EmployerProfilePage() {
                                 />
                             </Grid>
 
-                            <Grid item xs={6}>
+                            {/* <Grid item xs={6}>
                                 <TextField
                                     label="Upload Logo"
                                     value={String(employer.logo_path)}
@@ -123,7 +123,7 @@ function EmployerProfilePage() {
                                     })}
                                 />
 
-                            </Grid>
+                            </Grid> */}
                             <Grid item xs={12}>
                                 <TextField
                                     label="Company Description"

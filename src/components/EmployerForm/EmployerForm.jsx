@@ -15,7 +15,7 @@ function EmployerForm() {
     const [companyPhone, setCompanyPhone] = useState('');
     const [companyEmail, setCompanyEmail] = useState('');
     const [companyLink, setCompanyLink] = useState('');
-    const [companyLogoPath, setCompanyLogoPath] = useState('');
+    // const [companyLogoPath, setCompanyLogoPath] = useState('');
     const [companyDescription, setCompanyDescription] = useState('');
 
     const handleSubmit = (event) => {
@@ -28,7 +28,6 @@ function EmployerForm() {
                 company_address: companyAddress,
                 company_phone: companyPhone,
                 company_email: companyEmail,
-                logo_path: companyLogoPath,
                 company_description: companyDescription,
                 company_link: companyLink,
             }
@@ -39,7 +38,7 @@ function EmployerForm() {
         setCompanyPhone('');
         setCompanyEmail('');
         setCompanyLink('');
-        setCompanyLogoPath('');
+        // setCompanyLogoPath('');
         setCompanyDescription('');
     }
 
@@ -50,7 +49,7 @@ function EmployerForm() {
             <TextField required value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
             <TextField required value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
             <TextField required value={companyLink} onChange={(event) => { setCompanyLink(event.target.value) }} label="company site link" />
-            <TextField required value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" />
+            {/* <TextField required value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" /> */}
             <TextField required value={companyDescription} onChange={(event) => { setCompanyDescription(event.target.value) }} label="company description" />
             <Button type='submit' variant='contained'>submit</Button>
         </form>
