@@ -93,7 +93,7 @@ function ApplicantItem({ applicant, jobId }) {
                             {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status:{applicant.status}
+                            Status: {applicant.status}
                         </Box>
                     </Box>
                     <Box>
