@@ -18,7 +18,7 @@ const upload = multer({
 router.post('/', upload.single('uploaded_file'), function (req, res) {
     console.log('in post router for multer');
     console.log('req.file is', req.file);
-    console.log('file path is', req.file.path);
+   // console.log('file path is', req.file.path);
 
     if (req.isAuthenticated()) {
         console.log('is authenticated?', req.isAuthenticated());

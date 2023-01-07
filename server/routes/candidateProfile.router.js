@@ -6,32 +6,40 @@ const { response } = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 require('dotenv').config();
 
-/**
- * GET route template
- */
-// GET the 3 Latest Job Posts in the Candidate Landing Page.
-// router.get('/', (req, res) => {
+router.get('/profile', rejectUnauthenticated, (req, res) => {
+  console.log("in candidateProfile");
+  console.log('THE req.user.user_info.user_id', req.user.user_info.user_id);
 
+  // FIX!!!!
 
-//   // GET route code here
+  const sqlTxt = `
+                  SELECT 
+                  json_agg(education.*) as education,
+                  json_agg(experience.*) as experience,
+                  json_agg(skill.*) as skill,
+                  json_agg(hyperlink.*) as hyperlink
+                FROM candidate
+                JOIN education
+                  ON education.candidate_id = candidate.id
+                JOIN experience
+                  ON experience.candidate_id = candidate.id
+                JOIN skill
+                  ON skill.candidate_id = candidate.id
+                JOIN hyperlink
+                  ON hyperlink.candidate_id = candidate.id
+                WHERE candidate.user_id = $1;
+                `;
 
-//   const sqlText = `SELECT * FROM "candidate"
-//   WHERE "user_id" = $1;`;
-
-//   pool.query(sqlText)
-//   .then((result) =>{
-//    // console.log('result is:',result.rows)
-//    res.send(result.rows[0]) 
-//    console.log(result.rows);
-//   })
-//   .catch((error) =>{
-//    console.log('error fetching items from candidate', error)
-//    res.sendStatus(500)
-//   })
-
-
-// });
-
+  pool.query(sqlTxt, [req.user.user_info.user_id])
+    .then(dbRes => {
+      console.log(dbRes.rows[0]);
+      res.send(dbRes.rows[0]);
+    })
+    .catch(error => {
+      res.sendStatus(500);
+      console.log('GET candidate profile error', error);
+    })
+});
 
 //POST Candidate Profile information 
 router.post('/profile', rejectUnauthenticated, (req, res) => {
@@ -307,7 +315,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     FROM "job_post"
     JOIN "employer"
       ON "job_post".employer_id = "employer".id
-    ORDER BY "job_post".id DESC limit 3;`;
+    ORDER BY "job_post".id DESC;`;
 
 
   pool.query(sqlTxt)
@@ -381,6 +389,8 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       console.log('Delete Saved Jobs Failed: ', error);
     })
 });
+
+
 
 
 

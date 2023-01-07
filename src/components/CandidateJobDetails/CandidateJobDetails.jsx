@@ -42,7 +42,7 @@ function CandidateJobDetails() {
     window.history.back();
   }
 
-  return (
+return (
     <>
       <Grid container spacing={2}>
         <Grid item xs={3}></Grid>

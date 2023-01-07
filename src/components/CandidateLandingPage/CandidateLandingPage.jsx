@@ -82,7 +82,7 @@ function CandidateLandingPage() {
         <Grid item xs={6.75}>
           {searchJobsClicked ? <h3>Searched Jobs</h3>
             :
-            <h3>Recently Added Jobs</h3>}
+            <> </>}
         </Grid>
         <Grid item xs={2}></Grid>
         <Grid container item xs={10}>

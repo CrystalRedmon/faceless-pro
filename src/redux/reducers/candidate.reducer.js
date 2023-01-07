@@ -65,15 +65,23 @@ const jobMessage = (state = [], action) => {
     return state;
 }
 
-const candidateInfo = (state ={},action) =>{
-    switch (action.type){
+const candidateInfo = (state = {}, action) => {
+    switch (action.type) {
         case 'SET_EDIT_PROFILE':
             return action.payload
-            case 'UPDATE_EDIT_PROFILE':
-                return {
-                    ...state,
-                    ...action.payload
-                };
+        case 'UPDATE_EDIT_PROFILE':
+            return {
+                ...state,
+                ...action.payload
+            };
+    }
+    return state;
+}
+
+const candidateProfileInfo = (state = {}, action) => {
+    switch (action.type) {
+        case 'SET_CANDIDATE_PROFILE_INFO':
+            return action.payload;
     }
     return state;
 }
@@ -86,8 +94,7 @@ export default combineReducers({
     messageList,
     jobMessage,
     candidateInfo,
-
-
+    candidateProfileInfo
 })
 
 

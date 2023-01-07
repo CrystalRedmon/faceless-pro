@@ -1,4 +1,4 @@
-const SkillsReducer = (state = [], action) => {
+const skills = (state = [], action) => {
     if (action.type === 'GET_SKILLS') {
         return action.payload
     }
@@ -6,4 +6,4 @@ const SkillsReducer = (state = [], action) => {
   }
 
 
-  export default SkillsReducer;
+  export default skills;

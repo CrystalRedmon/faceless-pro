@@ -9,7 +9,9 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@material-ui/core";
+
 function AppliedToJobsPage() {
+
   const history = useHistory();
   const params = useParams();
   const dispatch = useDispatch();
@@ -17,12 +19,12 @@ function AppliedToJobsPage() {
   const appliedJobsList = useSelector(
     (store) => store.candidateReducer.appliedJobs
   );
-  console.log("Jobs applied to:", appliedJobsList);
+
+  console.log("jobs applied to:", appliedJobsList);
 
   useEffect(() => {
     dispatch({ type: "FETCH_APPLIED_JOBS" });
   }, []);
-
 
   const useStyles = makeStyles({
     table: {

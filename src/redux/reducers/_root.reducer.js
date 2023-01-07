@@ -5,7 +5,7 @@ import jobs from './employerJobs.reducer';
 import candidateReducer from './candidate.reducer';
 import editEmployer from './employer.reducer';
 import education from './education.reducer';
-import SkillsReducer from './skills.reducer';
+import SkillsReducer  from './skills.reducer';
 import experience from './experience.reducer';
 
 // rootReducer is the primary reducer for our entire project

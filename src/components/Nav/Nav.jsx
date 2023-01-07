@@ -98,7 +98,7 @@ function Nav() {
             </Link>
 
 
-            <Link className="navLink" to="/profile">
+            <Link className="navLink" to="/CandidatePage">
               My Profile 
 
             </Link>

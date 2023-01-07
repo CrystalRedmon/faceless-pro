@@ -32,11 +32,11 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const sqlText = `
   INSERT INTO "employer" 
-  (user_id, company_name, company_address, company_phone, email, logo_path, company_description, company_link) 
-  VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
+  (user_id, company_name, company_address, company_phone, email, company_description, company_link) 
+  VALUES ($1, $2, $3, $4, $5, $6, $7)`;
 
   pool
-  .query(sqlText, [req.user.id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.company_email, req.body.logo_path, req.body.company_description, req.body.company_link])
+  .query(sqlText, [req.user.id, req.body.company_name, req.body.company_address, req.body.company_phone, req.body.company_email, req.body.company_description, req.body.company_link])
   .then((queryResponse) => res.send(queryResponse))
   .catch((err) => {
     console.log('Employer Post info failed ', err);
@@ -45,8 +45,8 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/', rejectUnauthenticated, (req, res) => {
-  const sqlText = `UPDATE employer SET company_name = $1, company_address = $2, company_phone = $3, email = $4, logo_path = $5, company_description = $6, company_link = $7 WHERE user_id = $8`;
-  pool.query(sqlText, [req.body.company_name, req.body.company_address, req.body.company_phone, req.body.email, req.body.logo_path, req.body.company_description, req.body.company_link, req.user.id])
+  const sqlText = `UPDATE employer SET company_name = $1, company_address = $2, company_phone = $3, email = $4, company_description = $5, company_link = $6 WHERE user_id = $7`;
+  pool.query(sqlText, [req.body.company_name, req.body.company_address, req.body.company_phone, req.body.email, req.body.company_description, req.body.company_link, req.user.id])
     .then((result) => {
       res.sendStatus(200);
     })
