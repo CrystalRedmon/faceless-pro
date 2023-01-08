@@ -98,20 +98,20 @@ function AppliedToJobsPage() {
     //                 >
     //                   Chat
     //                 </Button>
-                    // <Button
-                    //   variant="contained"
-                    //   color="primary"
-                    //   onClick={() => {
-                    //     console.log("Sharing info for job id:", job.application_id)
-                    //     dispatch({
-                    //       type: "SHARE_INFO",
-                    //       payload: job.application_id
+    // <Button
+    //   variant="contained"
+    //   color="primary"
+    //   onClick={() => {
+    //     console.log("Sharing info for job id:", job.application_id)
+    //     dispatch({
+    //       type: "SHARE_INFO",
+    //       payload: job.application_id
 
-                    //     })
-                    //   }}
-                    // >
-                    //   Share Information
-                    // </Button>
+    //     })
+    //   }}
+    // >
+    //   Share Information
+    // </Button>
     //               </>
     //             ) : (
     //               <></>
@@ -169,21 +169,19 @@ function AppliedToJobsPage() {
     //     })}
     //   </section>
     // </>
-    <>
-      <Grid container spacing={2}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={6}>
-          <Button variant='contained' onClick={() => { window.history.back() }}>Back</Button>
-          <h1>Your Applied Jobs</h1>
-          <List>
-            {appliedJobsList.map(job =>
-              <CandidateAppliedItem key={job.application_id} job={job} />
-            )}
-          </List>
-        </Grid>
-        <Grid item xs={3}></Grid>
+    <Grid container spacing={2}>
+      <Grid item xs={2}></Grid>
+      <Grid item xs={8}>
+        <Button variant='contained' onClick={() => { window.history.back() }}>Back</Button>
+        <h1>Your Applied Jobs</h1>
+        <List>
+          {appliedJobsList.map(job =>
+            <CandidateAppliedItem key={job.application_id} job={job} />
+          )}
+        </List>
       </Grid>
-    </>
+      <Grid item xs={2}></Grid>
+    </Grid>
   );
 }
 

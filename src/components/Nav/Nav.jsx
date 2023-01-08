@@ -50,12 +50,13 @@ function Nav() {
           </div>
       
       <div>
-        <Button className="navLink"
+        <Link className="navLink"
           onClick={handleOpenMenu}
           aria-controls='menu'
+          sx={{color: 'white'}}
         >
           About Us
-        </Button>
+        </Link>
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links

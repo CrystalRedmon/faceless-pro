@@ -20,7 +20,10 @@ function Education({ education }) {
                     <Typography>Qualifications: {education.qualification}</Typography>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                    <Typography>Notes: {education.note}</Typography>
+                    <Typography>Notes:</Typography>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                    <Typography>{education.note}</Typography>
                 </Box>
             </Box>
         </Box>
