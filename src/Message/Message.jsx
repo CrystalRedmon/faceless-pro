@@ -96,13 +96,13 @@ function Message() {
 
               {(messageList.length != 0 && user.user_type === 'employer') &&
                 <Typography variant="h5" className="header-message">
-                  Chat with <b>{messageList[0].random_identifier}</b> for <b>{messageList[0].title}</b> position
+                  Chat with <b>{messageList[0].random_identifier}</b> for <b>{messageList[0].title}</b> position.
                 </Typography>
               }
 
               {(messageList.length != 0 && user.user_type === 'candidate') &&
                 <Typography variant="h5" className="header-message">
-                  Chat with <b>{messageList[0].company_name}</b> for <b>{messageList[0].title}</b> position
+                  Chat with <b>{messageList[0].company_name}</b> for <b>{messageList[0].title}</b> position. Your anonymous identifier is <b>{messageList[0].random_identifier}</b> to the employer.
                 </Typography>
               }
 

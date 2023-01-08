@@ -2,11 +2,6 @@ import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import Education from './Education';
-import Experience from './Experience';
-import Skill from './Skill';
-import Hyperlink from './Hyperlink';
-
 import ApplicantNotSharedInfo from './ApplicantNotSharedInfo';
 import ApplicantSharedInfo from './ApplicantSharedInfo';
 
@@ -15,13 +10,10 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import Swal from 'sweetalert2';
-import { auto } from '@popperjs/core';
 
 
 function ApplicantProfile() {
 
-    // const applicantNotSharedInfo = useSelector(store => store.jobs.applicantNotSharedInfo);
-    // const applicantSharedInfo = useSelector(store => store.jobs.applicantSharedInfo);
     const applicant = useSelector(store => store.jobs.applicantInfo);
 
     useEffect(() => {
@@ -53,7 +45,7 @@ function ApplicantProfile() {
                 })
                 history.push(`/viewApplicantsPage/${params.jobId}`)
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved', '', 'info')
+                Swal.fire('Changes were not saved.', '', 'info')
             }
         })
         // then go back to the viewApplicantsPage
@@ -76,7 +68,7 @@ function ApplicantProfile() {
                     }
                 })
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved', '', 'info')
+                Swal.fire('Changes were not saved.', '', 'info')
             }
         })
     }
@@ -85,19 +77,29 @@ function ApplicantProfile() {
 
     return (
         <Box>
-            <Button
-                variant='contained'
-                sx={{ marginLeft: 27 }}
-                onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
-            >
-                back
-            </Button>
+            {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status != 'pending') &&
+                <Button
+                    variant='contained'
+                    sx={{ marginLeft: 27 }}
+                    onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
+                >
+                    back
+                </Button>
+            }
 
             {/* pending */}
             {/* check to see if status is pending and the object of the applicant (candidate) is not empty */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'pending') &&
                 <Box>
                     <Button
+                        variant='contained'
+                        sx={{ marginLeft: 27, marginRight: 1 }}
+                        onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
+                    >
+                        back
+                    </Button>
+                    <Button
+                        sx={{ marginRight: 1 }}
                         variant='contained'
                         onClick={handleRequestChat}
                     >

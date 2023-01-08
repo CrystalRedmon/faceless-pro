@@ -118,3 +118,11 @@ input {
 .formatText{
   white-space: pre-wrap;
 }
+
+.downloadLink {
+  text-decoration: none;
+}
+
+.downloadLinkButton {
+  margin-right: 5px;
+}

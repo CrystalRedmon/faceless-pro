@@ -6,10 +6,10 @@ import List from '@mui/material/List';
 function Skill({ skill }) {
     // console.log('skill', skill);
     return (
-        <Box sx={{ margin: "20px" }}>
+        <Box sx={{ margin: "5px" }}>
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box>
-                    <Typography>{skill.skill_name}</Typography>
+                    <li>{skill.skill_name}</li>
                 </Box>
             </Box>
         </Box>

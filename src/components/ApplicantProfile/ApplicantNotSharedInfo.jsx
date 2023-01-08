@@ -12,18 +12,27 @@ function ApplicantNotSharedInfo({ applicant }) {
     return (
         <Grid container spacing={2}>
             <Grid item xs={2}></Grid>
-            <Grid item xs={8} sx={{borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', marginTop: 5}}>
+            <Grid item xs={8} sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', marginTop: 5 }}>
                 <Box>
-                    {applicant.status_and_identifier[0].status != 'shared' &&
+                    {/* {applicant.status_and_identifier[0].status != 'shared' &&
                         <Box>
                             <Typography sx={{ textAlign: "center" }}>
                                 <h3>Applicant's anonymous information</h3>
                             </Typography>
                             <Typography sx={{ display: "flex" }}>
-                                <b>Name:</b>{applicant.status_and_identifier[0].random_identifier}
+                                Name: {applicant.status_and_identifier[0].random_identifier}
                             </Typography>
                         </Box>
-                    }
+                    } */}
+                    <Box>
+                        <Typography sx={{ textAlign: "center" }}>
+                            <h3>Applicant's anonymous information</h3>
+                        </Typography>
+                        <Typography sx={{ display: "flex" }}>
+                            Name: {applicant.status_and_identifier[0].random_identifier}
+                        </Typography>
+                    </Box>
+
                     <List>
                         <Typography sx={{ display: "flex" }}><b>Education</b></Typography>
                         {applicant.education.map(education => <Education key={education.id} education={education} />)}
@@ -35,10 +44,14 @@ function ApplicantNotSharedInfo({ applicant }) {
                     <Typography sx={{ display: "flex" }}><b>Skills</b></Typography>
                     {applicant.skill != null ?
                         <>
-                            <List>
+                            <ul>
                                 {applicant.skill.map(skill => <Skill key={skill.id} skill={skill} />)}
-                            </List></>
-                        : <>applicant did not fill out</>
+                            </ul>
+                        </>
+                        :
+                        <Typography>
+                            Applicant did not add any skills.
+                        </Typography>
                     }
                     <Typography sx={{ display: "flex" }}><b>Links</b></Typography>
                     {applicant.hyperlink != null ?
@@ -47,7 +60,10 @@ function ApplicantNotSharedInfo({ applicant }) {
                                 {applicant.hyperlink.map(hyperlink => <Hyperlink key={hyperlink.id} hyperlink={hyperlink} />)}
                             </List>
                         </>
-                        : <>applicant did not fill out</>
+                        :
+                        <Typography>
+                            Applicant did not add any external links.
+                        </Typography>
                     }
                 </Box>
             </Grid>

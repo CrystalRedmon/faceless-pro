@@ -18,7 +18,7 @@ function CandidateAppliedItem({ job }) {
 
     function handleShare() {
         Swal.fire({
-            title: 'By sharing your information, you are willingly revealing your anonymity to the employer. This action cannot be undone. Do you wish to continue?',
+            title: 'By sharing, you are willingly releasing your identifying information to the employer. This action cannot be undone. Continue?',
             showDenyButton: true,
             confirmButtonText: 'YES',
             denyButtonText: `NO`,
@@ -31,7 +31,7 @@ function CandidateAppliedItem({ job }) {
                 })
                 Swal.fire('Information shared!', '', 'success')
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved', '', 'info')
+                Swal.fire('Changes were not saved.', '', 'info')
             }
         })
     }
@@ -83,7 +83,7 @@ function CandidateAppliedItem({ job }) {
                             <b>Your anonymous information was reviewed by the employer</b>
                         </Box>
                     </Box>
-                    <Box>
+                    <Box sx={{textAlign: "right"}}>
                         <Typography>
                             <Button
                                 sx={{ marginBottom: 1 }}
