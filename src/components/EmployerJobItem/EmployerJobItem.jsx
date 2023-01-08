@@ -4,6 +4,7 @@ import { TableCell, Button, Card, Grid, CardContent, Typography } from '@mui/mat
 import { useEffect } from 'react'
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 import { PanoramaSharp } from '@mui/icons-material';
+import Swal from 'sweetalert2';
 
 
 function EmployerJobItem({ job }) {
@@ -17,22 +18,34 @@ function EmployerJobItem({ job }) {
     }
 
 
-    // console.log(job.id);
-    const handleDeleteItem = () => {
-        dispatch({
-            type: 'DELETE_JOB_POST',
-            payload: job.id
-        })
-    }
-
     const handleViewApplicants = () => {
         history.push(`/viewApplicantsPage/${job.id}`);
     }
 
+
+    function handleDeleteItem() {
+        Swal.fire({
+            title: 'Are you sure you would like to permanently delete this job post?',
+            showDenyButton: true,
+            confirmButtonText: 'YES',
+            denyButtonText: `NO`,
+        }).then((result) => {
+            // update status
+            if (result.isConfirmed) {
+                dispatch({
+                    type: "DELETE_JOB_POST",
+                    payload: job.id
+                })
+                Swal.fire('Job Post Deleted')
+            } else if (result.isDenied) {
+                Swal.fire('Changes were not saved')
+            }
+        })
+    }
     return <>
 
 
-        <Card variant="outlined" sx={{ width: 275, height: 200, margin: 2}}>
+        <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2}}>
             <CardContent>
                 <h2>{job.title}</h2>
                 <Typography><Link variant='contained' onClick={handleView}>View Details</Link></Typography>
