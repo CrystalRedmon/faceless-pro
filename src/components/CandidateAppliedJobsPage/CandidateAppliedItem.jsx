@@ -41,24 +41,24 @@ function CandidateAppliedItem({ job }) {
             return (
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
-                        <Box>
-                            Company Name: {job.company_name}
+                        <Box sx={{ marginBottom: 1 }}>
+                            <b>Company Name:</b> {job.company_name}
                         </Box>
                         <Box>
-                            Job Title: {job.title}
+                            <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            Applied on: {new Date(job.time).toLocaleString()}
-                        </Box>
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}                        </Box>
                         <Box>
-                            Status: {job.status}
+                            {/* Status: {job.status} */}
+                            <b>Your application has not been reviewed by the employer</b>
                         </Box>
                     </Box>
                     <Box>
-                        {/* needs clarification */}
                         <Button
-                            variant='contained'
-                            onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                        variant='contained'
+                        sx={{ marginBottom: 1 }}
+                        // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
                         </Button>
@@ -69,31 +69,33 @@ function CandidateAppliedItem({ job }) {
             return (
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
-                        <Box>
-                            Company Name: {job.company_name}
+                        <Box sx={{ marginBottom: 1 }}>
+                            <b>Company Name:</b> {job.company_name}
                         </Box>
                         <Box>
-                            Job Title: {job.title}
+                            <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            Applied on: {new Date(job.time).toLocaleString()}
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status: {job.status}
+                            {/* Status: {job.status} */}
+                            <b>Your anonymous information was reviewed by the employer</b>
                         </Box>
                     </Box>
                     <Box>
-                        {/* needs clarification */}
                         <Typography>
                             <Button
+                                sx={{ marginBottom: 1 }}
                                 variant='contained'
-                                onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                                // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
                         </Typography>
                         <Typography>
                             <Button
+                                sx={{ marginBottom: 1 }}
                                 variant="contained"
                                 color="primary"
                                 onClick={() => {
@@ -102,19 +104,21 @@ function CandidateAppliedItem({ job }) {
                                     //   payload: job.id,
                                     // });
                                     history.push(`/message/${job.application_id}`);
-                                    console.log("job", job.application_id);
+                                    // console.log("job", job.application_id);
                                 }}
                             >
                                 Open Chat
                             </Button>
                         </Typography>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={handleShare}
-                        >
-                            Share Information
-                        </Button>
+                        <Typography>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleShare}
+                            >
+                                Share Information
+                            </Button>
+                        </Typography>
                     </Box>
                 </Box>
             );
@@ -122,25 +126,26 @@ function CandidateAppliedItem({ job }) {
             return (
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
-                        <Box>
-                            Company Name: {job.company_name}
+                        <Box sx={{ marginBottom: 1 }}>
+                            <b>Company Name:</b> {job.company_name}
                         </Box>
                         <Box>
-                            Job Title: {job.title}
+                            <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            Applied on: {new Date(job.time).toLocaleString()}
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status: {job.status}
+                            {/* Status: {job.status} */}
+                            <b>Your information has been shared with the employer</b>
                         </Box>
                     </Box>
                     <Box>
-                        {/* needs clarification */}
                         <Typography>
                             <Button
                                 variant='contained'
-                                onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                                sx={{ marginBottom: 1 }}
+                                // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
@@ -149,13 +154,14 @@ function CandidateAppliedItem({ job }) {
                             <Button
                                 variant="contained"
                                 color="primary"
+                                sx={{ marginBottom: 1 }}
                                 onClick={() => {
                                     // dispatch({
                                     //   type: "SET_JOB_MESSAGE",
                                     //   payload: job.id,
                                     // });
                                     history.push(`/message/${job.application_id}`);
-                                    console.log("job", job.application_id);
+                                    // console.log("job", job.application_id);
                                 }}
                             >
                                 Open Chat
@@ -168,24 +174,24 @@ function CandidateAppliedItem({ job }) {
             return (
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
-                        <Box>
-                            Company Name: {job.company_name}
+                        <Box sx={{ marginBottom: 1 }}>
+                            <b>Company Name:</b> {job.company_name}
                         </Box>
                         <Box>
-                            Job Title: {job.title}
+                            <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            Applied on: {new Date(job.time).toLocaleString()}
-                        </Box>
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}                        </Box>
                         <Box>
-                            Status: {job.status}
+                            {/* Status: {job.status} */}
+                            <b>You were not selected for this position</b>
                         </Box>
                     </Box>
                     <Box>
-                        {/* needs clarification */}
                         <Button
                             variant='contained'
-                            onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                            sx={{ marginBottom: 1 }}
+                            // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
                         </Button>

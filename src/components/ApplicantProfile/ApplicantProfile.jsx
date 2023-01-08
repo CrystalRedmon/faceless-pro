@@ -87,7 +87,7 @@ function ApplicantProfile() {
         <Box>
             <Button
                 variant='contained'
-                sx={{marginLeft:27}}
+                sx={{ marginLeft: 27 }}
                 onClick={() => { history.push(`/viewApplicantsPage/${params.jobId}`) }}
             >
                 back
@@ -121,7 +121,7 @@ function ApplicantProfile() {
             {/* shared */}
             {(Object.keys(applicant).length != 0 && applicant.status_and_identifier[0].status === 'shared') &&
                 <Box>
-                    <Box sx={{marginLeft:25}}><ApplicantSharedInfo applicant={applicant} /></Box>
+                    <ApplicantSharedInfo applicant={applicant} />
                     <ApplicantNotSharedInfo applicant={applicant} />
                 </Box>
             }
