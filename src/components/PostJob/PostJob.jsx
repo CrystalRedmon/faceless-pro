@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
 import { TextareaAutosize } from "@material-ui/core";
-import { InputLabel, Button, Grid } from "@mui/material"
+import { InputLabel, Button, Grid, Input, TextField} from "@mui/material"
 
 
 
@@ -83,9 +83,9 @@ function PostJob() {
 
 
                     <form action="">
-                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title</InputLabel>
-                        <input type="text"
-
+                        <InputLabel sx={{ marginTop: 5}} htmlFor="">Title:</InputLabel>
+                        <Input type="text"
+                            sx={{borderRadius: '10em', marginBottom: '3em'}}
                             defaultValue={params.id ? job.title : value}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
@@ -93,11 +93,12 @@ function PostJob() {
                             })} />
 
                         <br />
-                        <InputLabel htmlFor="">Description</InputLabel>
-                        <TextareaAutosize type="text"
-
-                            minRows={50}
-                            style={{ width: 750, margin: 'auto' }}
+                        <InputLabel htmlFor="">Description:</InputLabel>
+                        <TextField type="text"
+                            size='large'
+                            multiline
+                            minRows={30}
+                            style={{ minRows: '50', width: 750, margin: 'auto', borderRadius:'10px', boxShadow: '0px 4px 10px 0px rgba (0, 0, 0, 0.2)', marginBottom: '3em' }}
                             defaultValue={params.id ? job.description : value}
 
                             onChange={(evt) => dispatch({

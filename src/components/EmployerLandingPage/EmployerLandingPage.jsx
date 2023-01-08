@@ -13,7 +13,7 @@ function EmployerLandingPage() {
     // There should be an edit button that takes employers to EmployerProfilePage to edit info.
     return (
         <>
-            {user.user_info != null ? <EmployerHomepage /> : <EmployerForm />}
+            {user.user_info != null ? <EmployerJobList /> : <EmployerForm />}
         </>
     );
 }

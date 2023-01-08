@@ -79,7 +79,7 @@ function Nav() {
         {/* if the user type is employer AND they have completed their profile, they can post jobs and edit their profile! */}
         {(user.user_type === 'employer' && user.user_info != null) && (
           <>
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/user/editprofile">
               Employer Profile
             </Link>
 
