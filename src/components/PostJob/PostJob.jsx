@@ -71,8 +71,8 @@ function PostJob() {
 
     }
 
-    const handleFormCompletion = (evt) => {
-        evt.preventDefault();
+    const handleFormCompletion = () => {
+   
 
         let button = document.getElementById('populateButton');
         let form = document.getElementById('jobPost');
@@ -150,7 +150,7 @@ function PostJob() {
                             id='jobTitle'
                             type="text"
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            defaultValue={params.id ? job.title : value}
+                            value={params.id ? job.title : value}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
