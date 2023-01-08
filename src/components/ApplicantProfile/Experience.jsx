@@ -20,7 +20,10 @@ function Experience({ experience }) {
                     <Typography>Title: {experience.title}</Typography>
                 </Box>
                 <Box sx={{ display: "flex" }}>
-                    <Typography>Job Duties: {experience.job_duties}</Typography>
+                    <Typography>Job Duties:</Typography>
+                </Box>
+                <Box sx={{ display: "flex" }}>
+                    <Typography>{experience.job_duties}</Typography>
                 </Box>
             </Box>
         </Box>

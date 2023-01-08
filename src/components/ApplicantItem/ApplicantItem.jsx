@@ -24,17 +24,17 @@ function ApplicantItem({ applicant, jobId }) {
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2}}>
                     <Box>
                         <Box>
-                            Applicant: {applicant.random_identifier}
+                            <b>Applicant:</b> {applicant.random_identifier}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            {new Date(applicant.time).toLocaleString()}
+                            <b>Applied on:</b> {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status: {applicant.status}
+                            {/* Status: {applicant.status} */}
+                            <b>Status:</b> Pending review
                         </Box>
                     </Box>
                     <Box>
-
                         <Button
                             variant='contained'
                             onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
@@ -49,13 +49,14 @@ function ApplicantItem({ applicant, jobId }) {
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
                         <Box>
-                            Applicant: {applicant.random_identifier}
+                            <b>Applicant:</b> {applicant.random_identifier}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            {new Date(applicant.time).toLocaleString()}
+                            <b>Applied on:</b> {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status: {applicant.status}
+                            {/* Status: {applicant.status} */}
+                            <b>Status:</b> Reviewed
                         </Box>
                     </Box>
                     <Box>
@@ -87,13 +88,14 @@ function ApplicantItem({ applicant, jobId }) {
                 <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
                         <Box>
-                            Applicant: {applicant.random_identifier}
+                            <b>Applicant:</b> {applicant.random_identifier}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            {new Date(applicant.time).toLocaleString()}
+                            <b>Applied on:</b> {new Date(applicant.time).toLocaleString()}
                         </Box>
                         <Box>
-                            Status: {applicant.status}
+                            {/* Status: {applicant.status} */}
+                            <b>Status:</b> Additional information shared
                         </Box>
                     </Box>
                     <Box>

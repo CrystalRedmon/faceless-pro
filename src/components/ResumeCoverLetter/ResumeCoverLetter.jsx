@@ -44,10 +44,10 @@ function ResumeCoverLetter() {
             <div className="Profile">
                 <form onSubmit={handleSubmit}>
                     <Typography>Resume PDF only</Typography>
-                    <input type="file" name="uploaded_file" onChange={resumeHandler} />
+                    <input required type="file" name="uploaded_file" onChange={resumeHandler} />
                     {/* <input type="submit" value="Upload" /> */}
                     <Typography>Cover Letter PDF only</Typography>
-                    <input type="file" name="uploaded_file" onChange={coverLetterHandler} />
+                    <input required type="file" name="uploaded_file" onChange={coverLetterHandler} />
                     {/* <input type="submit" value="Upload" /> */}
                     <br />
                     <Button variant="contained" color="primary" type="submit">Submit</Button>
