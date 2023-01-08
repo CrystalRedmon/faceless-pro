@@ -27,9 +27,23 @@ function UserTypeChoice() {
     }
 
     return (
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginTop: '10em' }}>
 
-            <Card sx={{ maxWidth: 345 }}>
+
+
+            <Box onClick={handleCandidateChoice}  sx={{ width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems:'center', marginBottom: 2, marginRight:'5em' }}>
+                <Typography>
+                    Candidate
+                </Typography>
+            </Box>
+            
+            <Box onClick={handleEmployerChoice} sx={{  width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems:'center', marginBottom: 2 }}>
+                <Typography>
+                    Employer
+                </Typography>
+            </Box>
+
+            {/* <Card sx={{ maxWidth: 345, marginRight: '5em' }}>
                 <CardActionArea onClick={handleCandidateChoice}>
                     <CardMedia
                         component="img"
@@ -44,11 +58,11 @@ function UserTypeChoice() {
                         {/* <Typography variant="body2" color="text.secondary">
                             Candidate
                         </Typography> */}
-                    </CardContent>
+                    {/* </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card>  */}
 
-            <Card sx={{ maxWidth: 345 }}>
+            {/* <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea onClick={handleEmployerChoice}>
                     <CardMedia
                         component="img"
@@ -63,9 +77,9 @@ function UserTypeChoice() {
                         {/* <Typography variant="body2" color="text.secondary">
                             Employer
                         </Typography> */}
-                    </CardContent>
+            {/* </CardContent>
                 </CardActionArea>
-            </Card>
+            </Card> */}
 
         </Box>
     );

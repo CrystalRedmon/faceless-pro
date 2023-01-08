@@ -45,7 +45,7 @@ function EmployerJobItem({ job }) {
     return <>
 
 
-        <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2}}>
+        <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
             <CardContent>
                 <h2>{job.title}</h2>
                 <Typography><Link variant='contained' onClick={handleView}>View Details</Link></Typography>
