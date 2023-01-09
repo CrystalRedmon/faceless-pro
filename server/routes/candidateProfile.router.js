@@ -337,7 +337,7 @@ router.get('/:keyword', rejectUnauthenticated, (req, res) => {
                   FROM "job_post"
                   JOIN "employer"
                   ON "job_post".employer_id = "employer".id 
-                  WHERE SIMILARITY("title", $1) > 0.01;
+                  WHERE SIMILARITY("title", $1) > 0.1;
                   `;
   // const keyword = req.params.keyword
   // OR "description" LIKE '%$2%';

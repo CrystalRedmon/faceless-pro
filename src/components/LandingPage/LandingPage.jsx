@@ -36,10 +36,24 @@ function LandingPage() {
   // };
 
   return (
-    <div className="container">
+    <div className="mycontainer">
       <Box><Typography variant = "h4">Mission & Values</Typography></Box>
-<Box sx={{ml: 10, mt: 5}}>
-    <Typography sx={{ml: 0}} variant = 'h6' >
+<Box border = {3}
+      sx={{
+        borderRadius: 2,
+        boxShadow: 3,
+        pl:3,
+        ml: 10, 
+        mt: 5,
+        width: 1500,
+        height: 125,
+        backgroundColor: '#e0e0e0',
+        '&:hover': {
+          backgroundColor: 'primary.main',
+          opacity: [0.9, 0.8, 0.7],
+        },
+      }}>
+    <Typography className = "addBackground" sx={{ml: 0}} variant = 'h6' >
     Our mission is to eliminate discrimination during the application process.
 At Faceless Pro, we believe that the best candidate should be determined by
 skills and experience and not on physical attributes. 
@@ -47,7 +61,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
             </Typography>
             </Box>
 
-    <Box sx={{mt: 10, mb:10}}> 
+    <Box sx={{mt: 10, mb:10, ml:60}}> 
     <Typography variant = "h4">Discrimination in the hiring process still persists today.</Typography>
     </Box>
 
@@ -65,10 +79,10 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         boxShadow: 3,
         pl:3,
         pr:3,
-        ml:5,
+        ml:25,
         width: 310,
         height: 300,
-        backgroundColor: '#b2dfdb',
+        backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
@@ -94,7 +108,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         ml:5,
         width: 310,
         height: 310,
-        backgroundColor: '#b2dfdb',
+        backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
@@ -109,7 +123,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         <Typography variant = "p" >https://docs.iza.org/dp10217.pdf </Typography>
 
         </Box>
-
+        
         <Box
       border = {3}
       sx={{
@@ -120,7 +134,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
         ml:5,
         width: 310,
         height: 310,
-        backgroundColor: '#b2dfdb',
+        backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
@@ -149,13 +163,13 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       //   spacing={50}
       //   marginBottom = {10}
       >
-                 <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+                 <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3, backgroundColor:'#00a0b0' }}>
                 <CardContent>
 
 
 
                     <div>
-                        <h4> Instructor</h4>
+                        <h4> UX Cohort Instructor</h4>
 
                         <p> Prime Digital Academy </p>
 
@@ -165,7 +179,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
                 </CardContent>
             </Card>
 
-            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3, backgroundColor:'#00a0b0'}}>
                 <CardContent>
 
 
@@ -182,7 +196,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
             </Card>
 
 
-            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3, backgroundColor:'#00a0b0'}}>
                 <CardContent>
 
 

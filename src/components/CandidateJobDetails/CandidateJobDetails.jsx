@@ -105,7 +105,6 @@ function CandidateJobDetails() {
                           type: "APPLY_JOB",
                           payload: job[0],
                         });
-                        history.push("/applied");
                       }}
                     >
                       Apply

@@ -42,8 +42,9 @@ function SavedJobItem({ savedJob }) {
 
                 <Box>
 
-
-                    <Box onClick={submitApplied}>
+                {/* Condition rendering not working, so got rid of temporarily. */}
+                
+                    {/* <Box onClick={submitApplied}>
                         {appliedJobsList.find((c) => c.id === savedJob.id) ? (
                             <p>Applied</p>
                         ) : (
@@ -55,14 +56,14 @@ function SavedJobItem({ savedJob }) {
                                         type: "APPLY_JOB",
                                         payload: savedJob,
                                     });
-                                    history.push("/applied");
+                                    // history.push("/applied");
                                 }}
                             >
                                 APPLY{" "}
                             </Button>
                         )}
 
-                    </Box>
+                    </Box> */}
 
 
                     <Box>
