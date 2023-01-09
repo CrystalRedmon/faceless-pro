@@ -2,7 +2,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { join } from "redux-saga/effects";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Button } from "@mui/material";
 
 function CandidateJobDetails() {
   const params = useParams();
@@ -42,66 +42,91 @@ function CandidateJobDetails() {
     window.history.back();
   }
 
-return (
+  return (
     <>
       <Grid container spacing={2}>
         <Grid item xs={3}></Grid>
-        <Grid item xs={5}>
-          <button onClick={goBack}>Back</button>
+        <Grid item xs={4.5}>
+          <Button
+            variant='contained'
+            onClick={goBack}>Back</Button>
         </Grid>
-        <Grid item xs={3}>
+        <Grid container item xs={3.5}>
+
+
           {info.id ? (
             <div>
-              <div onClick={submitSave}>
-                {savedJobsList.find((c) => c.id === job[0].id) ? (
-                  <button
-                    onClick={() => {
-                      dispatch({
-                        type: "DELETE_JOB",
-                        payload: job[0],
-                      });
-                      dispatch({ type: "FETCH_SAVED_JOBS" });
-                    }}
-                  >
-                    Unsave
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      dispatch({
-                        type: "SAVE_JOBS",
-                        payload: job[0],
-                      });
-                      dispatch({ type: "FETCH_SAVED_JOBS" });
-                    }}
-                  >
-                    Save{" "}
-                  </button>
-                )}
-              </div>
 
-              {appliedJobsList.find((d) => d.id === job[0].id) ? (
-                <p>Applied</p>
-              ) : (
-                <button
-                  onClick={() => {
-                    dispatch({
-                      type: "APPLY_JOB",
-                      payload: job[0],
-                    });
-                    history.push("/applied");
-                  }}
-                >
-                  Apply
-                </button>
-              )}
+
+              <Grid sx={{ display: 'inline-block', marginRight: '2em' }}>
+                <div onClick={submitSave}>
+                  {savedJobsList.find((c) => c.id === job[0].id) ? (
+                    <Button
+                      variant='contained'
+                      onClick={() => {
+                        dispatch({
+                          type: "DELETE_JOB",
+                          payload: job[0],
+                        });
+                        dispatch({ type: "FETCH_SAVED_JOBS" });
+                      }}
+                    >
+                      Unsave
+                    </Button>
+                  ) : (
+                    <Button
+                      variant='contained'
+                      onClick={() => {
+                        dispatch({
+                          type: "SAVE_JOBS",
+                          payload: job[0],
+                        });
+                        dispatch({ type: "FETCH_SAVED_JOBS" });
+                      }}
+                    >
+                      Save{" "}
+                    </Button>
+                  )}
+                </div>
+              </Grid>
+
+
+              <Grid sx={{ display: 'inline-block' }}>
+
+
+                <div>
+                  {appliedJobsList.find((d) => d.id === job[0].id) ? (
+                    <p>Applied</p>
+                  ) : (
+                    <Button
+                      variant='contained'
+                      onClick={() => {
+                        dispatch({
+                          type: "APPLY_JOB",
+                          payload: job[0],
+                        });
+                        history.push("/applied");
+                      }}
+                    >
+                      Apply
+                    </Button>
+                  )}
+                </div>
+
+
+
+              </Grid>
+
+
             </div>
           ) : (
-            <>
-              <button onClick={ProfilePage}>
-                Complete Your Profile to Save and Apply
-              </button>
-            </>
+
+            <Button
+              variant='contained'
+              onClick={ProfilePage}>
+              Complete Your Profile to Save and Apply
+            </Button>
+
           )}
         </Grid>
 

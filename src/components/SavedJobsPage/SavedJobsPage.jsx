@@ -4,6 +4,9 @@ import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { PanoramaSharp } from "@mui/icons-material";
+import SavedJobItem from "./SavedJobItem";
+import { Box } from "@mui/system";
+import { Grid, List, Button } from "@mui/material";
 
 function SavedJobsPage() {
   const dispatch = useDispatch();
@@ -19,69 +22,31 @@ function SavedJobsPage() {
     dispatch({ type: 'FETCH_APPLIED_JOBS' });
   }, []);
 
-  function submitApplied(){
+  function submitApplied() {
     dispatch({
-        type: 'FETCH_APPLIED_JOBS',
+      type: 'FETCH_APPLIED_JOBS',
     });
-}
+  }
 
   return (
     <>
-      <h1>Saved Jobs</h1>
-      <section>
-        {savedJobsList.map((job) => {
-          return (
-            <div key={job.id}>
-              <h4> {job.title} </h4>
+      <Grid container spacing={2}>
 
-              <p> {job.company_name}</p>
+        <Grid item xs={2}>
 
-              <p> {job.company_address}</p>
-
-              <div onClick = {submitApplied}>
-                {appliedJobsList.find((c) => c.id === job.id) ? (
-                  <p>Applied</p>
-                ) : (
-                  <button
-                    onClick={() => {
-                      dispatch({
-                        type: "APPLY_JOB",
-                        payload: job,
-                      });
-                      history.push("/applied");
-                    }}
-                  >
-                    APPLY{" "}
-                  </button>
-                )}
-              </div>
-
-              <button
-                onClick={() => {
-                  history.push(`/CandidateJobDetails/${job.id}`);
-                  dispatch({
-                    type: "VIEW_JOB_DETAILS",
-                    payload: `${params.id}`,
-                  });
-                }}
-              >
-                DETAILS
-              </button>
-
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "DELETE_JOB",
-                    payload: job,
-                  });
-                }}
-              >
-                REMOVE{" "}
-              </button>
-            </div>
-          );
-        })}
-      </section>
+        </Grid>
+        <Grid item xs={8}>
+          <Grid item xs={8}>
+            <Button variant='contained' onClick={() => { window.history.back() }}>Back</Button>
+            <h1 >Saved Jobs</h1></Grid>
+          <List>
+            {savedJobsList.map((savedJob) =>
+              <SavedJobItem key={savedJob.id} savedJob={savedJob} />
+            )}
+          </List>
+        </Grid>
+        <Grid item xs={2}></Grid>
+      </Grid>
     </>
   );
 }
