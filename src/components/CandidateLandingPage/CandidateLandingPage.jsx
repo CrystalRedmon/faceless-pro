@@ -66,7 +66,9 @@ function CandidateLandingPage() {
         <form>
           <input placeholder="Search keywords" value={keyword} onChange={handleKeyword}></input>
 
-          <Button onClick={onSubmitKeyword}>Search</Button>
+          <Button 
+          variant='contained'
+          onClick={onSubmitKeyword}>Search</Button>
           {searchJobsClicked ? <button onClick={() => {
             setSearchJobsClicked(false)
             dispatch({
