@@ -175,6 +175,7 @@ function* addHyperLink(action) {
     console.log('action.payload Add HyperLink', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/hyperlink`, action.payload)
+        yield put({ type: 'FETCH_CANDIDATE_INFO'})
     }
     catch (error) {
         console.log('error adding hyperlink', error)

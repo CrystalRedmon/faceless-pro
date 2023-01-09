@@ -55,6 +55,8 @@ import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
 import EditEducation from '../Education/EditEducation';
 import './App.css';
 import Hyperlink from '../ApplicantProfile/Hyperlink';
+import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
+
 
 
 function App() {

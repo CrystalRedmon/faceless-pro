@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@mui/material';
+import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
 
 
 function Skills() {
@@ -48,30 +50,38 @@ function Skills() {
     setFormFields(data);
   };
   return (
-    <div className="Skill" style={{ display: 'flex', justifyContent: 'center' }}>
-    <form onSubmit={submit}>
-      {formFields.map((form, index) => {
-        return (
-          <div key={index}>
-            <TextField
-              label="Skill"
-              name="Skill"
-              placeholder="Add Skill"
-              onChange={event => handleFormChange(event, index)}
-              value={form.Skill}
-            />
-            <Button onClick={() => removeFields(index)}>Remove</Button>
-          </div>
-        );
-      })}
-    </form>
-    <div>
-      <Button onClick={addFields}>Add More..</Button>
-      <br />
-      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+    <>
+    <CandidateBreadcrumb />
+    <div className="Skill" style={{
+      display: 'flex', flexDirection: 'column',
+      alignItems: 'center', justifyContent: 'center'
+    }}>
+      <Typography variant="h6">Add Skills below: This will be shared with employer</Typography>
+      <form onSubmit={submit}>
+        {formFields.map((form, index) => {
+          return (
+            <div key={index}>
+              <TextField
+                label="Skill"
+                name="Skill"
+                placeholder="Add Skill"
+                onChange={event => handleFormChange(event, index)}
+                value={form.Skill}
+              />
+              <Button onClick={() => removeFields(index)}>Remove</Button>
+              <Button onClick={addFields}>Add More..</Button>
+              <br />
+              <br />
+              <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+            </div>
+          );
+        })}
+      </form>
+      <div>
+      </div>
+
     </div>
-    
-  </div>
+    </>
 
   );
 }
