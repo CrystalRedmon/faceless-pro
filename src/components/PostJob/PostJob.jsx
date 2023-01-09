@@ -79,7 +79,7 @@ function PostJob() {
 
         button.addEventListener('click', function () {
             // Set the value of the form fields
-            form.jobTitle.value = 'Wonderful Job';
+            form.jobTitle.value = 'Sales Associate';
             form.jobDescription.value = "Do you want to work for a long-standing Alaskan company? Do you want to work with a team that honors excellent customer service? Do you want to work with the support of a leader and team that enjoy a positive work environment?" + '\n' + '\n' + "Founded in Downtown Anchorage in 1947 as a military surplus store, Big Jay's has weathered the trials and tribulations of over 75 years of operating in Alaska. To this day Big Jay's continues to be family owned and operated, and with 5 locations statewide it has expanded to become Alaska's premier all-weather outfitter. From brands like Carhartt, to Columbia, to XtraTuf, to Under Armour, Big Jay's carries all the name brands customers need to be outfitted in Alaska. With an exhaustive inventory, business to business contracts and customized embroidery service, Big Jay's caters to all. Though Big Jay's may have changed with the times, our mission has not: to meet the needs of Alaskans as they confront the challenges of the Last Frontier."
                 + '\n' + '\n' +
                 "Responsibilities:The Corporate Sales Assistant’s general responsibilities include the following tasks:"
