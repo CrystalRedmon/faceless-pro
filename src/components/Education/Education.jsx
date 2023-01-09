@@ -1,5 +1,5 @@
-import React, { useState, useEffect  } from 'react';
-import { useDispatch, useSelector  } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
@@ -55,46 +55,81 @@ function Education() {
     setFormFields(data)
   }
 
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateEducation');
+    let form = document.getElementById('candidateEducation');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.schoolName.value = "This is My School";
+      form.major.value = "It's my Major";
+      form.dates.value = "these are my school dates";
+      form.notes.value = "These are additional notes";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+        ...formFields,
+        {
+          School: "This is My School",
+          Major: "It's my Major",
+          Dates: "these are my school dates",
+
+        }])
+
+
+
+    })
+  };
+
+
+  let value;
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }} className="Education">
-      <form onSubmit={submit}>
+      <form onSubmit={submit} id='candidateEducation'>
         {formFields.map((form, index) => {
           return (
+
             <div key={index}>
+              <div sx={{ width: '5em', height: '5em' }} onClick={handleFormCompletion} id='populateCandidateEducation'>here it is</div>
+              <InputLabel htmlFor="schoolName">School Name</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="school-name">School Name</InputLabel>
+
                 <Input
-                  id="school-name"
+                  id="schoolName"
                   name='School'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.School}
+                  value={value}
                 />
               </FormControl>
+              <InputLabel htmlFor="major">Qualifications</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="major">Qualifications</InputLabel>
                 <Input
                   id="major"
                   name='Major'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Major}
+                  value={value}
                 />
               </FormControl>
+              <InputLabel htmlFor="dates">Dates Attended</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="dates">Dates Attended</InputLabel>
                 <Input
                   id="dates"
                   name='Dates'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Dates}
+                  value={value}
                 />
               </FormControl>
+              <InputLabel htmlFor="notes">Notes</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="notes">Notes</InputLabel>
+
                 <Input
                   id="notes"
                   name='Notes'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Notes}
+                  value={value}
                 />
               </FormControl>
               <Button onClick={() => removeFields(index)}>Remove</Button>

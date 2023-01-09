@@ -101,7 +101,6 @@ let value;
             <Input
               id="email"
               name='Email'
-              
               required
               onChange={event => handleFormChange(event)}
               // value={formData.Email}
