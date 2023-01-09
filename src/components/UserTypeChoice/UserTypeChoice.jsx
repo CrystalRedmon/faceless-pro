@@ -7,6 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 import { useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 function UserTypeChoice() {
 
@@ -27,23 +28,47 @@ function UserTypeChoice() {
     }
 
     return (
-        <Box sx={{ display: "flex", justifyContent: 'center', alignItems: 'center', marginTop: '10em' }}>
+        <Box>
+
+            <Typography sx={{ display: 'flex', justifyContent: 'center' }}>
+                <h1>Select a role to continue!</h1>
+            </Typography>
+
+            <Box sx={{ display: "flex", justifyContent: 'center' }}>
+
+                {/* <Box onClick={handleCandidateChoice} sx={{ width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: 2, marginRight: '5em' }}>
+                    <Typography>
+                        <b>Job Seeker</b>
+                    </Typography>
+                </Box>
+
+                <Box onClick={handleEmployerChoice} sx={{ width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems: 'center', marginBottom: 2 }}>
+                    <Typography>
+                        <b>Employer</b>
+                    </Typography>
+                </Box> */}
+                <Box sx={{marginRight: 1}}>
+                    <Button
+                        onClick={handleCandidateChoice}
+                        variant='contained'
+                        color="primary"
+                    >
+                        job seeker
+                    </Button>
+                </Box>
+
+                <Box>
+                    <Button
+                        onClick={handleEmployerChoice}
+                        variant='contained'
+                        color="primary"
+                    >
+                        employer
+                    </Button>
+                </Box>
 
 
-
-            <Box onClick={handleCandidateChoice}  sx={{ width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems:'center', marginBottom: 2, marginRight:'5em' }}>
-                <Typography>
-                    Candidate
-                </Typography>
-            </Box>
-            
-            <Box onClick={handleEmployerChoice} sx={{  width: '10em', height: '5em', borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'center', alignItems:'center', marginBottom: 2 }}>
-                <Typography>
-                    Employer
-                </Typography>
-            </Box>
-
-            {/* <Card sx={{ maxWidth: 345, marginRight: '5em' }}>
+                {/* <Card sx={{ maxWidth: 345, marginRight: '5em' }}>
                 <CardActionArea onClick={handleCandidateChoice}>
                     <CardMedia
                         component="img"
@@ -58,11 +83,11 @@ function UserTypeChoice() {
                         {/* <Typography variant="body2" color="text.secondary">
                             Candidate
                         </Typography> */}
-                    {/* </CardContent>
+                {/* </CardContent>
                 </CardActionArea>
             </Card>  */}
 
-            {/* <Card sx={{ maxWidth: 345 }}>
+                {/* <Card sx={{ maxWidth: 345 }}>
                 <CardActionArea onClick={handleEmployerChoice}>
                     <CardMedia
                         component="img"
@@ -77,10 +102,10 @@ function UserTypeChoice() {
                         {/* <Typography variant="body2" color="text.secondary">
                             Employer
                         </Typography> */}
-            {/* </CardContent>
+                {/* </CardContent>
                 </CardActionArea>
             </Card> */}
-
+            </Box>
         </Box>
     );
 }
