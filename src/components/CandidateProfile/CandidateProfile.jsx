@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
+import { FormControl, InputLabel, Input, Button, Typography, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -45,55 +45,88 @@ function CandidateProfile() {
     });
     history.push('/ResumeCoverLetter');
   }
+
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateProfile');
+    let form = document.getElementById('candidateProfile');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.firstName.value = "Faduma ";
+      form.lastName.value = "Siyad";
+      form.email.value = "fsiyad@google.com";
+      form.linkedin.value = "linkedin.com/faduma-siyad";
+
+      setFormData({
+        
+        FirstName: "Faduma",
+        LastName: "Siyad",
+        Email: "fsiyad@google.com",
+        LinkedIn: "linkedin.com/faduma-siyad",
+        
+      })
+
+      console.log('This is the formData', formData);
+    })
+  };
+
+let value;
   return (
     <>
-      <Typography variant="h3" style={{ textAlign: "center" }}>Welcome to your profile!</Typography>
+      <Typography onClick={handleFormCompletion} id='populateCandidateProfile' variant="h3" style={{ textAlign: "center" }}>Welcome to your profile!</Typography>
       <Typography variant="h6" style={{ textAlign: "center" }}>This information will not be shared with the employers until you choose to share</Typography>
-      <div className="Profile">
-        <form className={classes.form} onSubmit={submit}>
+      <Box className="Profile">
+        <form id='candidateProfile' className={classes.form} onSubmit={submit}>
+          <InputLabel htmlFor="firstName">First Name</InputLabel>
           <FormControl>
-            <InputLabel htmlFor="first-name">First Name</InputLabel>
+            
             <Input
-              id="first-name"
+              id="firstName"
               name='FirstName'
               required
               onChange={event => handleFormChange(event)}
-              value={formData.FirstName}
+              value={value}
             />
           </FormControl>
+          <InputLabel htmlFor="lastName">Last Name</InputLabel>
           <FormControl>
-            <InputLabel htmlFor="last-name">Last Name</InputLabel>
+            
             <Input
-              id="last-name"
+              id="lastName"
               name='LastName'
               required
               onChange={event => handleFormChange(event)}
-              value={formData.LastName}
+              value={value}
             />
           </FormControl>
+
+          <InputLabel htmlFor="email">Email</InputLabel>
           <FormControl>
-            <InputLabel htmlFor="email">Email</InputLabel>
+            
             <Input
               id="email"
               name='Email'
               required
               onChange={event => handleFormChange(event)}
-              value={formData.Email}
+              value={value}
             />
           </FormControl>
+
+          <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
           <FormControl>
-            <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
             <Input
               id="linkedin"
               name='LinkedIn'
               onChange={event => handleFormChange(event)}
-              value={formData.LinkedIn}
+              value={value}
             />
           </FormControl>
           <br />
           <Button variant="contained" color="primary" type="submit">Next</Button>
         </form>
-      </div>
+      </Box>
     </>
   );
 
