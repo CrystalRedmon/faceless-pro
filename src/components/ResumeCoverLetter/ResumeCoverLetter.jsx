@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, Typography, Box } from '@material-ui/core';
 
+
 function ResumeCoverLetter() {
 
     const dispatch = useDispatch();
@@ -39,21 +40,22 @@ function ResumeCoverLetter() {
 
     return (
         <>
-            <Box style={{ textAlign: "center", marginTop: '1em' }}>
-                <h2 style={{ textAlign: "center", marginTop: '1em' }}>Resume and Cover Letter Upload</h2>
-                <h3 style={{ textAlign: "center", marginTop: '2em', marginBottom: '3em' }}>This information will not be shared with the employers until you choose to share</h3>
+            <Box className='container'>
+                <Typography variant='h3' style={{ marginTop: '1em' }}>Resume and Cover Letter Upload</Typography>
+                <Typography variant='h6' style={{ marginTop: '2em'}}>This information will not be shared with the employers until you choose to share</Typography>
+                <Typography>Step 2 of 6</Typography>
 
-                <div className="Profile">
+                <Box sx={{ marginTop: '5em' }} className="Profile">
                     <form onSubmit={handleSubmit}>
                         <Box style={{ marginBottom: '3em' }} >
                             <Typography>Resume PDF only</Typography>
-                            <input style={{marginTop:'1em'}}required type="file" name="uploaded_file" onChange={resumeHandler} />
+                            <input style={{ marginTop: '1em' }} required type="file" name="uploaded_file" onChange={resumeHandler} />
                             {/* <input type="submit" value="Upload" /> */}
                         </Box>
 
                         <Box style={{ marginBottom: '3em' }}>
                             <Typography>Cover Letter PDF only</Typography>
-                            <input  style={{marginTop:'1em'}} required type="file" name="uploaded_file" onChange={coverLetterHandler} />
+                            <input style={{ marginTop: '1em' }} required type="file" name="uploaded_file" onChange={coverLetterHandler} />
                             {/* <input type="submit" value="Upload" /> */}
 
                         </Box>
@@ -61,7 +63,7 @@ function ResumeCoverLetter() {
                         <br />
                         <Button variant="contained" color="primary" type="submit">Submit</Button>
                     </form>
-                </div>
+                </Box >
             </Box>
         </>
     );
