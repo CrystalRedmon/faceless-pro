@@ -115,7 +115,7 @@ input {
   border: solid black;
 } */
 
-.formatText{
+.formatText {
   white-space: pre-wrap;
 }
 
@@ -125,4 +125,10 @@ input {
 
 .downloadLinkButton {
   margin-right: 5px;
+}
+
+#main {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 2.5rem;
 }
