@@ -1,4 +1,3 @@
-
 // import CandidateProfile from "../CandidateProfile/CandidateProfile";
 // import CandidateProfilePage from "../CandidateProfilePage/CandidateProfilePage";
 // import { useSelector } from 'react-redux';
@@ -16,17 +15,13 @@
 // }
 
 // export default CandidateLandingPage
-
-
-
-
-
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './CandidateLandingPage.css';
 import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
 import { Box, Grid, Button } from '@mui/material';
+import TextField from '@material-ui/core/TextField';
 
 function CandidateLandingPage() {
   const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
@@ -54,52 +49,56 @@ function CandidateLandingPage() {
 
   }
 
-  console.log("This is the recent jobs", recentJobs)
-  return (
-    <div>
+  // console.log("This is the recent jobs", recentJobs);
 
-      <Box sx={{ textAlign: 'center', marginTop: '5em' }}>
-        <Box sx={{marginBottom: '3em'}}>
-          <h1>Search Current Job Posts</h1>
-        </Box>
+  return (
+    <Grid
+      container
+      spacing={2}
+    >
+      {/* top portion */}
+      <Grid item xs={0.5}></Grid>
+      <Grid item xs={11}>
+        <h1>Search Jobs</h1>
 
         <form>
-          <input placeholder="Search keywords" value={keyword} onChange={handleKeyword}></input>
+          <TextField placeholder="Search" value={keyword} onChange={handleKeyword}></TextField>
 
-          <Button 
-          variant='contained'
-          onClick={onSubmitKeyword}>Search</Button>
-          {searchJobsClicked ? <button onClick={() => {
-            setSearchJobsClicked(false)
-            dispatch({
-              type: 'FETCH_RECENT_JOBS',
-            })
-          }}> Undo Search </button> : <> </>
-
+          <Button
+            variant='contained'
+            color='secondary'
+            onClick={onSubmitKeyword}
+            sx={{marginRight: 1, marginLeft: 1}}
+          >
+            search
+          </Button>
+          {searchJobsClicked ?
+            <Button
+              onClick={() => { setSearchJobsClicked(false); dispatch({ type: 'FETCH_RECENT_JOBS' }) }}
+              variant='outlined'
+            >
+              undo search
+            </Button> : <></>
           }
-
         </form>
-      </Box>
-      <Grid container spacing={2}>
-        <Grid item xs={5.25}></Grid>
-
-
-        <Grid item xs={6.75}>
-          {searchJobsClicked ? <h3>Searched Jobs</h3>
-            :
-            <> </>}
-        </Grid>
-        <Grid item xs={2}></Grid>
-        <Grid sx={{ display: 'flex', justifyContent: 'center', marginTop: '3em' }} container item xs={8}>
-          {recentJobs.map(job =>
-            <CandidateJobItem key={job.id} job={job} />
-          )}
-        </Grid>
-        <Grid item xs={2}></Grid>
-
-
       </Grid>
-    </div>
+      <Grid item xs={0.5}></Grid>
+
+      {/* bottom portion */}
+      <Grid item xs={0.5}></Grid>
+      <Grid
+        container
+        item xs={11}
+      >
+        {recentJobs.map(job =>
+          <CandidateJobItem key={job.id} job={job} />
+        )}
+      </Grid>
+      {/* <Grid item xs={6}>
+          {searchJobsClicked ? <h3>Searched Jobs</h3> : <></>}
+        </Grid> */}
+      <Grid item xs={0.5}></Grid>
+    </Grid>
   );
 }
 

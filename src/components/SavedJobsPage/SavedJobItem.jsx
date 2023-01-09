@@ -31,11 +31,11 @@ function SavedJobItem({ savedJob }) {
 
 
                 <Box>
-                    <Box sx={{ marginBottom: 1, marginTop: '15%'}}>
+                    <Box sx={{ marginBottom: 1}}>
                         <b>Job Title:</b> {savedJob.title}
                     </Box>
 
-                    <Box sx={{ marginTop: '15%' }}>
+                    <Box sx={{ marginBottom: 1 }}>
                         <b>Company Name:</b> {savedJob.company_name}
                     </Box>
                 </Box>
