@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@mui/material';
+import { InputLabel, Typography } from '@mui/material';
 import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
 
 function CandidateHyperLink() {
@@ -48,6 +48,34 @@ function CandidateHyperLink() {
     data.splice(index, 1);
     setFormFields(data);
   };
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateHyperlink');
+    let form = document.getElementById('candidateHyperlink');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.hyperlink.value = "github.com/fsiyad";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+        {
+          Skill: "github.com/fsiyad",
+        }])
+
+    })
+  };
+
+
+  let value;
+
+
+
+
+
+
   return (
     <>
     <CandidateBreadcrumb />
@@ -55,17 +83,17 @@ function CandidateHyperLink() {
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center'
     }}>
-      <Typography variant="h6">Add an optional portfolio to your profile by providing the hyperlink below:This will be shared with employer</Typography>
-      <form onSubmit={submit}>
+      <Typography onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h6">Add an optional portfolio to your profile by providing the hyperlink below:This will be shared with employer</Typography>
+      <form id='candidateHyperlink' onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
             <div key={index}>
+              <InputLabel> Hyperlink</InputLabel>
               <TextField
-                label="Hyperlink"
+                id='hyperlink'
                 name="Hyperlink"
-                placeholder="Add Hyperlink"
                 onChange={event => handleFormChange(event, index)}
-                value={form.Hyperlink}
+                value={value}
               />
               <Button onClick={() => removeFields(index)}>Remove</Button>
               <Button onClick={addFields}>Add More..</Button>
