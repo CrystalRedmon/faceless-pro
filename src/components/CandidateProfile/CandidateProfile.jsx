@@ -50,11 +50,12 @@ function CandidateProfile() {
       form.linkedin.value = "It's my link";
 
       setFormData({
+        ...formData,
         FirstName: "It's my first name",
         LastName: "It's my last name",
         Email: "It's my email",
         LinkedIn: "It's my link",
-        ...formData,
+        
       })
 
 
