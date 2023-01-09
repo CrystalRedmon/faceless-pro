@@ -14,7 +14,7 @@ function Education() {
     { School: '', Major: '', Dates: '', Notes: '' },
   ])
 
-console.log('This is from the formFields: ', formFields)
+  console.log('This is from the formFields: ', formFields)
 
 
   const handleFormChange = (event, index) => {
@@ -73,7 +73,7 @@ console.log('This is from the formFields: ', formFields)
       console.log('This is the formData', formFields);
 
       setFormFields([
-        
+
         {
           School: "This is My School",
           Major: "It's my Major",
@@ -99,7 +99,7 @@ console.log('This is from the formFields: ', formFields)
             <div key={index}>
               <div>
                 <h1 onClick={handleFormCompletion} id='populateCandidateEducation'>Add Education</h1>
-                <h2>Step 2 of 6</h2>
+                <h2>Step 3 of 6</h2>
               </div>
               <InputLabel htmlFor="schoolName">School Name</InputLabel>
               <FormControl>

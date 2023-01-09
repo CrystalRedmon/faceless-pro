@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import {Button, Box} from '@material-ui/core';
+import { InputLabel } from '@material-ui/core';
 
 function Experience() {
   const history = useHistory();
@@ -53,50 +54,94 @@ function Experience() {
     setFormFields(data);
   };
 
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateExperience');
+    let form = document.getElementById('candidateExperience');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.company.value = "This is previous employer";
+      form.title.value = "It's was my title";
+      form.dates.value = "these were the work dates";
+      form.jobDuty.value = "These are job duties";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+
+        {
+          Company: "This is previous employer",
+          Title: "It's was my title",
+          Dates: "these were the work dates",
+          JobDuty: "These are job duties"
+
+        }
+      ])
+
+    })
+  };
+
+  let value;
   return (
-    <div className="Education" style={{ display: 'flex', justifyContent: 'center' }}>
-      <form onSubmit={submit}>
-        {formFields.map((form, index) => {
-          return (
-            <div key={index}>
-              <TextField
-                label="Company"
-                name="Company"
-                placeholder="Company Name"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Company}
-              />
-              <TextField
-                label="Title"
-                name="Title"
-                placeholder="Title"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Title}
-              />
-              <TextField
-                label="Dates"
-                name="Dates"
-                placeholder="Dates"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Dates}
-              />
-              <TextField
-                label="Job Duty"
-                name="JobDuty"
-                placeholder="Job Duty"
-                onChange={event => handleFormChange(event, index)}
-                value={form.JobDuty}
-              />
-              <Button onClick={() => removeFields(index)}>Remove</Button>
-            </div>
-          );
-        })}
-      </form>
-      <Button onClick={addFields}>Add More..</Button>
-      <br />
-      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+    <>
+      <div className="Education" style={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
+        <form id='candidateExperience' onSubmit={submit}>
+          {formFields.map((form, index) => {
+            return (
+              <div key={index}>
+                <div>
+                  <h1 onClick={handleFormCompletion} id='populateCandidateExperience'>Add Experience</h1>
+                  <h2>Step 4 of 6</h2>
+                </div>
+                <InputLabel htmlFor="company">Company Name</InputLabel>
+                <TextField
+                  id='company'
+                  name="Company"
+                  onChange={event => handleFormChange(event, index)}
+                  value={value}
+                />
+                <InputLabel htmlFor="title">Title</InputLabel>
+                <TextField
+                  id="title"
+                  name="Title"
+                  onChange={event => handleFormChange(event, index)}
+                  value={value}
+                />
+                <InputLabel htmlFor="dates">Dates</InputLabel>
+                <TextField
+                  id="dates"
+                  name="Dates"
+                  onChange={event => handleFormChange(event, index)}
+                  value={value}
+                />
+                <InputLabel htmlFor="jobduty">Job Duties</InputLabel>
+                <TextField
+                  id="jobDuty"
+                  name="JobDuty"
+                  onChange={event => handleFormChange(event, index)}
+                  value={value}
+                />
+
+              </div>
+
+            );
+          })}
+        </form>
+
+        <br />
+
       </div>
-);
+
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5em'}}>
+        <Button variant="contained" color="primary" onClick={() => removeFields(index)}>Remove</Button>
+        <Button variant="contained" color="primary" onClick={addFields}>Add More..</Button>
+        <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+      </Box>
+
+
+    </>);
 }
 
 export default Experience;
