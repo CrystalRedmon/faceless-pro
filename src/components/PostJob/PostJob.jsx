@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from "react-router-dom";
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
 import { TextareaAutosize } from "@material-ui/core";
-import { InputLabel, Button, Grid, Input, TextField} from "@mui/material"
+import { InputLabel, Button, Grid, Input, TextField } from "@mui/material"
 
 
 
@@ -78,27 +78,25 @@ function PostJob() {
             <Grid container spacing={2}>
                 <Grid item xs={3}></Grid>
                 <Grid item xs={9}>
-                    <Link variant='contained' onClick={handleBack}>Back</Link>
+                    <Button variant='contained' onClick={handleBack}>Back</Button>
                     <h2>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
-
                     <form action="">
-                        <InputLabel sx={{ marginTop: 5}} htmlFor="">Title:</InputLabel>
+                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
                         <Input type="text"
-                            sx={{borderRadius: '10em', marginBottom: '3em'}}
+                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
                             defaultValue={params.id ? job.title : value}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
                             })} />
 
-                        <br />
                         <InputLabel htmlFor="">Description:</InputLabel>
                         <TextField type="text"
                             size='large'
                             multiline
                             minRows={30}
-                            style={{ minRows: '50', width: 750, margin: 'auto', borderRadius:'10px', boxShadow: '0px 4px 10px 0px rgba (0, 0, 0, 0.2)', marginBottom: '3em' }}
+                            style={{ minRows: '50', width: 750, margin: 'auto', borderRadius: '10px', boxShadow: '0px 4px 10px 0px rgba (0, 0, 0, 0.2)', marginBottom: '3em' }}
                             defaultValue={params.id ? job.description : value}
 
                             onChange={(evt) => dispatch({
@@ -106,9 +104,8 @@ function PostJob() {
                                 payload: { description: evt.target.value }
                             })} />
 
-
                     </form>
-                    <Button variant='contained' onClick={onSubmit}>Submit</Button>
+                    <Button variant='contained' onClick={onSubmit}>save</Button>
                 </Grid>
                 <Grid item xs={3}></Grid>
             </Grid>

@@ -31,7 +31,7 @@ function CandidateAppliedItem({ job }) {
                 })
                 Swal.fire('Information shared!', '', 'success')
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved.', '', 'info')
+                Swal.fire('Changes were not saved', '', 'info')
             }
         })
     }

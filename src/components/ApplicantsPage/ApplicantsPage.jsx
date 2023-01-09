@@ -31,7 +31,7 @@ function ViewApplicantsPage() {
                 <Grid item xs={2}></Grid>
                 <Grid item xs={8}>
                 <Button variant='contained' onClick={handleBack}>Back</Button>
-                    <h1>Applicants Review</h1>
+                    <h1>Applicant Review</h1>
                     <List>
                         {applicants.map(applicant =>
                             <ApplicantItem key={applicant.id} applicant={applicant} jobId={params.id} />

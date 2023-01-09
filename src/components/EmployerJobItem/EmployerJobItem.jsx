@@ -4,6 +4,9 @@ import { TableCell, Button, Card, Grid, CardContent, Typography } from '@mui/mat
 import { useEffect } from 'react'
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
 import { PanoramaSharp } from '@mui/icons-material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
 import Swal from 'sweetalert2';
 
 
@@ -42,17 +45,19 @@ function EmployerJobItem({ job }) {
             }
         })
     }
+    
     return <>
 
 
-        <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+        <Card variant="outlined" sx={{ margin: 2, boxShadow: 3 }}>
             <CardContent>
                 <h2>{job.title}</h2>
-                <Typography><Link variant='contained' onClick={handleView}>View Details</Link></Typography>
-                <Typography><Link variant='contained' onClick={handleViewApplicants}>View Applicants</Link></Typography>
-                <Button variant='contained' onClick={handleDeleteItem} sx={{marginTop:1}}>Delete</Button>
+                <Box sx={{ display: 'flex' }}>
+                    <Button variant='contained' sx={{ marginRight: 1 }} onClick={handleView}>View Details</Button>
+                    <Button variant='contained' sx={{ marginRight: 1 }} onClick={handleViewApplicants}>View Applicants</Button>
+                    <IconButton color='error' onClick={handleDeleteItem} sx={{ marginTop: 1 }}><DeleteIcon /></IconButton>
+                </Box>
             </CardContent>
-
         </Card>
         {/* <tr>
             <td>{job.title}</td>
