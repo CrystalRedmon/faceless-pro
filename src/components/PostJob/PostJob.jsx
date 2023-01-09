@@ -140,35 +140,23 @@ function PostJob() {
             <Grid container spacing={2}>
                 <Grid item xs={3}></Grid>
                 <Grid item xs={9}>
-
-                    <Button variant='contained' onClick={handleBack}>Back</Button>
+                    <Link variant='contained' onClick={handleBack}>Back</Link>
                     <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
 
+
                     <form action="" id='jobPost'>
-                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
-                        <Input 
-                            type="text"
-                            id='jobTitle'
-                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            defaultValue={params.id ? job.title : value}
-
-                    
-                    {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> */}
-
-
-                    {/* <form action="" id='jobPost'>
                         <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
                         <Input
                             id='jobTitle'
                             type="text"
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            value={params.id ? job.title : value} */}
-
+                            value={params.id ? job.title : value}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
                             })} />
 
+                        <br />
                         <InputLabel htmlFor="">Description:</InputLabel>
                         <TextField type="text"
                             id='jobDescription'
@@ -183,8 +171,9 @@ function PostJob() {
                                 payload: { description: evt.target.value }
                             })} />
 
+
                     </form>
-                    <Button variant='contained' onClick={onSubmit}>save</Button>
+                    <Button variant='contained' onClick={onSubmit}>Submit</Button>
                 </Grid>
                 <Grid item xs={3}></Grid>
             </Grid>

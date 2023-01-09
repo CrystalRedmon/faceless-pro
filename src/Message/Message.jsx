@@ -114,6 +114,9 @@ function Message() {
                 back
               </Button>
             </Box>
+            {/* <Box p={1}>
+                  <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
+                </Box> */}
           </Box>
         </Grid>
         <Grid item xs={12} className={classes.chatSection}>
