@@ -57,7 +57,7 @@ function CandidateLandingPage() {
   console.log("This is the recent jobs", recentJobs)
   return (
     <div>
-      <Box sx={{ textAlign: 'center' }}>
+      <Box sx={{ textAlign: 'center', marginTop:'3em' }}>
 
         <h1>Candidate Search for Jobs HERE</h1>
         <form>
@@ -85,12 +85,12 @@ function CandidateLandingPage() {
             <> </>}
         </Grid>
         <Grid item xs={2}></Grid>
-        <Grid container item xs={10}>
+        <Grid sx={{display:'flex', justifyContent:'center', marginTop:'5em'}} container item xs={8}>
           {recentJobs.map(job =>
             <CandidateJobItem key={job.id} job={job} />
           )}
         </Grid>
-
+        <Grid item xs={2}></Grid>
 
 
       </Grid>
