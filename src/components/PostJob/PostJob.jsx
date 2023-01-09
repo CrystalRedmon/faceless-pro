@@ -160,7 +160,7 @@ function PostJob() {
                             type="text"
                             id='jobTitle'
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            defaultValue={params.id ? job.title : value}
+                            value={params.id ? job.title : value}
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
