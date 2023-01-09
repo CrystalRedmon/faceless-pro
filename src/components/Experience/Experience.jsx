@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import {Button, Box} from '@material-ui/core';
+import { Button, Box } from '@material-ui/core';
 import { InputLabel } from '@material-ui/core';
 
 function Experience() {
@@ -86,7 +86,7 @@ function Experience() {
   let value;
   return (
     <>
-      <div className="Education" style={{ display: 'flex', justifyContent: 'center', alignItems:'center' }}>
+      <div className="Education" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <form id='candidateExperience' onSubmit={submit}>
           {formFields.map((form, index) => {
             return (
@@ -123,7 +123,7 @@ function Experience() {
                   onChange={event => handleFormChange(event, index)}
                   value={value}
                 />
-
+                <Button variant="contained" color="primary" onClick={() => removeFields(index)}>Remove</Button>
               </div>
 
             );
@@ -134,8 +134,8 @@ function Experience() {
 
       </div>
 
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5em'}}>
-        <Button variant="contained" color="primary" onClick={() => removeFields(index)}>Remove</Button>
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5em' }}>
+
         <Button variant="contained" color="primary" onClick={addFields}>Add More..</Button>
         <Button variant="contained" color="primary" onClick={submit}>Next</Button>
       </Box>
