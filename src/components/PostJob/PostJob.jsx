@@ -72,7 +72,7 @@ function PostJob() {
     }
 
     const handleFormCompletion = () => {
-   
+
 
         let button = document.getElementById('populateButton');
         let form = document.getElementById('jobPost');
@@ -146,14 +146,17 @@ function PostJob() {
 
                     <form action="" id='jobPost'>
                         <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
-                        <Input 
+                        <Input
                             type="text"
                             id='jobTitle'
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
                             defaultValue={params.id ? job.title : value}
+                            onChange={(evt) => dispatch({
+                                type: 'UPDATE_EDIT_JOB',
+                                payload: { title: evt.target.value }
+                            })} />
 
-                    
-                    {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> */}
+                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> 
 
 
                     {/* <form action="" id='jobPost'>
@@ -164,10 +167,21 @@ function PostJob() {
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
                             value={params.id ? job.title : value} */}
 
-                            onChange={(evt) => dispatch({
+                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> */}
+
+
+                        {/* <form action="" id='jobPost'>
+                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
+                        <Input
+                            id='jobTitle'
+                            type="text"
+                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
+                            value={params.id ? job.title : value} */}
+
+                        {/* onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
-                            })} />
+                            })} /> */}
 
                         <InputLabel htmlFor="">Description:</InputLabel>
                         <TextField type="text"
