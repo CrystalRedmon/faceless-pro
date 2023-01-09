@@ -60,70 +60,79 @@ function CandidateProfile() {
       form.linkedin.value = "linkedin.com/faduma-siyad";
 
       setFormData({
-        
+
         FirstName: "Faduma",
         LastName: "Siyad",
         Email: "fsiyad@google.com",
         LinkedIn: "linkedin.com/faduma-siyad",
-        
+
       })
 
       console.log('This is the formData', formData);
     })
   };
 
-let value;
+  let value;
   return (
     <>
-      <Typography onClick={handleFormCompletion} id='populateCandidateProfile' variant="h3" style={{ textAlign: "center" }}>Welcome to your profile!</Typography>
-      <Typography variant="h6" style={{ textAlign: "center" }}>This information will not be shared with the employers until you choose to share</Typography>
-      <Box className="Profile">
+      <Typography onClick={handleFormCompletion} id='populateCandidateProfile' variant="h3" style={{ textAlign: "center", marginTop: '1em' }}>Welcome to your profile!</Typography>
+      <Typography variant="h6" style={{ textAlign: "center", marginTop: '2em' }}>This information will not be shared with the employers until you choose to share</Typography>
+      <Box sx={{ marginTop: '5em' }} className="Profile">
         <form id='candidateProfile' className={classes.form} onSubmit={submit}>
-          <InputLabel htmlFor="firstName">First Name</InputLabel>
-          <FormControl>
-            
-            <Input
-              id="firstName"
-              name='FirstName'
-              required
-              onChange={event => handleFormChange(event)}
-              value={value}
-            />
-          </FormControl>
-          <InputLabel htmlFor="lastName">Last Name</InputLabel>
-          <FormControl>
-            
-            <Input
-              id="lastName"
-              name='LastName'
-              required
-              onChange={event => handleFormChange(event)}
-              value={value}
-            />
-          </FormControl>
+          <Box>
+            <InputLabel htmlFor="firstName">First Name</InputLabel>
+            <FormControl>
+              <Input
+                style={{ width: '20em', marginBottom: '2em' }}
+                id="firstName"
+                name='FirstName'
+                required
+                onChange={event => handleFormChange(event)}
+                value={value}
+              />
+            </FormControl>
+            <InputLabel htmlFor="lastName">Last Name</InputLabel>
+            <FormControl>
 
-          <InputLabel htmlFor="email">Email</InputLabel>
-          <FormControl>
-            
-            <Input
-              id="email"
-              name='Email'
-              required
-              onChange={event => handleFormChange(event)}
-              value={value}
-            />
-          </FormControl>
+              <Input
+                style={{ width: '20em', marginBottom: '2em' }}
+                id="lastName"
+                name='LastName'
+                required
+                onChange={event => handleFormChange(event)}
+                value={value}
+              />
+            </FormControl>
+          </Box>
+          <Box>
+            <InputLabel htmlFor="email">Email</InputLabel>
+            <FormControl>
 
-          <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
-          <FormControl>
-            <Input
-              id="linkedin"
-              name='LinkedIn'
-              onChange={event => handleFormChange(event)}
-              value={value}
-            />
-          </FormControl>
-          <br />
+              <Input
+                style={{ width: '20em', marginBottom: '2em' }}
+                id="email"
+                name='Email'
+                required
+                onChange={event => handleFormChange(event)}
+                value={value}
+              />
+            </FormControl>
+
+            <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
+            <FormControl>
+              <Input
+                style={{ width: '20em', marginBottom: '2em' }}
+                id="linkedin"
+                name='LinkedIn'
+                onChange={event => handleFormChange(event)}
+                value={value}
+              />
+            </FormControl>
+
+
+          </Box>
+
+          
           <Button variant="contained" color="primary" type="submit">Next</Button>
         </form>
       </Box>
