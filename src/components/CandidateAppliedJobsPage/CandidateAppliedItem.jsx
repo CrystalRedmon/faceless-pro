@@ -31,7 +31,7 @@ function CandidateAppliedItem({ job }) {
                 })
                 Swal.fire('Information shared!', '', 'success')
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved.', '', 'info')
+                Swal.fire('Changes were not saved', '', 'info')
             }
         })
     }
@@ -51,7 +51,7 @@ function CandidateAppliedItem({ job }) {
                             <b>Applied on:</b> {new Date(job.time).toLocaleString()}                        </Box>
                         <Box>
                             {/* Status: {job.status} */}
-                            <b>Your application has not been reviewed by the employer</b>
+                            <b>Under review</b>
                         </Box>
                     </Box>
                     <Box>
@@ -98,6 +98,15 @@ function CandidateAppliedItem({ job }) {
                                 sx={{ marginBottom: 1 }}
                                 variant="contained"
                                 color="primary"
+                                onClick={handleShare}
+                            >
+                                Share Information
+                            </Button>
+                        </Typography>
+                        <Typography>
+                            <Button
+                                variant="contained"
+                                color="success"
                                 onClick={() => {
                                     // dispatch({
                                     //   type: "SET_JOB_MESSAGE",
@@ -108,15 +117,6 @@ function CandidateAppliedItem({ job }) {
                                 }}
                             >
                                 Open Chat
-                            </Button>
-                        </Typography>
-                        <Typography>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                onClick={handleShare}
-                            >
-                                Share Information
                             </Button>
                         </Typography>
                     </Box>
@@ -137,10 +137,10 @@ function CandidateAppliedItem({ job }) {
                         </Box>
                         <Box>
                             {/* Status: {job.status} */}
-                            <b>Your information has been shared with the employer</b>
+                            <b>Your identifying information has been shared with the employer</b>
                         </Box>
                     </Box>
-                    <Box>
+                    <Box sx={{ textAlign: "right" }}>
                         <Typography>
                             <Button
                                 variant='contained'
@@ -153,7 +153,7 @@ function CandidateAppliedItem({ job }) {
                         <Typography>
                             <Button
                                 variant="contained"
-                                color="primary"
+                                color="success"
                                 sx={{ marginBottom: 1 }}
                                 onClick={() => {
                                     // dispatch({

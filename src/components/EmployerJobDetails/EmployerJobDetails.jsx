@@ -2,6 +2,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Button, Typography } from "@mui/material";
+import { Box } from '@material-ui/core';
 
 
 
@@ -37,12 +38,18 @@ function EmployerJobDetails() {
             <Grid container spacing={2} >
                 <Grid item xs={3}></Grid>
                 <Grid item xs={6}>
-                    <Grid item xs={6}><Link variant='contained' onClick={handleBack}>Back</Link> </Grid> 
-                    <Grid item xs={6}><Link variant='contained' onClick={handleEdit}>Edit</Link></Grid>
                     
-                    <h2>Title: {job.title}</h2>
-                    <p className='formatText'>Description:{job.description}</p>
+                    <Box sx={{ display: 'flex' }}>
+                        <Button sx={{ marginRight: 1 }} variant='contained' onClick={handleBack}>Back</Button>
+                        <Button variant='contained' onClick={handleEdit}>Edit</Button>
+                    </Box>
+
+                    <h2>{job.title}</h2>
+                    <p className='formatText'>Description:</p>
+                    <p className='formatText'>{job.description}</p>
+
                 </Grid>
+                <Grid item xs={3}></Grid>
             </Grid>
         </>
     );

@@ -45,7 +45,7 @@ function ApplicantProfile() {
                 })
                 history.push(`/viewApplicantsPage/${params.jobId}`)
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved.', '', 'info')
+                Swal.fire('Changes were not saved', '', 'info')
             }
         })
         // then go back to the viewApplicantsPage
@@ -68,7 +68,7 @@ function ApplicantProfile() {
                     }
                 })
             } else if (result.isDenied) {
-                Swal.fire('Changes were not saved.', '', 'info')
+                Swal.fire('Changes were not saved', '', 'info')
             }
         })
     }
