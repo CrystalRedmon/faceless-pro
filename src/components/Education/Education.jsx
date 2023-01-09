@@ -55,26 +55,71 @@ function Education() {
     data.splice(index, 1)
     setFormFields(data)
   }
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateEducation');
+    let form = document.getElementById('candidateEducation');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.schoolName.value = "Prime Digital Academy";
+      form.major.value = "Full Stack Engineer Certificate";
+      form.dates.value = "8/2022 - 1/2023";
+      form.notes.value = "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+
+        {
+          School: "Prime Digital Academy",
+          Major: "Full Stack Engineer Certificate",
+          Dates: "8/2022 - 1/2023",
+          Notes: "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express"
+
+        }])
+
+
+
+    })
+  };
+
+
+  let value;
+
+
+
+
+
+
+
+
+
   return (
     <>
     <CandidateBreadcrumb />
-    <Typography variant="h6" style={{ textAlign: "center" }}> Add Education below: This will not shared with employer</Typography>
+    <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant="h6" style={{ textAlign: "center" }}> Add Education below: This will not shared with employer</Typography>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="Education">
-      <form onSubmit={submit}>
+      <form id="candidateEducation" onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
             <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+
+              <InputLabel htmlFor="schoolName">School Name</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="school-name">School Name</InputLabel>
+                
                 <Input
-                  id="school-name"
+                  id="schoolName"
                   name='School'
                   onChange={event => handleFormChange(event, index)}
                   value={form.School}
                 />
               </FormControl>
+
+              <InputLabel htmlFor="major">Qualifications</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="major">Qualifications</InputLabel>
+                
                 <Input
                   id="major"
                   name='Major'
@@ -82,8 +127,10 @@ function Education() {
                   value={form.Major}
                 />
               </FormControl>
+
+              <InputLabel htmlFor="dates">Dates Attended</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="dates">Dates Attended</InputLabel>
+                
                 <Input
                   id="dates"
                   name='Dates'
@@ -91,8 +138,10 @@ function Education() {
                   value={form.Dates}
                 />
               </FormControl>
+              
+              <InputLabel htmlFor="notes">Notes</InputLabel>
               <FormControl>
-                <InputLabel htmlFor="notes">Notes</InputLabel>
+                
                 <Input
                   id="notes"
                   name='Notes'
