@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import { Typography } from '@mui/material';
+import { Typography, InputLabel } from '@mui/material';
 import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
 
 
@@ -70,43 +70,83 @@ function Experience() {
     data.splice(index, 1);
     setFormFields(data);
   };
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateExperience');
+    let form = document.getElementById('candidateExperience');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.company.value = "Starbucks";
+      form.title.value = "Barista";
+      form.dates.value = "3/2019- 7/2022";
+      form.jobDuty.value = "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' + '\n' +
+        "Welcomes customers by determining their coffee interests and needs." + '\n' + '\n' +
+        "Educates customers by presenting and explaining the coffee drink menu; answering questions.";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+
+        {
+          Company: "Starbucks",
+          Title: "Barista",
+          Dates: "3/2019- 7/2022",
+          JobDuty: "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' + '\n' +
+            "Welcomes customers by determining their coffee interests and needs." + '\n' + '\n' +
+            "Educates customers by presenting and explaining the coffee drink menu; answering questions."
+        }
+      ])
+
+    })
+  };
+
+  let value;
+
+
+
+
+
   return (
     <>
-     <CandidateBreadcrumb />
+      <CandidateBreadcrumb />
       <div className={classes.form}>
-      <Typography variant="h6">Add Job Experience below:This will be shared with employer</Typography>
-        <form onSubmit={submit}>
+        <Typography onClick={handleFormCompletion} id='populateCandidateExperience' variant="h6">Add Job Experience below:This will be shared with employer</Typography>
+        <form id='candidateExperience' onSubmit={submit}>
           {formFields.map((form, index) => {
             return (
               <div key={index}>
+                <InputLabel>Company</InputLabel>
                 <TextField
+                  id='company'
                   className={classes.input}
-                  label="Company"
                   name="Company"
-                  placeholder="Company Name"
                   onChange={event => handleFormChange(event, index)}
                   value={form.Company}
                 />
                 <br />
+                <InputLabel>Title</InputLabel>
                 <TextField
+                  id='title'
                   className={classes.input}
-                  label="Title"
                   name="Title"
-                  placeholder="Title"
                   onChange={event => handleFormChange(event, index)}
                   value={form.Title}
                 />
                 <br />
+                <InputLabel>Dates</InputLabel>
                 <TextField
+                  id='dates'
                   className={classes.input}
-                  label="Dates"
                   name="Dates"
-                  placeholder="Dates"
                   onChange={event => handleFormChange(event, index)}
                   value={form.Dates}
                 />
                 <br />
+                <InputLabel>Job Duties</InputLabel>
                 <TextField
+                id='jobDuty'
                   className={classes.input}
                   label="Job Duty"
                   name="JobDuty"
