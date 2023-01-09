@@ -159,10 +159,10 @@ function Education() {
                     />
                   </FormControl>
 
-                <Box sx={{display: 'flex', marginBottom: '3em'}}>
-                  <Button className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
+                <Box sx={{display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%'}}>
+                  <Button sx={{marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
                  
-                  <Button sx={{marginBottom: '3em'}} className='formButtons' onClick={addFields}>Add More..</Button>
+                  <Button variant="contained" color="error" sx={{marginBottom: '3em'}} className='formButtons' onClick={addFields}>Add More..</Button>
                </Box>
 
                 </div>
