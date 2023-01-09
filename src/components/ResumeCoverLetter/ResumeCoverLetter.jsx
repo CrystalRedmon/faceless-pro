@@ -41,7 +41,7 @@ function ResumeCoverLetter() {
         <>
             <h1>Resume and Cover Letter Upload</h1>
             <h2>Step 2 of 6</h2>
-            <h3>This information will not be shared with the employers until you choose to share</h3>
+            <h3>(This information will not be shared with the employers until you choose to share)</h3>
             <div className="Profile">
                 <form onSubmit={handleSubmit}>
                     <Typography>Resume PDF only</Typography>

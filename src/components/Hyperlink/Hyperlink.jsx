@@ -55,13 +55,13 @@ function CandidateHyperLink() {
 
     button.addEventListener('click', function () {
       // Set the value of the form fields
-      form.hyperlink.value = "My Hyperlink";
+      form.hyperlink.value = "github.com/fsiyad";
 
       console.log('This is the formData', formFields);
 
       setFormFields([
         {
-          Skill: "My Hyperlink",
+          Skill: "github.com/fsiyad",
         }])
 
     })
@@ -98,9 +98,9 @@ function CandidateHyperLink() {
         })}
       </form>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <Button onClick={addFields}>Add More..</Button>
+        <Button variant="contained" color="primary" onClick={addFields}>Add More..</Button>
         <br />
-        <Button onClick={submit}>Submit Profile</Button>
+        <Button variant="contained" color="primary" onClick={submit}>Submit Profile</Button>
       </div>
     </div>
   );

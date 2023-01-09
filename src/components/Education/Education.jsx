@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
+import { Button, FormControl, InputLabel, Input, Box } from '@material-ui/core';
 
 function Education() {
   const history = useHistory();
@@ -65,20 +65,20 @@ function Education() {
 
     button.addEventListener('click', function () {
       // Set the value of the form fields
-      form.schoolName.value = "This is My School";
-      form.major.value = "It's my Major";
-      form.dates.value = "these are my school dates";
-      form.notes.value = "These are additional notes";
+      form.schoolName.value = "Prime Digital Academy";
+      form.major.value = "Full Stack Engineer Certificate";
+      form.dates.value = "8/2022 - 1/2023";
+      form.notes.value = "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express";
 
       console.log('This is the formData', formFields);
 
       setFormFields([
 
         {
-          School: "This is My School",
-          Major: "It's my Major",
-          Dates: "these are my school dates",
-          Notes: "these are my notes"
+          School: "Prime Digital Academy",
+          Major: "Full Stack Engineer Certificate",
+          Dates: "8/2022 - 1/2023",
+          Notes: "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express"
 
         }])
 
@@ -90,17 +90,20 @@ function Education() {
 
   let value;
 
-  return (
+  return (<>
+
     <div style={{ display: 'flex', justifyContent: 'center' }} className="Education">
+
+      <div>
+        <h1 onClick={handleFormCompletion} id='populateCandidateEducation'>Add Education</h1>
+        <h2>Step 3 of 6</h2>
+      </div>
       <form onSubmit={submit} id='candidateEducation'>
         {formFields.map((form, index) => {
           return (
 
             <div key={index}>
-              <div>
-                <h1 onClick={handleFormCompletion} id='populateCandidateEducation'>Add Education</h1>
-                <h2>Step 3 of 6</h2>
-              </div>
+
               <InputLabel htmlFor="schoolName">School Name</InputLabel>
               <FormControl>
 
@@ -144,11 +147,15 @@ function Education() {
           )
         })}
       </form>
-      <Button onClick={addFields}>Add More..</Button>
+
       <br />
-      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+
     </div>
-  );
+    <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '5em' }}>
+      <Button variant="contained" color="primary" onClick={addFields}>Add More..</Button>
+      <Button variant="contained" color="primary" onClick={submit}>Next</Button>
+    </Box>
+  </>);
 }
 
 export default Education;

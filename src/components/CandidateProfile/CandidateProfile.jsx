@@ -44,17 +44,17 @@ function CandidateProfile() {
 
     button.addEventListener('click', function () {
       // Set the value of the form fields
-      form.firstName.value = "It's my first name";
-      form.lastName.value = "It's my last name";
-      form.email.value = "It's my email";
-      form.linkedin.value = "It's my link";
+      form.firstName.value = "Faduma ";
+      form.lastName.value = "Siyad";
+      form.email.value = "fsiyad@google.com";
+      form.linkedin.value = "linkedin.com/faduma-siyad";
 
       setFormData({
         ...formData,
-        FirstName: "It's my first name",
-        LastName: "It's my last name",
-        Email: "It's my email",
-        LinkedIn: "It's my link",
+        FirstName: "Faduma",
+        LastName: "Siyad",
+        Email: "fsiyad@google.com",
+        LinkedIn: "linkedin.com/faduma-siyad",
         
       })
 
@@ -67,8 +67,9 @@ let value;
 
   return (
     <>
-      <h2 onClick={handleFormCompletion} id='populateCandidateProfile'>Welcome to your profile!</h2>
-      <h3>This information will not be shared with the employers until you choose to share</h3>
+      <h1 onClick={handleFormCompletion} id='populateCandidateProfile'>Welcome to your profile!</h1>
+      <h2>Step 1 of 6</h2>
+      <h3>(This information will not be shared with the employers until you choose to share)</h3>
       <div className="Profile">
         <form id='candidateProfile' onSubmit={submit}>
           <InputLabel htmlFor="firstName">First Name</InputLabel>

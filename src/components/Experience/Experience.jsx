@@ -62,21 +62,24 @@ function Experience() {
 
     button.addEventListener('click', function () {
       // Set the value of the form fields
-      form.company.value = "This is previous employer";
-      form.title.value = "It's was my title";
-      form.dates.value = "these were the work dates";
-      form.jobDuty.value = "These are job duties";
+      form.company.value = "Starbucks";
+      form.title.value = "Barista";
+      form.dates.value = "3/2019- 7/2022";
+      form.jobDuty.value = "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' +'\n' +
+      "Welcomes customers by determining their coffee interests and needs."+ '\n' + '\n' +
+      "Educates customers by presenting and explaining the coffee drink menu; answering questions.";
 
       console.log('This is the formData', formFields);
 
       setFormFields([
 
         {
-          Company: "This is previous employer",
-          Title: "It's was my title",
-          Dates: "these were the work dates",
-          JobDuty: "These are job duties"
-
+          Company: "Starbucks",
+          Title: "Barista",
+          Dates: "3/2019- 7/2022",
+          JobDuty: "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' +'\n' +
+          "Welcomes customers by determining their coffee interests and needs."+ '\n' + '\n' +
+          "Educates customers by presenting and explaining the coffee drink menu; answering questions."
         }
       ])
 

@@ -56,14 +56,14 @@ function Skills() {
 
     button.addEventListener('click', function () {
       // Set the value of the form fields
-      form.skill.value = "All of my Skills";
+      form.skill.value = "Effective Communication";
 
       console.log('This is the formData', formFields);
 
       setFormFields([
 
         {
-          Skill: "All of my Skills",
+          Skill: "Effective Communication",
 
         }])
 
