@@ -39,7 +39,7 @@ function EmployerJobItem({ job }) {
                     type: "DELETE_JOB_POST",
                     payload: job.id
                 })
-                Swal.fire('Job Post Deleted')
+                Swal.fire('Job post deleted')
             } else if (result.isDenied) {
                 Swal.fire('Changes were not saved')
             }
@@ -53,8 +53,8 @@ function EmployerJobItem({ job }) {
             <CardContent>
                 <h2>{job.title}</h2>
                 <Box sx={{ display: 'flex' }}>
-                    <Button variant='contained' sx={{ marginRight: 1 }} onClick={handleView}>View Details</Button>
-                    <Button variant='contained' sx={{ marginRight: 1 }} onClick={handleViewApplicants}>View Applicants</Button>
+                    <Button variant='outlined' sx={{ marginRight: 1 }} onClick={handleView}>View Details</Button>
+                    <Button variant='outlined' sx={{ marginRight: 1 }} onClick={handleViewApplicants}>View Applicants</Button>
                     <IconButton color='error' onClick={handleDeleteItem} sx={{ marginTop: 1 }}><DeleteIcon /></IconButton>
                 </Box>
             </CardContent>

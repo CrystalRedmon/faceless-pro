@@ -142,7 +142,7 @@ function PostJob() {
                 <Grid item xs={9}>
 
                     <Button variant='contained' onClick={handleBack}>Back</Button>
-                    <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2>
+                    <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
 
                     <form action="" id='jobPost'>
                         <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
@@ -156,7 +156,7 @@ function PostJob() {
                                 payload: { title: evt.target.value }
                             })} />
 
-                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> 
+                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
 
 
                     {/* <form action="" id='jobPost'>
@@ -167,7 +167,7 @@ function PostJob() {
                             sx={{ borderRadius: '10em', marginBottom: '3em' }}
                             value={params.id ? job.title : value} */}
 
-                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Job'}</h2> */}
+                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2> */}
 
 
                         {/* <form action="" id='jobPost'>

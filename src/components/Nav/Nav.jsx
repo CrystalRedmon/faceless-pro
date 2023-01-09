@@ -85,7 +85,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/jobList">
-              Posted Jobs
+              Posted Positions
             </Link>
 
             <LogOutButton className="navLink" />
