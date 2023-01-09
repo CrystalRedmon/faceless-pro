@@ -26,7 +26,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './CandidateLandingPage.css';
 import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Button } from '@mui/material';
 
 function CandidateLandingPage() {
   const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
@@ -57,13 +57,16 @@ function CandidateLandingPage() {
   console.log("This is the recent jobs", recentJobs)
   return (
     <div>
-      <Box sx={{ textAlign: 'center', marginTop:'3em' }}>
 
-        <h1>Candidate Search for Jobs HERE</h1>
+      <Box sx={{ textAlign: 'center', marginTop: '5em' }}>
+        <Box sx={{marginBottom: '3em'}}>
+          <h1>Search Current Job Posts</h1>
+        </Box>
+
         <form>
           <input placeholder="Search keywords" value={keyword} onChange={handleKeyword}></input>
 
-          <button onClick={onSubmitKeyword}>Search</button>
+          <Button onClick={onSubmitKeyword}>Search</Button>
           {searchJobsClicked ? <button onClick={() => {
             setSearchJobsClicked(false)
             dispatch({
@@ -85,7 +88,7 @@ function CandidateLandingPage() {
             <> </>}
         </Grid>
         <Grid item xs={2}></Grid>
-        <Grid sx={{display:'flex', justifyContent:'center', marginTop:'5em'}} container item xs={8}>
+        <Grid sx={{ display: 'flex', justifyContent: 'center', marginTop: '3em' }} container item xs={8}>
           {recentJobs.map(job =>
             <CandidateJobItem key={job.id} job={job} />
           )}
