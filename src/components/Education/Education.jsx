@@ -113,7 +113,7 @@ function Education() {
                   id="schoolName"
                   name='School'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.School}
+                  value={value}
                 />
               </FormControl>
 
@@ -124,7 +124,7 @@ function Education() {
                   id="major"
                   name='Major'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Major}
+                  value={value}
                 />
               </FormControl>
 
@@ -135,7 +135,7 @@ function Education() {
                   id="dates"
                   name='Dates'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Dates}
+                  value={value}
                 />
               </FormControl>
               
@@ -146,7 +146,7 @@ function Education() {
                   id="notes"
                   name='Notes'
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Notes}
+                  value={value}
                 />
               </FormControl>
               <br />

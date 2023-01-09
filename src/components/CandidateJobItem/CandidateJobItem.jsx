@@ -2,7 +2,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
 import UserPage from '../UserPage/UserPage';
-import { Card, Grid, CardContent, Typography } from '@mui/material';
+import { Card, Grid, CardContent, Typography, Button } from '@mui/material';
 import './CandidateJobItem.css';
 
 
@@ -36,7 +36,7 @@ function CandidateJobItem({ job }) {
 
     return <>
         <section>
-            <Card variant="outlined" sx={{ width: 275, height: 250, margin: 2, boxShadow: 3}}>
+            <Card variant='contained' sx={{ width: 275, height: 250, margin: 2, boxShadow: 3 }}>
                 <CardContent>
 
 
@@ -46,48 +46,48 @@ function CandidateJobItem({ job }) {
 
                         <p>  {job.company_name}</p>
 
-                        <p> {job.company_address}</p>
-
-                     
 
                         {info.id ?
                             <div>
                                 <div onClick={submitSave}>
                                     {savedJobsList.find(c => c.id === job.id) ?
-                                        <button
+                                        <Button
+                                        sx={{marginBottom: '1em'}}
+                                            variant='contained'
                                             onClick={() => {
                                                 dispatch({
                                                     type: 'DELETE_JOB',
                                                     payload: job
                                                 });
                                             }}
-                                        >Unsave</button> :
+                                        >Unsave</Button> :
 
-                                        <button
+                                        <Button sx={{marginBottom: '1em'}}
+                                            variant='contained'
                                             onClick={() => {
                                                 dispatch({
                                                     type: 'SAVE_JOBS',
                                                     payload: job
                                                 });
                                             }}
-                                        >Save </button>
+                                        >Save </Button>
 
 
 
                                     }
                                 </div>
 
-                                <button onClick={detailsPage}>View Job Details </button>
+                                <Button variant='contained' onClick={detailsPage}>View Job Details </Button>
                             </div>
 
-                            : <> 
-                            
+                            : <>
 
-                            <button onClick={ProfilePage}>Complete Your Profile to Save and Apply</button>
-                            <br></br><br></br>
-                             <button onClick={detailsPage}>View Job Details </button>
+
+                                <Button variant='contained' onClick={ProfilePage}>Complete Your Profile to Save and Apply</Button>
+                                <br></br><br></br>
+                                <Button variant='contained' onClick={detailsPage}>View Job Details </Button>
                             </>
-                            
+
 
 
                         }

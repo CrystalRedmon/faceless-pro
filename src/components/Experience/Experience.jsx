@@ -105,9 +105,6 @@ function Experience() {
   let value;
 
 
-
-
-
   return (
     <>
       <CandidateBreadcrumb />
@@ -123,7 +120,7 @@ function Experience() {
                   className={classes.input}
                   name="Company"
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Company}
+                  value={value}
                 />
                 <br />
                 <InputLabel>Title</InputLabel>
@@ -132,7 +129,7 @@ function Experience() {
                   className={classes.input}
                   name="Title"
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Title}
+                  value={value}
                 />
                 <br />
                 <InputLabel>Dates</InputLabel>
@@ -141,18 +138,16 @@ function Experience() {
                   className={classes.input}
                   name="Dates"
                   onChange={event => handleFormChange(event, index)}
-                  value={form.Dates}
+                  value={value}
                 />
                 <br />
                 <InputLabel>Job Duties</InputLabel>
                 <TextField
                 id='jobDuty'
                   className={classes.input}
-                  label="Job Duty"
                   name="JobDuty"
-                  placeholder="Job Duty"
                   onChange={event => handleFormChange(event, index)}
-                  value={form.JobDuty}
+                  value={value}
                   multiline
                   rows={10}
                   maxRows={20}
