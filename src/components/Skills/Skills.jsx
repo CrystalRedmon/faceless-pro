@@ -49,6 +49,37 @@ function Skills() {
     data.splice(index, 1);
     setFormFields(data);
   };
+
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateSkills');
+    let form = document.getElementById('candidateSkills');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.skill.value = "Effective Communication";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+
+        {
+          Skill: "Effective Communication",
+
+        }])
+
+
+
+    })
+  };
+
+
+  let value;
+
+
+
+
   return (
     <>
     <CandidateBreadcrumb />
@@ -56,15 +87,14 @@ function Skills() {
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center'
     }}>
-      <Typography variant="h6">Add Skills below: This will be shared with employer</Typography>
-      <form onSubmit={submit}>
+      <Typography onClick={handleFormCompletion} id='populateCandidateSkills' variant="h6">Add Skills below: This will be shared with employer</Typography>
+      <form id='candidateSkills' onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
             <div key={index}>
               <TextField
-                label="Skill"
+                id='skill'
                 name="Skill"
-                placeholder="Add Skill"
                 onChange={event => handleFormChange(event, index)}
                 value={form.Skill}
               />
