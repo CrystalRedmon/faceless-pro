@@ -56,7 +56,7 @@ function CandidateProfile() {
       // Set the value of the form fields
       form.firstName.value = "Faduma ";
       form.lastName.value = "Siyad";
-      form.email.value = "fsiyad@google.com";
+      form.email.value = "fsiyad@gmail.com";
       form.linkedin.value = "linkedin.com/faduma-siyad";
 
       setFormData({
