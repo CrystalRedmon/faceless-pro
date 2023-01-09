@@ -7,6 +7,12 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
+  function secretButton(){
+    setUsername('FadumaSiyad')
+    setPassword('123456')
+  }
+
+
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -21,7 +27,7 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <h2 onClick={(secretButton)}>Register User</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
