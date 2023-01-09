@@ -14,6 +14,9 @@ function Education() {
     { School: '', Major: '', Dates: '', Notes: '' },
   ])
 
+console.log('This is from the formFields: ', formFields)
+
+
   const handleFormChange = (event, index) => {
     let data = [...formFields];
     data[index][event.target.name] = event.target.value;
@@ -70,11 +73,12 @@ function Education() {
       console.log('This is the formData', formFields);
 
       setFormFields([
-        ...formFields,
+        
         {
           School: "This is My School",
           Major: "It's my Major",
           Dates: "these are my school dates",
+          Notes: "these are my notes"
 
         }])
 
@@ -93,7 +97,10 @@ function Education() {
           return (
 
             <div key={index}>
-              <div sx={{ width: '5em', height: '5em' }} onClick={handleFormCompletion} id='populateCandidateEducation'>here it is</div>
+              <div>
+                <h1 onClick={handleFormCompletion} id='populateCandidateEducation'>Add Education</h1>
+                <h2>Step 2 of 6</h2>
+              </div>
               <InputLabel htmlFor="schoolName">School Name</InputLabel>
               <FormControl>
 
