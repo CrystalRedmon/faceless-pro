@@ -33,9 +33,9 @@ function EmployerJobList() {
             {/* top portion */}
             <Grid item xs={0.5}></Grid>
             <Grid item xs={11}>
-                <h1>Posted Jobs</h1>
+                <h1>Posted Positions</h1>
                 <Typography>
-                    <Button variant='contained' startIcon={<AddCircleIcon />} onClick={handleAddJob}>add new job</Button>
+                    <Button variant='contained' startIcon={<AddCircleIcon />} onClick={handleAddJob}>add new position</Button>
                 </Typography>
             </Grid>
             <Grid item xs={0.5}></Grid>
