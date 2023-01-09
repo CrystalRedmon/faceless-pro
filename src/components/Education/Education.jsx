@@ -96,7 +96,7 @@ function Education() {
 
         {/* <CandidateBreadcrumb /> */}
         <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant='h3' style={{ marginTop: '1em' }}>Education</Typography>
-        <Typography variant="h6" style={{ marginTop: '2em' }}> This will be shared with employers</Typography>
+        <Typography variant="h6" style={{ marginTop: '2em' }}>This information will be shared with employers as part of your application.</Typography>
         <Typography>Step 3 of 6</Typography>
 
         <div sx={{ marginTop: '5em' }} className="Education">

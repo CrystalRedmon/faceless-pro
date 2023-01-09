@@ -111,7 +111,7 @@ function Experience() {
       <Box className='container'>
        
           <Typography onClick={handleFormCompletion} id='populateCandidateExperience' variant="h3" style={{ marginTop: '1em' }}>Experience </Typography>
-          <Typography variant="h6" style={{ marginTop: '2em' }}> This will be shared with employers</Typography>
+          <Typography variant="h6" style={{ marginTop: '2em' }}>This information will be shared with employers as part of your application.</Typography>
           <Typography>Step 4 of 6</Typography>
 
           <div sx={{ marginTop: '5em' }} >
