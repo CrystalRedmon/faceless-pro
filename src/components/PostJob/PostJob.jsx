@@ -132,6 +132,19 @@ function PostJob() {
 
         });
 
+        dispatch({
+            type: 'UPDATE_EDIT_JOB',
+            payload: { title: form.jobTitle.value }
+        })
+
+        dispatch({
+            type: 'UPDATE_EDIT_JOB',
+            payload: { description: form.jobDescription.value }
+        })
+
+
+
+
     }
 
 
