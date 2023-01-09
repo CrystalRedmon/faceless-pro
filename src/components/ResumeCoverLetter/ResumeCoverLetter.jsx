@@ -39,7 +39,8 @@ function ResumeCoverLetter() {
 
     return (
         <>
-            <h2>Resume and Cover Letter Upload</h2>
+            <h1>Resume and Cover Letter Upload</h1>
+            <h2>Step 2 of 6</h2>
             <h3>This information will not be shared with the employers until you choose to share</h3>
             <div className="Profile">
                 <form onSubmit={handleSubmit}>

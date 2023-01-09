@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { Button, Box, Grid, InputLabel } from '@material-ui/core';
 
 function CandidateHyperLink() {
   const history = useHistory();
@@ -46,18 +46,51 @@ function CandidateHyperLink() {
     data.splice(index, 1);
     setFormFields(data);
   };
+
+
+  const handleFormCompletion = () => {
+
+    let button = document.getElementById('populateCandidateHyperlink');
+    let form = document.getElementById('candidateHyperlink');
+
+    button.addEventListener('click', function () {
+      // Set the value of the form fields
+      form.hyperlink.value = "My Hyperlink";
+
+      console.log('This is the formData', formFields);
+
+      setFormFields([
+        {
+          Skill: "My Hyperlink",
+        }])
+
+    })
+  };
+
+
+  let value;
+
+
+
+
+
+
+
   return (
     <div className="Hyperlink">
-      <form onSubmit={submit}>
+      <Box sx={{ width: '50%', margin: 'auto' }}>
+        <h1 onClick={handleFormCompletion} id='populateCandidateHyperlink'>Add Hyperlinks</h1>
+        <h2>Step 6 of 6</h2>
+      </Box>
+      <form id='candidateHyperlink' onSubmit={submit}>
         {formFields.map((form, index) => {
           return (
             <div key={index}>
               <TextField
-                label="Hyperlink"
+                id='hyperlink'
                 name="Hyperlink"
-                placeholder="Add Hyperlink"
                 onChange={event => handleFormChange(event, index)}
-                value={form.Hyperlink}
+                value={value}
               />
               <Button onClick={() => removeFields(index)}>Remove</Button>
             </div>
