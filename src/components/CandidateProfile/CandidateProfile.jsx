@@ -2,8 +2,20 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { FormControl, InputLabel, Input, Button, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  form: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
+});
 
 function CandidateProfile() {
+
+  const classes = useStyles();  // define the classes variable
+
   const [formData, setFormData] = useState({
     FirstName: '',
     LastName: '',
@@ -12,6 +24,7 @@ function CandidateProfile() {
     ResumePath: '',
     CoverLetterPath: '',
   });
+
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,31 +37,20 @@ function CandidateProfile() {
     });
   }
 
-
-  // console.log(FirstName, "formData");
-
-
   const submit = (event) => {
-    {
-      event.preventDefault();
-
-      dispatch({
-        type: 'ADD_PROFILE',
-        payload: formData
-      });
-
-      // history.push('/education');
-      history.push('/ResumeCoverLetter');
-    }
+    event.preventDefault();
+    dispatch({
+      type: 'ADD_PROFILE',
+      payload: formData
+    });
+    history.push('/ResumeCoverLetter');
   }
-
-
   return (
     <>
-      <h2>Welcome to your profile!</h2>
-      <h3>This information will not be shared with the employers until you choose to share</h3>
+      <Typography variant="h3" style={{ textAlign: "center" }}>Welcome to your profile!</Typography>
+      <Typography variant="h6" style={{ textAlign: "center" }}>This information will not be shared with the employers until you choose to share</Typography>
       <div className="Profile">
-        <form onSubmit={submit}>
+        <form className={classes.form} onSubmit={submit}>
           <FormControl>
             <InputLabel htmlFor="first-name">First Name</InputLabel>
             <Input
@@ -88,32 +90,13 @@ function CandidateProfile() {
               value={formData.LinkedIn}
             />
           </FormControl>
-
-          {/* <FormControl>
-            <InputLabel htmlFor="resume-path">Resume Path</InputLabel>
-            <Input
-              id="resume-path"
-              name='ResumePath'
-              onChange={event =>handleFormChange(event)}
-              value={formData.ResumePath}
-            />
-          </FormControl>
-          <FormControl>
-            <InputLabel htmlFor="cover-letter-path">Cover Letter Path</InputLabel>
-            <Input
-              id="cover-letter-path"
-              name='CoverLetterPath'
-              onChange={event => handleFormChange(event)}
-              value={formData.CoverLetterPath}
-            />
-          </FormControl> */}
-
           <br />
           <Button variant="contained" color="primary" type="submit">Next</Button>
         </form>
       </div>
     </>
   );
+
 }
 
 export default CandidateProfile;
