@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { join } from "redux-saga/effects";
 import { Grid, Typography, Button } from "@mui/material";
+import ErrorIcon from '@mui/icons-material/Error';
 
 function CandidateJobDetails() {
   const params = useParams();
@@ -14,7 +15,8 @@ function CandidateJobDetails() {
   const job = useSelector((store) => store.candidateReducer.candidateJobs);
   const savedJobsList = useSelector((store) => store.candidateReducer.saveJobs);
   const info = useSelector((store) => store.candidateReducer.candidateInfo);
-  console.log(" applied jobs ", job[0].id);
+
+  // console.log(" applied jobs ", job[0].id);
 
   //FETCH CURRENT JOB WITH PARAMS ID
   useEffect(() => {
@@ -36,7 +38,7 @@ function CandidateJobDetails() {
     history.push(`/profile`);
   };
 
-  console.log("params.id is...", params.id);
+  // console.log("params.id is...", params.id);
 
   function goBack() {
     window.history.back();
@@ -52,13 +54,9 @@ function CandidateJobDetails() {
             onClick={goBack}>Back</Button>
         </Grid>
         <Grid container item xs={3.5}>
-
-
           {info.id ? (
             <div>
-
-
-              <Grid sx={{ display: 'inline-block', marginRight: '2em' }}>
+              <Grid sx={{ display: 'inline-block', marginRight: 1 }}>
                 <div onClick={submitSave}>
                   {savedJobsList.find((c) => c.id === job[0].id) ? (
                     <Button
@@ -84,7 +82,7 @@ function CandidateJobDetails() {
                         dispatch({ type: "FETCH_SAVED_JOBS" });
                       }}
                     >
-                      Save{" "}
+                      Save
                     </Button>
                   )}
                 </div>
@@ -120,11 +118,14 @@ function CandidateJobDetails() {
             </div>
           ) : (
 
-            <Button
-              variant='contained'
-              onClick={ProfilePage}>
-              Complete Your Profile to Save and Apply
-            </Button>
+            // <Button
+            //   variant='contained'
+            //   onClick={ProfilePage}>
+            //   Complete Your Profile to Save and Apply
+            //   </Button>
+
+            <Button variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile</Button>
+
 
           )}
         </Grid>
@@ -133,16 +134,15 @@ function CandidateJobDetails() {
       <br></br>
       <h2>Company Logo:{job[0].logo_path}</h2>
       <br></br> */}
+
         <Grid item xs={3}></Grid>
 
         <Grid container item xs={4} alignItems="flex-start" direction="column">
-          <Typography variant={"h1"} sx={{ fontSize: "3em" }}>
-            {job[0].title}
-          </Typography>
+          <h2>{job[0].title}</h2>
           <Typography variant={"h2"} sx={{ fontSize: "1em" }}>
             {job[0].company_name}
           </Typography>
-          {/* <Typography variant={'h2'} sx={{ fontSize: '2em' }}>{job[0].company_address}</Typography> */}
+          <Typography variant={'h2'} sx={{ fontSize: '1em' }}>{job[0].company_address}</Typography>
         </Grid>
 
         <Grid item xs={5}></Grid>

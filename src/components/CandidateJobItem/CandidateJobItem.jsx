@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
 import UserPage from '../UserPage/UserPage';
 import { Card, Grid, CardContent, Typography, Button } from '@mui/material';
+import Box from '@mui/material/Box';
+import ErrorIcon from '@mui/icons-material/Error';
+
 import './CandidateJobItem.css';
 
 
@@ -26,33 +29,28 @@ function CandidateJobItem({ job }) {
 
     const detailsPage = () => {
         history.push(`/CandidateJobDetails/${job.id}`)
-
     }
 
     const ProfilePage = () => {
         history.push(`/profile`)
-
     }
 
     return <>
         <section>
-            <Card variant='contained' sx={{ width: 275, height: 250, margin: 2, boxShadow: 3 }}>
+            <Card variant='contained' sx={{ width: '375px', margin: 2, boxShadow: 3 }}>
                 <CardContent>
+                    <div>
 
+                        <Typography sx={{ marginBottom: 1 }}><b>{job.title}</b></Typography>
 
-
-                    <div key={job.id}>
-                        <h4> {job.title} </h4>
-
-                        <p>  {job.company_name}</p>
-
+                        <Typography sx={{ marginBottom: 1 }}>{job.company_name}</Typography>
 
                         {info.id ?
-                            <div>
-                                <div onClick={submitSave}>
+                            <Box sx={{ display: 'flex' }}>
+                                <Box onClick={submitSave}>
                                     {savedJobsList.find(c => c.id === job.id) ?
                                         <Button
-                                        sx={{marginBottom: '1em'}}
+                                            sx={{ marginRight: 1 }}
                                             variant='contained'
                                             onClick={() => {
                                                 dispatch({
@@ -60,9 +58,14 @@ function CandidateJobItem({ job }) {
                                                     payload: job
                                                 });
                                             }}
-                                        >Unsave</Button> :
+                                        >
+                                            unsave
+                                        </Button>
 
-                                        <Button sx={{marginBottom: '1em'}}
+                                        :
+
+                                        <Button
+                                            sx={{ marginRight: 1 }}
                                             variant='contained'
                                             onClick={() => {
                                                 dispatch({
@@ -70,33 +73,25 @@ function CandidateJobItem({ job }) {
                                                     payload: job
                                                 });
                                             }}
-                                        >Save </Button>
-
-
-
+                                        >
+                                            save
+                                        </Button>
                                     }
-                                </div>
+                                </Box>
+                                <Button variant='outlined' onClick={detailsPage}>View Job Details</Button>
+                            </Box>
 
-                                <Button variant='contained' onClick={detailsPage}>View Job Details </Button>
-                            </div>
+                            :
 
-                            : <>
-
-
-                                <Button variant='contained' onClick={ProfilePage}>Complete Your Profile to Save and Apply</Button>
-                                <br></br><br></br>
-                                <Button variant='contained' onClick={detailsPage}>View Job Details </Button>
-                            </>
-
-
-
+                            <Box>
+                                {/* <Button variant='contained' color='error' onClick={ProfilePage}>complete your profile to view and apply</Button> */}
+                                {/* <Button sx={{marginBottom: 1}} size='small' variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile</Button> */}
+                                <Button variant='outlined' onClick={detailsPage}>View Job Details</Button>
+                            </Box>
                         }
-
                     </div>
                 </CardContent>
             </Card>
-
-
         </section>
     </>
 }
