@@ -99,7 +99,7 @@ function Education() {
   return (
     <>
     <CandidateBreadcrumb />
-    <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant="h6" style={{ textAlign: "center" }}> Add Education below: This will not shared with employer</Typography>
+    <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant="h6" style={{ textAlign: "center" }}> Add Education below: This WILL be shared with employer</Typography>
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} className="Education">
       <form id="candidateEducation" onSubmit={submit}>
         {formFields.map((form, index) => {

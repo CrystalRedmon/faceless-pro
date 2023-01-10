@@ -46,6 +46,11 @@ function Message() {
   function secretEmployerButton(){
     setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
   }
+  function secretCandidateButton(){
+    setMessage('Terrific! I am available tomorrow at 1 PM CST if that works for you.')
+  }
+
+
 
   //For later possibllu
   // function secretUserButton(){
@@ -174,6 +179,7 @@ function Message() {
           </Box>
         </Grid>
       </Grid>
+      <><Box  sx={{ color: 'white' }} onClick={(secretCandidateButton)}> SECRET Button</Box></>
     </Box>
   );
 

@@ -38,6 +38,7 @@ function CandidateLandingPage() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_RECENT_JOBS' });
+    dispatch({ type: 'FETCH_SAVED_JOBS' });
   }, []);
 
   const handleKeyword = (evt) => {

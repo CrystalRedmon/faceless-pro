@@ -62,7 +62,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
             </Box>
 
     <Box sx={{mt: 10, mb:10, ml:60}}> 
-    <Typography variant = "h4">Discrimination in the hiring process still persists today.</Typography>
+    <Typography variant = "h4">Discrimination in the recruitment process still persists today.</Typography>
     </Box>
 
     <Stack
