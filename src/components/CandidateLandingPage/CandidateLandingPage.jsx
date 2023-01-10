@@ -20,7 +20,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './CandidateLandingPage.css';
 import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
-
 import { Box, Grid, Button } from '@mui/material';
 import TextField from '@material-ui/core/TextField';
 import ErrorIcon from '@mui/icons-material/Error';
@@ -75,7 +74,6 @@ function CandidateLandingPage() {
             <Button sx={{ height: '30px', marginLeft: 1 }} variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile to save and apply to job postings</Button>
           }
 
-
         </Box>
 
         <form>
@@ -96,25 +94,6 @@ function CandidateLandingPage() {
             >
               undo search
             </Button> : <></>
-
-{/* <Box sx={{ textAlign: 'center', marginTop: '5em' }}>
-        <Box sx={{ marginBottom: '3em' }}>
-          <h1>Search Current Job Posts</h1>
-        </Box>
-
-        <form>
-          <TextField sx={{ marginRight: '1em', }} placeholder="Search keywords" value={keyword} onChange={handleKeyword} autoComplete="off"></TextField>
-
-          <Button
-            variant='contained'
-            onClick={onSubmitKeyword}>Search</Button>
-          {searchJobsClicked ? <Button variant='contained' sx={{ marginLeft: '1em', }} onClick={() => {
-            setSearchJobsClicked(false)
-            dispatch({
-              type: 'FETCH_RECENT_JOBS',
-            })
-          }}> Undo Search </Button> : <> </> */}
-
           }
         </form>
       </Grid>
