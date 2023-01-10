@@ -3,8 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Typography } from '@mui/material';
+import { Typography, Box, } from '@mui/material';
 import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 
 
 function Skills() {
@@ -82,35 +84,42 @@ function Skills() {
 
   return (
     <>
-    <CandidateBreadcrumb />
-    <div className="Skill" style={{
-      display: 'flex', flexDirection: 'column',
-      alignItems: 'center', justifyContent: 'center'
-    }}>
-      <Typography onClick={handleFormCompletion} id='populateCandidateSkills' variant="h6">Add Skills below: This will be shared with employer</Typography>
-      <form id='candidateSkills' onSubmit={submit}>
-        {formFields.map((form, index) => {
-          return (
-            <div key={index}>
-              <TextField
-                id='skill'
-                name="Skill"
-                onChange={event => handleFormChange(event, index)}
-                value={form.Skill}
-              />
-              <Button onClick={() => removeFields(index)}>Remove</Button>
-              <Button onClick={addFields}>Add More..</Button>
-              <br />
-              <br />
-              <Button variant="contained" color="primary" onClick={submit}>Next</Button>
-            </div>
-          );
-        })}
-      </form>
-      <div>
-      </div>
+      {/* <CandidateBreadcrumb /> */}
+      <Box className='container'>
+        <div className="Skill" style={{
+        }}>
+          <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateSkills' variant="h3">Skills</Typography>
+          <Typography variant='h6' style={{ marginTop: '2em' }}>This information will be shared with the employers</Typography>
+          <Typography>Step 5 of 6</Typography>
 
-    </div>
+          <Box sx={{ marginTop: '5em' }}>
+            <form id='candidateSkills' onSubmit={submit}>
+              {formFields.map((form, index) => {
+                return (
+                  <div key={index}>
+                    <TextField
+                      className='textField'
+                      style={{ width: '20em', marginBottom: '2em', marginRight: '2em' }}
+                      id='skill'
+                      name="Skill"
+                      onChange={event => handleFormChange(event, index)}
+                      value={form.Skill}
+                    />
+                    <IconButton onClick={() => removeFields(index)}><DeleteIcon /></IconButton>
+                  </div>
+                );
+              })}
+
+            </form>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
+              <Button variant="contained" color="error" onClick={addFields}>Add More..</Button>
+              <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
+            </Box>
+          </Box>
+          <div>
+          </div>
+        </div>
+      </Box>
     </>
 
   );
