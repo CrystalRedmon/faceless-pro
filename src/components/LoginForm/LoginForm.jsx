@@ -33,7 +33,7 @@ function LoginForm() {
     <Box>
  
     <form className="formPanel" onSubmit={login}>
-      <Box><h3 id = "logintext">Login</h3></Box>
+      <Box><h2 id = "logintext">Login</h2></Box>
       <Box>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
