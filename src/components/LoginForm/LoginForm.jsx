@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import { Typography } from '@mui/material'
+import { AddBoxTwoTone } from '@material-ui/icons';
+import './LoginForm.css';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -25,14 +30,18 @@ function LoginForm() {
   }; // end login
 
   return (
+    <Box>
+ 
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <Box><h3 id = "logintext">Login</h3></Box>
+      <Box>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
         </h3>
       )}
-      <div>
+      </Box>
+      <Box>
         <label htmlFor="username">
           Username:
           <input
@@ -43,8 +52,8 @@ function LoginForm() {
             onChange={(event) => setUsername(event.target.value)}
           />
         </label>
-      </div>
-      <div>
+      </Box>
+      <Box>
         <label htmlFor="password">
           Password:
           <input
@@ -55,11 +64,12 @@ function LoginForm() {
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
+      </Box>
+      <Box>
+        <input id= "loginbtn" className="btn" type="submit" name="submit" value="Log In" />
+      </Box>
     </form>
+    </Box>
   );
 }
 
