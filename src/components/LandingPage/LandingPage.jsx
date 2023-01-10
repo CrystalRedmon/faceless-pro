@@ -37,21 +37,20 @@ function LandingPage() {
 
   return (
     <div className="mycontainer">
-      <Box sx={{ marginLeft: 5,
+      <Box sx={{ marginLeft: 5, marginLeft: 5,
   
 }}>
       <Box><Typography variant = "h3">Welcome Faceless Pro</Typography> </Box>
 
-      <Box sx={{ marginBottom: 5,
-  
-}}><Typography variant = "h6">Employment should be based on experience and not a person's identity.</Typography> </Box>
+      <Box sx={{ marginBottom: 5, fontStyle: 'italic' }}>
+        <Typography variant = "h6">"Employment should be based on experience and not a person's identity."</Typography> </Box>
 </Box>
-      <Box><Typography variant = "h5">Mission & Values</Typography></Box>
+      <Box sx = {{ml:5}}><Typography variant = "h5">Mission & Values</Typography></Box>
 <Box border = {3}
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        padding: 2.5,
+        padding: 4,
         margin: 7.5,
         backgroundColor: '#e0e0e0',
         '&:hover': {
@@ -67,15 +66,18 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
             </Typography>
             </Box>
 
-    <Box sx={{mt: 10, mb:10, ml:60}}> 
+    <Box sx={{mt: 10, mb:10, ml:5}}> 
     <Typography variant = "h5">Discrimination in the recruitment process still persists today.</Typography>
     </Box>
 
     <Stack
         direction="row"
         divider={<Divider orientation="vertical" flexItem />}
-        spacing={8}
-        marginBottom = {10}
+        spacing={1}
+        display = 'flex'
+        marginBottom = {20}
+        marginLeft = {5}
+        marginRight = {5}
       >
 
     <Box
@@ -83,6 +85,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
@@ -104,6 +107,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
@@ -125,7 +129,7 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        padding:2.5,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
@@ -145,13 +149,15 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       </Stack>
 
 
-    <Typography variant = "h5">Featured Jobs</Typography>
+    <Typography variant = "h5" sx = {{ml:5}}>Featured Jobs</Typography>
       <div className="grid">
         <div className="grid-col grid-col_8">
         <Stack
         direction="row"
-       marginLeft={30}
        marginTop={5}
+       display='flex'
+       justifyContent={'space-between'}
+
       //   spacing={50}
       //   marginBottom = {10}
       >
