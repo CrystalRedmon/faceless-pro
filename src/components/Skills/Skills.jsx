@@ -85,13 +85,9 @@ function Skills() {
   return (
     <>
       {/* <CandidateBreadcrumb /> */}
-
-
       <Box className='container'>
-
         <div className="Skill" style={{
         }}>
-
           <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateSkills' variant="h3">Skills</Typography>
           <Typography variant='h6' style={{ marginTop: '2em' }}>This information will be shared with the employers</Typography>
           <Typography>Step 5 of 6</Typography>
@@ -109,28 +105,19 @@ function Skills() {
                       onChange={event => handleFormChange(event, index)}
                       value={form.Skill}
                     />
-
                     <IconButton onClick={() => removeFields(index)}><DeleteIcon /></IconButton>
-
-
-
                   </div>
                 );
               })}
 
             </form>
-
-            <Box sx={{display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%'}}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
               <Button variant="contained" color="error" onClick={addFields}>Add More..</Button>
-
               <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
-
             </Box>
-
           </Box>
           <div>
           </div>
-
         </div>
       </Box>
     </>
