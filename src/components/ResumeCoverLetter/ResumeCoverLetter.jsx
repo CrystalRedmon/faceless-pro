@@ -41,8 +41,8 @@ function ResumeCoverLetter() {
     return (
         <>
             <Box className='container'>
-                <Typography variant='h3' style={{ marginTop: '1em' }}>Resume and Cover Letter Upload</Typography>
-                <Typography variant='h6' style={{ marginTop: '2em'}}>This information will not be shared with the employers until you choose to share</Typography>
+                <Typography variant='h3' style={{ marginTop: '1em' }}>Resume and Cover Letter</Typography>
+                <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This identifying information will not be shared with the employers. You will have the opportunity to share this information once an employer reviews your application and initiates contact.</Typography>
                 <Typography>Step 2 of 6</Typography>
 
                 <Box sx={{ marginTop: '5em' }} className="Profile">

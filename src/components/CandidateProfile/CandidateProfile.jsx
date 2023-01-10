@@ -79,7 +79,7 @@ function CandidateProfile() {
     <>
       <Box className='container'  >
         <Typography onClick={handleFormCompletion} id='populateCandidateProfile' variant="h3" style={{ marginTop: '1em' }}>Personal Information</Typography>
-        <Typography variant="h6" style={{ marginTop: '2em' }}>This indentifying information will not be shared with the employers. You will have the opportunity to share this information once an employer reviews your application and initiates contact.</Typography>
+        <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This identifying information will not be shared with the employers. You will have the opportunity to share this information once an employer reviews your application and initiates contact.</Typography>
         <Typography>Step 1 of 6</Typography>
 
 

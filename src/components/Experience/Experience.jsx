@@ -109,13 +109,13 @@ function Experience() {
     <>
       {/* <CandidateBreadcrumb /> */}
       <Box className='container'>
-       
-          <Typography onClick={handleFormCompletion} id='populateCandidateExperience' variant="h3" style={{ marginTop: '1em' }}>Experience </Typography>
-          <Typography variant="h6" style={{ marginTop: '2em' }}>This information will be shared with employers as part of your application.</Typography>
-          <Typography>Step 4 of 6</Typography>
 
-          <div sx={{ marginTop: '5em' }} >
-          <form  style={{ marginTop: '2em' }}  id='candidateExperience' onSubmit={submit}>
+        <Typography onClick={handleFormCompletion} id='populateCandidateExperience' variant="h3" style={{ marginTop: '1em' }}>Experience </Typography>
+        <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
+        <Typography>Step 4 of 6</Typography>
+
+        <div sx={{ marginTop: '5em' }} >
+          <form style={{ marginTop: '2em' }} id='candidateExperience' onSubmit={submit}>
             {formFields.map((form, index) => {
               return (
                 <div key={index}>
@@ -123,7 +123,7 @@ function Experience() {
                   <TextField
                     id='company'
                     className='textField'
-                      style={{ width: '30em', marginBottom: '2em' }}
+                    style={{ width: '30em', marginBottom: '2em' }}
                     name="Company"
                     onChange={event => handleFormChange(event, index)}
                     value={value}
@@ -133,7 +133,7 @@ function Experience() {
                   <TextField
                     id='title'
                     className='textField'
-                      style={{ width: '30em', marginBottom: '2em' }}
+                    style={{ width: '30em', marginBottom: '2em' }}
                     name="Title"
                     onChange={event => handleFormChange(event, index)}
                     value={value}
@@ -143,7 +143,7 @@ function Experience() {
                   <TextField
                     id='dates'
                     className='textField'
-                      style={{ width: '30em', marginBottom: '2em' }}
+                    style={{ width: '30em', marginBottom: '2em' }}
                     name="Dates"
                     onChange={event => handleFormChange(event, index)}
                     value={value}
@@ -154,25 +154,25 @@ function Experience() {
                     id='jobDuty'
                     minRows={10}
                     className='textField'
-                      style={{ width: '35em', marginBottom: '2em' }}
+                    style={{ width: '35em', marginBottom: '2em' }}
                     name="JobDuty"
                     onChange={event => handleFormChange(event, index)}
                     value={value}
                     maxRows={20}
                   />
-                 <Box sx={{display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%'}}>
-                  <Button sx={{marginRight: '10em', }} variant="contained" color="error" className='formButtons'  onClick={() => removeFields(index)}>Remove</Button>
-                  <Button sx={{marginRight: '10em', }} variant="contained" color="error" className='formButtons'  onClick={addFields}>Add More..</Button>
-                 </Box>
-                  
-                  
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
+                    <Button sx={{ marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
+                    <Button sx={{ marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={addFields}>add more</Button>
+                  </Box>
+
+
                   <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
                 </div>
               );
             })}
           </form>
-          </div>
-      
+        </div>
+
       </Box>
     </>
   );
