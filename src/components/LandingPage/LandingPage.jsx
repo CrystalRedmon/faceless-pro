@@ -37,23 +37,28 @@ function LandingPage() {
 
   return (
     <div className="mycontainer">
-      <Box><Typography variant = "h4">Mission & Values</Typography></Box>
+      <Box sx={{ marginLeft: 5, marginLeft: 5,
+  
+}}>
+      <Box><Typography variant = "h3">Welcome Faceless Pro</Typography> </Box>
+
+      <Box sx={{ marginBottom: 5, fontStyle: 'italic' }}>
+        <Typography variant = "h6">"Employment should be based on experience and not a person's identity."</Typography> </Box>
+</Box>
+      <Box sx = {{ml:5}}><Typography variant = "h5">Mission & Values</Typography></Box>
 <Box border = {3}
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        pl:3,
-        ml: 10, 
-        mt: 5,
-        width: 1500,
-        height: 125,
+        padding: 4,
+        margin: 7.5,
         backgroundColor: '#e0e0e0',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
         },
       }}>
-    <Typography className = "addBackground" sx={{ml: 0}} variant = 'h6' >
+    <Typography className = "addBackground" sx={{ml: 0}} variant = 'p' >
     Our mission is to eliminate discrimination during the application process.
 At Faceless Pro, we believe that the best candidate should be determined by
 skills and experience and not on physical attributes. 
@@ -61,15 +66,18 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
             </Typography>
             </Box>
 
-    <Box sx={{mt: 10, mb:10, ml:60}}> 
-    <Typography variant = "h4">Discrimination in the hiring process still persists today.</Typography>
+    <Box sx={{mt: 10, mb:10, ml:5}}> 
+    <Typography variant = "h5">Discrimination in the recruitment process still persists today.</Typography>
     </Box>
 
     <Stack
         direction="row"
         divider={<Divider orientation="vertical" flexItem />}
-        spacing={8}
-        marginBottom = {10}
+        spacing={1}
+        display = 'flex'
+        marginBottom = {20}
+        marginLeft = {5}
+        marginRight = {5}
       >
 
     <Box
@@ -77,18 +85,14 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        pl:3,
-        pr:3,
-        ml:25,
-        width: 310,
-        height: 300,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
         },
       }}>
-        <Typography variant = "h6" > A study by the Nuffield College’s Centre for Social Investigation (CSI), </Typography>
+        <Typography variant = "p" > A study by the Nuffield College’s Centre for Social Investigation (CSI), </Typography>
        
  <br></br>
  <br></br>
@@ -103,18 +107,14 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        pl:3,
-        pr:3,
-        ml:5,
-        width: 310,
-        height: 310,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
         },
       }}>
-        <Typography variant = "h6" > From a study done by Johannes Kepler University Linz in Austria, </Typography>
+        <Typography variant = "p" > From a study done by Johannes Kepler University Linz in Austria, </Typography>
        
  <br></br>
  <br></br>
@@ -129,18 +129,14 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       sx={{
         borderRadius: 2,
         boxShadow: 3,
-        pl:3,
-        pr:3,
-        ml:5,
-        width: 310,
-        height: 310,
+        padding: 4,
         backgroundColor: '#f9e5bc',
         '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
         },
       }}>
-        <Typography variant = "h6" > According to a study done by the Harvard Business Review, </Typography>
+        <Typography variant = "p" > According to a study done by the Harvard Business Review, </Typography>
        
  <br></br>
  <br></br>
@@ -153,13 +149,15 @@ Our vision is to provide a one-stop platform that solves all the problems encoun
       </Stack>
 
 
-    <Typography variant = "h4">Featured Jobs</Typography>
+    <Typography variant = "h5" sx = {{ml:5}}>Featured Jobs</Typography>
       <div className="grid">
         <div className="grid-col grid-col_8">
         <Stack
         direction="row"
-       marginLeft={30}
        marginTop={5}
+       display='flex'
+       justifyContent={'space-between'}
+
       //   spacing={50}
       //   marginBottom = {10}
       >

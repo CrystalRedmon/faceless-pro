@@ -165,6 +165,7 @@ function* addSkill(action) {
     console.log('action.payload Add skill', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/skill`, action.payload)
+        yield put({ type: 'FETCH_CANDIDATE_INFO'})
     }
     catch (error) {
         console.log('error adding skill', error)

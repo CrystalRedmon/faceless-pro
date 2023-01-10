@@ -17,9 +17,9 @@ function CandidateJobItem({ job }) {
     const user = useSelector(store => store.user);
     // const params = useParams();
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_SAVED_JOBS' });
-    }, []);
+    //  useEffect(() => {
+    //      dispatch({ type: 'FETCH_SAVED_JOBS' });
+    //  }, []);
 
     function submitSave() {
         dispatch({
