@@ -32,22 +32,26 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Avatar alt="Faceless Pro Logo" src="./images/clientLogo.png" sx={{ width: 50, height: 50 }} />
-      
-      <div className = "Faceless Pro">
-      {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Link to="/user">
-        <Typography className="nav-title" variant='h5' color='#f2f2f2'> Faceless Pro</Typography>
-      </Link>
-              :
-              // Otherwise, show the login page
-      <Link to="/home">
-        <Typography className="nav-title" variant='h5' color='#f2f2f2'> Faceless Pro</Typography>
-      </Link>
-            }
-          </div>
+      <Box sx={{display: 'flex', alignItems: 'center', marginLeft: 1}}>
+        <Avatar alt="Faceless Pro Logo" src="./images/clientLogo.png" sx={{ width: 50, height: 50, marginRight: 1 }} />
+
+        <div>
+          {user.id ?
+            // If the user is already logged in, 
+            // redirect to the /user page
+            <Link to="/user">
+              <Typography className="nav-title" variant='h5' color='#f2f2f2'> Faceless Pro</Typography>
+            </Link>
+            :
+            // Otherwise, show the login page
+            <Link to="/home">
+              <Typography className="nav-title" variant='h5' color='#f2f2f2'> Faceless Pro</Typography>
+            </Link>
+          }
+        </div>
+      </Box>
+
+
       
       <div>
         <Link className="navLink"
