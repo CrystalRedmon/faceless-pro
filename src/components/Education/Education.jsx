@@ -96,7 +96,7 @@ function Education() {
 
         {/* <CandidateBreadcrumb /> */}
         <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant='h3' style={{ marginTop: '1em' }}>Education</Typography>
-        <Typography variant="h6" style={{ marginTop: '2em' }}>This information will be shared with employers as part of your application.</Typography>
+        <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
         <Typography>Step 3 of 6</Typography>
 
         <div sx={{ marginTop: '5em' }} className="Education">
@@ -162,7 +162,7 @@ function Education() {
                 <Box sx={{display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%'}}>
                   <Button sx={{marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
                  
-                  <Button variant="contained" color="error" sx={{marginBottom: '3em'}} className='formButtons' onClick={addFields}>Add More..</Button>
+                  <Button variant="contained" color="error" sx={{marginBottom: '3em'}} className='formButtons' onClick={addFields}>add more</Button>
                </Box>
 
                 </div>

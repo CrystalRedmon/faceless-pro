@@ -89,7 +89,7 @@ function Skills() {
         <div className="Skill" style={{
         }}>
           <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateSkills' variant="h3">Skills</Typography>
-          <Typography variant='h6' style={{ marginTop: '2em' }}>This information will be shared with the employers</Typography>
+          <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
           <Typography>Step 5 of 6</Typography>
 
           <Box sx={{ marginTop: '5em' }}>
@@ -112,7 +112,7 @@ function Skills() {
 
             </form>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
-              <Button variant="contained" color="error" onClick={addFields}>Add More..</Button>
+              <Button variant="contained" color="error" onClick={addFields}>add more</Button>
               <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
             </Box>
           </Box>

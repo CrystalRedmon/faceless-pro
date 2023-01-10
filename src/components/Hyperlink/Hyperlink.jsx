@@ -84,8 +84,8 @@ function CandidateHyperLink() {
       <Box className='container'>
       <div className="Hyperlink" style={{
         }}>
-        <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h3">Portfolio/ External Links</Typography>
-        <Typography variant='h6' style={{ marginTop: '2em' }}>This information will be shared with the employers</Typography>
+        <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h3">Portfolio | External Links</Typography>
+          <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
         <Typography>Step 6 of 6</Typography>
 
         <Box sx={{ marginTop: '5em' }}>
@@ -107,7 +107,7 @@ function CandidateHyperLink() {
             })}
           </form>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
-            <Button variant="contained" color="error" onClick={addFields}>Add More..</Button>
+            <Button variant="contained" color="error" onClick={addFields}>add more</Button>
             <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
           </Box>
         </Box>
