@@ -29,14 +29,16 @@ function SavedJobsPage() {
   }
 
   return (
+    <>
       <Grid container spacing={2}>
 
-        <Grid item xs={2}></Grid>
+        <Grid item xs={2}>
+
+        </Grid>
         <Grid item xs={8}>
           <Grid item xs={8}>
             <Button variant='contained' onClick={() => { window.history.back() }}>Back</Button>
-            <h1>My Saved Jobs</h1>
-          </Grid>
+            <h1>My Saved Jobs</h1></Grid>
           <List>
             {savedJobsList.map((savedJob) =>
               <SavedJobItem key={savedJob.id} savedJob={savedJob} />
@@ -45,6 +47,7 @@ function SavedJobsPage() {
         </Grid>
         <Grid item xs={2}></Grid>
       </Grid>
+    </>
   );
 }
 

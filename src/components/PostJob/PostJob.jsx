@@ -155,14 +155,12 @@ function PostJob() {
                     <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
 
                     <form action="" id='jobPost'>
-                        <InputLabel htmlFor="">Title:</InputLabel>
+                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
                         <Input
                             type="text"
                             id='jobTitle'
-
-                            sx={{ borderRadius: '10em', marginBottom: 1 }}
+                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
                             value={params.id ? job.title : value}
-
                             onChange={(evt) => dispatch({
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
@@ -196,8 +194,7 @@ function PostJob() {
                             })} /> */}
 
                         <InputLabel htmlFor="">Description:</InputLabel>
-                        <TextField
-                            type="text"
+                        <TextField type="text"
                             id='jobDescription'
                             size='large'
                             multiline
