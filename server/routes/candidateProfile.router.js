@@ -315,7 +315,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     FROM "job_post"
     JOIN "employer"
       ON "job_post".employer_id = "employer".id
-    ORDER BY "job_post".id DESC;`;
+      ORDER BY random();`;
 
 
   pool.query(sqlTxt)

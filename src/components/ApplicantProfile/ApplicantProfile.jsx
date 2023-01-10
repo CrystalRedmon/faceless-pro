@@ -60,7 +60,6 @@ function ApplicantProfile() {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Connection established!', '', 'success')
-                history.push(`/message/${applicant.id}`)
                 dispatch({
                     type: 'UPDATE_APPLICATION_STATUS',
                     payload: {
