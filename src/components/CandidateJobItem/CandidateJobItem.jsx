@@ -85,7 +85,7 @@ function CandidateJobItem({ job }) {
 
                             <Box>
                                 {/* <Button variant='contained' color='error' onClick={ProfilePage}>complete your profile to view and apply</Button> */}
-                                <Button sx={{marginBottom: 1}} size='small' variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile</Button>
+                                {/* <Button sx={{marginBottom: 1}} size='small' variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile</Button> */}
                                 <Button variant='outlined' onClick={detailsPage}>View Job Details</Button>
                             </Box>
                         }

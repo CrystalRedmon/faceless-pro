@@ -22,11 +22,14 @@ import './CandidateLandingPage.css';
 import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
 import { Box, Grid, Button } from '@mui/material';
 import TextField from '@material-ui/core/TextField';
+import ErrorIcon from '@mui/icons-material/Error';
 
 function CandidateLandingPage() {
   const recentJobs = useSelector(store => store.candidateReducer.candidateJobs)
   const [keyword, setKeyword] = useState('');
   const [searchJobsClicked, setSearchJobsClicked] = useState(false);
+
+  const info = useSelector(store => store.candidateReducer.candidateInfo);
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -49,7 +52,12 @@ function CandidateLandingPage() {
 
   }
 
+  const ProfilePage = () => {
+    history.push(`/profile`)
+  }
+
   // console.log("This is the recent jobs", recentJobs);
+  console.log(info);
 
   return (
     <Grid
@@ -59,7 +67,14 @@ function CandidateLandingPage() {
       {/* top portion */}
       <Grid item xs={0.5}></Grid>
       <Grid item xs={11}>
-        <h1>Search Jobs</h1>
+        <Box sx={{display: 'flex', alignItems: 'center'}}>
+          <h1>Search Jobs</h1>
+
+          {info.id ? <></> :
+            <Button sx={{ height: '30px', marginLeft: 1 }} variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile to save and apply to job postings</Button>
+          }
+
+        </Box>
 
         <form>
           <TextField placeholder="Search" value={keyword} onChange={handleKeyword}></TextField>
@@ -68,7 +83,7 @@ function CandidateLandingPage() {
             variant='contained'
             color='secondary'
             onClick={onSubmitKeyword}
-            sx={{marginRight: 1, marginLeft: 1}}
+            sx={{ marginRight: 1, marginLeft: 1 }}
           >
             search
           </Button>
