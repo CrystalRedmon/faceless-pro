@@ -23,10 +23,9 @@ function CandidateLandingPage() {
 
   const handleKeyword = (evt) => {
     setKeyword(evt.target.value)
-    console.log(evt)
   }
   function onSubmitKeyword() {
-    console.log("keyword", keyword);
+
     setSearchJobsClicked(true)
     dispatch({
       type: 'FETCH_SEARCHED_JOBS',
@@ -48,7 +47,7 @@ function CandidateLandingPage() {
       {/* top portion */}
       <Grid item xs={0.5}></Grid>
       <Grid item xs={11}>
-        <Box sx={{display: 'flex', alignItems: 'center'}}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <h1>Search Jobs</h1>
 
           {info.id ? <></> :

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams, Link } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { InputLabel, Button, Grid, Input, TextField } from "@mui/material"
 
 function PostJob() {
@@ -25,8 +25,6 @@ function PostJob() {
             })
         }
     }, [params.id])
-
-
 
 
     // onSubmit will send info info to save_job saga whether it is add or edit
@@ -54,7 +52,6 @@ function PostJob() {
             });
             // if employer is adding back will take them to job list view
         } else {
-
             history.push(`/jobList`);
         }
 

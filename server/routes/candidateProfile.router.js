@@ -341,7 +341,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log(dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);

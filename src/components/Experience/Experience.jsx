@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Typography, InputLabel, Box } from '@mui/material';
-
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    marginBottom: theme.spacing(2),
-  },
-}));
 
 function Experience() {
   const history = useHistory();
@@ -35,7 +22,6 @@ function Experience() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({

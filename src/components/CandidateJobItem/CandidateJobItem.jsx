@@ -1,7 +1,7 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
-import { Card, Grid, CardContent, Typography, Button } from '@mui/material';
+import { Card, CardContent, Typography, Button } from '@mui/material';
 import Box from '@mui/material/Box';
 
 import './CandidateJobItem.css';
@@ -12,7 +12,6 @@ function CandidateJobItem({ job }) {
     const dispatch = useDispatch();
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
     const info = useSelector(store => store.candidateReducer.candidateInfo);
-    const user = useSelector(store => store.user);
 
     //  useEffect(() => {
     //      dispatch({ type: 'FETCH_SAVED_JOBS' });

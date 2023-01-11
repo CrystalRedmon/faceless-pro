@@ -14,16 +14,6 @@ function ApplicantNotSharedInfo({ applicant }) {
             <Grid item xs={2}></Grid>
             <Grid item xs={8} sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', marginTop: 5 }}>
                 <Box>
-                    {/* {applicant.status_and_identifier[0].status != 'shared' &&
-                        <Box>
-                            <Typography sx={{ textAlign: "center" }}>
-                                <h3>Applicant's anonymous information</h3>
-                            </Typography>
-                            <Typography sx={{ display: "flex" }}>
-                                Name: {applicant.status_and_identifier[0].random_identifier}
-                            </Typography>
-                        </Box>
-                    } */}
                     <Box>
                         <Typography sx={{ textAlign: "center" }}>
                             <h3>Applicant's anonymous information</h3>

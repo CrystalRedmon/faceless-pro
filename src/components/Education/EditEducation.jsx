@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
-function EditEducation () {
+function EditEducation() {
   const education = useSelector(store => store.education);
   const dispatch = useDispatch();
 

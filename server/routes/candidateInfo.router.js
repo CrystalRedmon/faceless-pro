@@ -155,55 +155,9 @@ router.post('/:id/application', rejectUnauthenticated, (req, res) => {
     });
 });
 
-
-
-
-
-
-
-//  COMMENTS OUT JOB APPLICATION JUST IN CASE...
-//  router.post('/:id', (req, res) => {
-
-//   console.log('req.params.id',req.body);
-//   console.log('req.user.user_info.id',req.user.user_info.id)
-//   console.log('req.params.id',req.user.user_info.id)
-
-
-//   const sqlTxt =`
-//   INSERT INTO "application"
-//   ("candidate_id","job_post_id") 
-//   VALUES ($1,$2);;`;
-
-//   pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
-//     .then(dbRes => {
-//       res.send(dbRes.rows);
-//       console.log(dbRes.rows);
-//     })
-//     .catch(error => {
-//       res.sendStatus(500);
-//       console.log('Delete Saved Jobs Failed: ', error);
-//     })
-// });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //PUT Candidate Profile
 router.put('/:id', rejectUnauthenticated, (req, res) => {
-  console.log('Candidate14: ', req.user, req.body)
+
   const sqlTxt = `UPDATE "candidate"
                     SET "first_name" = $1,
                     "last_name" = $2,
@@ -226,7 +180,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(result => {
       res.sendStatus(200);
-      console.log('PUT candidate info successful');
     })
     .catch(error => {
       res.sendStatus(500);
@@ -237,7 +190,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
 
 router.put('/info/:id', rejectUnauthenticated, (req, res) => {
 
-  console.log('Candidate14: ', req.user, req.params.id)
   const sqlTxt = `
   UPDATE "application"
   SET "status" = 'shared'
@@ -251,7 +203,6 @@ router.put('/info/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(result => {
       res.sendStatus(200);
-      console.log('PUT candidate info successful');
     })
     .catch(error => {
       res.sendStatus(500);
@@ -259,9 +210,5 @@ router.put('/info/:id', rejectUnauthenticated, (req, res) => {
     })
 
 });
-
-
-
-
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Box, TextField, TextareaAutosize } from '@material-ui/core';
 import { Typography } from '@mui/material';
@@ -8,8 +8,6 @@ function Education() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const editedEducation = useSelector(store => store.candidateReducer.editEducation);
-  const info = useSelector(store => store.candidateReducer.candidateInfo);
   const [formFields, setFormFields] = useState([
     { School: '', Major: '', Dates: '', Notes: '' },
   ])
@@ -22,7 +20,6 @@ function Education() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({

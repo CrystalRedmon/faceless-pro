@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
-
 import TextField from '@mui/material/TextField';
-
 
 function EmployerForm() {
     const dispatch = useDispatch();
@@ -40,7 +38,7 @@ function EmployerForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <TextField required value={companyName} onChange={(event) => {setCompanyName(event.target.value)} } label="company name" />
+            <TextField required value={companyName} onChange={(event) => { setCompanyName(event.target.value) }} label="company name" />
             <TextField required value={companyAddress} onChange={(event) => { setCompanyAddress(event.target.value) }} label="company address" />
             <TextField required value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
             <TextField required value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
