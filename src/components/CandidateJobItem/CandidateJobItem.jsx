@@ -1,10 +1,8 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react'
-import UserPage from '../UserPage/UserPage';
 import { Card, Grid, CardContent, Typography, Button } from '@mui/material';
 import Box from '@mui/material/Box';
-import ErrorIcon from '@mui/icons-material/Error';
 
 import './CandidateJobItem.css';
 
@@ -15,7 +13,6 @@ function CandidateJobItem({ job }) {
     const savedJobsList = useSelector(store => store.candidateReducer.saveJobs)
     const info = useSelector(store => store.candidateReducer.candidateInfo);
     const user = useSelector(store => store.user);
-    // const params = useParams();
 
     //  useEffect(() => {
     //      dispatch({ type: 'FETCH_SAVED_JOBS' });
@@ -84,8 +81,6 @@ function CandidateJobItem({ job }) {
                             :
 
                             <Box>
-                                {/* <Button variant='contained' color='error' onClick={ProfilePage}>complete your profile to view and apply</Button> */}
-                                {/* <Button sx={{marginBottom: 1}} size='small' variant='contained' color='error' startIcon={<ErrorIcon />} onClick={ProfilePage}>complete your profile</Button> */}
                                 <Button variant='outlined' onClick={detailsPage}>View Job Details</Button>
                             </Box>
                         }

@@ -1,14 +1,7 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, Link } from "react-router-dom";
-import EmployerJobList from "../EmployerJobList/EmployerJobList";
-import { TextareaAutosize } from "@material-ui/core";
 import { InputLabel, Button, Grid, Input, TextField } from "@mui/material"
-
-
-
-
-
 
 function PostJob() {
     const dispatch = useDispatch();
@@ -16,14 +9,11 @@ function PostJob() {
     const params = useParams();
     const job = useSelector(store => store.jobs.editJob);
 
-    console.log('edit this job: ', job)
-
-
     // gets the job info if there is a /:id in url.
     // this allows the component to be used as a form to add and edit job post
 
     useEffect(() => {
-        console.log('paramssss', params.id)
+
         if (params.id) {
             dispatch({
                 type: 'FETCH_EDIT_JOB',
@@ -54,9 +44,9 @@ function PostJob() {
     let value;
 
 
-    //handles back button.
+    // handles back button.
     const handleBack = () => {
-        //if employer is editing back will take them to details view
+        // if employer is editing back will take them to details view
         if (params.id) {
             history.push(`/details/${job.id}`);
             dispatch({
@@ -66,7 +56,6 @@ function PostJob() {
         } else {
 
             history.push(`/jobList`);
-
         }
 
     }
@@ -167,33 +156,6 @@ function PostJob() {
                                 type: 'UPDATE_EDIT_JOB',
                                 payload: { title: evt.target.value }
                             })} />
-
-                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
-
-
-                    {/* <form action="" id='jobPost'>
-                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
-                        <Input
-                            id='jobTitle'
-                            type="text"
-                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            value={params.id ? job.title : value} */}
-
-                        {/* <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2> */}
-
-
-                        {/* <form action="" id='jobPost'>
-                        <InputLabel sx={{ marginTop: 5 }} htmlFor="">Title:</InputLabel>
-                        <Input
-                            id='jobTitle'
-                            type="text"
-                            sx={{ borderRadius: '10em', marginBottom: '3em' }}
-                            value={params.id ? job.title : value} */}
-
-                        {/* onChange={(evt) => dispatch({
-                                type: 'UPDATE_EDIT_JOB',
-                                payload: { title: evt.target.value }
-                            })} /> */}
 
                         <InputLabel htmlFor="">Description:</InputLabel>
                         <TextField

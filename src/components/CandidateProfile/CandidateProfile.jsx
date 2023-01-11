@@ -8,7 +8,6 @@ import './CandidateProfile.css'
 const useStyles = makeStyles({
   form: {
     display: 'flex',
-    // alignItems: 'center',
     flexDirection: 'column',
   },
 });
@@ -40,7 +39,7 @@ function CandidateProfile() {
 
   const submit = (event) => {
     event.preventDefault();
-    console.log("i'm here in submit")
+
     dispatch({
       type: 'ADD_PROFILE',
       payload: formData
@@ -70,7 +69,6 @@ function CandidateProfile() {
 
       })
 
-      console.log('This is the formData', formData);
     })
   };
 

@@ -11,7 +11,7 @@ function RegisterForm() {
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
-  function secretButton(){
+  function secretButton() {
     setUsername('FadumaSiyad')
     setPassword('123456')
   }
@@ -62,7 +62,7 @@ function RegisterForm() {
         </label>
       </div>
       <div>
-        <input id = 'registerbtn' className="btn" type="submit" name="submit" value="Register" />
+        <input id='registerbtn' className="btn" type="submit" name="submit" value="Register" />
       </div>
     </form>
   );

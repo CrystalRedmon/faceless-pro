@@ -1,7 +1,5 @@
 import EmployerJobList from "../EmployerJobList/EmployerJobList";
 import EmployerForm from "../EmployerForm/EmployerForm";
-import EmployerProfilePage from "../EmployerProfilePage/EmployerProfilePage";
-import EmployerHomepage from "../EmployerHomepage/EmployerHomepage";
 import { useSelector } from 'react-redux';
 
 

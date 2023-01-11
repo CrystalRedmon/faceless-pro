@@ -1,9 +1,6 @@
-import { useHistory, useParams, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { TableCell, Button, Card, Grid, CardContent, Typography } from '@mui/material';
-import { useEffect } from 'react'
-import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
-import { PanoramaSharp } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Button, Card, CardContent } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Box from '@mui/material/Box';
@@ -13,8 +10,6 @@ import Swal from 'sweetalert2';
 function EmployerJobItem({ job }) {
     const history = useHistory();
     const dispatch = useDispatch();
-    // const params = useParams();
-
 
     const handleView = () => {
         history.push(`/details/${job.id}`)
@@ -47,8 +42,6 @@ function EmployerJobItem({ job }) {
     }
     
     return <>
-
-
         <Card variant="outlined" sx={{ margin: 2, boxShadow: 3 }}>
             <CardContent>
                 <h2>{job.title}</h2>
@@ -59,18 +52,6 @@ function EmployerJobItem({ job }) {
                 </Box>
             </CardContent>
         </Card>
-        {/* <tr>
-            <td>{job.title}</td>
-            <td>
-                <Button variant='contained' onClick={handleView}>Details</Button>
-            </td>
-            <td>
-                <Button variant='contained' onClick={handleViewApplicants}>View Applicants</Button>
-            </td>
-            <td>
-                <Button variant='contained' onClick={handleDeleteItem}>Delete</Button>
-            </td>
-        </tr> */}
     </>
 }
 

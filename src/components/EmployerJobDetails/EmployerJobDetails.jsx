@@ -1,7 +1,7 @@
-import { useParams, useHistory, Link } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Grid, Button, Typography } from "@mui/material";
+import { Grid, Button } from "@mui/material";
 import { Box } from '@material-ui/core';
 
 
@@ -11,16 +11,13 @@ function EmployerJobDetails() {
     const dispatch = useDispatch();
     const history = useHistory();
     const job = useSelector(store => store.jobs.currentJob);
-    // console.log('current job details: ', job);
 
-    //FETCH CURRENT JOB WITH PARAMS ID
+    // FETCH CURRENT JOB WITH PARAMS ID
     useEffect(() => {
         dispatch({
             type: 'FETCH_CURRENT_JOB_POST',
             payload: `${params.id}`
         })
-        // console.log(params.id)
-
     }, [])
 
 
@@ -32,13 +29,11 @@ function EmployerJobDetails() {
         history.push(`/job/${params.id}/edit`)
     }
 
-
     return (
-        <>
             <Grid container spacing={2} >
                 <Grid item xs={3}></Grid>
                 <Grid item xs={6}>
-                    
+
                     <Box sx={{ display: 'flex' }}>
                         <Button sx={{ marginRight: 1 }} variant='contained' onClick={handleBack}>Back</Button>
                         <Button variant='contained' onClick={handleEdit}>Edit</Button>
@@ -51,7 +46,6 @@ function EmployerJobDetails() {
                 </Grid>
                 <Grid item xs={3}></Grid>
             </Grid>
-        </>
     );
 }
 

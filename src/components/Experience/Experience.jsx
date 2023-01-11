@@ -6,8 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Typography, InputLabel, Box } from '@mui/material';
-import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
-
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -22,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Experience() {
-  const classes = useStyles();
   const history = useHistory();
   const dispatch = useDispatch();
 

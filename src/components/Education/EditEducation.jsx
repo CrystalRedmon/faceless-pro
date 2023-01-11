@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Input } from '@material-ui/core';
 
 function EditEducation () {
   const education = useSelector(store => store.education);
-  console.log('education object:', education);
   const dispatch = useDispatch();
 
   const [formFields, setFormFields] = useState({
@@ -16,7 +14,6 @@ function EditEducation () {
   });
 
   const handleFormChange = (event) => {
-    console.log('in handleformChange')
     // setFormFields({
     //   ...formFields,
     //   [event.target.name]: event.target.value
@@ -25,7 +22,6 @@ function EditEducation () {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     dispatch({
       type: 'EDIT_EDUCATION',
