@@ -1,0 +1,10 @@
+Functional Issues
+1. Cannot edit profile as a candidate.
+2. SQL is not completed/correct for fetching the candidates info on the /CandidatePage and clicking 'My Profile' in nav bar.
+3. No way to check if a candidate has completed their profile to apply to a job. Candidate only needs to complete information in the candidate table in the database. It will not render correctly for the employer if they have not completed the required steps 1 - 6.
+4. Refreshing the page or going back to view job details for the candidate breaks the app.
+5. Candidates can apply to the same job post as many times as they want.
+6. Saving a job does not remove it from the search for job page.
+7. As a candidate user, getting the 'complete your profile to save and apply to job postings' button prompt is not correct even if they have done so. Page needs to be refreshed.
+8. Candidates can go through the profile setup as many times as they want. There is nothing preventing them from INSERTING multiple rows with their user id in the candidate table.
+9. Candidates must completed step 1, which inserts into the candidate table, in order to add their resume and cover letter.

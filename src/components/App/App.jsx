@@ -5,17 +5,11 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -25,15 +19,12 @@ import ContactUsPage from '../ContactUsPage/ContactUsPage';
 import PostJob from '../PostJob/PostJob';
 import EmployerJobList from '../EmployerJobList/EmployerJobList';
 import EmployerJobDetails from '../EmployerJobDetails/EmployerJobDetails';
-
 import StartProfile from '../StartProfile/StartProfile';
 import ProfileCreation from '../ProfileCreation/ProfileCreation';
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import Education from '../Education/Education';
 import Experience from '../Experience/Experience';
 import Skills from '../Skills/Skills';
 import CandidateProfile from '../CandidateProfile/CandidateProfile';
-import Voluntary from '../Voluntary/Voluntary';
 import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import CandidateLandingPage from '../CandidateLandingPage/CandidateLandingPage';
 import EmployerLandingPage from '../EmployerLandingPage/EmployerLandingPage';
@@ -41,23 +32,14 @@ import SavedJobsPage from '../SavedJobsPage/SavedJobsPage';
 import CandidateAppliedJobsPage from '../CandidateAppliedJobsPage/CandidateAppliedJobsPage';
 import ViewApplicantsPage from '../ApplicantsPage/ApplicantsPage';
 import EmployerProfilePage from '../EmployerProfilePage/EmployerProfilePage';
-
 import ApplicantProfile from '../ApplicantProfile/ApplicantProfile';
 import CandidateJobDetails from '../CandidateJobDetails/CandidateJobDetails';
 import CandidateHyperLink from '../Hyperlink/Hyperlink';
 import ResumeCoverLetter from '../ResumeCoverLetter/ResumeCoverLetter';
-
-//import CandidateProfilePage from '../CandidateProfilePage/CandidateProfilePage';
 import CandidateHomepage from '../CandidateHomepage/CandidateHomepage';
-
 import Message from '../../Message/Message';
-import EditCandidateProfile from '../EditCandidateProfile/EditCandidateProfile';
-import EditEducation from '../Education/EditEducation';
+
 import './App.css';
-import Hyperlink from '../ApplicantProfile/Hyperlink';
-import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -71,14 +53,6 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-  //   useEffect(() => {
-  //     dispatch({
-  //         type: 'FETCH_CANDIDATE_INFO',
-  //     })
-  // }, [])
-  const info = useSelector(store => store.candidateReducer.candidateInfo);
-
-  console.log('info', info)
   return (
     <Router>
       <div id="main">
@@ -91,9 +65,6 @@ function App() {
             exact
             path="/profile"
           >
-
-
-
             <CandidateProfile />
 
           </ProtectedRoute>
@@ -103,7 +74,6 @@ function App() {
             path="/hyperlink"
           >
             <CandidateHyperLink />
-
           </ProtectedRoute>
 
 
@@ -134,7 +104,6 @@ function App() {
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
             exact
             path="/user"
           >
@@ -153,17 +122,7 @@ function App() {
               :
               <></>
             }
-
           </ProtectedRoute>
-
-
-          {/* <ProtectedRoute
-            //
-            exact
-            path="/CandidateLandingPage"
-          >
-            <CandidateLandingPage />
-          </ProtectedRoute> */}
 
           <ProtectedRoute
             //
@@ -174,30 +133,14 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
             exact
             path="/CandidateJobDetails/:id"
           >
             <CandidateJobDetails />
           </ProtectedRoute>
 
+          <ProtectedRoute
 
-          {/* <ProtectedRoute
-            exact
-            path="/CandidateProfile"
-          >
-            <CandidateProfile />
-          </ProtectedRoute> */}
-{/* 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/user/editCandidate"
-          >
-            <CandidateProfilePage />
-          </ProtectedRoute>  */}
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/CandidatePage"
           >
@@ -205,7 +148,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+
             exact
             path="/user/employerhomepage"
           >
@@ -213,14 +156,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/ProfileCreation"
           >
@@ -229,7 +164,6 @@ function App() {
 
 
           <ProtectedRoute
-            // logged in shows supplies details based on supplies.id
             exact
             path="/details/:id"
           >
@@ -251,35 +185,13 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/jobForm"
           >
             <PostJob />
           </ProtectedRoute>
 
-
-          {/* <ProtectedRoute
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/job"
-          >
-            <Breadcrumbs /> */}
-          {/* </ProtectedRoute> */}
-
-
-
-          {/* <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/Breadcrumbs"
-          >
-            <Breadcrumbs />
-          </ProtectedRoute> */}
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/job/:id/edit"
           >
@@ -287,14 +199,12 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/jobList"
           >
             <EmployerJobList />
           </ProtectedRoute>
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
 
             path="/StartProfile"
@@ -316,7 +226,6 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path="/Breadcrumbs"
 
@@ -326,7 +235,6 @@ function App() {
 
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
             exact
             path='/user/editprofile'
 
@@ -368,14 +276,7 @@ function App() {
           >
             <LandingPage />
           </Route>
-          {/* <ProtectedRoute exact path="/Education">
-            {education.id === 0 ?  
-              <Education />
-              :
-              <EditEducation />
-            }
-            </ProtectedRoute> */}
-          
+
           <ProtectedRoute exact path="/ResumeCoverLetter">
             <ResumeCoverLetter />
           </ProtectedRoute>
@@ -391,18 +292,6 @@ function App() {
           <ProtectedRoute exact path="/Skills">
             <Skills />
           </ProtectedRoute>
-          {/*
-          <ProtectedRoute>
-            <Breadcrumbs />
-            <Route path="/CandidateProfile" exact component={CandidateLandingPage} />
-            <Route path="/Education" exact component={Education} />
-            <Route path="/Experience" component={Experience} />
-            <Route path="/Skills" component={Skills} />
-            <Route path="/VoluntaryIdentification" component={Voluntary} />
-          </ProtectedRoute>
-          */}
-
-
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

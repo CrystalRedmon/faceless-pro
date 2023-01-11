@@ -3,7 +3,6 @@ const skills = (state = [], action) => {
         return action.payload
     }
     return state;
-  }
+}
 
-
-  export default skills;
+export default skills;

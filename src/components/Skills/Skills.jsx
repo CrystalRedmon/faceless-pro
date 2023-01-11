@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Typography, Box, } from '@mui/material';
-import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 
@@ -25,7 +24,6 @@ function Skills() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({
@@ -42,7 +40,6 @@ function Skills() {
     let object = {
       Skill: '',
     };
-
     setFormFields([...formFields, object]);
   };
 
@@ -62,25 +59,13 @@ function Skills() {
       // Set the value of the form fields
       form.skill.value = "Effective Communication";
 
-      console.log('This is the formData', formFields);
-
       setFormFields([
-
         {
           Skill: "Effective Communication",
 
         }])
-
-
-
     })
   };
-
-
-  let value;
-
-
-
 
   return (
     <>

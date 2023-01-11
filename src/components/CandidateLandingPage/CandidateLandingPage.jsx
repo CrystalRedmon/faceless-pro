@@ -1,24 +1,6 @@
-// import CandidateProfile from "../CandidateProfile/CandidateProfile";
-// import CandidateProfilePage from "../CandidateProfilePage/CandidateProfilePage";
-// import { useSelector } from 'react-redux';
-
-
-// function CandidateLandingPage() {
-//     const user = useSelector((store) => store.user);
-
-//     // They should only be able to view info. 
-//     return (
-//         <>
-//             {user.user_info != null ? <CandidateProfilePage /> : <CandidateProfile />}
-//         </>
-//     );
-// }
-
-// export default CandidateLandingPage
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import './CandidateLandingPage.css';
 import CandidateJobItem from '../CandidateJobItem/CandidateJobItem';
 import { Box, Grid, Button } from '@mui/material';
 import TextField from '@material-ui/core/TextField';
@@ -45,7 +27,7 @@ function CandidateLandingPage() {
   }
   function onSubmitKeyword() {
     console.log("keyword", keyword);
-    setSearchJobsClicked(true) // This is called a not operator '!'
+    setSearchJobsClicked(true)
     dispatch({
       type: 'FETCH_SEARCHED_JOBS',
       payload: keyword
@@ -57,8 +39,6 @@ function CandidateLandingPage() {
     history.push(`/profile`)
   }
 
-  // console.log("This is the recent jobs", recentJobs);
-  console.log(info);
 
   return (
     <Grid
@@ -110,9 +90,6 @@ function CandidateLandingPage() {
           <CandidateJobItem key={job.id} job={job} />
         )}
       </Grid>
-      {/* <Grid item xs={6}>
-          {searchJobsClicked ? <h3>Searched Jobs</h3> : <></>}
-        </Grid> */}
       <Grid item xs={0.5}></Grid>
     </Grid>
   );

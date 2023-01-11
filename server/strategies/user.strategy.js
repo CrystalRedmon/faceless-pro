@@ -22,15 +22,10 @@ passport.deserializeUser((id, done) => {
       // Handle Errors
       let user = result && result.rows && result.rows[0];
       
-      // if (user.user_type === "employer")
-      //   pool
-      //     .query('SELECT * FROM "user" JOIN "employer" ON "user".id = "employer".user_id WHERE "user".id = $1', [id])
-      //     .then((result) => {
-          
-      //     })
       if (user) {
         // user found
-        delete user.password; // remove password so it doesn't get sent Daniel - THIS IS EXTRA! 😀
+        delete user.password;
+        // remove password so it doesn't get sent
         // done takes an error (null in this case) and a user
         done(null, user);
       } else {
@@ -39,8 +34,6 @@ passport.deserializeUser((id, done) => {
         // this will result in the server returning a 401 status code
         done(null, null);
       }
-
-      // console.log('The only console', user);
     })
     .catch((error) => {
       console.log('Error with query during deserializing user ', error);

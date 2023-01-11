@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import UserTypeChoice from '../UserTypeChoice/UserTypeChoice';
 import { useDispatch } from 'react-redux';
 import EmployerJobItem from '../EmployerJobItem/EmployerJobItem';
-import { useHistory, Link } from 'react-router-dom';
-import { InputLabel, Button, Grid, Typography } from "@mui/material"
-import Box from '@mui/material/Box';
+import { useHistory } from 'react-router-dom';
+import { Button, Grid, Typography } from "@mui/material"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
@@ -18,8 +16,6 @@ function EmployerJobList() {
     useEffect(() => {
         dispatch({ type: 'FETCH_JOBS' });
     }, []);
-
-    // console.log('all of the jobs', jobs);
 
     const handleAddJob = () => {
         history.push('/jobForm')
@@ -49,23 +45,6 @@ function EmployerJobList() {
                 {jobs.map(job =>
                     <EmployerJobItem key={job.id} job={job} />
                 )}
-
-                {/* <table width='100%'>
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {jobs.map(job =>
-                            <EmployerJobItem key={job.id} job={job} />
-                        )}
-                    </tbody>
-                </table> */}
-
             </Grid>
 
             <Grid item xs={0.5}></Grid>

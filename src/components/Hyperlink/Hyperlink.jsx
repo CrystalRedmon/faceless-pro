@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { InputLabel, Typography, Box } from '@mui/material';
-import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
+import { Typography, Box } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 
@@ -24,7 +23,6 @@ function CandidateHyperLink() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({
@@ -60,65 +58,53 @@ function CandidateHyperLink() {
       // Set the value of the form fields
       form.hyperlink.value = "github.com/coffeecoder";
 
-      console.log('This is the formData', formFields);
-
       setFormFields([
         {
           Skill: "github.com/fsiyad",
         }])
-
     })
   };
 
 
   let value;
 
-
-
-
-
-
   return (
     <>
       {/* <CandidateBreadcrumb /> */}
       <Box className='container'>
-      <div className="Hyperlink" style={{
+        <div className="Hyperlink" style={{
         }}>
-        <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h3">Portfolio | External Links</Typography>
+          <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h3">Portfolio | External Links</Typography>
           <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
-        <Typography>Step 6 of 6</Typography>
+          <Typography>Step 6 of 6</Typography>
 
-        <Box sx={{ marginTop: '5em' }}>
-          <form id='candidateHyperlink' onSubmit={submit}>
-            {formFields.map((form, index) => {
-              return (
-                <div key={index}>
-                  <TextField
-                    className='textField'
-                    style={{ width: '20em', marginBottom: '2em', marginRight: '2em' }}
-                    id='hyperlink'
-                    name="Hyperlink"
-                    onChange={event => handleFormChange(event, index)}
-                    value={value}
-                  />
-                  <IconButton onClick={() => removeFields(index)}><DeleteIcon /></IconButton>
-                </div>
-              );
-            })}
-          </form>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
-            <Button variant="contained" color="error" onClick={addFields}>add more</Button>
-            <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
+          <Box sx={{ marginTop: '5em' }}>
+            <form id='candidateHyperlink' onSubmit={submit}>
+              {formFields.map((form, index) => {
+                return (
+                  <div key={index}>
+                    <TextField
+                      className='textField'
+                      style={{ width: '20em', marginBottom: '2em', marginRight: '2em' }}
+                      id='hyperlink'
+                      name="Hyperlink"
+                      onChange={event => handleFormChange(event, index)}
+                      value={value}
+                    />
+                    <IconButton onClick={() => removeFields(index)}><DeleteIcon /></IconButton>
+                  </div>
+                );
+              })}
+            </form>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
+              <Button variant="contained" color="error" onClick={addFields}>add more</Button>
+              <Button className='formButtons' variant="contained" color="primary" onClick={submit}>Next</Button>
+            </Box>
           </Box>
-        </Box>
-      </div>
+        </div>
       </Box>
     </>
   );
-
-
-
-
 }
 
 

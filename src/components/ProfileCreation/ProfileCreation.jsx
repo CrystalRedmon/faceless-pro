@@ -1,8 +1,6 @@
 import {
   BrowserRouter as Router,
-  Route,
-  Link,
-  useRouteMatch
+  Route
 } from "react-router-dom";
 
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";

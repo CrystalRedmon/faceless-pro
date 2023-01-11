@@ -1,6 +1,5 @@
-import { useParams, useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -10,11 +9,7 @@ import Swal from 'sweetalert2';
 
 function CandidateAppliedItem({ job }) {
     const history = useHistory();
-    const params = useParams();
     const dispatch = useDispatch();
-
-    console.log('each job', job);
-    // console.log('each jobDetailsId', jobDetailsId); // undefined
 
     function handleShare() {
         Swal.fire({
@@ -48,7 +43,8 @@ function CandidateAppliedItem({ job }) {
                             <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}                        </Box>
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}
+                        </Box>
                         <Box>
                             {/* Status: {job.status} */}
                             <b>Under review</b>
@@ -108,10 +104,6 @@ function CandidateAppliedItem({ job }) {
                                 variant="contained"
                                 color="success"
                                 onClick={() => {
-                                    // dispatch({
-                                    //   type: "SET_JOB_MESSAGE",
-                                    //   payload: job.id,
-                                    // });
                                     history.push(`/message/${job.application_id}`);
                                     // console.log("job", job.application_id);
                                 }}
@@ -156,10 +148,6 @@ function CandidateAppliedItem({ job }) {
                                 color="success"
                                 sx={{ marginBottom: 1 }}
                                 onClick={() => {
-                                    // dispatch({
-                                    //   type: "SET_JOB_MESSAGE",
-                                    //   payload: job.id,
-                                    // });
                                     history.push(`/message/${job.application_id}`);
                                     // console.log("job", job.application_id);
                                 }}
@@ -181,7 +169,8 @@ function CandidateAppliedItem({ job }) {
                             <b>Job Title:</b> {job.title}
                         </Box>
                         <Box sx={{ marginTop: 1, marginBottom: 1 }}>
-                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}                        </Box>
+                            <b>Applied on:</b> {new Date(job.time).toLocaleString()}
+                        </Box>
                         <Box>
                             {/* Status: {job.status} */}
                             <b>You were not selected for this position</b>

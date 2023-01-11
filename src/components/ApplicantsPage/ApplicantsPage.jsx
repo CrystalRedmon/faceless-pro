@@ -19,8 +19,6 @@ function ViewApplicantsPage() {
         })
     }, [])
 
-    // console.log('the applicants', applicants);
-
     const handleBack = () => {
         history.push('/jobList');
     }

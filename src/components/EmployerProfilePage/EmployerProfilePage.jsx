@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Grid from "@mui/material/Grid";
 import { Link } from 'react-router-dom';
@@ -36,7 +35,6 @@ function EmployerProfilePage() {
 
         history.push('/user')
     }
-    // console.log('THE EMPLOYER INFO', employer);
 
     return (
         <Box>
@@ -48,8 +46,6 @@ function EmployerProfilePage() {
                     <h1>
                         Edit Your Employer Profile
                     </h1>
-
-
 
                     <form>
                         <Grid
@@ -112,18 +108,7 @@ function EmployerProfilePage() {
                                     })}
                                 />
                             </Grid>
-
-                            {/* <Grid item xs={6}>
-                                <TextField
-                                    label="Upload Logo"
-                                    value={String(employer.logo_path)}
-                                    onChange={(evt) => dispatch({
-                                        type: 'UPDATE_EDIT_EMPLOYER',
-                                        payload: { logo_path: evt.target.value }
-                                    })}
-                                />
-
-                            </Grid> */}
+                            
                             <Grid item xs={12}>
                                 <TextField
                                     label="Company Description"

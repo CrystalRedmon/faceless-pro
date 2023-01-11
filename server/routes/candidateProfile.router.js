@@ -1,16 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const axios = require('axios');
-const { response } = require('express');
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 require('dotenv').config();
 
 router.get('/profile', rejectUnauthenticated, (req, res) => {
-  console.log("in candidateProfile");
-  console.log('THE req.user.user_info.user_id', req.user.user_info.user_id);
-
-  // FIX!!!!
+  // SQL is not correct for GET query at this time.
 
   const sqlTxt = `
                   SELECT 
@@ -32,7 +27,6 @@ router.get('/profile', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlTxt, [req.user.user_info.user_id])
     .then(dbRes => {
-      console.log(dbRes.rows[0]);
       res.send(dbRes.rows[0]);
     })
     .catch(error => {
@@ -41,14 +35,9 @@ router.get('/profile', rejectUnauthenticated, (req, res) => {
     })
 });
 
-//POST Candidate Profile information 
+// POST Candidate Profile information 
 router.post('/profile', rejectUnauthenticated, (req, res) => {
   // POST route code here
-  console.log("IN Candidate POST")
-  // const sqlText = `
-  // INSERT INTO "candidate" 
-  // (user_id, first_name, last_name,email,linkedin_link, resume_path, cover_letter_path) 
-  // VALUES ($1, $2, $3, $4, $5, $6,$7)`;
   const sqlText = `
   INSERT INTO "candidate" 
   (user_id, first_name, last_name,email,linkedin_link) 
@@ -69,7 +58,7 @@ router.post('/profile', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET education for candidate.
+// GET education for candidate.
 router.get('/education', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "education"
@@ -77,21 +66,17 @@ router.get('/education', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
-      // console.log('result is:',result.rows)
       res.send(result.rows[0])
-      console.log(result.rows);
     })
     .catch((error) => {
       console.log('error fetching items from education', error);
       res.sendStatus(500)
     })
-
-
 });
 
 
 router.post('/education', rejectUnauthenticated, (req, res) => {
-  // console.log('req.body', req.body);
+
   const sqlParam = [
     req.user.user_info.id,
     req.body.School,
@@ -115,8 +100,7 @@ router.post('/education', rejectUnauthenticated, (req, res) => {
 });
 
 
-//GET experience for candiddate
-
+// GET experience for candiddate
 router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "experience"
@@ -125,7 +109,6 @@ router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
       res.send(result.rows[0])
-      console.log(result.rows);
     })
     .catch((error) => {
       console.log('error fetching items from experience', error)
@@ -137,9 +120,8 @@ router.get('/experience/:id', rejectUnauthenticated, (req, res) => {
 
 
 
-//POST experience for candidate.
+// POST experience for candidate.
 router.post('/experience', rejectUnauthenticated, (req, res) => {
-  // console.log('req.body', req.body);
   const sqlParam = [
     req.user.user_info.id,
     req.body.Company,
@@ -162,8 +144,7 @@ router.post('/experience', rejectUnauthenticated, (req, res) => {
     });
 });
 
-//GET skill for candidate.
-
+// GET skill for candidate.
 router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlText = `SELECT * FROM "skill"
@@ -171,12 +152,10 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlText, [req.user.user_info.id])
     .then((result) => {
-      // console.log('result is:',result.rows)
       res.send(result.rows[0])
-      console.log(result.rows);
     })
     .catch((error) => {
-      console.log('error fetching items from skill', error)
+      console.log('error fetching items from skill', error);
       res.sendStatus(500)
     })
 
@@ -197,12 +176,10 @@ router.delete('/skill/:id', rejectUnauthenticated, (req, res) => {
 
   pool.query(sqlText, sqlParams)
     .then((result) => {
-      // console.log('result is:',result.rows)
-      res.send(result.rows[0])
-      console.log(result.rows);
+      res.send(result.ros[0])
     })
     .catch((error) => {
-      console.log('error fetching items from skill', error)
+      console.log('error deleting item', error);
       res.sendStatus(500)
     })
 
@@ -211,9 +188,6 @@ router.delete('/skill/:id', rejectUnauthenticated, (req, res) => {
 
 // DELETE a candidates experience
 router.delete('/experience/:id', rejectUnauthenticated, (req, res) => {
-
-
-  // GET route code here
 
   const sqlText = `DELETE  FROM "experience"
   WHERE "id" = $1
@@ -225,12 +199,9 @@ router.delete('/experience/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlText, sqlParams)
     .then((result) => {
-      // console.log('result is:',result.rows)
       res.send(result.rows[0])
-      console.log(result.rows);
     })
     .catch((error) => {
-      console.log('error fetching items from skill', error)
       res.sendStatus(500)
     })
 
@@ -250,12 +221,9 @@ router.delete('/education/:id', rejectUnauthenticated, (req, res) => {
   ]
   pool.query(sqlText, sqlParams)
     .then((result) => {
-      // console.log('result is:',result.rows)
       res.send(result.rows[0])
-      console.log(result.rows);
     })
     .catch((error) => {
-      console.log('error fetching items from skill', error)
       res.sendStatus(500)
     })
 
@@ -264,7 +232,6 @@ router.delete('/education/:id', rejectUnauthenticated, (req, res) => {
 
 //POST skill for candidate.
 router.post('/skill', rejectUnauthenticated, (req, res) => {
-  console.log('req.body', req.body);
   const sqlParam = [
     req.user.user_info.id,
     req.body.Skill
@@ -286,7 +253,6 @@ VALUES ($1, $2)`;
 
 //POST hyperlink for candidate.
 router.post('/hyperlink', rejectUnauthenticated, (req, res) => {
-  console.log('req.body', req.body);
   const sqlParam = [
     req.user.user_info.id,
     req.body.Hyperlink
@@ -310,28 +276,25 @@ VALUES ($1, $2)`;
 // GET the 3 Latest Job Posts in the Candidate Landing Page.
 router.get('/', rejectUnauthenticated, (req, res) => {
 
-
   const sqlTxt = `SELECT "job_post".id, "employer".company_name,"employer".company_address,"job_post".title
     FROM "job_post"
     JOIN "employer"
       ON "job_post".employer_id = "employer".id
       ORDER BY random();`;
 
-
   pool.query(sqlTxt)
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log('recent jobs:', dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
-      console.log('GET positions for home pagefailed: ', error);
+      console.log('GET positions for home page failed: ', error);
     })
 });
 
 //GET the job search by keyword for candidate
 router.get('/:keyword', rejectUnauthenticated, (req, res) => {
-  console.log("req.params.keyword", req.params.keyword);
+
   const sqlTxt = `
                   SELECT "employer".company_name,"employer".company_address,"job_post".title, "job_post".id
                   FROM "job_post"
@@ -339,14 +302,12 @@ router.get('/:keyword', rejectUnauthenticated, (req, res) => {
                   ON "job_post".employer_id = "employer".id 
                   WHERE SIMILARITY("title", $1) > 0.1;
                   `;
-  // const keyword = req.params.keyword
   // OR "description" LIKE '%$2%';
 
 
   pool.query(sqlTxt, [req.params.keyword])
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log(dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
@@ -365,7 +326,6 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, [req.user.user_info.id, req.params.id])
     .then(dbRes => {
       res.send(dbRes.rows);
-      console.log(dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
@@ -375,7 +335,6 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
 
 // Delete Candidate Saved Jobs
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-
 
   const sqlTxt = `DELETE FROM saved_jobs WHERE "candidate_id" = $1 AND "job_post_id" = $2;`;
 
@@ -389,10 +348,6 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
       console.log('Delete Saved Jobs Failed: ', error);
     })
 });
-
-
-
-
 
 
 module.exports = router;

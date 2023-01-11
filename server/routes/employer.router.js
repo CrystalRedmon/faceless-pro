@@ -6,26 +6,23 @@ const {
 } = require('../modules/authentication-middleware');
 
 
-// GET ALL JOB POSTS BY EMPLOYER ID/[req.user.user_info.id] 
+// GET ALL JOB POSTS BY EMPLOYER ID
 router.get('/', rejectUnauthenticated, (req, res) => {
 
   const sqlTxt = `SELECT *
                   FROM "job_post"
                   WHERE "employer_id" = $1;`;
 
-  // console.log('this is the user: ', req.user);
   pool.query(sqlTxt, [req.user.user_info.id])    //💬 [req.user.user_info.id] === employer_id 
     .then(dbRes => {
       res.send(dbRes.rows);
-      // console.log(dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
-      // console.log('GET positions failed: ', error);
     })
 });
 
-// GET SPECIFIC JOB POSTS BY JOB_POST.ID  AND EMPLOYER ID/[req.user.user_info.id] 
+// GET SPECIFIC JOB POSTS BY JOB_POST.ID AND EMPLOYER ID/[req.user.user_info.id] 
 router.get('/:id', rejectUnauthenticated, (req, res) => {
 
   const sqlTxt = `SELECT "job_post".title, "job_post".description, "job_post".id
@@ -41,18 +38,15 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.send(dbRes.rows[0]);
-      console.log(dbRes.rows[0]);
     })
     .catch(error => {
       res.sendStatus(500);
-      // console.log('GET positions failed: ', error);
     })
 });
 
-//GET LIST OF ALL APPLICANTS BASED ON JOB POST ID
+// GET LIST OF ALL APPLICANTS BASED ON JOB POST ID
 router.get('/applicants/:id', rejectUnauthenticated, (req, res) => {
-  // console.log('req.user', req.user.user_info.user_id);
-  // console.log(req.params.id);
+
 
   const sqlTxt = `SELECT application.id, application.random_identifier, application.time, application.status
 FROM application
@@ -63,7 +57,6 @@ ORDER BY application.id;`;
 
   pool.query(sqlTxt, [Number(req.params.id), req.user.user_info.user_id])
     .then(dbRes => {
-      console.log('the rows', dbRes.rows);
       res.send(dbRes.rows);
     })
     .catch(error => {
@@ -87,11 +80,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      // console.log('Post job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      // console.log('Post job failed: ', error);
     })
 
 });
@@ -113,19 +104,16 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      // console.log('Delete job successful: ', dbRes);
     })
     .catch(error => {
       res.sendStatus(500);
-      // console.log('Delete job failed: ', error);
     })
-
 })
 
 // UPDATE JOB POST BY ID
 router.put('/:id', rejectUnauthenticated, (req, res) => {
 
-  const sqlTxt = ` UPDATE "job_post"
+  const sqlTxt = `UPDATE "job_post"
                     SET "title" = $1,
                     "description" = $2
                     WHERE "id" = $3
@@ -142,11 +130,9 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   pool.query(sqlTxt, sqlParams)
     .then(dbRes => {
       res.sendStatus(200);
-      // console.log('Update job successful: ', dbRes.rows);
     })
     .catch(error => {
       res.sendStatus(500);
-      // console.log('Update job failed: ', error);
     })
 
 })
@@ -234,9 +220,7 @@ WHERE EXISTS (
 
 // UPDATE status of application
 router.put('/status/:id', rejectUnauthenticated, (req, res) => {
-  // console.log(req.body.newStatus);
-  // console.log('applicationId', req.params.id);
-  // console.log('req.user.user_info.user_id', req.user.user_info.user_id);
+
   const queryText = `
 UPDATE application
 SET status = $1
@@ -255,70 +239,4 @@ WHERE
     })
 });
 
-// GET applicant shared info by applicant.id
-// router.get('/shared/:id', rejectUnauthenticated, async (req, res) => {
-//   try {
-//     const applicationId = req.params.id;
-
-//     let dbRes = await pool.query(
-//       `SELECT first_name, last_name, email, linkedin_link, resume_path, cover_letter_path 
-//         FROM application
-//         JOIN candidate ON application.candidate_id = candidate.id
-//         WHERE application.id = $1;`, [applicationId]);
-//     res.send(dbRes.rows[0]);
-//   }
-//   catch (err) {
-//     console.error('GET /shared/:id', err);
-//     res.sendStatus(500);
-//   }
-// })
-
 module.exports = router;
-
-
-
-/*
-
-SELECT 
-
-  if (status = "shared")
-    candidate.fName,
-    candidate.Lnamt,
-    etc
-  else {
-    // don't
-  }
-  // can use CASE for conditionals
-  CASE WHEN status = 'shared' THEN candidate.fName else NULL END,
-  // .... etc....
-
-FROM application
-JOIN job_post
-JOIN education
-JOIN experience
-// et...
-WHERE
-  application.id = req.params.id      // from URL
-  job_post.employer_id = req.user.id  // Authorization!!!
-
-  // or
-  WHERE application.job_id = ...
-  applicaiont.cand_id = ...
-*/
-
-/**
-pool.query(sqlQuery, params)
-  .then(dbRes => {
-    let result = dbRes.rows[0];
-
-    if (result.status !== 'shared') {
-      delete result.fName
-      delete result.lName,
-      etc.
-      // or
-      result.fName = null;
-    }
-
-    res.send(result);
-  })
- */

@@ -3,7 +3,7 @@ const experience = (state = [], action) => {
         return action.payload
     }
     return state;
-  }
+}
 
 
-  export default experience;
+export default experience;

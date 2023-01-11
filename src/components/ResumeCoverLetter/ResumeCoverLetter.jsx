@@ -29,12 +29,12 @@ function ResumeCoverLetter() {
     }
 
     const resumeHandler = (event) => {
-        console.log('in resumeHandler');
+
         setResumeFile(event.target.files);
     }
 
     const coverLetterHandler = (event) => {
-        console.log('in coverLetterHandler');
+
         setCoverLetterFile(event.target.files);
     }
 
@@ -50,13 +50,12 @@ function ResumeCoverLetter() {
                         <Box style={{ marginBottom: '3em' }} >
                             <Typography>Resume PDF only</Typography>
                             <input style={{ marginTop: '1em' }} required type="file" name="uploaded_file" onChange={resumeHandler} />
-                            {/* <input type="submit" value="Upload" /> */}
+
                         </Box>
 
                         <Box style={{ marginBottom: '3em' }}>
                             <Typography>Cover Letter PDF only</Typography>
                             <input style={{ marginTop: '1em' }} required type="file" name="uploaded_file" onChange={coverLetterHandler} />
-                            {/* <input type="submit" value="Upload" /> */}
 
                         </Box>
 

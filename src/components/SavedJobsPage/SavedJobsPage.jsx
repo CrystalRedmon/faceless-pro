@@ -1,32 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { PanoramaSharp } from "@mui/icons-material";
 import SavedJobItem from "./SavedJobItem";
-import { Box } from "@mui/system";
 import { Grid, List, Button } from "@mui/material";
 
 function SavedJobsPage() {
   const dispatch = useDispatch();
   const savedJobsList = useSelector((store) => store.candidateReducer.saveJobs);
-  const appliedJobsList = useSelector(
-    (store) => store.candidateReducer.candidateJobs
-  );
-  const history = useHistory();
 
-  console.log("savedJob", savedJobsList);
   useEffect(() => {
     dispatch({ type: "FETCH_SAVED_JOBS" });
     dispatch({ type: 'FETCH_APPLIED_JOBS' });
   }, []);
-
-  function submitApplied() {
-    dispatch({
-      type: 'FETCH_APPLIED_JOBS',
-    });
-  }
 
   return (
       <Grid container spacing={2}>

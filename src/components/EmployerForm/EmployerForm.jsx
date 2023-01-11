@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+
 import TextField from '@mui/material/TextField';
 
 
@@ -15,7 +13,6 @@ function EmployerForm() {
     const [companyPhone, setCompanyPhone] = useState('');
     const [companyEmail, setCompanyEmail] = useState('');
     const [companyLink, setCompanyLink] = useState('');
-    // const [companyLogoPath, setCompanyLogoPath] = useState('');
     const [companyDescription, setCompanyDescription] = useState('');
 
     const handleSubmit = (event) => {
@@ -38,7 +35,6 @@ function EmployerForm() {
         setCompanyPhone('');
         setCompanyEmail('');
         setCompanyLink('');
-        // setCompanyLogoPath('');
         setCompanyDescription('');
     }
 
@@ -49,7 +45,6 @@ function EmployerForm() {
             <TextField required value={companyPhone} onChange={(event) => { setCompanyPhone(event.target.value) }} label="company phone number" />
             <TextField required value={companyEmail} onChange={(event) => { setCompanyEmail(event.target.value) }} label="company email" />
             <TextField required value={companyLink} onChange={(event) => { setCompanyLink(event.target.value) }} label="company site link" />
-            {/* <TextField required value={companyLogoPath} onChange={(event) => { setCompanyLogoPath(event.target.value) }} label="company logo upload" /> */}
             <TextField required value={companyDescription} onChange={(event) => { setCompanyDescription(event.target.value) }} label="company description" />
             <Button type='submit' variant='contained'>submit</Button>
         </form>

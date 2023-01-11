@@ -1,11 +1,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { PanoramaSharp } from "@mui/icons-material";
 import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import List from "@material-ui/core/List";
@@ -43,16 +40,16 @@ function Message() {
   const dispatch = useDispatch();
   const params = useParams()
 
-  function secretEmployerButton(){
+  function secretEmployerButton() {
     setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
   }
-  function secretCandidateButton(){
+  function secretCandidateButton() {
     setMessage('Terrific! I am available tomorrow at 1 PM CST if that works for you.')
   }
 
 
 
-  //For later possibllu
+  //For later possibly
   // function secretUserButton(){
   //   setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
   // }
@@ -62,7 +59,6 @@ function Message() {
 
   useEffect(() => {
     dispatch({ type: "FETCH_MESSAGES", payload: `${params.id}` });
-    console.log('params.id is:', `${params.id}`)
 
     // Start the interval
     intervalId.current = setInterval(() => {
@@ -76,7 +72,6 @@ function Message() {
   const messageList = useSelector(
     store => store.candidateReducer.messageList
   );
-  console.log("messageList", messageList);
 
   const [message, setMessage] = useState("");
   const user = useSelector((store) => store.user);
@@ -87,7 +82,6 @@ function Message() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("handle submit", message);
     dispatch({
       type: "ADD_MESSAGE",
       payload: {
@@ -98,7 +92,6 @@ function Message() {
     setMessage(""); // Reset the value of message to an empty string
   }
 
-  console.log('user', user);
   return (
     <Box className={classes.root}>
 
@@ -179,7 +172,7 @@ function Message() {
           </Box>
         </Grid>
       </Grid>
-      <><Box  sx={{ color: 'white' }} onClick={(secretCandidateButton)}> SECRET Button</Box></>
+      <><Box sx={{ color: 'white' }} onClick={(secretCandidateButton)}> SECRET Button</Box></>
     </Box>
   );
 

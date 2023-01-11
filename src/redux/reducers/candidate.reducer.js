@@ -38,16 +38,6 @@ const appliedJobs = (state = [], action) => {
     return state;
 }
 
-
-// const searchJobs = (state = [], action) => {
-//     switch(action.type) {
-//         case 'SET_SEARCHED_JOBS':
-//             return action.payload;
-//     }
-
-//     return state;
-// }
-
 const messageList = (state = [], action) => {
     switch (action.type) {
         case 'SET_MESSAGE':

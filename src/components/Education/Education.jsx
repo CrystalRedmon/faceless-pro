@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, FormControl, InputLabel, Input, Grid, Box, TextField, TextareaAutosize } from '@material-ui/core';
+import { Button, FormControl, InputLabel, Box, TextField, TextareaAutosize } from '@material-ui/core';
 import { Typography } from '@mui/material';
-import CandidateBreadcrumb from '../Breadcrumbs/Breadcrumbs';
 
 function Education() {
   const history = useHistory();
@@ -148,7 +147,7 @@ function Education() {
                   <FormControl>
 
                     <TextareaAutosize
-                      
+
                       minRows={10}
                       className='textField'
                       style={{ width: '35em', marginBottom: '2em' }}
@@ -159,11 +158,11 @@ function Education() {
                     />
                   </FormControl>
 
-                <Box sx={{display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%'}}>
-                  <Button sx={{marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
-                 
-                  <Button variant="contained" color="error" sx={{marginBottom: '3em'}} className='formButtons' onClick={addFields}>add more</Button>
-               </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', marginBottom: '3em', width: '25%' }}>
+                    <Button sx={{ marginRight: '10em', }} variant="contained" color="error" className='formButtons' onClick={() => removeFields(index)}>Remove</Button>
+
+                    <Button variant="contained" color="error" sx={{ marginBottom: '3em' }} className='formButtons' onClick={addFields}>add more</Button>
+                  </Box>
 
                 </div>
               )
