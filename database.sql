@@ -14,6 +14,9 @@ DROP TABLE "candidate";
 DROP TABLE "employer";
 DROP TABLE "user";
 
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
+
 CREATE TABLE "user" (
 	"id" serial PRIMARY KEY,
 	"username" VARCHAR (80) UNIQUE NOT NULL,
@@ -102,3 +105,5 @@ CREATE TABLE "saved_jobs" (
 	"candidate_id" INT REFERENCES "candidate",
 	"job_post_id" INT REFERENCES "job_post" ON DELETE CASCADE
 );
+
+

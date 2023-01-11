@@ -40,15 +40,6 @@ function Message() {
   const dispatch = useDispatch();
   const params = useParams()
 
-  function secretEmployerButton() {
-    setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
-  }
-  function secretCandidateButton() {
-    setMessage('Terrific! I am available tomorrow at 1 PM CST if that works for you.')
-  }
-
-
-
   //For later possibly
   // function secretUserButton(){
   //   setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
@@ -97,7 +88,7 @@ function Message() {
 
       <Grid container>
         <Grid item xs={12} className={classes.headBG}>
-          <Box onClick={(secretEmployerButton)} display="flex" alignItems="center" p={1}>
+          <Box display="flex" alignItems="center" p={1}>
 
             <Box p={1} flexGrow={1} sx={{ display: "flex", justifyContent: "space-between" }}>
 
@@ -172,7 +163,6 @@ function Message() {
           </Box>
         </Grid>
       </Grid>
-      <><Box sx={{ color: 'white' }} onClick={(secretCandidateButton)}> SECRET Button</Box></>
     </Box>
   );
 
