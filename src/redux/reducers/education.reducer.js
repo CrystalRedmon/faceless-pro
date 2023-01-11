@@ -3,7 +3,7 @@ const education = (state = [], action) => {
         return action.payload
     }
     return state;
-  }
+}
 
 
-  export default education;
+export default education;

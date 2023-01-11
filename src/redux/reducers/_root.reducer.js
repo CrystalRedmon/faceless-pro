@@ -23,7 +23,6 @@ const rootReducer = combineReducers({
   education,
   SkillsReducer,
   experience
-
 });
 
 export default rootReducer;

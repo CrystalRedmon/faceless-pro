@@ -1,8 +1,5 @@
 import { combineReducers } from 'redux';
 
-
-
-
 const allJobs = (state = [], action) => {
     switch (action.type) {
         case 'SET_JOBS':
@@ -15,7 +12,6 @@ const currentJob = (state = [], action) => {
     switch (action.type) {
         case `SET_CURRENT_JOB_POST`:
             return action.payload;
-
     }
     return state;
 }

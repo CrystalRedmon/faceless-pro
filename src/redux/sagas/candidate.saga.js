@@ -40,7 +40,6 @@ function* saveCandidateData(action) {
 function* fetchRecentJobs() {
     try {
         const recentJobs = yield axios.get(`/api/candidateProfile`);
-        console.log('Recent jobs GET successful: ', recentJobs.data)
         yield put({ type: 'SET_JOBS', payload: recentJobs.data })
         // yield put({type: 'FETCH_CANDIDATE_INFO'})
     }
@@ -50,7 +49,6 @@ function* fetchRecentJobs() {
 }
 
 function* saveJobs(action) {
-    console.log("action.payload is", action.payload);
     try {
         const savedJob = yield axios.post(`/api/candidateProfile/${action.payload.id}`);
         console.log('Save recent jobs POST successful: ', savedJob.data)
@@ -64,10 +62,8 @@ function* saveJobs(action) {
 }
 
 function* searchJobs(action) {
-    console.log(action.payload);
     try {
         const keywordSearch = yield axios.get(`/api/candidateProfile/${action.payload}`);
-        console.log('keyword search GET successful: ', keywordSearch.data)
         yield put({ type: 'SET_JOBS', payload: keywordSearch.data })
     }
     catch (err) {
@@ -76,10 +72,8 @@ function* searchJobs(action) {
 }
 
 function* fetchSavedJobs() {
-    console.log('action.payload for fetch saved jobs: ')
     try {
         const savedJobs = yield axios.get(`/api/candidateInfo`);
-        console.log('saved jobs GET successful: ', savedJobs.data)
         yield put({ type: 'SET_SAVED_JOBS', payload: savedJobs.data })
 
     }
@@ -88,7 +82,6 @@ function* fetchSavedJobs() {
     }
 }
 function* applyJob(action) {
-    console.log('action.payload for applied job: ', action.payload.id)
     try {
         yield axios.post(`/api/candidateInfo/${action.payload.id}/application`)
 
@@ -106,7 +99,6 @@ function* applyJob(action) {
 }
 
 function* deleteJob(action) {
-    console.log('delete action.payload: ', action.payload)
     try {
         yield axios.delete(`/api/candidateInfo/${action.payload.id}`)
 
@@ -123,7 +115,6 @@ function* deleteJob(action) {
 function* viewJobDetails(action) {
     try {
         const jobDetail = yield axios.get(`/api/candidateInfo/detail/${action.payload}`);
-        console.log('job detail: ', jobDetail.data)
         yield put({ type: 'SET_JOBS', payload: jobDetail.data })
     }
     catch (err) {
@@ -132,7 +123,6 @@ function* viewJobDetails(action) {
 }
 
 function* appliedJobs() {
-    console.log('in applied job_post')
     try {
         const appliedJobs = yield axios.get(`/api/candidateInfo/applied`);
         yield put({ type: 'SET_APPLIED_JOBS', payload: appliedJobs.data })
@@ -153,7 +143,6 @@ function* addEducation(action) {
     }
 }
 function* addExperience(action) {
-    console.log('action.payload Add experience', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/experience`, action.payload)
     }
@@ -162,10 +151,9 @@ function* addExperience(action) {
     }
 }
 function* addSkill(action) {
-    console.log('action.payload Add skill', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/skill`, action.payload)
-        yield put({ type: 'FETCH_CANDIDATE_INFO'})
+        yield put({ type: 'FETCH_CANDIDATE_INFO' })
     }
     catch (error) {
         console.log('error adding skill', error)
@@ -173,17 +161,15 @@ function* addSkill(action) {
 }
 
 function* addHyperLink(action) {
-    console.log('action.payload Add HyperLink', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/hyperlink`, action.payload)
-        yield put({ type: 'FETCH_CANDIDATE_INFO'})
+        yield put({ type: 'FETCH_CANDIDATE_INFO' })
     }
     catch (error) {
         console.log('error adding hyperlink', error)
     }
 }
 function* addProfile(action) {
-    console.log('action.payload Add profile', action.payload)
     try {
         yield axios.post(`/api/candidateProfile/profile`, action.payload)
     }
@@ -193,7 +179,6 @@ function* addProfile(action) {
 }
 
 function* fetchMessage(action) {
-    console.log('payload for message', action.payload)
     try {
         const messages = yield axios.get(`/api/message/${action.payload}`);
         yield put({ type: 'SET_MESSAGE', payload: messages.data })
@@ -204,7 +189,6 @@ function* fetchMessage(action) {
 }
 
 function* addMessage(action) {
-    console.log('action.payload addMessage', action.payload)
     try {
         yield axios.post(`/api/message`, action.payload)
     }
@@ -214,7 +198,6 @@ function* addMessage(action) {
 }
 
 function* shareInfo(action) {
-    console.log('action. payload for shareInfo:', action.payload)
     try {
         yield axios.put(`/api/candidateInfo/info/${action.payload}`)
 
@@ -229,8 +212,6 @@ function* shareInfo(action) {
 }
 
 function* updateInfo(action) {
-    console.log('action. payload for shareInfo:', action.payload)
-
     try {
         yield axios.put(`/api/candidateInfo/info`, action.payload);
 
@@ -244,7 +225,6 @@ function* updateInfo(action) {
 }
 
 function* candidateInfo(action) {
-    console.log('action. payload for candidate Info:', action)
     try {
         const info = yield axios.get(`/api/candidateInfo/info`)
         yield put({ type: 'SET_EDIT_PROFILE', payload: info.data })
@@ -259,7 +239,6 @@ function* fetchEducation() {
     try {
         const education = yield axios.get(`/api/candidateProfile/education`)
         yield put({ type: 'SET_EDUCATION', payload: education.data })
-
     }
     catch (error) {
         console.log('error adding message', error)
@@ -305,7 +284,6 @@ function* uploadCoverLetter(action) {
 }
 
 function* fetchCandidateProfileInfo() {
-    
     try {
         const candidateProfileInfo = yield axios.get(`/api/candidateProfile/profile`);
         yield put({ type: 'SET_CANDIDATE_PROFILE_INFO', payload: candidateProfileInfo.data });

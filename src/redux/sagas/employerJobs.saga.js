@@ -1,8 +1,7 @@
 import axios from "axios";
-import { join, put, takeEvery } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 
 function* postJob(action) {
-    // console.log('posting job', action.payload)
     try {
         //send new item to server then to DB at server
         yield axios.post('/api/employer', action.payload);
@@ -21,13 +20,11 @@ function* postJob(action) {
 function* FetchJobs() {
     try {
         const requests = yield axios.get('/api/employer');
-        // console.log('request.data', requests.data);
         //send to redux
         yield put({
             type: 'SET_JOBS',
             payload: requests.data
         })
-
     }
     catch (err) {
         //on error
@@ -39,7 +36,6 @@ function* FetchJobs() {
 function* fetchCurrentJobPost(action) {
     try {
         const currentJobPost = yield axios.get(`/api/employer/${action.payload}`);
-        // console.log('currentJobPost successful: ', currentJobPost.data);
         yield put({ type: 'SET_CURRENT_JOB_POST', payload: currentJobPost.data })
     }
     catch (err) {
@@ -61,9 +57,7 @@ function* deleteJobPost(action) {
 function* fetchEditJob(action) {
     try {
         const editJob = yield axios.get(`/api/employer/${action.payload}`);
-        // console.log('fetchEditJob successful: ', editJob.data);
         yield put({ type: 'SET_EDIT_JOB', payload: editJob.data })
-
     }
     catch (err) {
         console.error('fetchEditJob failed ', err);
@@ -72,23 +66,18 @@ function* fetchEditJob(action) {
 }
 
 function* saveJob(action) {
-    // console.log('so much payload.id ', action.payload.id);
-    // console.log('so much payload ', action.payload);
     if (action.payload.id) {
         yield axios.put(`/api/employer/${action.payload.id}`, action.payload);
     }
     else {
         yield axios.post(`/api/employer/`, action.payload);
     }
-
 }
 
 function* fetchApplicants(action) {
     try {
         const response = yield axios.get(`/api/employer/applicants/${action.payload}`);
-
         yield put({ type: 'SET_APPLICANTS', payload: response.data })
-
     }
     catch (err) {
         console.error('fetchApplicants failed ', err);
@@ -98,9 +87,6 @@ function* fetchApplicants(action) {
 function* updateApplicationStatus(action) {
     const applicationId = action.payload.id;
     const newStatus = action.payload.newStatus;
-    // console.log('in updateApplicationStatus');
-    // console.log('applicationId', applicationId);
-    // console.log('newStatus', newStatus);
     try {
 
         yield axios.put(`/api/employer/status/${applicationId}`, { newStatus });
@@ -116,7 +102,6 @@ function* updateApplicationStatus(action) {
 }
 
 function* fetchApplicant(action) {
-
     try {
         const response = yield axios.get(`/api/employer/applicant/${action.payload}`);
 
