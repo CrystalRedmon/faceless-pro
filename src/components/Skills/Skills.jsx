@@ -50,22 +50,7 @@ function Skills() {
   };
 
 
-  const handleFormCompletion = () => {
 
-    let button = document.getElementById('populateCandidateSkills');
-    let form = document.getElementById('candidateSkills');
-
-    button.addEventListener('click', function () {
-      // Set the value of the form fields
-      form.skill.value = "Effective Communication";
-
-      setFormFields([
-        {
-          Skill: "Effective Communication",
-
-        }])
-    })
-  };
 
   return (
     <>
@@ -73,7 +58,7 @@ function Skills() {
       <Box className='container'>
         <div className="Skill" style={{
         }}>
-          <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateSkills' variant="h3">Skills</Typography>
+          <Typography style={{ marginTop: '1em' }} id='populateCandidateSkills' variant="h3">Skills</Typography>
           <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
           <Typography>Step 5 of 6</Typography>
 

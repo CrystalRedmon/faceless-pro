@@ -49,21 +49,6 @@ function CandidateHyperLink() {
     setFormFields(data);
   };
 
-  const handleFormCompletion = () => {
-
-    let button = document.getElementById('populateCandidateHyperlink');
-    let form = document.getElementById('candidateHyperlink');
-
-    button.addEventListener('click', function () {
-      // Set the value of the form fields
-      form.hyperlink.value = "github.com/coffeecoder";
-
-      setFormFields([
-        {
-          Skill: "github.com/fsiyad",
-        }])
-    })
-  };
 
 
   let value;
@@ -74,7 +59,7 @@ function CandidateHyperLink() {
       <Box className='container'>
         <div className="Hyperlink" style={{
         }}>
-          <Typography style={{ marginTop: '1em' }} onClick={handleFormCompletion} id='populateCandidateHyperlink' variant="h3">Portfolio | External Links</Typography>
+          <Typography style={{ marginTop: '1em' }} id='populateCandidateHyperlink' variant="h3">Portfolio | External Links</Typography>
           <Typography variant='h6' style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
           <Typography>Step 6 of 6</Typography>
 
