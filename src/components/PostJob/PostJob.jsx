@@ -57,78 +57,7 @@ function PostJob() {
 
     }
 
-    const handleFormCompletion = () => {
 
-
-        let button = document.getElementById('populateButton');
-        let form = document.getElementById('jobPost');
-
-        button.addEventListener('click', function () {
-            // Set the value of the form fields
-            form.jobTitle.value = 'Sales Associate';
-            form.jobDescription.value = "Do you want to work for a long-standing Alaskan company? Do you want to work with a team that honors excellent customer service? Do you want to work with the support of a leader and team that enjoy a positive work environment?" + '\n' + '\n' + "Founded in Downtown Anchorage in 1947 as a military surplus store, Big Jay's has weathered the trials and tribulations of over 75 years of operating in Alaska. To this day Big Jay's continues to be family owned and operated, and with 5 locations statewide it has expanded to become Alaska's premier all-weather outfitter. From brands like Carhartt, to Columbia, to XtraTuf, to Under Armour, Big Jay's carries all the name brands customers need to be outfitted in Alaska. With an exhaustive inventory, business to business contracts and customized embroidery service, Big Jay's caters to all. Though Big Jay's may have changed with the times, our mission has not: to meet the needs of Alaskans as they confront the challenges of the Last Frontier."
-                + '\n' + '\n' +
-                "Responsibilities:The Corporate Sales Assistant’s general responsibilities include the following tasks:"
-                + '\n' + '\n' +
-                "· Assist business - to - business customers with locating proper apparel."
-                + '\n' + '\n' +
-
-                "· Create customer orders in order fulfillment software."
-
-                + '\n' + '\n' +
-
-                "· Contact customers via phone or email for pick - up of completed orders."
-
-                + '\n' + '\n' +
-
-                "· Consistently attempt to have all available sizes represented on the sales floor by reporting the voids to the merchandise support specialist, as well as participate in restocking such items as necessary."
-
-                + '\n' + '\n' +
-
-                "· Ensure customer orders are moving through the fulfillment process in a consistent and timely manner."
-
-                + '\n' + '\n' +
-
-                "· Perform End - of - Day procedures in order fulfilment software."
-
-                + '\n' + '\n' +
-
-                "· Adhere to the Customer Service Standards established for the department."
-
-                + '\n' + '\n' +
-
-                "· Adhere to the Merchandise Presentation Standards established for the department."
-
-                + '\n' + '\n' +
-
-                "· Maintain excellent communication with fellow workers and leadership."
-
-                + '\n' + '\n' +
-
-                "· Protect the company’s value and integrity by maintaining confidentiality."
-
-                + '\n' + '\n' +
-
-                "· Commit to and accountable for the delivery of exceptional customer service."
-
-                + '\n' + '\n' +
-
-                "· Lead, encourage and promote positive team member engagement; empower individuality while promoting productivity.";
-
-
-        });
-
-        dispatch({
-            type: 'UPDATE_EDIT_JOB',
-            payload: { title: form.jobTitle.value }
-        })
-
-        dispatch({
-            type: 'UPDATE_EDIT_JOB',
-            payload: { description: form.jobDescription.value }
-        })
-
-    }
 
 
     return (
@@ -138,7 +67,7 @@ function PostJob() {
                 <Grid item xs={9}>
 
                     <Button variant='contained' onClick={handleBack}>Back</Button>
-                    <h2 onClick={handleFormCompletion} id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
+                    <h2 id='populateButton'>{params.id ? 'Edit Job Post' : 'Post New Position'}</h2>
 
                     <form action="" id='jobPost'>
                         <InputLabel htmlFor="">Title:</InputLabel>
