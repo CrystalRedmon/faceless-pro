@@ -28,13 +28,9 @@ CREATE TABLE "employer" (
 	"company_address" VARCHAR(255) NOT NULL,
 	"company_phone" VARCHAR(255) NOT NULL,
 	"email" VARCHAR(255) NOT NULL,
-	"logo_path" VARCHAR(255) NOT NULL,
 	"company_description" VARCHAR NOT NULL,
 	"company_link" VARCHAR(255) NOT NULL
 );
-
-ALTER TABLE "employer"
-DROP COLUMN logo_path;
 
 CREATE TABLE "candidate" (
 	"id" serial PRIMARY KEY,

@@ -5,6 +5,7 @@ Functional Issues
 4. Refreshing the page or going back to view job details for the candidate breaks the app.
 5. Candidates can apply to the same job post as many times as they want.
 6. Saving a job does not remove it from the search for job page.
-7. As a candidate user, getting the 'complete your profile to save and apply to job postings' button prompt is not correct even if they have done so. Page needs to be refreshed.
+7. As a candidate user, getting the 'complete your profile to save and apply to job postings' button prompt is not correct even if they have done so. Page needs to be refreshed to reflect status of candidate table entry defined by user reducer.
 8. Candidates can go through the profile setup as many times as they want. There is nothing preventing them from INSERTING multiple rows with their user id in the candidate table.
 9. Candidates must completed step 1, which inserts into the candidate table, in order to add their resume and cover letter.
+10. Editing job post does not render on the /jobList, sometimes, when saving changes.
