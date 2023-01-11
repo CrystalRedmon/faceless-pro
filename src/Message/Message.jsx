@@ -40,12 +40,8 @@ function Message() {
   const dispatch = useDispatch();
   const params = useParams()
 
-  //For later possibly
-  // function secretUserButton(){
-  //   setMessage('We are thrilled to see you meet the requirements of our position, but we would like to ask you a few more questions about your application. What is your availability later this week?')
-  // }
-
   // Use a ref to store the interval ID
+
   const intervalId = useRef();
 
   useEffect(() => {

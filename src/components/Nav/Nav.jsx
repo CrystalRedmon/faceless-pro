@@ -23,7 +23,7 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Box sx={{display: 'flex', alignItems: 'center', marginLeft: 1}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', marginLeft: 1 }}>
         <Avatar alt="Faceless Pro Logo" src="./images/clientLogo.png" sx={{ width: 50, height: 50, marginRight: 1 }} />
 
         <div>
@@ -43,12 +43,12 @@ function Nav() {
       </Box>
 
 
-      
+
       <div>
         <Link className="navLink"
           onClick={handleOpenMenu}
           aria-controls='menu'
-          sx={{color: 'white'}}
+          sx={{ color: 'white' }}
         >
           About Us
         </Link>
@@ -95,7 +95,7 @@ function Nav() {
 
 
             <Link className="navLink" to="/CandidatePage">
-              My Profile 
+              My Profile
 
             </Link>
 
@@ -122,7 +122,6 @@ function Nav() {
           <MenuList><Link to="/founder">Founder</Link></MenuList>
           <MenuList><Link to="/contact">Contact Us</Link></MenuList>
         </Menu>
-
 
       </div>
     </div>

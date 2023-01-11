@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Button, FormControl, InputLabel, Box, TextField, TextareaAutosize } from '@material-ui/core';
 import { Typography } from '@mui/material';
@@ -8,8 +8,6 @@ function Education() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const editedEducation = useSelector(store => store.candidateReducer.editEducation);
-  const info = useSelector(store => store.candidateReducer.candidateInfo);
   const [formFields, setFormFields] = useState([
     { School: '', Major: '', Dates: '', Notes: '' },
   ])
@@ -22,7 +20,6 @@ function Education() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({
@@ -55,34 +52,7 @@ function Education() {
     setFormFields(data)
   }
 
-  const handleFormCompletion = () => {
 
-    let button = document.getElementById('populateCandidateEducation');
-    let form = document.getElementById('candidateEducation');
-
-    button.addEventListener('click', function () {
-      // Set the value of the form fields
-      form.schoolName.value = "Prime Digital Academy";
-      form.major.value = "Full Stack Engineer Certificate";
-      form.dates.value = "8/2022 - 1/2023";
-      form.notes.value = "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express";
-
-      console.log('This is the formData', formFields);
-
-      setFormFields([
-
-        {
-          School: "Prime Digital Academy",
-          Major: "Full Stack Engineer Certificate",
-          Dates: "8/2022 - 1/2023",
-          Notes: "An accelerated full stack program covering technologies including JavaScript, React, Node.js, and Express"
-
-        }])
-
-
-
-    })
-  };
 
 
   let value;
@@ -94,7 +64,7 @@ function Education() {
       <Box className='container'>
 
         {/* <CandidateBreadcrumb /> */}
-        <Typography onClick={handleFormCompletion} id='populateCandidateEducation' variant='h3' style={{ marginTop: '1em' }}>Education</Typography>
+        <Typography  id='populateCandidateEducation' variant='h3' style={{ marginTop: '1em' }}>Education</Typography>
         <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
         <Typography>Step 3 of 6</Typography>
 

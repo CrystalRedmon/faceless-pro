@@ -30,22 +30,22 @@ function EmployerJobDetails() {
     }
 
     return (
-            <Grid container spacing={2} >
-                <Grid item xs={3}></Grid>
-                <Grid item xs={6}>
+        <Grid container spacing={2} >
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
 
-                    <Box sx={{ display: 'flex' }}>
-                        <Button sx={{ marginRight: 1 }} variant='contained' onClick={handleBack}>Back</Button>
-                        <Button variant='contained' onClick={handleEdit}>Edit</Button>
-                    </Box>
+                <Box sx={{ display: 'flex' }}>
+                    <Button sx={{ marginRight: 1 }} variant='contained' onClick={handleBack}>Back</Button>
+                    <Button variant='contained' onClick={handleEdit}>Edit</Button>
+                </Box>
 
-                    <h2>{job.title}</h2>
-                    <p className='formatText'>Description:</p>
-                    <p className='formatText'>{job.description}</p>
+                <h2>{job.title}</h2>
+                <p className='formatText'>Description:</p>
+                <p className='formatText'>{job.description}</p>
 
-                </Grid>
-                <Grid item xs={3}></Grid>
             </Grid>
+            <Grid item xs={3}></Grid>
+        </Grid>
     );
 }
 

@@ -1,6 +1,6 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -9,7 +9,6 @@ import { Typography } from '@mui/material';
 function ApplicantItem({ applicant, jobId }) {
     const dispatch = useDispatch();
     const history = useHistory();
-    const params = useParams();
 
     useEffect(() => {
         dispatch({
@@ -21,7 +20,7 @@ function ApplicantItem({ applicant, jobId }) {
     switch (applicant.status) {
         case 'pending':
             return (
-                <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2}}>
+                <Box sx={{ borderRadius: '5px', boxShadow: 3, padding: '10px', border: 'solid grey 1px', display: "flex", justifyContent: 'space-between', marginBottom: 2 }}>
                     <Box>
                         <Box>
                             <b>Applicant:</b> {applicant.random_identifier}
@@ -101,7 +100,7 @@ function ApplicantItem({ applicant, jobId }) {
                     <Box>
                         <Typography>
                             <Button
-                            sx={{ marginBottom: 1 }}
+                                sx={{ marginBottom: 1 }}
                                 variant='contained'
                                 onClick={() => { history.push(`/ApplicantProfile/${applicant.id}/${jobId}`) }}
                             >

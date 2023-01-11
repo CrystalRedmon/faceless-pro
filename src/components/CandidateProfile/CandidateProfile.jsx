@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FormControl, InputLabel, Input, Button, Typography, Box, TextField } from '@material-ui/core';
+import { FormControl, InputLabel, Button, Typography, Box, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './CandidateProfile.css'
 
@@ -48,35 +48,12 @@ function CandidateProfile() {
   }
 
 
-  const handleFormCompletion = () => {
-
-    let button = document.getElementById('populateCandidateProfile');
-    let form = document.getElementById('candidateProfile');
-
-    button.addEventListener('click', function () {
-      // Set the value of the form fields
-      form.firstName.value = "Faduma ";
-      form.lastName.value = "Siyad";
-      form.email.value = "fsiyad@gmail.com";
-      form.linkedin.value = "linkedin.com/faduma-siyad";
-
-      setFormData({
-
-        FirstName: "Faduma",
-        LastName: "Siyad",
-        Email: "fsiyad@google.com",
-        LinkedIn: "linkedin.com/faduma-siyad",
-
-      })
-
-    })
-  };
 
   let value;
   return (
     <>
       <Box className='container'  >
-        <Typography onClick={handleFormCompletion} id='populateCandidateProfile' variant="h3" style={{ marginTop: '1em' }}>Personal Information</Typography>
+        <Typography id='populateCandidateProfile' variant="h3" style={{ marginTop: '1em' }}>Personal Information</Typography>
         <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This identifying information will not be shared with the employers. You will have the opportunity to share this information once an employer reviews your application and initiates contact.</Typography>
         <Typography>Step 1 of 6</Typography>
 
@@ -100,7 +77,7 @@ function CandidateProfile() {
               <FormControl>
 
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="lastName"
                   name='LastName'
@@ -115,7 +92,7 @@ function CandidateProfile() {
               <FormControl>
 
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="email"
                   name='Email'
@@ -128,7 +105,7 @@ function CandidateProfile() {
               <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
               <FormControl>
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="linkedin"
                   name='LinkedIn'

@@ -13,6 +13,7 @@ function StartProfile() {
         history.push('/user');
     }
 
+    // NOT USED IN APP
     return (
         <>
             <h1>Welcome To Faceless Pro!</h1>

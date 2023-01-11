@@ -1,23 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import { Typography, InputLabel, Box } from '@mui/material';
-
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    marginBottom: theme.spacing(2),
-  },
-}));
 
 function Experience() {
   const history = useHistory();
@@ -35,7 +22,6 @@ function Experience() {
 
   const submit = (e) => {
     e.preventDefault();
-    console.log('Formfield info is here', formFields);
 
     formFields.forEach((form) => {
       dispatch({
@@ -68,36 +54,6 @@ function Experience() {
     setFormFields(data);
   };
 
-  const handleFormCompletion = () => {
-
-    let button = document.getElementById('populateCandidateExperience');
-    let form = document.getElementById('candidateExperience');
-
-    button.addEventListener('click', function () {
-      // Set the value of the form fields
-      form.company.value = "Starbucks";
-      form.title.value = "Barista";
-      form.dates.value = "3/2019- 7/2022";
-      form.jobDuty.value = "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' + '\n' +
-        "Welcomes customers by determining their coffee interests and needs." + '\n' + '\n' +
-        "Educates customers by presenting and explaining the coffee drink menu; answering questions.";
-
-      console.log('This is the formData', formFields);
-
-      setFormFields([
-
-        {
-          Company: "Starbucks",
-          Title: "Barista",
-          Dates: "3/2019- 7/2022",
-          JobDuty: "Promotes coffee consumption by educating customers; selling coffee and coffee grinding and brewing equipment, accessories, and supplies; preparing and serving a variety of coffee drinks, along with pastries and cookies." + '\n' + '\n' +
-            "Welcomes customers by determining their coffee interests and needs." + '\n' + '\n' +
-            "Educates customers by presenting and explaining the coffee drink menu; answering questions."
-        }
-      ])
-
-    })
-  };
 
   let value;
 
@@ -107,7 +63,7 @@ function Experience() {
       {/* <CandidateBreadcrumb /> */}
       <Box className='container'>
 
-        <Typography onClick={handleFormCompletion} id='populateCandidateExperience' variant="h3" style={{ marginTop: '1em' }}>Experience </Typography>
+        <Typography  id='populateCandidateExperience' variant="h3" style={{ marginTop: '1em' }}>Experience </Typography>
         <Typography variant="h6" style={{ marginTop: '2em', marginBottom: '2em' }}>This information will be shared with employers as part of your application.</Typography>
         <Typography>Step 4 of 6</Typography>
 

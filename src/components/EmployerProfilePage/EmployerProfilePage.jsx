@@ -1,4 +1,3 @@
-
 import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -32,7 +31,6 @@ function EmployerProfilePage() {
     }
 
     const handleBack = () => {
-
         history.push('/user')
     }
 
@@ -108,7 +106,7 @@ function EmployerProfilePage() {
                                     })}
                                 />
                             </Grid>
-                            
+
                             <Grid item xs={12}>
                                 <TextField
                                     label="Company Description"
