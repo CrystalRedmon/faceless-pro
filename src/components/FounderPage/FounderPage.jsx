@@ -11,7 +11,7 @@ function FounderPage() {
         <Box>
           <Typography sx={{ ml: 22.5, mb: 5 }} variant='h4'>Abyan Nur</Typography>
           <Avatar alt="Abyan Nur Headshot" src="./images/Abyan.jpeg" sx={{ ml: 15, width: 300, height: 400 }} />
-          <p class="intro">Hi, my name is Abyan and I am the founder and CEO of Faceless Pro.</p>
+          <p className="intro">Hi, my name is Abyan and I am the founder and CEO of Faceless Pro.</p>
         </Box>
 
 
