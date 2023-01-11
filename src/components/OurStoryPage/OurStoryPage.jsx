@@ -1,13 +1,12 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import './OurStoryPage.css';
 import Box from "@mui/material/Box";
 
 function OurStoryPage() {
 
   return (
     <div>
-      <Typography sx={{ml: 90}} variant='h4'>Our Story</Typography>
+      <Typography sx={{ ml: 90 }} variant='h4'>Our Story</Typography>
 
       <Box
         border={3}

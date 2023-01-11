@@ -1,10 +1,8 @@
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import { List, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 
 function ApplicantSharedInfo({ applicant }) {
-
-    console.log(applicant);
 
     return (
         <Grid container spacing={2}>

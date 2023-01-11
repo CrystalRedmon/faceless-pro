@@ -4,11 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import ApplicantNotSharedInfo from './ApplicantNotSharedInfo';
 import ApplicantSharedInfo from './ApplicantSharedInfo';
-
-import { Typography } from '@mui/material';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import List from '@mui/material/List';
 import Swal from 'sweetalert2';
 
 
@@ -72,8 +69,6 @@ function ApplicantProfile() {
             }
         })
     }
-
-    // console.log(`the applicant info`, applicant);
 
     return (
         <Box>

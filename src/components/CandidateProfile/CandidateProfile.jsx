@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FormControl, InputLabel, Input, Button, Typography, Box, TextField } from '@material-ui/core';
+import { FormControl, InputLabel, Button, Typography, Box, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import './CandidateProfile.css'
 
@@ -100,7 +100,7 @@ function CandidateProfile() {
               <FormControl>
 
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="lastName"
                   name='LastName'
@@ -115,7 +115,7 @@ function CandidateProfile() {
               <FormControl>
 
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="email"
                   name='Email'
@@ -128,7 +128,7 @@ function CandidateProfile() {
               <InputLabel htmlFor="linkedin">LinkedIn</InputLabel>
               <FormControl>
                 <TextField
-                className='textField'
+                  className='textField'
                   style={{ width: '30em', marginBottom: '2em' }}
                   id="linkedin"
                   name='LinkedIn'

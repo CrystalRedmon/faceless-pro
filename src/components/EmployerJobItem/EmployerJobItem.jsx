@@ -40,7 +40,7 @@ function EmployerJobItem({ job }) {
             }
         })
     }
-    
+
     return <>
         <Card variant="outlined" sx={{ margin: 2, boxShadow: 3 }}>
             <CardContent>

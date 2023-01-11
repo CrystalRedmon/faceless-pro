@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useHistory, Link } from "react-router-dom"
 import { useEffect } from 'react';
 
-import { InputLabel, Button, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 
 function CandidateHomepage() {
 

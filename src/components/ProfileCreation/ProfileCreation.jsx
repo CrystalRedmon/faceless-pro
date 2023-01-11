@@ -5,6 +5,8 @@ import {
 
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
+// NOT USED IN APP
+
 function ProfileCreation() {
   return (
     <Router>
@@ -19,4 +21,3 @@ function ProfileCreation() {
 }
 
 export default ProfileCreation;
-

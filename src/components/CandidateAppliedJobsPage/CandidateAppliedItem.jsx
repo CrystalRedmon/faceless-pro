@@ -52,8 +52,8 @@ function CandidateAppliedItem({ job }) {
                     </Box>
                     <Box>
                         <Button
-                        variant='contained'
-                        sx={{ marginBottom: 1 }}
+                            variant='contained'
+                            sx={{ marginBottom: 1 }}
                         // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
@@ -79,12 +79,12 @@ function CandidateAppliedItem({ job }) {
                             <b>Your anonymous information was reviewed by the employer</b>
                         </Box>
                     </Box>
-                    <Box sx={{textAlign: "right"}}>
+                    <Box sx={{ textAlign: "right" }}>
                         <Typography>
                             <Button
                                 sx={{ marginBottom: 1 }}
                                 variant='contained'
-                                // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                            // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
@@ -105,7 +105,6 @@ function CandidateAppliedItem({ job }) {
                                 color="success"
                                 onClick={() => {
                                     history.push(`/message/${job.application_id}`);
-                                    // console.log("job", job.application_id);
                                 }}
                             >
                                 Open Chat
@@ -137,7 +136,7 @@ function CandidateAppliedItem({ job }) {
                             <Button
                                 variant='contained'
                                 sx={{ marginBottom: 1 }}
-                                // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                            // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                             >
                                 View Job Details
                             </Button>
@@ -149,7 +148,6 @@ function CandidateAppliedItem({ job }) {
                                 sx={{ marginBottom: 1 }}
                                 onClick={() => {
                                     history.push(`/message/${job.application_id}`);
-                                    // console.log("job", job.application_id);
                                 }}
                             >
                                 Open Chat
@@ -180,7 +178,7 @@ function CandidateAppliedItem({ job }) {
                         <Button
                             variant='contained'
                             sx={{ marginBottom: 1 }}
-                            // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
+                        // onClick={() => { history.push(`/job/${job.job_post_id}`) }}
                         >
                             View Job Details
                         </Button>

@@ -3,7 +3,6 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 
 function* addCandidateInfo(action) {
-    console.log('in addCandidateInfo with action.payload', action.payload);
     try {
         yield axios.post('/api/candidateProfile', action.payload);
         yield put({ type: 'FETCH_USER' });
